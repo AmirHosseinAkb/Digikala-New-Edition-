@@ -22,14 +22,14 @@ namespace _01_Framework.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class ConfirmationMessages {
+    public class PageTitles {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ConfirmationMessages() {
+        internal PageTitles() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace _01_Framework.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("_01_Framework.Resources.ConfirmationMessages", typeof(ConfirmationMessages).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("_01_Framework.Resources.PageTitles", typeof(PageTitles).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,83 +61,101 @@ namespace _01_Framework.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your Account Has Been Created.
+        ///   Looks up a localized string similar to Active Account.
         /// </summary>
-        public static string ConfirmRegister {
+        public static string ActiveAccount {
             get {
-                return ResourceManager.GetString("ConfirmRegister", resourceCulture);
+                return ResourceManager.GetString("ActiveAccount", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your account has been successfully created. Now you can log in to your account and complete your account information to everyone Access the facilities and services and   related services.
+        ///   Looks up a localized string similar to Login.
         /// </summary>
-        public static string ConfirmRegisterText {
+        public static string Login {
             get {
-                return ResourceManager.GetString("ConfirmRegisterText", resourceCulture);
+                return ResourceManager.GetString("Login", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reset Password Confirmed.
+        ///   Looks up a localized string similar to Login And Register.
         /// </summary>
-        public static string ConfirmResetPassword {
+        public static string LoginAndRegister {
             get {
-                return ResourceManager.GetString("ConfirmResetPassword", resourceCulture);
+                return ResourceManager.GetString("LoginAndRegister", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure you want delete user?.
+        ///   Looks up a localized string similar to Password Generation.
         /// </summary>
-        public static string DeleteUserConfirmationS1 {
+        public static string PasswordGeneration {
             get {
-                return ResourceManager.GetString("DeleteUserConfirmationS1", resourceCulture);
+                return ResourceManager.GetString("PasswordGeneration", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Register.
         /// </summary>
-        public static string DeleteUserConfirmationS2 {
+        public static string Register {
             get {
-                return ResourceManager.GetString("DeleteUserConfirmationS2", resourceCulture);
+                return ResourceManager.GetString("Register", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PasswordChangedSuccessfully.
+        ///   Looks up a localized string similar to ResetPassword.
         /// </summary>
-        public static string PasswordChangedSuccessfully {
+        public static string ResetPassword {
             get {
-                return ResourceManager.GetString("PasswordChangedSuccessfully", resourceCulture);
+                return ResourceManager.GetString("ResetPassword", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reset Password Email Sent Successfully.
+        ///   Looks up a localized string similar to Success Register.
         /// </summary>
-        public static string ResetPasswordEmailSent {
+        public static string SuccessRegister {
             get {
-                return ResourceManager.GetString("ResetPasswordEmailSent", resourceCulture);
+                return ResourceManager.GetString("SuccessRegister", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure you want to return user?.
+        ///   Looks up a localized string similar to Success Reset Password.
         /// </summary>
-        public static string ReturnUserConfirmationS1 {
+        public static string SuccessResetPassword {
             get {
-                return ResourceManager.GetString("ReturnUserConfirmationS1", resourceCulture);
+                return ResourceManager.GetString("SuccessResetPassword", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to User Informations.
         /// </summary>
-        public static string ReturnUserConfirmationS2 {
+        public static string UserInformations {
             get {
-                return ResourceManager.GetString("ReturnUserConfirmationS2", resourceCulture);
+                return ResourceManager.GetString("UserInformations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User Panel.
+        /// </summary>
+        public static string UserPanel {
+            get {
+                return ResourceManager.GetString("UserPanel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verification.
+        /// </summary>
+        public static string Verification {
+            get {
+                return ResourceManager.GetString("Verification", resourceCulture);
             }
         }
     }

@@ -17,13 +17,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01_Framework", "01_Framewor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserManagement.Domain", "UserManagement.Domain\UserManagement.Domain.csproj", "{DE44F1B7-5136-44B7-A05F-62E2A3CC9C46}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserManagement.Application.Contracts", "UserManagement.Application.Contracts\UserManagement.Application.Contracts.csproj", "{C8D9A96F-F004-4B35-B047-52AB2D9CA66D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserManagement.Application.Contracts", "UserManagement.Application.Contracts\UserManagement.Application.Contracts.csproj", "{C8D9A96F-F004-4B35-B047-52AB2D9CA66D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserManagement.Application", "UserManagement.Application\UserManagement.Application.csproj", "{E0123D32-6C4D-4C80-8BA7-02D0953D4813}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserManagement.Application", "UserManagement.Application\UserManagement.Application.csproj", "{E0123D32-6C4D-4C80-8BA7-02D0953D4813}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserManagement.Infrastructure.EfCore", "UserManagement.Infrastructure.EfCore\UserManagement.Infrastructure.EfCore.csproj", "{2F8D4FFE-6FFD-416A-9CB3-745C152BFC5E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserManagement.Infrastructure.EfCore", "UserManagement.Infrastructure.EfCore\UserManagement.Infrastructure.EfCore.csproj", "{2F8D4FFE-6FFD-416A-9CB3-745C152BFC5E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserManagement.Infrastructure.Configuration", "UserManagement.Infrastructure.Configuration\UserManagement.Infrastructure.Configuration.csproj", "{41C9D169-0A94-4040-BC89-0A61626510B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserManagement.Infrastructure.Configuration", "UserManagement.Infrastructure.Configuration\UserManagement.Infrastructure.Configuration.csproj", "{41C9D169-0A94-4040-BC89-0A61626510B6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
