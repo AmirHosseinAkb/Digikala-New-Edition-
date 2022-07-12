@@ -29,8 +29,10 @@ namespace UserManagement.Domain.UserAgg
             
         }
 
-        public User(string activationCode,int verificationCode,long roleId)
+        public User(string activationCode,int verificationCode,long roleId,string? email=null,string? phoneNumber=null)
         {
+            Email = email;
+            PhoneNumber = phoneNumber;
             ActivationCode = activationCode;
             VerificationCode = verificationCode;
             RoleId = roleId;

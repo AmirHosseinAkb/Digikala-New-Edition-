@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +21,12 @@ namespace UserManagement.Infrastructure.EfCore.Mappings
             builder.HasMany(r => r.Users)
                 .WithOne(u => u.Role)
                 .HasForeignKey(u => u.RoleId);
+
+            builder.HasData(
+                new Role(1,"مدیر سایت"),
+                new Role(2,"دستیار مدیر"),
+                new Role(3,"کاربر سایت")
+                );
         }
     }
 }

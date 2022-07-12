@@ -16,6 +16,9 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         options.LogoutPath = "/Logout";
         options.ExpireTimeSpan = TimeSpan.FromDays(14);
     });
+builder.Services.AddSession(options =>
+    options.IdleTimeout=TimeSpan.FromDays(10)
+);
 
 var app = builder.Build();
 

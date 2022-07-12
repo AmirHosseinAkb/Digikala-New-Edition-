@@ -115,6 +115,15 @@ namespace _01_Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enter Email Or Phone Number Correctly.
+        /// </summary>
+        public static string EnterEmailOrPhoneNumberCorrectly {
+            get {
+                return ResourceManager.GetString("EnterEmailOrPhoneNumberCorrectly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enter other email instead of your current email.
         /// </summary>
         public static string EnterOtherEmail {

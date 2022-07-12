@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace UserManagement.Domain.UserAgg
 {
-    public  interface IUserRepository
+    public interface IUserRepository
     {
-
+        bool IsExistByEmail(string email);
+        bool IsExistByPhoneNumber(string phoneNumber);
     }
 }

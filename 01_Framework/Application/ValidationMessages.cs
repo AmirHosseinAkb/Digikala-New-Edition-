@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _01_Framework.Application
+namespace _01_Framework.Application.Convertors
 {
     public class ValidationMessages
     {
@@ -15,5 +15,6 @@ namespace _01_Framework.Application
         public const string MinLength = "مقدار وارد شده کمتر از حد مجاز است";
         public const string PasswordMinLength = "رمز عبور حداقل باید 8 کاراکتر باشد";
         public const string InvalidPasswordCompare = "تکرار رمز عبور صحیح نمی باشد";
+        
     }
 }

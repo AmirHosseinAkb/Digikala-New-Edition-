@@ -17,6 +17,13 @@ namespace UserManagement.Domain.RoleAgg
         public Role(string roleTitle)
         {
             RoleTitle=roleTitle;
+            Users=new List<User>();
+        }
+
+        public Role(long roleId, string roleTitle)
+        {
+            RoleId = roleId;
+            RoleTitle=roleTitle;
         }
     }
 }
