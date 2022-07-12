@@ -330,6 +330,9 @@
   <data name="String" xml:space="preserve">
     <value>زمان باقی مانده</value>
   </data>
+  <data name="TermsOfUse" xml:space="preserve">
+    <value>با ورود و یا ثبت نام در سایت شما &lt;a href="#" class="link"&gt;شرایط و  قوانین&lt;/a&gt; استفاده از تمام سرویس های سایت و &lt;a href="#" class="link"&gt;قوانین حریم خصوصی&lt;/a&gt; آن را می‌پذیرید.</value>
+  </data>
   <data name="To" xml:space="preserve">
     <value>تا</value>
   </data>

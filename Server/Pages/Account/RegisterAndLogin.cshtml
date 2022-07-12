@@ -1,37 +1,47 @@
 ﻿@page
 @model Server.Pages.Account.RegisterAndLoginModel
 @{
+    Layout = null;
+    ViewData["Title"] = PageTitles.LoginAndRegister;
 }
 
-<div class="page-wrapper">
-       <partial name="PartialViews/_AccountHeader"/>
+<html>
+<head>
+    <partial name="PartialViews/_Styles" />
+</head>
+<body>
+    <div class="page-wrapper">
+        <partial name="PartialViews/_AccountHeader" />
+
         <main class="page-content page-auth">
 
             <div class="auth-container">
-                <div class="auth-title mb-3">ورود / ثبت نام</div>
+                <div class="auth-title mb-3">@DataDictionaries.RegisterAndLogin</div>
                 <div class="auth-box ui-box">
 
                     <form method="post">
                         <div class="form-element-row mb-5">
-                            <input type="text" class="form-control" placeholder="شماره موبایل یا ایمیل">
+                            <input type="text" class="form-control" placeholder="@DataDictionaries.EmailOrPhone">
                         </div>
 
                         <div class="form-element-row mb-3">
-                            <button class="btn btn-primary">ادامه</button>
+                            <button class="btn btn-primary">@ButtonCaptions.Continue</button>
                         </div>
 
-                         <div class="form-element-row">
-                            <div>با ورود و یا ثبت نام در سایت شما <a href="#" class="link">شرایط و
-                                    قوانین</a> استفاده
-                                از تمام سرویس های
-                                سایت و <a href="#" class="link">قوانین حریم خصوصی</a> آن را می‌پذیرید.
+                        <div class="form-element-row">
+                            <div>
+                                @Html.Raw(DataDictionaries.TermsOfUse)
                             </div>
                         </div>
-
                     </form>
 
                 </div>
             </div>
         </main>
-    <partial name="PartialViews/_AccountFooter"/>
+        <partial name="PartialViews/_AccountFooter" />
     </div>
+    <partial name="PartialViews/_Scripts" />
+    <partial name="PartialViews/_ValidationScriptsPartial" />
+</body>
+</html>
+

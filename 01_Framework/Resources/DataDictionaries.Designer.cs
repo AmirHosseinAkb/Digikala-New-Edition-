@@ -691,6 +691,15 @@ namespace _01_Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to By entering or registering on this site You accept the Site and its &lt;a href=&quot;#&quot; class=&quot;link&quot;&gt;terms and Rules&lt;/a&gt; of use of all services &lt;a href=&quot;#&quot; class=&quot;link&quot;&gt;Privacy Policy&lt;/a&gt;..
+        /// </summary>
+        public static string TermsOfUse {
+            get {
+                return ResourceManager.GetString("TermsOfUse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to to.
         /// </summary>
         public static string To {

@@ -327,6 +327,9 @@
   <data name="Showing" xml:space="preserve">
     <value>Showing</value>
   </data>
+  <data name="TermsOfUse" xml:space="preserve">
+    <value>By entering or registering on this site You accept the Site and its &lt;a href="#" class="link"&gt;terms and Rules&lt;/a&gt; of use of all services &lt;a href="#" class="link"&gt;Privacy Policy&lt;/a&gt;.</value>
+  </data>
   <data name="To" xml:space="preserve">
     <value>to</value>
   </data>
