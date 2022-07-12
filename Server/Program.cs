@@ -1,3 +1,5 @@
+
+using _01_Framework.Infrastructure.ExtensionMethods;
 using UserManagement.Infrastructure.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,7 +22,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthorization();
+app.UseCultureCookie();
 
 app.MapRazorPages();
 
