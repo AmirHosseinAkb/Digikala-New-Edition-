@@ -1,5 +1,6 @@
 
 using _01_Framework.Infrastructure.ExtensionMethods;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using UserManagement.Infrastructure.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +8,15 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 Bootstrapper.Config(builder.Services, builder.Configuration.GetConnectionString("DigikalaConnection"));
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/RegisterAndLogin";
+        options.LogoutPath = "/Logout";
+        options.ExpireTimeSpan = TimeSpan.FromDays(14);
+    });
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -23,6 +33,10 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseCultureCookie();
+
+app.UseAuthentication();
+
+app.UseAuthorization();
 
 app.MapRazorPages();
 
