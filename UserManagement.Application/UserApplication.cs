@@ -1,4 +1,5 @@
-﻿using _01_Framework.Application.Convertors;
+﻿using _01_Framework.Application;
+using _01_Framework.Application.Convertors;
 using _01_Framework.Application.Email;
 using _01_Framework.Resources;
 using UserManagement.Application.Contracts.User;
@@ -11,12 +12,14 @@ namespace UserManagement.Application
         private readonly IUserRepository _userRepository;
         private readonly  IViewRenderService _viewRenderService;
         private readonly IEmailService _emailService;
+        private readonly  IPasswordHasher _passwordHasher;
 
-        public UserApplication(IUserRepository userRepository,IViewRenderService viewRenderService, IEmailService emailService)
+        public UserApplication(IUserRepository userRepository,IViewRenderService viewRenderService, IEmailService emailService, IPasswordHasher passwordHasher)
         {
             _userRepository = userRepository;
             _viewRenderService = viewRenderService;
             _emailService = emailService;
+            _passwordHasher = passwordHasher;
         }
 
         public OperationResult Register(RegisterCommand command)
@@ -26,9 +29,9 @@ namespace UserManagement.Application
                 return operation.Failed(ApplicationMessages.DuplicatedEmail);
 
             var activationCode = CodeGenerator.GenerateUniqName();
-
+            var hashedPassword = _passwordHasher.HashMD5(command.Password);
             var user = new User(activationCode, CodeGenerator.GenerateRandomNumber()
-                    , 3, email: command.Email);
+                    , 3, email: command.Email,password:hashedPassword);
 
             var body=_viewRenderService.RenderToStringAsync
                 ("_ActivationEmailBody",new ActivationEmailViewModel(){Email = command.Email,ActivationCode = activationCode}); // Email Body

@@ -30,7 +30,7 @@ namespace UserManagement.Domain.UserAgg
             
         }
 
-        public User(string activationCode,int verificationCode,long roleId,string? email=null,string? phoneNumber=null)
+        public User(string activationCode,int verificationCode,long roleId,string? email=null,string? phoneNumber=null,string? password=null)
         {
             Email = email;
             PhoneNumber = phoneNumber;
@@ -42,6 +42,7 @@ namespace UserManagement.Domain.UserAgg
             AvatarName = "Default.png";
             RefundType = 0;
             IsDeleted = false;
+            Password = password;
         }
 
         

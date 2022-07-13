@@ -9,13 +9,23 @@ using UserManagement.Infrastructure.Configuration;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddRazorPages();
-Bootstrapper.Config(builder.Services, builder.Configuration.GetConnectionString("DigikalaConnection"));
 
+#region BootStrapper
+
+Bootstrapper.Config(builder.Services, builder.Configuration.GetConnectionString("DigikalaConnection"));
+#endregion
+
+#region IOC
+ 
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<IViewRenderService,RenderViewToString>();
 builder.Services.AddScoped<IAuthenticationHelper,AuthenticationHelper>();
+builder.Services.AddScoped<IPasswordHasher,PasswordHasher>();
+
+#endregion
+
+#region Authentication
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
@@ -24,13 +34,22 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         options.LogoutPath = "/Logout";
         options.ExpireTimeSpan = TimeSpan.FromDays(14);
     });
+
+#endregion
+
+#region Session
+
 builder.Services.AddSession(options =>
     options.IdleTimeout=TimeSpan.FromHours(1)
 );
 
+#endregion
+
+builder.Services.AddRazorPages();
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
@@ -39,6 +58,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
 app.UseStaticFiles();
 
 app.UseRouting();
