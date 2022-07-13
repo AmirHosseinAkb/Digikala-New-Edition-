@@ -38,6 +38,19 @@ namespace UserManagement.Application
             return operation.Succeeded();
         }
 
+        public bool ActiveAccount(string activationCode)
+        {
+            var operation = new OperationResult();
+            var user = _userRepository.GetByActivationCode(activationCode);
+            if (user == null || user.IsActive)
+                return false;
+            user.Activate();
+            user.ChangeActivationCode(CodeGenerator.GenerateUniqName());
+            _userRepository.SaveChanges();
+
+            return true;
+        }
+
         public bool IsExistByEmail(string email)
         {
             return _userRepository.IsExistByEmail(email);

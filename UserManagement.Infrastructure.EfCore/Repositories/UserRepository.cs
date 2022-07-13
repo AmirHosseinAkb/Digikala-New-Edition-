@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UserManagement.Domain.UserAgg;
+﻿using UserManagement.Domain.UserAgg;
 
 namespace UserManagement.Infrastructure.EfCore.Repositories
 {
@@ -28,6 +23,16 @@ namespace UserManagement.Infrastructure.EfCore.Repositories
         public void Add(User user)
         {
             _context.Users.Add(user);
+            _context.SaveChanges();
+        }
+
+        public User GetByActivationCode(string activationCode)
+        {
+            return _context.Users.SingleOrDefault(u => u.ActivationCode == activationCode);
+        }
+
+        public void SaveChanges()
+        {
             _context.SaveChanges();
         }
     }

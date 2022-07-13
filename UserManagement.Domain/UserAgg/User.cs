@@ -1,4 +1,5 @@
-﻿using UserManagement.Domain.RoleAgg;
+﻿using System.Globalization;
+using UserManagement.Domain.RoleAgg;
 
 namespace UserManagement.Domain.UserAgg
 {
@@ -41,6 +42,17 @@ namespace UserManagement.Domain.UserAgg
             AvatarName = "Default.png";
             RefundType = 0;
             IsDeleted = false;
+        }
+
+        
+        public void Activate()
+        {
+            IsActive = true;
+        }
+
+        public void ChangeActivationCode(string code)
+        {
+            ActivationCode = code;
         }
     }
 }

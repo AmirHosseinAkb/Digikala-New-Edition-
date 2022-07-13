@@ -10,6 +10,7 @@ namespace UserManagement.Application.Contracts.User
     public interface IUserApplication
     {
         OperationResult Register(RegisterCommand command);
+        bool ActiveAccount(string activationCode);
         bool IsExistByEmail(string email);
     }
 }
