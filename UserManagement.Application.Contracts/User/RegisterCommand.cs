@@ -13,7 +13,7 @@ namespace UserManagement.Application.Contracts.User
 {
     public class RegisterCommand
     {
-        public string EmailOrPhone { get; set; }
+        public string? Email { get; set; }
         [Required(ErrorMessage = ValidationMessages.IsRequired)]
         [MinLength(8,ErrorMessage = ValidationMessages.PasswordMinLength)]
         public string Password { get; set; }

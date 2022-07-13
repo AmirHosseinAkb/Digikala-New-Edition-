@@ -1,5 +1,8 @@
 
+using _01_Framework.Application;
+using _01_Framework.Application.Convertors;
 using _01_Framework.Infrastructure.ExtensionMethods;
+using _01_Framework.Application.Email;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using UserManagement.Infrastructure.Configuration;
 
@@ -9,6 +12,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 Bootstrapper.Config(builder.Services, builder.Configuration.GetConnectionString("DigikalaConnection"));
 
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<IEmailService, EmailService>();
+builder.Services.AddScoped<IViewRenderService,RenderViewToString>();
+builder.Services.AddScoped<IAuthenticationHelper,AuthenticationHelper>();
+
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
@@ -17,7 +25,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         options.ExpireTimeSpan = TimeSpan.FromDays(14);
     });
 builder.Services.AddSession(options =>
-    options.IdleTimeout=TimeSpan.FromDays(10)
+    options.IdleTimeout=TimeSpan.FromHours(1)
 );
 
 var app = builder.Build();
@@ -40,6 +48,8 @@ app.UseCultureCookie();
 app.UseAuthentication();
 
 app.UseAuthorization();
+
+app.UseSession();
 
 app.MapRazorPages();
 

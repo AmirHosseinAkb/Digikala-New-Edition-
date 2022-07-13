@@ -24,5 +24,11 @@ namespace UserManagement.Infrastructure.EfCore.Repositories
         {
             return _context.Users.Any(u => u.PhoneNumber == phoneNumber.Replace(" ", ""));
         }
+
+        public void Add(User user)
+        {
+            _context.Users.Add(user);
+            _context.SaveChanges();
+        }
     }
 }

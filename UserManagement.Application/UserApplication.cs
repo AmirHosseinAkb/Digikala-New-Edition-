@@ -1,46 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using _01_Framework.Application.Convertors;
-using _01_Framework.Application.Convertors;
+﻿using _01_Framework.Application.Convertors;
+using _01_Framework.Application.Email;
+using _01_Framework.Resources;
 using UserManagement.Application.Contracts.User;
 using UserManagement.Domain.UserAgg;
 
 namespace UserManagement.Application
 {
-    public class UserApplication:IUserApplication
+    public class UserApplication : IUserApplication
     {
         private readonly IUserRepository _userRepository;
+        private readonly  IViewRenderService _viewRenderService;
+        private readonly IEmailService _emailService;
 
-        public UserApplication(IUserRepository userRepository)
+        public UserApplication(IUserRepository userRepository,IViewRenderService viewRenderService, IEmailService emailService)
         {
             _userRepository = userRepository;
+            _viewRenderService = viewRenderService;
+            _emailService = emailService;
         }
 
         public OperationResult Register(RegisterCommand command)
         {
             var operation = new OperationResult();
-            
+            if (_userRepository.IsExistByEmail(command.Email))
+                return operation.Failed(ApplicationMessages.DuplicatedEmail);
 
-            if (command.EmailOrPhone.IsEmail())
-            {
-                if (_userRepository.IsExistByEmail(EmailConvertor.FixEmail(command.EmailOrPhone)))
-                    return operation.Failed(ApplicationMessages.DuplicatedEmail);
-                var user = new User(CodeGenerator.GenerateUniqName(), CodeGenerator.GenerateRandomNumber()
-                    , 3,command.EmailOrPhone);
-                return operation.Succeeded();
-            }
-            else if(command.EmailOrPhone.IsPhoneNumber())
-            {
-                if (_userRepository.IsExistByPhoneNumber(command.EmailOrPhone))
-                    return operation.Failed(ApplicationMessages.DuplicatedPhone);
-                var user = new User(CodeGenerator.GenerateUniqName(), CodeGenerator.GenerateRandomNumber()
-                    , 3,null,command.EmailOrPhone);
-                return operation.Succeeded();
-            }
-            return operation.Failed(ApplicationMessages.InvalidEmailOrPhoneNumber);
+            var activationCode = CodeGenerator.GenerateUniqName();
+
+            var user = new User(activationCode, CodeGenerator.GenerateRandomNumber()
+                    , 3, email: command.Email);
+
+            var body=_viewRenderService.RenderToStringAsync
+                ("_ActivationEmailBody",new ActivationEmailViewModel(){Email = command.Email,ActivationCode = activationCode}); // Email Body
+            _emailService.SendEmail(command.Email,DataDictionaries.ActiveAccount,body); //Send Email
+            _userRepository.Add(user);
+
+            return operation.Succeeded();
         }
 
         public bool IsExistByEmail(string email)

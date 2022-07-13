@@ -10,5 +10,6 @@ namespace UserManagement.Domain.UserAgg
     {
         bool IsExistByEmail(string email);
         bool IsExistByPhoneNumber(string phoneNumber);
+        void Add(User user);
     }
 }
