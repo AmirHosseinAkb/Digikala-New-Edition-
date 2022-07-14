@@ -35,7 +35,7 @@ namespace Server.Pages.Account
             var result = _userApplication.Register(Command);
             if (result.IsSucceeded)
             {
-                return RedirectToPage("/Index");
+                return RedirectToPage("RegisterSuccess");
             }
             ErrorMessage = result.Message;
             return Page();
