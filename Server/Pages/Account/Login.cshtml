@@ -6,6 +6,7 @@
 
 <html>
 <head>
+    <title>@(ViewData["Title"]=PageTitles.Login)</title>
     <partial name="PartialViews/_Styles" />
 </head>
 <body>
@@ -15,13 +16,13 @@
         <main class="page-content page-auth">
 
             <div class="auth-container">
-                @if (string.IsNullOrEmpty(Model.ErrorMessage))
+                @if (!string.IsNullOrEmpty(Model.ErrorMessage))
                 {
                     <div class="alert alert-warning">
                         @Model.ErrorMessage
                     </div>
                 }
-                <div class="auth-title mb-3">@DataDictionaries.RegisterAndLogin</div>
+                <div class="auth-title mb-3">@DataDictionaries.Login</div>
                 <div class="auth-box ui-box">
 
                     <form method="post">
@@ -29,13 +30,16 @@
                             <input asp-for="Command.Password" type="password" class="form-control" placeholder="@DataDictionaries.Password">
                             <span asp-validation-for="Command.Password" class="text-danger"></span>
                         </div>
+                        <a class="link-primary" asp-page="/Account/ForgetPassword">
+                            @ButtonCaptions.ForgetPassword
+                        </a>
+                        <hr />
 
                         <div class="form-element-row mb-3">
                             <button class="btn btn-primary">@ButtonCaptions.Login</button>
                         </div>
 
                     </form>
-
                 </div>
             </div>
         </main>

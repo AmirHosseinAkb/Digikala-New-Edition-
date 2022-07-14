@@ -25,6 +25,7 @@ namespace _01_Framework.Application
             var principal = new ClaimsPrincipal(identity);
             var properties = new AuthenticationProperties()
             {
+                IsPersistent = true,
                 ExpiresUtc = DateTimeOffset.UtcNow.AddDays(14)
             };
             _httpContextAccessor.HttpContext.SignInAsync(principal, properties);
