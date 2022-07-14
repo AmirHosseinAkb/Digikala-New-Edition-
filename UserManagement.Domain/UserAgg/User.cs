@@ -55,5 +55,10 @@ namespace UserManagement.Domain.UserAgg
         {
             ActivationCode = code;
         }
+
+        public void ResetPassword(string password)
+        {
+            Password = password;
+        }
     }
 }

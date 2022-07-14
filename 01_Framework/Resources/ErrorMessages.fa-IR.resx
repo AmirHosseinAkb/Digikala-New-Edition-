@@ -168,6 +168,9 @@
   <data name="PageNotFound" xml:space="preserve">
     <value>صفحه مورد نظر پیدا نشد</value>
   </data>
+  <data name="ResetPasswordFailed" xml:space="preserve">
+    <value>تغییر رمز عبور با شکست مواجه شد</value>
+  </data>
   <data name="SomeErrorsEccuredWhileSendingMessage" xml:space="preserve">
     <value>متاسفانه خطایی هنگام ارسال پیامک رخ داده است</value>
   </data>

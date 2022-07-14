@@ -168,6 +168,9 @@
   <data name="PageNotFound" xml:space="preserve">
     <value>Page Not Found</value>
   </data>
+  <data name="ResetPasswordFailed" xml:space="preserve">
+    <value>Reset Password Failed</value>
+  </data>
   <data name="SomeErrorsEccuredWhileSendingMessage" xml:space="preserve">
     <value>Some errors eccured while sending message</value>
   </data>

@@ -124,7 +124,7 @@
     <value>Your account has been successfully created. Now you can log in to your account and complete your account information to everyone Access the facilities and services and   related services</value>
   </data>
   <data name="ConfirmResetPassword" xml:space="preserve">
-    <value>Reset Password Confirmed</value>
+    <value>Reset Password Confirmed Redirecting...</value>
   </data>
   <data name="DeleteUserConfirmationS1" xml:space="preserve">
     <value>Are you sure you want delete user?</value>

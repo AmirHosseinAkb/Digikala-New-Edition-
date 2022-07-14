@@ -124,7 +124,7 @@
     <value>حساب کاربری شما با موفقیت ساخته شد حال میتوانید وارد حساب کاربری خود شده و با تکمیل اطلاعات حساب کاربری خود به کلیه امکانات و سرویس‌ها و سرویس‌های وابسته به آن دسترسی داشته باشید</value>
   </data>
   <data name="ConfirmResetPassword" xml:space="preserve">
-    <value>رمز عبور با موفقیت بازیابی شد</value>
+    <value>رمز عبور با موفقیت بازیابی شد در حال انتقال ...</value>
   </data>
   <data name="DeleteUserConfirmationS1" xml:space="preserve">
     <value>آیا مطمئنید که می خواهید کاربر </value>

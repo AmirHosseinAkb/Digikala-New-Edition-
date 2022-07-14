@@ -2,12 +2,12 @@
 @model Server.Pages.Account.RegisterAndLoginModel
 @{
     Layout = null;
-    ViewData["Title"] = PageTitles.LoginAndRegister;
 }
 
 <html>
 <head>
-    <partial name="PartialViews/_Styles" />
+    <title>@(ViewData["Title"]=PageTitles.LoginAndRegister)</title>
+    <partial name="PartialViews/_Styles"/>
 </head>
 <body>
     <div class="page-wrapper">

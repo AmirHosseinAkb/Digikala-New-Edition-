@@ -34,7 +34,12 @@ namespace Server.Pages.Account
             if (!ModelState.IsValid)
                 return Page();
             Command.Email = HttpContext.Session.GetString("Email");
-            _userApplication.Login(Command);
+            var result=_userApplication.Login(Command);
+            if (!result.IsSucceeded)
+            {
+                ErrorMessage = result.Message;
+                return Page();
+            }
             return Redirect("/");
         }
     }

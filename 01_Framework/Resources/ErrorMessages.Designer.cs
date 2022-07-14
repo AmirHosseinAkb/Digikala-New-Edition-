@@ -214,6 +214,15 @@ namespace _01_Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reset Password Failed.
+        /// </summary>
+        public static string ResetPasswordFailed {
+            get {
+                return ResourceManager.GetString("ResetPasswordFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Some errors eccured while sending message.
         /// </summary>
         public static string SomeErrorsEccuredWhileSendingMessage {

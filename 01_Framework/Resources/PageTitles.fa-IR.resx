@@ -120,6 +120,9 @@
   <data name="ActiveAccount" xml:space="preserve">
     <value>فعالسازی حساب کاربری</value>
   </data>
+  <data name="ForgetPassword" xml:space="preserve">
+    <value>فراموشی رمز عبور</value>
+  </data>
   <data name="Login" xml:space="preserve">
     <value>ورود</value>
   </data>
@@ -134,6 +137,9 @@
   </data>
   <data name="ResetPassword" xml:space="preserve">
     <value>بازیابی رمز عبور</value>
+  </data>
+  <data name="ResetPasswordFail" xml:space="preserve">
+    <value>تغییر رمز عبور ناموفق</value>
   </data>
   <data name="SuccessRegister" xml:space="preserve">
     <value>موفقیت ثبت نام</value>

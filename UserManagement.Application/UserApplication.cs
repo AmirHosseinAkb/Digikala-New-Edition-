@@ -69,10 +69,11 @@ namespace UserManagement.Application
         {
             var operation = new OperationResult();
             var user = _userRepository.GetUserForLogin(EmailConvertor.FixEmail(command.Email!), _passwordHasher.HashMD5(command.Password));
-            if (!user.IsActive)
-                return operation.Failed(ApplicationMessages.UserIsNotActive);
+            
             if (user == null)
                 return operation.Failed(ApplicationMessages.WrongUserPass);
+            if (!user.IsActive)
+                return operation.Failed(ApplicationMessages.UserIsNotActive);
             var authVm = new AuthenticationViewModel(user.UserId, user.RoleId, user.Email!);
             _authenticationHelper.SignIn(authVm);
             return operation.Succeeded();
@@ -87,6 +88,21 @@ namespace UserManagement.Application
             var body = _viewRenderService.RenderToStringAsync("_ForgetPasswordEmailBody",
                 new EmailViewModel() {Email = command.Email, ActivationCode = user.ActivationCode});
             _emailService.SendEmail(command.Email,DataDictionaries.ResetPassword,body);
+            return result.Succeeded();
+        }
+
+        public OperationResult ResetPassword(ResetPasswordCommand command)
+        {
+            var result = new OperationResult();
+            var user = _userRepository.GetByActivationCode(command.ActivationCode);
+            if(user==null)
+                return result.NullResult(ApplicationMessages.RecordNotFound);
+            if (user.Password != _passwordHasher.HashMD5(command.CurrentPassword))
+                return result.Failed(ApplicationMessages.InvalidCurrentPassword);
+            var hashedPassword = _passwordHasher.HashMD5(command.NewPassword);
+            user.ResetPassword(hashedPassword);
+            _userRepository.SaveChanges();
+
             return result.Succeeded();
         }
 

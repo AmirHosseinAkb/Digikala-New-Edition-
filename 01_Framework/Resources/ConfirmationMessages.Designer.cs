@@ -79,7 +79,7 @@ namespace _01_Framework.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reset Password Confirmed.
+        ///   Looks up a localized string similar to Reset Password Confirmed Redirecting....
         /// </summary>
         public static string ConfirmResetPassword {
             get {
