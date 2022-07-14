@@ -186,11 +186,10 @@
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="/SignOut">
+                                            <a asp-page="/Account/RegisterAndLogin" asp-page-handler="SignOut" class="nav-link">
 
                                                 <i class="nav-link-icon ri-logout-box-r-line"></i>
                                                 خروج
-
                                             </a>
                                         </li>
                                     </ul>
@@ -350,10 +349,10 @@
                     }
                     else
                     {
-                        <div class="user-option user-option--account">
-                            <a href="profile.html" class="user-option-btn user-option-btn--account">
-                                <i class="ri-user-fill icon"></i>
-                                <i class="ri-arrow-down-s-fill icon fs-7 text-muted"></i>
+                        <div class="btn btn-outline-light">
+                            <a href="/Account/RegisterAndLogin" class="text-danger" style="text-decoration: none">
+                                <i class="ri-user-3-line"></i>|
+                                <b>ورود/ثبت نام</b>
                             </a>
                         </div>
                     }

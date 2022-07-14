@@ -17,7 +17,7 @@ namespace _01_Framework.Application
             
         }
 
-        public AuthenticationViewModel(long userId,long roleId,string roleTitle,string email)
+        public AuthenticationViewModel(long userId,long roleId,string email)
         {
             UserId=userId;
             RoleId=roleId;

@@ -12,6 +12,8 @@ namespace UserManagement.Domain.UserAgg
         bool IsExistByPhoneNumber(string phoneNumber);
         void Add(User user);
         User GetByActivationCode(string activationCode);
+        User GetUserForLogin(string email,string password);
+        User GetUserByEmail(string email);
 
         void SaveChanges();
     }

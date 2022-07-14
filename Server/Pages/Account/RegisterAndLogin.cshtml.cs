@@ -27,7 +27,12 @@ namespace Server.Pages.Account
         {
             if (!ModelState.IsValid)
                 return Page();
-
+            var result = _userApplication.RegisterAndLogin(Command);
+            if (!result.IsSucceeded)
+            {
+                ErrorMessage = result.Message;
+                return Page();
+            }
             if (Command.EmailOrPhone.IsEmail())
             {
                 HttpContext.Session.SetString("Email",Command.EmailOrPhone);
@@ -42,8 +47,13 @@ namespace Server.Pages.Account
                 return RedirectToPage("Verification");
             }
 
-            ErrorMessage = ApplicationMessages.InvalidEmailOrPhoneNumber;
             return Page();
+        }
+
+        public IActionResult OnGetSignOut()
+        {
+            _userApplication.SignOut();
+            return Redirect("/");
         }
     }
 }

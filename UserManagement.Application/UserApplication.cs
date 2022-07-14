@@ -10,16 +10,40 @@ namespace UserManagement.Application
     public class UserApplication : IUserApplication
     {
         private readonly IUserRepository _userRepository;
-        private readonly  IViewRenderService _viewRenderService;
+        private readonly IViewRenderService _viewRenderService;
         private readonly IEmailService _emailService;
-        private readonly  IPasswordHasher _passwordHasher;
+        private readonly IPasswordHasher _passwordHasher;
+        private readonly IAuthenticationHelper _authenticationHelper;
 
-        public UserApplication(IUserRepository userRepository,IViewRenderService viewRenderService, IEmailService emailService, IPasswordHasher passwordHasher)
+        public UserApplication(IUserRepository userRepository, IViewRenderService viewRenderService, IEmailService emailService, IPasswordHasher passwordHasher, IAuthenticationHelper authenticationHelper)
         {
             _userRepository = userRepository;
             _viewRenderService = viewRenderService;
             _emailService = emailService;
             _passwordHasher = passwordHasher;
+            _authenticationHelper = authenticationHelper;
+        }
+
+        public OperationResult RegisterAndLogin(RegisterAndLoginCommand command)
+        {
+            var result = new OperationResult();
+            if (command.EmailOrPhone.IsEmail())
+            {
+                var user = _userRepository.GetUserByEmail(EmailConvertor.FixEmail(command.EmailOrPhone));
+                if (user != null)
+                {
+                    if (!user.IsActive)
+                        return result.Failed(ApplicationMessages.UserIsNotActive);
+                }
+
+                return result.Succeeded(command.EmailOrPhone);
+            }
+
+            else if (command.EmailOrPhone.IsPhoneNumber())
+                return result.Succeeded();
+
+            else
+                return result.Failed(ApplicationMessages.InvalidEmailOrPhoneNumber);
         }
 
         public OperationResult Register(RegisterCommand command)
@@ -31,13 +55,26 @@ namespace UserManagement.Application
             var activationCode = CodeGenerator.GenerateUniqName();
             var hashedPassword = _passwordHasher.HashMD5(command.Password);
             var user = new User(activationCode, CodeGenerator.GenerateRandomNumber()
-                    , 3, email: command.Email,password:hashedPassword);
+                    , 3, email: command.Email, password: hashedPassword);
 
-            var body=_viewRenderService.RenderToStringAsync
-                ("_ActivationEmailBody",new ActivationEmailViewModel(){Email = command.Email,ActivationCode = activationCode}); // Email Body
-            _emailService.SendEmail(command.Email,DataDictionaries.ActiveAccount,body); //Send Email
+            var body = _viewRenderService.RenderToStringAsync
+                ("_ActivationEmailBody", new ActivationEmailViewModel() { Email = command.Email, ActivationCode = activationCode }); // Email Body
+            _emailService.SendEmail(command.Email, DataDictionaries.ActiveAccount, body); //Send Email
             _userRepository.Add(user);
 
+            return operation.Succeeded();
+        }
+
+        public OperationResult Login(LoginCommand command)
+        {
+            var operation = new OperationResult();
+            var user = _userRepository.GetUserForLogin(EmailConvertor.FixEmail(command.Email!), _passwordHasher.HashMD5(command.Password));
+            if (!user.IsActive)
+                return operation.Failed(ApplicationMessages.UserIsNotActive);
+            if (user == null)
+                return operation.Failed(ApplicationMessages.WrongUserPass);
+            var authVm = new AuthenticationViewModel(user.UserId, user.RoleId, user.Email!);
+            _authenticationHelper.SignIn(authVm);
             return operation.Succeeded();
         }
 
@@ -57,6 +94,11 @@ namespace UserManagement.Application
         public bool IsExistByEmail(string email)
         {
             return _userRepository.IsExistByEmail(email);
+        }
+
+        public void SignOut()
+        {
+            _authenticationHelper.SignOut();
         }
     }
 }

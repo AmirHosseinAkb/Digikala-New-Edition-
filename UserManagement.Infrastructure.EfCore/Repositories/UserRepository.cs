@@ -31,6 +31,16 @@ namespace UserManagement.Infrastructure.EfCore.Repositories
             return _context.Users.SingleOrDefault(u => u.ActivationCode == activationCode);
         }
 
+        public User GetUserForLogin(string email, string password)
+        {
+            return _context.Users.SingleOrDefault(u => u.Email == email && u.Password == password);
+        }
+
+        public User GetUserByEmail(string email)
+        {
+            return _context.Users.SingleOrDefault(u => u.Email == email);
+        }
+
         public void SaveChanges()
         {
             _context.SaveChanges();

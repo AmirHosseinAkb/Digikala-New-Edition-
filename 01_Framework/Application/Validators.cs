@@ -23,7 +23,7 @@ namespace _01_Framework.Application.Convertors
 
         public static bool IsPhoneNumber(this string phone)
         {
-            if (string.IsNullOrWhiteSpace(phone) || phone.Length != 11 || phone.Any(c=>!char.IsLetter(c)))
+            if (string.IsNullOrWhiteSpace(phone) || phone.Trim().Length != 11 || phone.Any(c=>char.IsLetter(c)))
                 return false;
 
             return true;

@@ -1,8 +1,7 @@
 ﻿@page
-@model Server.Pages.Account.RegisterAndLoginModel
+@model Server.Pages.Account.LoginModel
 @{
     Layout = null;
-    ViewData["Title"] = PageTitles.LoginAndRegister;
 }
 
 <html>
@@ -16,30 +15,25 @@
         <main class="page-content page-auth">
 
             <div class="auth-container">
-                <div class="auth-title mb-3">@DataDictionaries.RegisterAndLogin</div>
-                @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+                @if (string.IsNullOrEmpty(Model.ErrorMessage))
                 {
                     <div class="alert alert-warning">
                         @Model.ErrorMessage
                     </div>
                 }
+                <div class="auth-title mb-3">@DataDictionaries.RegisterAndLogin</div>
                 <div class="auth-box ui-box">
 
                     <form method="post">
                         <div class="form-element-row mb-5">
-                            <input asp-for="Command.EmailOrPhone" type="text" class="form-control" placeholder="@DataDictionaries.EmailOrPhone">
-                            <span asp-validation-for="Command.EmailOrPhone" class="text-danger"></span>
+                            <input asp-for="Command.Password" type="password" class="form-control" placeholder="@DataDictionaries.Password">
+                            <span asp-validation-for="Command.Password" class="text-danger"></span>
                         </div>
 
                         <div class="form-element-row mb-3">
-                            <button class="btn btn-primary">@ButtonCaptions.Continue</button>
+                            <button class="btn btn-primary">@ButtonCaptions.Login</button>
                         </div>
 
-                        <div class="form-element-row">
-                            <div>
-                                @Html.Raw(DataDictionaries.TermsOfUse)
-                            </div>
-                        </div>
                     </form>
 
                 </div>
@@ -51,4 +45,3 @@
     <partial name="PartialViews/_ValidationScriptsPartial" />
 </body>
 </html>
-
