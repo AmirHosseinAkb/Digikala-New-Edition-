@@ -12,6 +12,7 @@ namespace UserManagement.Application.Contracts.User
         OperationResult RegisterAndLogin(RegisterAndLoginCommand command);
         OperationResult Register(RegisterCommand command);
         OperationResult Login(LoginCommand command);
+        OperationResult ForgetPassword(ForgetPasswordCommand command);
         bool ActiveAccount(string activationCode);
         bool IsExistByEmail(string email);
         void SignOut();

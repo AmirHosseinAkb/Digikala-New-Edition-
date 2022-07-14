@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UserManagement.Application.Contracts.User
 {
-    public class ActivationEmailViewModel
+    public class EmailViewModel
     {
         public string Email { get; set; }
         public string ActivationCode { get; set; }

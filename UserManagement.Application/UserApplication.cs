@@ -58,7 +58,7 @@ namespace UserManagement.Application
                     , 3, email: command.Email, password: hashedPassword);
 
             var body = _viewRenderService.RenderToStringAsync
-                ("_ActivationEmailBody", new ActivationEmailViewModel() { Email = command.Email, ActivationCode = activationCode }); // Email Body
+                ("_ActivationEmailBody", new EmailViewModel() { Email = command.Email, ActivationCode = activationCode }); // Email Body
             _emailService.SendEmail(command.Email, DataDictionaries.ActiveAccount, body); //Send Email
             _userRepository.Add(user);
 
@@ -76,6 +76,18 @@ namespace UserManagement.Application
             var authVm = new AuthenticationViewModel(user.UserId, user.RoleId, user.Email!);
             _authenticationHelper.SignIn(authVm);
             return operation.Succeeded();
+        }
+
+        public OperationResult ForgetPassword(ForgetPasswordCommand command)
+        {
+            var result = new OperationResult();
+            var user = _userRepository.GetUserByEmail(command.Email);
+            if (user == null || !user.IsActive)
+                return result.Failed(ApplicationMessages.RecordNotFound);
+            var body = _viewRenderService.RenderToStringAsync("_ForgetPasswordEmailBody",
+                new EmailViewModel() {Email = command.Email, ActivationCode = user.ActivationCode});
+            _emailService.SendEmail(command.Email,DataDictionaries.ResetPassword,body);
+            return result.Succeeded();
         }
 
         public bool ActiveAccount(string activationCode)

@@ -248,5 +248,23 @@ namespace _01_Framework.Resources {
                 return ResourceManager.GetString("Search", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send Email.
+        /// </summary>
+        public static string SendEmail {
+            get {
+                return ResourceManager.GetString("SendEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Submit.
+        /// </summary>
+        public static string Submit {
+            get {
+                return ResourceManager.GetString("Submit", resourceCulture);
+            }
+        }
     }
 }

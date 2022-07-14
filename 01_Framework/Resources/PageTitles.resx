@@ -120,6 +120,9 @@
   <data name="ActiveAccount" xml:space="preserve">
     <value>Active Account</value>
   </data>
+  <data name="ForgetPassword" xml:space="preserve">
+    <value>ForgetPassword</value>
+  </data>
   <data name="Login" xml:space="preserve">
     <value>Login</value>
   </data>

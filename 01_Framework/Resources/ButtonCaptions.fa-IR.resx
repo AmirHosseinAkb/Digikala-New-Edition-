@@ -180,4 +180,10 @@
   <data name="Search" xml:space="preserve">
     <value>جستجو</value>
   </data>
+  <data name="SendEmail" xml:space="preserve">
+    <value>ارسال ایمیل</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>تایید</value>
+  </data>
 </root>

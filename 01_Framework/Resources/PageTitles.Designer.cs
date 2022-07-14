@@ -70,6 +70,15 @@ namespace _01_Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ForgetPassword.
+        /// </summary>
+        public static string ForgetPassword {
+            get {
+                return ResourceManager.GetString("ForgetPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Login.
         /// </summary>
         public static string Login {

@@ -37,7 +37,10 @@ namespace Server.Pages.Account
             {
                 HttpContext.Session.SetString("Email",Command.EmailOrPhone);
                 if (_userApplication.IsExistByEmail(Command.EmailOrPhone))
+                {
+                    TempData["Email"] = Command.EmailOrPhone;
                     return RedirectToPage("Login");
+                }
                 else
                     return RedirectToPage("Register");
             }

@@ -180,4 +180,10 @@
   <data name="Search" xml:space="preserve">
     <value>Search</value>
   </data>
+  <data name="SendEmail" xml:space="preserve">
+    <value>Send Email</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
 </root>

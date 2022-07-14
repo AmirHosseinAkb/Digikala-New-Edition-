@@ -15,6 +15,7 @@ namespace _01_Framework.Application.Convertors
         public const string MinLength = "مقدار وارد شده کمتر از حد مجاز است";
         public const string PasswordMinLength = "رمز عبور حداقل باید 8 کاراکتر باشد";
         public const string InvalidPasswordCompare = "تکرار رمز عبور صحیح نمی باشد";
+        public const string InvalidEmail = "فرمت ایمیل وارد شده صحیح نمی باشد";
         
     }
 }
