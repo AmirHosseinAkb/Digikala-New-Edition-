@@ -49,5 +49,13 @@ namespace Server.Pages.UserPanel
             return Content(result);
         }
 
+        public IActionResult OnPostConfirmUserNationalNumber()
+        {
+            if (ModelState.GetValidationState("NationalNumberCommand.NationalNumber") == ModelValidationState.Invalid)
+                return RedirectToPage();
+            var result = _userApplication.ConfirmUserNationalNumber(User.Identity.Name, NationalNumberCommand);
+            return Content(result);
+        }
+
     }
 }

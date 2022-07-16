@@ -20,7 +20,8 @@ namespace UserManagement.Application.Contracts.User.UserPanel
     public class NationalNumberCommand
     {
         [Required(ErrorMessage = ValidationMessages.IsRequired)]
-        [StringLength(10,ErrorMessage =ValidationMessages.NationalNumberLength )]
+        [StringLength(10,MinimumLength = 10,ErrorMessage =ValidationMessages.NationalNumberLength )]
+        [Range(0,long.MaxValue,ErrorMessage = ValidationMessages.IntegerValue)]
         public string NationalNumber { get; set; }
     }
 
@@ -34,7 +35,8 @@ namespace UserManagement.Application.Contracts.User.UserPanel
     public class PhoneNumberCommand
     {
         [Required(ErrorMessage = ValidationMessages.IsRequired)]
-        [StringLength(11,ErrorMessage =ValidationMessages.PhoneNumberLength )]
+        [Range(0,long.MaxValue,ErrorMessage = ValidationMessages.IntegerValue)]
+        [StringLength(11,MinimumLength = 11,ErrorMessage =ValidationMessages.PhoneNumberLength )]
         public string PhoneNumber { get; set; }
     }
 

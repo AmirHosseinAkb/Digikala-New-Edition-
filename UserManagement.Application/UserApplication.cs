@@ -163,9 +163,12 @@ namespace UserManagement.Application
             throw new NotImplementedException();
         }
 
-        public OperationResult ConfirmUserNationalNumber(string email, NationalNumberCommand command)
+        public string ConfirmUserNationalNumber(string email, NationalNumberCommand command)
         {
-            throw new NotImplementedException();
+            var user = _userRepository.GetUserByEmail(email);
+            user.ChangeNationalNumber(command.NationalNumber);
+            _userRepository.SaveChanges();
+            return command.NationalNumber;
         }
 
         public OperationResult ConfirmUserBirthDate(string email, BirthDateCommand command)
