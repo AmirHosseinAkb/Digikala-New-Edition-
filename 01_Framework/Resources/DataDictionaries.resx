@@ -240,6 +240,9 @@
   <data name="Month" xml:space="preserve">
     <value>Month</value>
   </data>
+  <data name="MyOrders" xml:space="preserve">
+    <value>My Orders</value>
+  </data>
   <data name="NationalNumber" xml:space="preserve">
     <value>National Number</value>
   </data>
@@ -257,6 +260,9 @@
   </data>
   <data name="Operations" xml:space="preserve">
     <value>Operations</value>
+  </data>
+  <data name="OrderPendingPayment" xml:space="preserve">
+    <value>Your order is pending payment. To avoid order cancellation, please complete the payment.</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>

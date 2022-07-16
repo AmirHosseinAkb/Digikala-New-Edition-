@@ -3,6 +3,7 @@ using _01_Framework.Application.Convertors;
 using _01_Framework.Application.Email;
 using _01_Framework.Resources;
 using UserManagement.Application.Contracts.User;
+using UserManagement.Application.Contracts.User.UserPanel;
 using UserManagement.Domain.UserAgg;
 
 namespace UserManagement.Application
@@ -127,6 +128,21 @@ namespace UserManagement.Application
         public void SignOut()
         {
             _authenticationHelper.SignOut();
+        }
+
+        public UserInformationsViewModel GetUserInformationsForShow(string email)
+        {
+             var user=_userRepository.GetUserByEmail(email);
+             return new UserInformationsViewModel()
+             {
+                 Email = user.Email,
+                 FirstName = user.FirstName,
+                 LastName = user.LastName,
+                 PhoneNumber = user.PhoneNumber,
+                 RefundType = user.RefundType,
+                 BirthDate = user.BirthDate?.ToShamsi(),
+                 NationalNumber = user.NationalNumber
+             };
         }
     }
 }

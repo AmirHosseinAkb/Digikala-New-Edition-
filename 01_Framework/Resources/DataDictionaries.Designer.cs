@@ -430,6 +430,15 @@ namespace _01_Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to My Orders.
+        /// </summary>
+        public static string MyOrders {
+            get {
+                return ResourceManager.GetString("MyOrders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to National Number.
         /// </summary>
         public static string NationalNumber {
@@ -480,6 +489,15 @@ namespace _01_Framework.Resources {
         public static string Operations {
             get {
                 return ResourceManager.GetString("Operations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your order is pending payment. To avoid order cancellation, please complete the payment..
+        /// </summary>
+        public static string OrderPendingPayment {
+            get {
+                return ResourceManager.GetString("OrderPendingPayment", resourceCulture);
             }
         }
         

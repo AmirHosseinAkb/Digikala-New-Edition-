@@ -240,6 +240,9 @@
   <data name="Month" xml:space="preserve">
     <value>ماه</value>
   </data>
+  <data name="MyOrders" xml:space="preserve">
+    <value>سفارشات من</value>
+  </data>
   <data name="NationalNumber" xml:space="preserve">
     <value>کد ملی</value>
   </data>
@@ -257,6 +260,9 @@
   </data>
   <data name="Operations" xml:space="preserve">
     <value>عملیات</value>
+  </data>
+  <data name="OrderPendingPayment" xml:space="preserve">
+    <value>سفارش شما در انتظار پرداخت است. برای جلوگیری از لغو سفارش، لطفا پرداخت را انجام دهید.</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>رمز عبور</value>

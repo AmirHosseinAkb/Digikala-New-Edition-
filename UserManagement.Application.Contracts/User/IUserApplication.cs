@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using _01_Framework.Application.Convertors;
+using UserManagement.Application.Contracts.User.UserPanel;
 
 namespace UserManagement.Application.Contracts.User
 {
@@ -17,5 +18,11 @@ namespace UserManagement.Application.Contracts.User
         bool ActiveAccount(string activationCode);
         bool IsExistByEmail(string email);
         void SignOut();
+
+        #region UserPanel
+
+        UserInformationsViewModel GetUserInformationsForShow(string email);
+
+        #endregion
     }
 }

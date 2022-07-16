@@ -13,16 +13,19 @@ namespace UserManagement.Application.Contracts.User
     {
         public string? ActivationCode { get; set; }
         [Required(ErrorMessage = ValidationMessages.IsRequired)]
+        [MaxLength(50,ErrorMessage = ValidationMessages.MaxLenght)]
         [MinLength(8,ErrorMessage = ValidationMessages.PasswordMinLength)]
         [DataType(DataType.Password)]
         public string CurrentPassword { get; set; }
 
         [Required(ErrorMessage = ValidationMessages.IsRequired)]
+        [MaxLength(50,ErrorMessage = ValidationMessages.MaxLenght)]
         [MinLength(8,ErrorMessage = ValidationMessages.PasswordMinLength)]
         [DataType(DataType.Password)]
         public string NewPassword { get; set; }
 
         [Required(ErrorMessage = ValidationMessages.IsRequired)]
+        [MaxLength(50,ErrorMessage = ValidationMessages.MaxLenght)]
         [MinLength(8,ErrorMessage = ValidationMessages.PasswordMinLength)]
         [DataType(DataType.Password)]
         [Compare(nameof(NewPassword),ErrorMessage = ValidationMessages.InvalidPasswordCompare)]

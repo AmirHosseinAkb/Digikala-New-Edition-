@@ -1,0 +1,82 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using _01_Framework.Application.Convertors;
+
+namespace UserManagement.Application.Contracts.User.UserPanel
+{
+    public class FullNameCommand
+    {
+        [Required(ErrorMessage = ValidationMessages.IsRequired)]
+        public string FirstName { get; set; }
+
+        [Required(ErrorMessage = ValidationMessages.IsRequired)]
+        public string LastName { get; set; }
+    }
+
+    public class NationalNumberCommand
+    {
+        [Required(ErrorMessage = ValidationMessages.IsRequired)]
+        [StringLength(10,ErrorMessage =ValidationMessages.NationalNumberLength )]
+        public string NationalNumber { get; set; }
+    }
+
+    public class EmailCommand
+    {
+        [Required(ErrorMessage = ValidationMessages.IsRequired)]
+        [EmailAddress(ErrorMessage = ValidationMessages.InvalidEmail)]
+        public string Email { get; set; }
+    }
+
+    public class PhoneNumberCommand
+    {
+        [Required(ErrorMessage = ValidationMessages.IsRequired)]
+        [StringLength(11,ErrorMessage =ValidationMessages.PhoneNumberLength )]
+        public string PhoneNumber { get; set; }
+    }
+
+    public class BirthDateCommand
+    {
+        [Required(ErrorMessage = ValidationMessages.IsRequired)]
+        [Range(1300, 1400,ErrorMessage =ValidationMessages.BirthYearRange)]
+        public int BirthYear { get; set; }
+
+        [Required(ErrorMessage = ValidationMessages.IsRequired)]
+        [Range(1, 12,ErrorMessage =ValidationMessages.BirthYearRange)]
+        public int BirthMonth { get; set; }
+
+        [Required(ErrorMessage = ValidationMessages.IsRequired)]
+        [Range(1, 31,ErrorMessage =ValidationMessages.BirthYearRange)]
+        public int BirthDay { get; set; }
+    }
+
+    public class RefundCommand
+    {
+        public byte RefundType { get; set; }
+    }
+
+    public class PasswordCommand
+    {
+        [Required(ErrorMessage = ValidationMessages.IsRequired)]
+        [MaxLength(50,ErrorMessage = ValidationMessages.MaxLenght)]
+        [MinLength(8,ErrorMessage = ValidationMessages.PasswordMinLength)]
+        [DataType(DataType.Password)]
+        public string CurrentPassword { get; set; }
+
+        [Required(ErrorMessage = ValidationMessages.IsRequired)]
+        [MaxLength(30,ErrorMessage = ValidationMessages.MaxLenght)]
+        [MinLength(8,ErrorMessage = ValidationMessages.PasswordMinLength)]
+        [DataType(DataType.Password)]
+        public string NewPassword { get; set; }
+
+        [Required(ErrorMessage = ValidationMessages.IsRequired)]
+        [MaxLength(50,ErrorMessage = ValidationMessages.MaxLenght)]
+        [MinLength(8,ErrorMessage = ValidationMessages.PasswordMinLength)]
+        [DataType(DataType.Password)]
+        [Compare(nameof(NewPassword),ErrorMessage = ValidationMessages.InvalidPasswordCompare)]
+        public string RepeatNewPassword { get; set; }
+    }
+}
