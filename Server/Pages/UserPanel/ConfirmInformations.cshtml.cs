@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using UserManagement.Application.Contracts.User;
 using UserManagement.Application.Contracts.User.UserPanel;
@@ -37,6 +38,16 @@ namespace Server.Pages.UserPanel
         public BirthDateCommand BirthDateCommand { get; set; }
         [BindProperty]
         public PasswordCommand PasswordCommand { get; set; }
+
+
+        public IActionResult OnPostConfirmUserFullName()
+        {
+            if (ModelState.GetValidationState("FullNameCommand.FirstName") == ModelValidationState.Invalid
+                || ModelState.GetValidationState("FullNameCommand.LastName") == ModelValidationState.Invalid)
+                return RedirectToPage();
+            var result=_userApplication.ConfirmUserFullName(User.Identity.Name, FullNameCommand);
+            return Content(result);
+        }
 
     }
 }

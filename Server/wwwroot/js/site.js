@@ -25,14 +25,14 @@ function WarningMessage(message) {
 }
 $(function () {
     $("#btnName").click(function (e) {
-        var isValidFirstName = $("#UserFullNameVM_FirstName").valid();
-        var isValidLastName = $("#UserFullNameVM_LastName").valid();
+        var isValidFirstName = $("#FullNameCommand_FirstName").valid();
+        var isValidLastName = $("#FullNameCommand_LastName").valid();
         if (isValidFirstName && isValidLastName) {
             var data = $("#frmUserFullName").serialize();
             e.preventDefault();
             $.ajax({
                 type: "Post",
-                url: "/UserPanel/UserInformations/ConfirmUserFullName",
+                url: "/UserPanel/ConfirmInformations/ConfirmUserFullName",
                 data: data,
                 beforeSend: function (xhr) { xhr.setRequestHeader("XSRF-TOKEN", $('input:hidden[name="__RequestVerificationToken"]').val()); },
                 success: function (res) {
@@ -45,13 +45,13 @@ $(function () {
 
 $(function () {
     $("#btnNationalNumber").click(function (e) {
-        var isValidNAtionalNumber = $("#UserNationalNumberVM_NationalNumber").valid();
+        var isValidNAtionalNumber = $("#NationalNumberCommand_NationalNumber").valid();
         if (isValidNAtionalNumber) {
             var data = $("#frmUserNationalNumber").serialize();
             e.preventDefault();
             $.ajax({
                 type: "Post",
-                url: "/UserPanel/UserInformations/ConfirmUserNationalNumber",
+                url: "/UserPanel/ConfirmInformations/ConfirmUserNationalNumber",
                 data: data,
                 beforeSend: function (xhr) { xhr.setRequestHeader("XSRF-TOKEN", $('input:hidden[name="__RequestVerificationToken"]').val()); },
                 success: function (res) {

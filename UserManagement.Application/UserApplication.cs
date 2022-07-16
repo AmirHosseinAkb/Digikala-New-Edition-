@@ -144,5 +144,43 @@ namespace UserManagement.Application
                  NationalNumber = user.NationalNumber
              };
         }
+
+        public string ConfirmUserFullName(string email, FullNameCommand command)
+        {
+            var user = _userRepository.GetUserByEmail(email);
+            user.ChangeFullName(command.FirstName,command.LastName);
+            _userRepository.SaveChanges();
+            return user.FirstName + " " + user.LastName;
+        }
+
+        public OperationResult ConfirmUserEmail(string email, EmailCommand command)
+        {
+            throw new NotImplementedException();
+        }
+
+        public OperationResult ConfirmUserPhoneNumber(string email, PhoneNumberCommand command)
+        {
+            throw new NotImplementedException();
+        }
+
+        public OperationResult ConfirmUserNationalNumber(string email, NationalNumberCommand command)
+        {
+            throw new NotImplementedException();
+        }
+
+        public OperationResult ConfirmUserBirthDate(string email, BirthDateCommand command)
+        {
+            throw new NotImplementedException();
+        }
+
+        public OperationResult ConfirmUserPassword(string email, PasswordCommand command)
+        {
+            throw new NotImplementedException();
+        }
+
+        public OperationResult ConfirmUserRefundType(string email, RefundCommand command)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

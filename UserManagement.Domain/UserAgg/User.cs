@@ -60,5 +60,36 @@ namespace UserManagement.Domain.UserAgg
         {
             Password = password;
         }
+
+        public void ChangeFullName(string firstName, string lastName)
+        {
+            FirstName=firstName;
+            LastName=lastName;
+        }
+
+        public void ChangeEmail(string email)
+        {
+            Email = email;
+        }
+
+        public void ChangePhoneNumber(string phoneNumber)
+        {
+            PhoneNumber = phoneNumber;
+        }
+
+        public void ChangeNationalNumber(string nationalNumber)
+        {
+            NationalNumber = nationalNumber;
+        }
+
+        public void ChangeBirthDate(DateTime birthDate)
+        {
+            BirthDate = birthDate;
+        }
+
+        public void ChangeRefundType(byte refundType)
+        {
+            RefundType = refundType;
+        }
     }
 }
