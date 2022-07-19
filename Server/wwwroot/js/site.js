@@ -156,29 +156,18 @@ $(function () {
 $(function () {
     $("#btnSavePassword").click(function (e) {
         var data = $("#frmUserPassword").serialize();
-        var isValidCurrentPassword = $("#UserPasswordVM_CurrentPassword").valid();
-        var isValidNewPassword = $("#UserPasswordVM_NewPassword").valid();
-        var isValidRepeatNewPassword = $("#UserPasswordVM_RepeatNewPassword").valid();
+        var isValidCurrentPassword = $("#PasswordCommand_CurrentPassword").valid();
+        var isValidNewPassword = $("#PasswordCommand_NewPassword").valid();
+        var isValidRepeatNewPassword = $("#PasswordCommand_RepeatNewPassword").valid();
         if (isValidCurrentPassword && isValidNewPassword && isValidRepeatNewPassword) {
             e.preventDefault();
             $.ajax({
                 type: "Post",
-                url: "/UserPanel/UserInformations/ConfirmUserPassword",
-                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                url: "/UserPanel/ConfirmInformations/ConfirmUserPassword",
                 data: data,
                 beforeSend: function (xhr) { xhr.setRequestHeader("XSRF-TOKEN", $('input:hidden[name="__RequestVerificationToken"]').val()); },
                 success: function (res) {
-                    iziToast.success({
-                        message: "رمز عبور شما با موفقیت ویرایش شد از این پس می توانید با استفاده از این رمز عبور وارد سایت شوید",
-                        rtl: true,
-                        position: 'bottomCenter',
-                        timeout: 3000
-                    });
-                    $("#userPasswordModal").removeClass("remodal-is-opened");
-                    $("#userPasswordModal").addClass("remodal-is-closed");
-                    $("div.remodal-is-opened").addClass("remodal-is-closed");
-                    $("div.remodal-is-opened").css("display", "none");
-                    $("div.remodal-is-opened").removeClass("remodal-is-opened");
+                    Success("#passwordInp", "#userPasswordModal", res, "رمز عبور شما با موفقیت تغییر یافت از این پس می توانید با استفاده از این رمز عبور وارد سایت شوید");
                 },
                 error: function (error) {
                     WarningMessage(error.responseText);
@@ -193,6 +182,7 @@ $("#checkoutPayment01").click(function() {
 });
 $("#checkoutPayment02").click(function() {
     $("#RefundCommand_AccountNumber").hide();
+    $("#accountNumberValidation").hide();
 });
 /*********************Email And Phone Number Existance *****************************/
 

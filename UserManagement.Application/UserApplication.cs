@@ -221,7 +221,13 @@ namespace UserManagement.Application
 
         public OperationResult ConfirmUserPassword(PasswordCommand command)
         {
-            throw new NotImplementedException();
+            var result = new OperationResult();
+            var user = _userRepository.GetUserById(_authenticationHelper.GetCurrentUserId());
+            if (user.Password != _passwordHasher.HashMD5(command.CurrentPassword.Replace(" ", "")))
+                return result.Failed(ApplicationMessages.InvalidCurrentPassword);
+            user.ResetPassword(_passwordHasher.HashMD5(command.NewPassword.Replace(" ", "")));
+            _userRepository.SaveChanges();
+            return result.Succeeded();
         }
 
         public OperationResult ConfirmUserRefundType(RefundCommand command)

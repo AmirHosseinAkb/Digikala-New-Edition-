@@ -107,5 +107,22 @@ namespace Server.Pages.UserPanel
 
             return Content(result.Message);
         }
+
+        public IActionResult OnPostConfirmUserPassword()
+        {
+            if (ModelState.GetFieldValidationState(nameof(PasswordCommand.CurrentPassword)) ==
+                ModelValidationState.Invalid
+                || ModelState.GetFieldValidationState(nameof(PasswordCommand.NewPassword)) ==
+                ModelValidationState.Invalid
+                || ModelState.GetFieldValidationState(nameof(PasswordCommand.RepeatNewPassword)) ==
+                ModelValidationState.Invalid)
+                return RedirectToPage();
+            var result=_userApplication.ConfirmUserPassword(PasswordCommand);
+            if (!result.IsSucceeded)
+            {
+                return BadRequest(result.Message);
+            }
+            return Content("-");
+        }
     }
 }
