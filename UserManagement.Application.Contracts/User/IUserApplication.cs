@@ -26,7 +26,7 @@ namespace UserManagement.Application.Contracts.User
         OperationResult ConfirmUserEmail(EmailCommand command);
         OperationResult ConfirmUserPhoneNumber(PhoneNumberCommand command);
         string ConfirmUserNationalNumber(NationalNumberCommand command);
-        OperationResult ConfirmUserBirthDate(BirthDateCommand command);
+        string ConfirmUserBirthDate(BirthDateCommand command);
         OperationResult ConfirmUserPassword(PasswordCommand command);
         OperationResult ConfirmUserRefundType(RefundCommand command);
 

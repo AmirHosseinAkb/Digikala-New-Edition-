@@ -1,4 +1,5 @@
-﻿using _01_Framework.Application;
+﻿using System.Globalization;
+using _01_Framework.Application;
 using _01_Framework.Application.Convertors;
 using _01_Framework.Application.Email;
 using _01_Framework.Resources;
@@ -205,9 +206,14 @@ namespace UserManagement.Application
             return command.NationalNumber;
         }
 
-        public OperationResult ConfirmUserBirthDate(BirthDateCommand command)
+        public string ConfirmUserBirthDate(BirthDateCommand command)
         {
-            throw new NotImplementedException();
+            var result = new OperationResult();
+            var date = new DateTime(command.BirthYear, command.BirthMonth, command.BirthDay, new PersianCalendar());
+            var user = _userRepository.GetUserById(_authenticationHelper.GetCurrentUserId());
+            user.ChangeBirthDate(date);
+            _userRepository.SaveChanges();;
+            return date.ToShamsi();
         }
 
         public OperationResult ConfirmUserPassword(PasswordCommand command)

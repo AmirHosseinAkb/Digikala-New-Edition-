@@ -109,15 +109,15 @@ $(function () {
 });
 $(function () {
     $("#btnBirthDate").click(function (e) {
-        var isValidYear = $("#UserBirthDateVM_BirthYear").valid();
+        var isValidYear = $("#BirthDateCommand_BirthYear").valid();
         var isValidMonth = $("#month").valid();
-        var isValidDay = $("#UserBirthDateVM_BirthDay").valid();
+        var isValidDay = $("#BirthDateCommand_BirthDay").valid();
         if (isValidYear && isValidMonth && isValidDay) {
             var data = $("#frmUserBirthDate").serialize();
             e.preventDefault();
             $.ajax({
                 type: "Post",
-                url: "/UserPanel/UserInformations/ConfirmUserBirthDate",
+                url: "/UserPanel/ConfirmInformations/ConfirmUserBirthDate",
                 data: data,
                 beforeSend: function (xhr) { xhr.setRequestHeader("XSRF-TOKEN", $('input:hidden[name="__RequestVerificationToken"]').val()); },
                 success: function (res) {

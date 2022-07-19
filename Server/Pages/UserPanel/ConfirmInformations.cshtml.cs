@@ -84,5 +84,15 @@ namespace Server.Pages.UserPanel
             }
             return Content(PhoneNumberCommand.PhoneNumber);
         }
+
+        public IActionResult OnPostConfirmUserBirthDate()
+        {
+            if (ModelState.GetFieldValidationState(nameof(BirthDateCommand.BirthYear))==ModelValidationState.Invalid
+                || ModelState.GetFieldValidationState(nameof(BirthDateCommand.BirthMonth))==ModelValidationState.Invalid
+                || ModelState.GetFieldValidationState(nameof(BirthDateCommand.BirthDay))==ModelValidationState.Invalid)
+                return RedirectToPage();
+            var birthDate=_userApplication.ConfirmUserBirthDate(BirthDateCommand);
+            return Content(birthDate);
+        }
     }
 }
