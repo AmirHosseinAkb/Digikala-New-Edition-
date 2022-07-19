@@ -124,6 +124,15 @@ namespace _01_Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Amount in Toman.
+        /// </summary>
+        public static string AmountPlaceHolder {
+            get {
+                return ResourceManager.GetString("AmountPlaceHolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to April.
         /// </summary>
         public static string April {
@@ -156,6 +165,15 @@ namespace _01_Framework.Resources {
         public static string BirthDate {
             get {
                 return ResourceManager.GetString("BirthDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Charge Wallet.
+        /// </summary>
+        public static string ChargeWallet {
+            get {
+                return ResourceManager.GetString("ChargeWallet", resourceCulture);
             }
         }
         
@@ -381,6 +399,15 @@ namespace _01_Framework.Resources {
         public static string LastName {
             get {
                 return ResourceManager.GetString("LastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LastTransactions.
+        /// </summary>
+        public static string LastTransactions {
+            get {
+                return ResourceManager.GetString("LastTransactions", resourceCulture);
             }
         }
         

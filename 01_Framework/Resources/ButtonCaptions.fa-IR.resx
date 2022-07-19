@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AccountInformations" xml:space="preserve">
+    <value>اطلاعات حساب</value>
+  </data>
   <data name="ActiveAccount" xml:space="preserve">
     <value>فعالسازی حساب کاربری</value>
   </data>
@@ -156,6 +159,12 @@
   <data name="Login" xml:space="preserve">
     <value>ورود</value>
   </data>
+  <data name="Logout" xml:space="preserve">
+    <value>خروج</value>
+  </data>
+  <data name="Pay" xml:space="preserve">
+    <value>پرداخت</value>
+  </data>
   <data name="Register" xml:space="preserve">
     <value>ثبت نام</value>
   </data>
@@ -185,5 +194,8 @@
   </data>
   <data name="Submit" xml:space="preserve">
     <value>تایید</value>
+  </data>
+  <data name="Wallet" xml:space="preserve">
+    <value>کیف پول</value>
   </data>
 </root>

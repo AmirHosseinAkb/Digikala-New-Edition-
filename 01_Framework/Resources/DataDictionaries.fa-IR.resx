@@ -138,6 +138,9 @@
   <data name="AllRightsReserved" xml:space="preserve">
     <value>کلیه حقوق این سایت متعلق به مای استور می باشد</value>
   </data>
+  <data name="AmountPlaceHolder" xml:space="preserve">
+    <value>مبلغ به تومان</value>
+  </data>
   <data name="April" xml:space="preserve">
     <value>فروردین</value>
   </data>
@@ -149,6 +152,9 @@
   </data>
   <data name="BirthDate" xml:space="preserve">
     <value>تاریخ تولد</value>
+  </data>
+  <data name="ChargeWallet" xml:space="preserve">
+    <value>شارژ کیف پول</value>
   </data>
   <data name="ConfirmUserInformations" xml:space="preserve">
     <value>تکمیل اطلاعات کاربری</value>
@@ -224,6 +230,9 @@
   </data>
   <data name="LastName" xml:space="preserve">
     <value>نام خانوادگی</value>
+  </data>
+  <data name="LastTransactions" xml:space="preserve">
+    <value>اخرین تراکنش ها</value>
   </data>
   <data name="Login" xml:space="preserve">
     <value>ورود</value>

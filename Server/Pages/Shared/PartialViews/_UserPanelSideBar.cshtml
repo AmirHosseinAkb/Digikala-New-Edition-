@@ -36,7 +36,7 @@
                 </div>
             </div>
             <ul class="nav nav-items-with-icon flex-column">
-                <li class="nav-item">
+                @*<li class="nav-item">
                     <a class="nav-link" href="profile-my-orders.html">
                         <i class="nav-link-icon ri-file-list-3-line"></i>
                         سفارش
@@ -79,17 +79,21 @@
                         های
                         اخیر
                     </a>
-                </li>
+                </li>*@
                 <li class="nav-item">
-                    <a class="nav-link" href="~/UserPanel/ConfirmInformations">
-                        <i class="nav-link-icon ri-user-line"></i> اطلاعات
-                        حساب
+                    <a class="nav-link" href="/UserPanel/Wallet">
+                        <i class="nav-link-icon ri-wallet-3-line"></i> @ButtonCaptions.Wallet
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="~/UserPanel/ConfirmInformations">
+                        <i class="nav-link-icon ri-user-line"></i> @ButtonCaptions.AccountInformations
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Logout">
                         <i class="nav-link-icon ri-logout-box-r-line"></i>
-                        خروج
+                        @ButtonCaptions.Logout
                     </a>
                 </li>
             </ul>

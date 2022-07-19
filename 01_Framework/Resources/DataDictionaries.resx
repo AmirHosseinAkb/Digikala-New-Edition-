@@ -138,6 +138,9 @@
   <data name="AllRightsReserved" xml:space="preserve">
     <value>All Rights Reserved</value>
   </data>
+  <data name="AmountPlaceHolder" xml:space="preserve">
+    <value>Amount in Toman</value>
+  </data>
   <data name="April" xml:space="preserve">
     <value>April</value>
   </data>
@@ -149,6 +152,9 @@
   </data>
   <data name="BirthDate" xml:space="preserve">
     <value>Birth Date</value>
+  </data>
+  <data name="ChargeWallet" xml:space="preserve">
+    <value>Charge Wallet</value>
   </data>
   <data name="ConfirmUserInformations" xml:space="preserve">
     <value>Confirm Your Informations</value>
@@ -224,6 +230,9 @@
   </data>
   <data name="LastName" xml:space="preserve">
     <value>Last Name</value>
+  </data>
+  <data name="LastTransactions" xml:space="preserve">
+    <value>LastTransactions</value>
   </data>
   <data name="Login" xml:space="preserve">
     <value>Login</value>
