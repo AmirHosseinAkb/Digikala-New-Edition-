@@ -3,6 +3,7 @@ using _01_Framework.Application;
 using _01_Framework.Application.Convertors;
 using _01_Framework.Application.Email;
 using _01_Framework.Resources;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using UserManagement.Application.Contracts.User;
 using UserManagement.Application.Contracts.User.UserPanel;
 using UserManagement.Domain.UserAgg;
@@ -223,7 +224,7 @@ namespace UserManagement.Application
 
         public OperationResult ConfirmUserRefundType(RefundCommand command)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

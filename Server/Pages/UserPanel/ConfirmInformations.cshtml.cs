@@ -94,5 +94,11 @@ namespace Server.Pages.UserPanel
             var birthDate=_userApplication.ConfirmUserBirthDate(BirthDateCommand);
             return Content(birthDate);
         }
+
+        public IActionResult OnPostConfirmUserRefundType()
+        {
+
+            return RedirectToPage();
+        }
     }
 }

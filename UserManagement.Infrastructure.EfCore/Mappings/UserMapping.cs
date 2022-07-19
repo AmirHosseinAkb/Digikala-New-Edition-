@@ -21,6 +21,7 @@ namespace UserManagement.Infrastructure.EfCore.Mappings
             builder.Property(u=>u.Password).IsRequired(false).HasMaxLength(200);
             builder.Property(u => u.NationalNumber).IsRequired(false).HasMaxLength(200);
             builder.Property(u => u.PhoneNumber).IsRequired(false).HasMaxLength(200);
+            builder.Property(u=>u.AccountNumber).IsRequired(false).HasMaxLength(200);
             builder.Property(u => u.BirthDate).IsRequired(false);
             builder.Property(u => u.ActivationCode).HasMaxLength(500);
             builder.Property(x => x.AvatarName).HasMaxLength(500);

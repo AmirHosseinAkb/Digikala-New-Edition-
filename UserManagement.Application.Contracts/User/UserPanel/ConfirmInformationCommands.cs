@@ -58,6 +58,9 @@ namespace UserManagement.Application.Contracts.User.UserPanel
     public class RefundCommand
     {
         public byte RefundType { get; set; }
+        
+        
+        public string AccountNumber { get; set; }
     }
 
     public class PasswordCommand
