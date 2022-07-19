@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using UserManagement.Domain.Transaction;
 using UserManagement.Domain.UserAgg;
 
 namespace UserManagement.Infrastructure.EfCore.Mappings
@@ -35,6 +36,10 @@ namespace UserManagement.Infrastructure.EfCore.Mappings
             builder.HasOne(u => u.Role)
                 .WithMany(r => r.Users)
                 .HasForeignKey(u => u.RoleId);
+
+            builder.HasMany<Transaction>(u => u.Transactions)
+                .WithOne(t => t.User)
+                .HasForeignKey(t => t.UserId);
         }
     }
 }

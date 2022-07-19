@@ -1,4 +1,5 @@
-﻿using UserManagement.Domain.RoleAgg;
+﻿using System.Security.AccessControl;
+using UserManagement.Domain.RoleAgg;
 
 namespace UserManagement.Domain.UserAgg
 {
@@ -23,7 +24,8 @@ namespace UserManagement.Domain.UserAgg
         public long RoleId { get;private set; }
 
         public Role Role { get;private set; }
-
+        public List<Transaction.Transaction> Transactions { get;private set; }
+        
 
         protected User()
         {

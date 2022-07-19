@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UserManagement.Infrastructure.EfCore;
 
@@ -11,9 +12,10 @@ using UserManagement.Infrastructure.EfCore;
 namespace UserManagement.Infrastructure.EfCore.Migrations
 {
     [DbContext(typeof(AccountContext))]
-    partial class AccountContextModelSnapshot : ModelSnapshot
+    [Migration("20220719143813_InitTransactions")]
+    partial class InitTransactions
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -102,6 +104,9 @@ namespace UserManagement.Infrastructure.EfCore.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
+                    b.Property<int>("TypeCode")
+                        .HasColumnType("int");
+
                     b.HasKey("TypeId");
 
                     b.ToTable("TransactionTypes", (string)null);
@@ -110,12 +115,14 @@ namespace UserManagement.Infrastructure.EfCore.Migrations
                         new
                         {
                             TypeId = 1L,
-                            Type = "واریز"
+                            Type = "واریز",
+                            TypeCode = 1
                         },
                         new
                         {
                             TypeId = 2L,
-                            Type = "برداشت"
+                            Type = "برداشت",
+                            TypeCode = 2
                         });
                 });
 
