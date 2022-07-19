@@ -11,5 +11,8 @@ namespace _01_Framework.Application
         void SignIn(AuthenticationViewModel authenticationVM);
         bool IsAuthenticated();
         void SignOut();
+        string GetCurrentUserEmail();
+        string GetCurrentUserPhoneNumber();
+        long GetCurrentUserId();
     }
 }

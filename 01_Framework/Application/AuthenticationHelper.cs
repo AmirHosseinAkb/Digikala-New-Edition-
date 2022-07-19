@@ -18,9 +18,15 @@ namespace _01_Framework.Application
             var claims = new List<Claim>()
             {
                 new Claim("UserId", authenticationVM.UserId.ToString()),
-                new Claim(ClaimTypes.Name, authenticationVM.Email),
                 new Claim(ClaimTypes.Role, authenticationVM.RoleId.ToString())
             };
+
+            if(!string.IsNullOrEmpty(authenticationVM.Email))
+                claims.Add(new Claim(ClaimTypes.Email, authenticationVM.Email));
+
+            if(!string.IsNullOrEmpty(authenticationVM.PhoneNumber))
+                claims.Add(new Claim(ClaimTypes.MobilePhone,authenticationVM.PhoneNumber));
+
             var identity=new ClaimsIdentity(claims,CookieAuthenticationDefaults.AuthenticationScheme);
             var principal = new ClaimsPrincipal(identity);
             var properties = new AuthenticationProperties()
@@ -39,6 +45,27 @@ namespace _01_Framework.Application
         public void SignOut()
         {
             _httpContextAccessor.HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        }
+
+        public string GetCurrentUserEmail()
+        {
+            return IsAuthenticated()
+                ? _httpContextAccessor.HttpContext.User.Claims.First(c => c.Type == ClaimTypes.Email).Value
+                : "";
+        }
+
+        public string GetCurrentUserPhoneNumber()
+        {
+            return IsAuthenticated()
+                ? _httpContextAccessor.HttpContext.User.Claims.First(c => c.Type == ClaimTypes.MobilePhone).Value
+                : "";
+        }
+
+        public long GetCurrentUserId()
+        {
+            return IsAuthenticated()
+                ? long.Parse(_httpContextAccessor.HttpContext.User.Claims.First(c => c.Type == "UserId").Value)
+                : 0;
         }
     }
 }

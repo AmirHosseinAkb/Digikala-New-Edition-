@@ -70,12 +70,12 @@ namespace UserManagement.Application
         {
             var operation = new OperationResult();
             var user = _userRepository.GetUserForLogin(EmailConvertor.FixEmail(command.Email!), _passwordHasher.HashMD5(command.Password));
-            
+
             if (user == null)
                 return operation.Failed(ApplicationMessages.WrongUserPass);
             if (!user.IsActive)
                 return operation.Failed(ApplicationMessages.UserIsNotActive);
-            var authVm = new AuthenticationViewModel(user.UserId, user.RoleId, user.Email!);
+            var authVm = new AuthenticationViewModel(user.UserId, user.RoleId, user.Email,user.PhoneNumber);
             _authenticationHelper.SignIn(authVm);
             return operation.Succeeded();
         }
@@ -87,8 +87,8 @@ namespace UserManagement.Application
             if (user == null || !user.IsActive)
                 return result.Failed(ApplicationMessages.RecordNotFound);
             var body = _viewRenderService.RenderToStringAsync("_ForgetPasswordEmailBody",
-                new EmailViewModel() {Email = command.Email, ActivationCode = user.ActivationCode});
-            _emailService.SendEmail(command.Email,DataDictionaries.ResetPassword,body);
+                new EmailViewModel() { Email = command.Email, ActivationCode = user.ActivationCode });
+            _emailService.SendEmail(command.Email, DataDictionaries.ResetPassword, body);
             return result.Succeeded();
         }
 
@@ -96,7 +96,7 @@ namespace UserManagement.Application
         {
             var result = new OperationResult();
             var user = _userRepository.GetByActivationCode(command.ActivationCode);
-            if(user==null)
+            if (user == null)
                 return result.NullResult(ApplicationMessages.RecordNotFound);
             if (user.Password != _passwordHasher.HashMD5(command.CurrentPassword))
                 return result.Failed(ApplicationMessages.InvalidCurrentPassword);
@@ -130,58 +130,92 @@ namespace UserManagement.Application
             _authenticationHelper.SignOut();
         }
 
-        public UserInformationsViewModel GetUserInformationsForShow(string email)
+        public UserInformationsViewModel GetUserInformationsForShow()
         {
-             var user=_userRepository.GetUserByEmail(email);
-             return new UserInformationsViewModel()
-             {
-                 Email = user.Email,
-                 FirstName = user.FirstName,
-                 LastName = user.LastName,
-                 PhoneNumber = user.PhoneNumber,
-                 RefundType = user.RefundType,
-                 BirthDate = user.BirthDate?.ToShamsi(),
-                 NationalNumber = user.NationalNumber
-             };
+            var user = _userRepository.GetUserById(_authenticationHelper.GetCurrentUserId());
+            return new UserInformationsViewModel()
+            {
+                Email = user.Email,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                PhoneNumber = user.PhoneNumber,
+                RefundType = user.RefundType,
+                BirthDate = user.BirthDate?.ToShamsi(),
+                NationalNumber = user.NationalNumber
+            };
         }
 
-        public string ConfirmUserFullName(string email, FullNameCommand command)
+        public string ConfirmUserFullName(FullNameCommand command)
         {
-            var user = _userRepository.GetUserByEmail(email);
-            user.ChangeFullName(command.FirstName,command.LastName);
+            var user = _userRepository.GetUserById(_authenticationHelper.GetCurrentUserId());
+            user.ChangeFullName(command.FirstName, command.LastName);
             _userRepository.SaveChanges();
             return user.FirstName + " " + user.LastName;
         }
 
-        public OperationResult ConfirmUserEmail(string email, EmailCommand command)
+        public OperationResult ConfirmUserEmail(EmailCommand command)
         {
-            throw new NotImplementedException();
+            var result = new OperationResult();
+            if (!command.Email.IsEmail())
+                return result.Failed(ApplicationMessages.InvalidEmail);
+
+            var user = _userRepository.GetUserById(_authenticationHelper.GetCurrentUserId());
+            if (user.Email == EmailConvertor.FixEmail(command.Email))
+                return result.Failed(ApplicationMessages.IdenticalEmailEntered);
+            
+            if (_userRepository.IsExistByEmail(EmailConvertor.FixEmail(command.Email)))
+                return result.Failed(ApplicationMessages.DuplicatedEmail);
+            user.ChangeEmail(EmailConvertor.FixEmail(command.Email));
+            _userRepository.SaveChanges();
+            //Login With New Email
+            var authVm = new AuthenticationViewModel(user.UserId, user.RoleId, user.Email, user.PhoneNumber);
+            _authenticationHelper.SignOut();
+            _authenticationHelper.SignIn(authVm);
+            return result.Succeeded();
         }
 
-        public OperationResult ConfirmUserPhoneNumber(string email, PhoneNumberCommand command)
+        public OperationResult ConfirmUserPhoneNumber(PhoneNumberCommand command)
         {
-            throw new NotImplementedException();
+            var result = new OperationResult();
+
+            if (!command.PhoneNumber.IsPhoneNumber())
+                return result.Failed(ApplicationMessages.InvalidPhoneNumber);
+
+            var user = _userRepository.GetUserById(_authenticationHelper.GetCurrentUserId());
+
+            if (user.PhoneNumber == command.PhoneNumber)
+                result.Failed(ApplicationMessages.IdenticalPhoneNumberEntered);
+            
+            if (_userRepository.IsExistByPhoneNumber(command.PhoneNumber))
+                return result.Failed(ApplicationMessages.DuplicatedPhone);
+
+            user.ChangePhoneNumber(command.PhoneNumber);
+            _userRepository.SaveChanges();
+            var authVm = new AuthenticationViewModel(user.UserId, user.RoleId, user.Email, user.PhoneNumber);
+            _authenticationHelper.SignOut();
+            _authenticationHelper.SignIn(authVm);
+            return result.Succeeded();
         }
 
-        public string ConfirmUserNationalNumber(string email, NationalNumberCommand command)
+        public string ConfirmUserNationalNumber(NationalNumberCommand command)
         {
-            var user = _userRepository.GetUserByEmail(email);
+            var user = _userRepository.GetUserById(_authenticationHelper.GetCurrentUserId());
             user.ChangeNationalNumber(command.NationalNumber);
             _userRepository.SaveChanges();
             return command.NationalNumber;
         }
 
-        public OperationResult ConfirmUserBirthDate(string email, BirthDateCommand command)
+        public OperationResult ConfirmUserBirthDate(BirthDateCommand command)
         {
             throw new NotImplementedException();
         }
 
-        public OperationResult ConfirmUserPassword(string email, PasswordCommand command)
+        public OperationResult ConfirmUserPassword(PasswordCommand command)
         {
             throw new NotImplementedException();
         }
 
-        public OperationResult ConfirmUserRefundType(string email, RefundCommand command)
+        public OperationResult ConfirmUserRefundType(RefundCommand command)
         {
             throw new NotImplementedException();
         }

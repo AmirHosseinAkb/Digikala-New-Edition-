@@ -13,9 +13,13 @@ namespace _01_Framework.Application.Convertors
         public const string RecordNotFound = "کاربری با اطلاعات وارد شده یافت نشد.";
         public static string WrongUserPass = "رمز عبور وارد شده صحیح نمی باشد";
         public const string InvalidEmailOrPhoneNumber = "ایمیل یا شماره همراه را بصورت صحیح وارد کنید";
+        public const string InvalidPhoneNumber = "شماره همراه را بصورت صحیح وارد کنید";
+        public const string InvalidEmail = "ایمیل را بصورت صحیح وارد کنید";
         public const string ActivationProcessFailed = "عملیات فعال سازی با شکست مواجه شد لطفا بعدا دوباره امتحان نمایید.";
         public const string UserIsNotActive = "حساب کاربری شما فعال نمی باشد لطفا ابتدا حساب کاربری خود را فعال نمایید";
         public const string InvalidCurrentPassword = "رمز عبور فعلی خود را بصورت صحیح وارد کنید";
+        public const string IdenticalEmailEntered = "ایمیلی غیر از ایمیل فعلی تان را وارد کنید";
+        public const string IdenticalPhoneNumberEntered = "شماره ای غیر از شماره همراه فعلی تان را وارد کنید";
 
     }
 }

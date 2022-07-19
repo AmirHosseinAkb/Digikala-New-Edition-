@@ -10,18 +10,16 @@ namespace _01_Framework.Application
     {
         public long UserId { get; set; }
         public long RoleId { get; set; }
-        public string Email { get; set; }
+        public string? Email { get; set; }
+        public string? PhoneNumber { get; set; }
 
-        public AuthenticationViewModel()
-        {
-            
-        }
 
-        public AuthenticationViewModel(long userId,long roleId,string email)
+        public AuthenticationViewModel(long userId,long roleId,string? email,string? phoneNumber)
         {
-            UserId=userId;
-            RoleId=roleId;
+            UserId = userId;
+            RoleId = roleId;
             Email = email;
+            PhoneNumber = phoneNumber;
         }
     }
 }

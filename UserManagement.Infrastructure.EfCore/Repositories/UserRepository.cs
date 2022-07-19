@@ -41,6 +41,11 @@ namespace UserManagement.Infrastructure.EfCore.Repositories
             return _context.Users.SingleOrDefault(u => u.Email == email);
         }
 
+        public User GetUserById(long id)
+        {
+            return _context.Users.SingleOrDefault(u => u.UserId==id);
+        }
+
         public void SaveChanges()
         {
             _context.SaveChanges();

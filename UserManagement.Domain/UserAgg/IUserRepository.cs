@@ -14,7 +14,7 @@ namespace UserManagement.Domain.UserAgg
         User GetByActivationCode(string activationCode);
         User GetUserForLogin(string email,string password);
         User GetUserByEmail(string email);
-
+        User GetUserById(long id);
         void SaveChanges();
     }
 }

@@ -63,17 +63,19 @@ $(function () {
 });
 $(function () {
     $("#btnEmail").click(function (e) {
-        var isValidEmail = $("#UserEmailVM_Email").valid();
+        var isValidEmail = $("#EmailCommand_Email").valid();
         if (isValidEmail) {
             var data = $("#frmUserEmail").serialize();
             e.preventDefault();
             $.ajax({
                 type: "Post",
-                url: "/UserPanel/UserInformations/ConfirmUserEmail",
+                url: "/UserPanel/ConfirmInformations/ConfirmUserEmail",
                 data: data,
                 beforeSend: function (xhr) { xhr.setRequestHeader("XSRF-TOKEN", $('input:hidden[name="__RequestVerificationToken"]').val()); },
                 success: function (res) {
+                    var delay = 3000;
                     Success("#emailInp", "#emailModal", res, "ایمیل شما با موفقیت ویرایش شد");
+                    setTimeout(function () { window.location.reload(); }, delay);
                 },
                 error: function (error) {
                     WarningMessage(error.responseText);
@@ -84,17 +86,19 @@ $(function () {
 });
 $(function () {
     $("#btnPhoneNumber").click(function (e) {
-        var isValid = $("#UserPhoneNumberVM_PhoneNumber").valid();
+        var isValid = $("#PhoneNumberCommand_PhoneNumber").valid();
         if (isValid) {
             var data = $("#frmUserPhoneNumber").serialize();
             e.preventDefault();
             $.ajax({
                 type: "Post",
-                url: "/UserPanel/UserInformations/ConfirmUserPhoneNumber",
+                url: "/UserPanel/ConfirmInformations/ConfirmUserPhoneNumber",
                 data: data,
                 beforeSend: function (xhr) { xhr.setRequestHeader("XSRF-TOKEN", $('input:hidden[name="__RequestVerificationToken"]').val()); },
                 success: function (res) {
+                    var delay = 3000;
                     Success("#phoneNumberInp", "#phoneNumberModal", res, "شماره همراه شما با موفقیت ویرایش شد");
+                    setTimeout(function () { window.location.reload(); }, delay);
                 },
                 error: function (error) {
                     WarningMessage(error.responseText);

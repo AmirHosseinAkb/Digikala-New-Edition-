@@ -21,7 +21,7 @@ namespace Server.Pages.UserPanel
         public UserInformationsViewModel UserInformationsVM { get; set; }
         public void OnGet()
         {
-            UserInformationsVM = _userApplication.GetUserInformationsForShow(User.Identity.Name);
+            UserInformationsVM = _userApplication.GetUserInformationsForShow();
         }
 
         [BindProperty]
@@ -40,22 +40,49 @@ namespace Server.Pages.UserPanel
         public PasswordCommand PasswordCommand { get; set; }
 
 
+  
+
         public IActionResult OnPostConfirmUserFullName()
         {
-            if (ModelState.GetValidationState("FullNameCommand.FirstName") == ModelValidationState.Invalid
-                || ModelState.GetValidationState("FullNameCommand.LastName") == ModelValidationState.Invalid)
+            if (ModelState.GetFieldValidationState(nameof(FullNameCommand.FirstName)) == ModelValidationState.Invalid
+                || ModelState.GetValidationState(nameof(FullNameCommand.LastName)) == ModelValidationState.Invalid)
                 return RedirectToPage();
-            var result=_userApplication.ConfirmUserFullName(User.Identity.Name, FullNameCommand);
+            var result=_userApplication.ConfirmUserFullName(FullNameCommand);
             return Content(result);
         }
 
         public IActionResult OnPostConfirmUserNationalNumber()
         {
-            if (ModelState.GetValidationState("NationalNumberCommand.NationalNumber") == ModelValidationState.Invalid)
+            if (ModelState.GetFieldValidationState(nameof(NationalNumberCommand.NationalNumber)) == ModelValidationState.Invalid)
                 return RedirectToPage();
-            var result = _userApplication.ConfirmUserNationalNumber(User.Identity.Name, NationalNumberCommand);
+            var result = _userApplication.ConfirmUserNationalNumber(NationalNumberCommand);
             return Content(result);
         }
 
+        public IActionResult OnPostConfirmUserEmail()
+        {
+            if (ModelState.GetFieldValidationState(nameof(EmailCommand.Email)) == ModelValidationState.Invalid)
+                return RedirectToPage();
+            var result = _userApplication.ConfirmUserEmail(EmailCommand);
+            if (!result.IsSucceeded)
+            {
+                return BadRequest(result.Message);
+            }
+            
+            return Content(EmailCommand.Email.Replace(" ","").ToLower());
+        }
+
+        public IActionResult OnPostConfirmUserPhoneNumber()
+        {
+            if (ModelState.GetFieldValidationState(nameof(PhoneNumberCommand.PhoneNumber)) ==
+                ModelValidationState.Invalid)
+                return RedirectToPage();
+            var result=_userApplication.ConfirmUserPhoneNumber(PhoneNumberCommand);
+            if (!result.IsSucceeded)
+            {
+                return BadRequest(result.Message);
+            }
+            return Content(PhoneNumberCommand.PhoneNumber);
+        }
     }
 }

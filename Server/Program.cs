@@ -46,7 +46,7 @@ builder.Services.AddSession(options =>
 #endregion
 
 builder.Services.AddRazorPages();
-
+builder.Services.AddAntiforgery(o => o.HeaderName="XSRF-TOKEN");
 var app = builder.Build();
 
 

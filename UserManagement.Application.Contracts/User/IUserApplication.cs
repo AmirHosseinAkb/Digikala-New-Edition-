@@ -21,14 +21,14 @@ namespace UserManagement.Application.Contracts.User
 
         #region UserPanel
 
-        UserInformationsViewModel GetUserInformationsForShow(string email);
-        string ConfirmUserFullName(string email,FullNameCommand command);
-        OperationResult ConfirmUserEmail(string email,EmailCommand command);
-        OperationResult ConfirmUserPhoneNumber(string email,PhoneNumberCommand command);
-        string ConfirmUserNationalNumber(string email,NationalNumberCommand command);
-        OperationResult ConfirmUserBirthDate(string email,BirthDateCommand command);
-        OperationResult ConfirmUserPassword(string email,PasswordCommand command);
-        OperationResult ConfirmUserRefundType(string email,RefundCommand command);
+        UserInformationsViewModel GetUserInformationsForShow();
+        string ConfirmUserFullName(FullNameCommand command);
+        OperationResult ConfirmUserEmail(EmailCommand command);
+        OperationResult ConfirmUserPhoneNumber(PhoneNumberCommand command);
+        string ConfirmUserNationalNumber(NationalNumberCommand command);
+        OperationResult ConfirmUserBirthDate(BirthDateCommand command);
+        OperationResult ConfirmUserPassword(PasswordCommand command);
+        OperationResult ConfirmUserRefundType(RefundCommand command);
 
         #endregion
     }
