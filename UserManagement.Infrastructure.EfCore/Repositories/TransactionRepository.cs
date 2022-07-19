@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UserManagement.Domain.Transaction;
+using UserManagement.Domain.TransactionAgg;
 
 namespace UserManagement.Infrastructure.EfCore.Repositories
 {

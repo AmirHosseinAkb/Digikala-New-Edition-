@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UserManagement.Domain.UserAgg;
 
-namespace UserManagement.Domain.Transaction
+namespace UserManagement.Domain.TransactionAgg
 {
     public class Transaction
     {

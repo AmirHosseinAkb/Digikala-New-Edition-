@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using UserManagement.Domain.RoleAgg;
-using UserManagement.Domain.Transaction;
+using UserManagement.Domain.TransactionAgg;
 using UserManagement.Domain.UserAgg;
 using UserManagement.Infrastructure.EfCore.Mappings;
 

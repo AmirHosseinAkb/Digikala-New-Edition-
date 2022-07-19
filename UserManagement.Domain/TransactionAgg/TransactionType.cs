@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UserManagement.Domain.Transaction
+namespace UserManagement.Domain.TransactionAgg
 {
     public class TransactionType
     {

@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using UserManagement.Application;
 using UserManagement.Application.Contracts.User;
-using UserManagement.Domain.Transaction;
+using UserManagement.Domain.TransactionAgg;
 using UserManagement.Domain.UserAgg;
 using UserManagement.Infrastructure.EfCore;
 using UserManagement.Infrastructure.EfCore.Repositories;

@@ -7,7 +7,7 @@ using _01_Framework.Resources;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using UserManagement.Application.Contracts.User;
 using UserManagement.Application.Contracts.User.UserPanel;
-using UserManagement.Domain.Transaction;
+using UserManagement.Domain.TransactionAgg;
 using UserManagement.Domain.UserAgg;
 
 namespace UserManagement.Application

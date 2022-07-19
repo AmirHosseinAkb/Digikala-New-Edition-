@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using UserManagement.Domain.Transaction;
+using UserManagement.Domain.TransactionAgg;
 using UserManagement.Domain.UserAgg;
 
 namespace UserManagement.Infrastructure.EfCore.Mappings
