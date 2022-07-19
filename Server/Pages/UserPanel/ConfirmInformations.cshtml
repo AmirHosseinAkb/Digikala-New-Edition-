@@ -1,4 +1,5 @@
 ﻿@page "{handler?}"
+@using _01_Framework.Infrastructure
 @model Server.Pages.UserPanel.ConfirmInformationsModel
 
 @{
@@ -92,7 +93,14 @@
                                         <div class="fs-7 fw-bold text-dark">@DataDictionaries.RefundType</div>
                                         <button class="btn btn-circle btn-outline-light" data-remodal-target="personal-info-returned-modal"><i class="ri-ball-pen-fill"></i></button>
                                     </div>
-                                    <div id="refundTypeInp" class="fs-6 fw-bold text-muted">-</div>
+                                    @if (Model.UserInformationsVM.RefundType == RefundTypes.PayToAccountNumber)
+                                    {
+                                        <div id="refundTypeInp" class="fs-6 fw-bold text-muted">@DataDictionaries.PayToAccountNumber - @Model.UserInformationsVM.AccountNumber</div>
+                                    }
+                                    else
+                                    {
+                                        <div id="refundTypeInp" class="fs-6 fw-bold text-muted">@DataDictionaries.PayToWallet</div>
+                                    }
                                 </div>
                             </div>
                             <div class="col-lg-6 mb-3">
@@ -288,7 +296,7 @@
                             </span>
                         </span>
                     </label>
-                    <input asp-for="RefundCommand.AccountNumber" type="number" class="form-control" placeholder="@DataDictionaries.AccountNumber" style="display:none"/>
+                    <input asp-for="RefundCommand.AccountNumber" type="number" class="form-control" value="@Model.UserInformationsVM.AccountNumber" placeholder="@DataDictionaries.AccountNumber" style="display:none" />
                 </div>
                 <div class="custom-radio-outline">
                     <input asp-for="RefundCommand.RefundType" type="radio" value="2" class="custom-radio-outline-input" id="checkoutPayment02">

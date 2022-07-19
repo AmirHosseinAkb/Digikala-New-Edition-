@@ -144,7 +144,8 @@ namespace UserManagement.Application
                 PhoneNumber = user.PhoneNumber,
                 RefundType = user.RefundType,
                 BirthDate = user.BirthDate?.ToShamsi(),
-                NationalNumber = user.NationalNumber
+                NationalNumber = user.NationalNumber,
+                AccountNumber = user.AccountNumber
             };
         }
 
@@ -234,7 +235,7 @@ namespace UserManagement.Application
                     user.ChangeRefundType(RefundTypes.PayToAccountNumber);
                     user.ChangeAccountNumber(command.AccountNumber);
                     _userRepository.SaveChanges();
-                    return result.Succeeded(DataDictionaries.PayToAccountNumber+"-"+command.AccountNumber);
+                    return result.Succeeded(DataDictionaries.PayToAccountNumber+" - "+command.AccountNumber);
                 }
                 return result.Failed(ApplicationMessages.InvalidAccountNumber);
             }

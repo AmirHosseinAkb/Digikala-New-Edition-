@@ -15,5 +15,6 @@ namespace UserManagement.Application.Contracts.User.UserPanel
         public string? PhoneNumber { get; set; }
         public string? BirthDate { get; set; }
         public byte? RefundType { get; set; }
+        public string? AccountNumber { get; set; }
     }
 }
