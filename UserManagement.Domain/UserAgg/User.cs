@@ -1,5 +1,4 @@
-﻿using System.Globalization;
-using UserManagement.Domain.RoleAgg;
+﻿using UserManagement.Domain.RoleAgg;
 
 namespace UserManagement.Domain.UserAgg
 {
@@ -17,7 +16,7 @@ namespace UserManagement.Domain.UserAgg
         public string ActivationCode { get;private set; }
         public bool IsActive { get;private set; }
         public int VerificationCode { get;private set; }
-        public byte RefundType { get;private set; } // 0: Wallet 1:Pay to bank account
+        public byte RefundType { get;private set; } // 1: Pay To Account Number    2:Pay To Wallet
         public string AccountNumber { get; private set; }
         public string AvatarName { get; private set; }
         public bool IsDeleted { get;private set; }

@@ -3,6 +3,7 @@ using _01_Framework.Application;
 using _01_Framework.Application.Convertors;
 using _01_Framework.Infrastructure.ExtensionMethods;
 using _01_Framework.Application.Email;
+using FoolProof.Core;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using UserManagement.Infrastructure.Configuration;
 
@@ -47,6 +48,7 @@ builder.Services.AddSession(options =>
 
 builder.Services.AddRazorPages();
 builder.Services.AddAntiforgery(o => o.HeaderName="XSRF-TOKEN");
+builder.Services.AddFoolProof();
 var app = builder.Build();
 
 

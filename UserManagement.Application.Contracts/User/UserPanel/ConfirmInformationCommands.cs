@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using _01_Framework.Application.Convertors;
+using FoolProof.Core;
 
 namespace UserManagement.Application.Contracts.User.UserPanel
 {
@@ -59,7 +60,7 @@ namespace UserManagement.Application.Contracts.User.UserPanel
     {
         public byte RefundType { get; set; }
         
-        
+        [RequiredIf(nameof(RefundType),1,ErrorMessage = ValidationMessages.IsRequired)]
         public string AccountNumber { get; set; }
     }
 
