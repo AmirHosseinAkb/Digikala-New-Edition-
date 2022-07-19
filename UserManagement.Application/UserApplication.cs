@@ -7,6 +7,7 @@ using _01_Framework.Resources;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using UserManagement.Application.Contracts.User;
 using UserManagement.Application.Contracts.User.UserPanel;
+using UserManagement.Domain.Transaction;
 using UserManagement.Domain.UserAgg;
 
 namespace UserManagement.Application
@@ -14,18 +15,20 @@ namespace UserManagement.Application
     public class UserApplication : IUserApplication
     {
         private readonly IUserRepository _userRepository;
+        private readonly ITransactionRepository _transactionRepository;
         private readonly IViewRenderService _viewRenderService;
         private readonly IEmailService _emailService;
         private readonly IPasswordHasher _passwordHasher;
         private readonly IAuthenticationHelper _authenticationHelper;
 
-        public UserApplication(IUserRepository userRepository, IViewRenderService viewRenderService, IEmailService emailService, IPasswordHasher passwordHasher, IAuthenticationHelper authenticationHelper)
+        public UserApplication(IUserRepository userRepository, IViewRenderService viewRenderService, IEmailService emailService, IPasswordHasher passwordHasher, IAuthenticationHelper authenticationHelper, ITransactionRepository transactionRepository)
         {
             _userRepository = userRepository;
             _viewRenderService = viewRenderService;
             _emailService = emailService;
             _passwordHasher = passwordHasher;
             _authenticationHelper = authenticationHelper;
+            _transactionRepository = transactionRepository;
         }
 
         public OperationResult RegisterAndLogin(RegisterAndLoginCommand command)

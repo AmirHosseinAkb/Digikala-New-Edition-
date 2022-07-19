@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using UserManagement.Application;
 using UserManagement.Application.Contracts.User;
+using UserManagement.Domain.Transaction;
 using UserManagement.Domain.UserAgg;
 using UserManagement.Infrastructure.EfCore;
 using UserManagement.Infrastructure.EfCore.Repositories;
@@ -19,6 +20,7 @@ namespace UserManagement.Infrastructure.Configuration
         {
             services.AddScoped<IUserRepository,UserRepository>();
             services.AddScoped<IUserApplication,UserApplication>();
+            services.AddScoped<ITransactionRepository,TransactionRepository>();
             services.AddDbContext<AccountContext>(options =>
                 options.UseSqlServer(connectionString));
         }
