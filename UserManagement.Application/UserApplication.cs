@@ -2,6 +2,7 @@
 using _01_Framework.Application;
 using _01_Framework.Application.Convertors;
 using _01_Framework.Application.Email;
+using _01_Framework.Infrastructure;
 using _01_Framework.Resources;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using UserManagement.Application.Contracts.User;
@@ -77,7 +78,7 @@ namespace UserManagement.Application
                 return operation.Failed(ApplicationMessages.WrongUserPass);
             if (!user.IsActive)
                 return operation.Failed(ApplicationMessages.UserIsNotActive);
-            var authVm = new AuthenticationViewModel(user.UserId, user.RoleId, user.Email,user.PhoneNumber);
+            var authVm = new AuthenticationViewModel(user.UserId, user.RoleId, user.Email, user.PhoneNumber);
             _authenticationHelper.SignIn(authVm);
             return operation.Succeeded();
         }
@@ -164,7 +165,7 @@ namespace UserManagement.Application
             var user = _userRepository.GetUserById(_authenticationHelper.GetCurrentUserId());
             if (user.Email == EmailConvertor.FixEmail(command.Email))
                 return result.Failed(ApplicationMessages.IdenticalEmailEntered);
-            
+
             if (_userRepository.IsExistByEmail(EmailConvertor.FixEmail(command.Email)))
                 return result.Failed(ApplicationMessages.DuplicatedEmail);
             user.ChangeEmail(EmailConvertor.FixEmail(command.Email));
@@ -187,7 +188,7 @@ namespace UserManagement.Application
 
             if (user.PhoneNumber == command.PhoneNumber)
                 result.Failed(ApplicationMessages.IdenticalPhoneNumberEntered);
-            
+
             if (_userRepository.IsExistByPhoneNumber(command.PhoneNumber))
                 return result.Failed(ApplicationMessages.DuplicatedPhone);
 
@@ -213,7 +214,7 @@ namespace UserManagement.Application
             var date = new DateTime(command.BirthYear, command.BirthMonth, command.BirthDay, new PersianCalendar());
             var user = _userRepository.GetUserById(_authenticationHelper.GetCurrentUserId());
             user.ChangeBirthDate(date);
-            _userRepository.SaveChanges();;
+            _userRepository.SaveChanges(); ;
             return date.ToShamsi();
         }
 
@@ -224,6 +225,29 @@ namespace UserManagement.Application
 
         public OperationResult ConfirmUserRefundType(RefundCommand command)
         {
+            var result = new OperationResult();
+            var user = _userRepository.GetUserById(_authenticationHelper.GetCurrentUserId());
+            if (command.RefundType == RefundTypes.PayToAccountNumber)
+            {
+                if (command.AccountNumber.IsAccountNumber())
+                {
+                    user.ChangeRefundType(RefundTypes.PayToAccountNumber);
+                    user.ChangeAccountNumber(command.AccountNumber);
+                    _userRepository.SaveChanges();
+                    return result.Succeeded(DataDictionaries.PayToAccountNumber+"-"+command.AccountNumber);
+                }
+                return result.Failed(ApplicationMessages.InvalidAccountNumber);
+            }
+            else if (command.RefundType == RefundTypes.PayToWallet)
+            {
+                user.ChangeRefundType(RefundTypes.PayToWallet);
+                _userRepository.SaveChanges();
+                return result.Succeeded(DataDictionaries.PayToWallet);
+            }
+            else
+            {
+                return result.Failed(ApplicationMessages.ProcessFailed);
+            }
             
         }
     }

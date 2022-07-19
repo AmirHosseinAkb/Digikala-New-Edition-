@@ -15,6 +15,8 @@ namespace _01_Framework.Application.Convertors
         public const string InvalidEmailOrPhoneNumber = "ایمیل یا شماره همراه را بصورت صحیح وارد کنید";
         public const string InvalidPhoneNumber = "شماره همراه را بصورت صحیح وارد کنید";
         public const string InvalidEmail = "ایمیل را بصورت صحیح وارد کنید";
+        public const string InvalidAccountNumber = "شماره حساب خود را بصورت صحیح وارد کنید";
+        public const string ProcessFailed = "عملیات با شکست مواجه شد لطفا دوباره امتحان نمایید";
         public const string ActivationProcessFailed = "عملیات فعال سازی با شکست مواجه شد لطفا بعدا دوباره امتحان نمایید.";
         public const string UserIsNotActive = "حساب کاربری شما فعال نمی باشد لطفا ابتدا حساب کاربری خود را فعال نمایید";
         public const string InvalidCurrentPassword = "رمز عبور فعلی خود را بصورت صحیح وارد کنید";

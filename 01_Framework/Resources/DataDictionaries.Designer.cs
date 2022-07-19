@@ -61,6 +61,15 @@ namespace _01_Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AccountNumber.
+        /// </summary>
+        public static string AccountNumber {
+            get {
+                return ResourceManager.GetString("AccountNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Thank you for registering in My Store Click on Activate your account to activate your account.
         /// </summary>
         public static string ActivationEmailText {
@@ -511,6 +520,24 @@ namespace _01_Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pay To Bank Card.
+        /// </summary>
+        public static string PayToAccountNumber {
+            get {
+                return ResourceManager.GetString("PayToAccountNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pay To Wallet.
+        /// </summary>
+        public static string PayToWallet {
+            get {
+                return ResourceManager.GetString("PayToWallet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Phone Number.
         /// </summary>
         public static string PhoneNumber {
@@ -525,6 +552,15 @@ namespace _01_Framework.Resources {
         public static string Record {
             get {
                 return ResourceManager.GetString("Record", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RefundType.
+        /// </summary>
+        public static string RefundType {
+            get {
+                return ResourceManager.GetString("RefundType", resourceCulture);
             }
         }
         

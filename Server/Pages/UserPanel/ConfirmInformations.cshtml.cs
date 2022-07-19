@@ -97,8 +97,15 @@ namespace Server.Pages.UserPanel
 
         public IActionResult OnPostConfirmUserRefundType()
         {
+            if (ModelState.GetFieldValidationState(nameof(RefundCommand.AccountNumber)) == ModelValidationState.Invalid)
+                return RedirectToPage();
+            var result = _userApplication.ConfirmUserRefundType(RefundCommand);
+            if (!result.IsSucceeded)
+            {
+                return BadRequest(result.Message);
+            }
 
-            return RedirectToPage();
+            return Content(result.Message);
         }
     }
 }

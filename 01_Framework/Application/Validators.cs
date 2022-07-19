@@ -28,5 +28,12 @@ namespace _01_Framework.Application.Convertors
 
             return true;
         }
+
+        public static bool IsAccountNumber(this string accountNumber)
+        {
+            if (string.IsNullOrWhiteSpace(accountNumber) || accountNumber.Any(n => char.IsLetter(n)))
+                return false;
+            return true;
+        }
     }
 }

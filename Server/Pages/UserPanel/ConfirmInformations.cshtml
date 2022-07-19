@@ -89,10 +89,10 @@
                             <div class="col-lg-6 mb-3">
                                 <div class="border-bottom py-2">
                                     <div class="d-flex align-items-center justify-content-between">
-                                        <div class="fs-7 fw-bold text-dark">روش بازگرداندن وجه</div>
+                                        <div class="fs-7 fw-bold text-dark">@DataDictionaries.RefundType</div>
                                         <button class="btn btn-circle btn-outline-light" data-remodal-target="personal-info-returned-modal"><i class="ri-ball-pen-fill"></i></button>
                                     </div>
-                                    <div class="fs-6 fw-bold text-muted">-</div>
+                                    <div id="refundTypeInp" class="fs-6 fw-bold text-muted">-</div>
                                 </div>
                             </div>
                             <div class="col-lg-6 mb-3">
@@ -267,43 +267,45 @@
     </div>
     <!--  personal-info-birth-modal -->
     <!-- personal-info-returned-modal -->
-    <div class="remodal remodal-xs" data-remodal-id="personal-info-returned-modal" data-remodal-options="hashTracking: false">
+    <div id="refundTypeModal" class="remodal remodal-xs" data-remodal-id="personal-info-returned-modal" data-remodal-options="hashTracking: false">
         <div class="remodal-header">
             <button data-remodal-action="close" class="remodal-close"></button>
         </div>
-        <div class="remodal-content">
-            <div class="fs-7 fw-bold mb-4">
-                لطفا روش بازگرداندن وجوه خود را انتخاب نمایید. همچنین برای کسب اطلاعات بیشتر لطفا ملاحظات بازگشت
-                وجه را مطالعه نمایید.
-            </div>
-            <div class="custom-radio-outline">
-                <input type="radio" class="custom-radio-outline-input" name="checkoutPayment"
-                       id="checkoutPayment01">
-                <label for="checkoutPayment01" class="custom-radio-outline-label">
-                    <span class="label">
-                        <span class="icon"><i class="ri-secure-payment-fill"></i></span>
-                        <span class="detail">
-                            <span class="title">واریز به حساب بانکی</span>
+        <form id="frmUserRefundType" method="post">
+            <div class="remodal-content">
+                <div class="fs-7 fw-bold mb-4">
+                    لطفا روش بازگرداندن وجوه خود را انتخاب نمایید. همچنین برای کسب اطلاعات بیشتر لطفا ملاحظات بازگشت
+                    وجه را مطالعه نمایید.
+                </div>
+
+                <div class="custom-radio-outline">
+                    <input asp-for="RefundCommand.RefundType" type="radio" value="1" class="custom-radio-outline-input" id="checkoutPayment01">
+                    <label for="checkoutPayment01" class="custom-radio-outline-label">
+                        <span class="label">
+                            <span class="icon"><i class="ri-secure-payment-fill"></i></span>
+                            <span class="detail">
+                                <span class="title">@DataDictionaries.PayToAccountNumber</span>
+                            </span>
                         </span>
-                    </span>
-                </label>
-            </div>
-            <div class="custom-radio-outline">
-                <input type="radio" class="custom-radio-outline-input" name="checkoutPayment"
-                       id="checkoutPayment02">
-                <label for="checkoutPayment02" class="custom-radio-outline-label">
-                    <span class="label">
-                        <span class="icon"><i class="ri-wallet-3-fill"></i></span>
-                        <span class="detail">
-                            <span class="title">واریز به کیف پول</span>
+                    </label>
+                    <input asp-for="RefundCommand.AccountNumber" type="number" class="form-control" placeholder="@DataDictionaries.AccountNumber" style="display:none"/>
+                </div>
+                <div class="custom-radio-outline">
+                    <input asp-for="RefundCommand.RefundType" type="radio" value="2" class="custom-radio-outline-input" id="checkoutPayment02">
+                    <label for="checkoutPayment02" class="custom-radio-outline-label">
+                        <span class="label">
+                            <span class="icon"><i class="ri-wallet-3-fill"></i></span>
+                            <span class="detail">
+                                <span class="title">@DataDictionaries.PayToWallet</span>
+                            </span>
                         </span>
-                    </span>
-                </label>
+                    </label>
+                </div>
             </div>
-        </div>
-        <div class="remodal-footer">
-            <button class="btn btn-sm btn-primary px-3">ثبت</button>
-        </div>
+            <div class="remodal-footer">
+                <button id="btnSaveRefundType" class="btn btn-sm btn-primary px-3">@ButtonCaptions.Save</button>
+            </div>
+        </form>
     </div>
     <!--  personal-info-returned-modal -->
     <!-- personal-info-change-password-modal -->

@@ -131,6 +131,29 @@ $(function () {
     });
 });
 $(function () {
+    $("#btnSaveRefundType").click(function (e) {
+        var isValidAccountNumber = $("#RefundCommand_AccountNumber").valid();
+
+        if (isValidAccountNumber) {
+            var data = $("#frmUserRefundType").serialize();
+            e.preventDefault();
+            $.ajax({
+                type: "Post",
+                url: "/UserPanel/ConfirmInformations/ConfirmUserRefundType",
+                data: data,
+                beforeSend: function (xhr) { xhr.setRequestHeader("XSRF-TOKEN", $('input:hidden[name="__RequestVerificationToken"]').val()); },
+                success: function (res) {
+                    Success("#refundTypeInp", "#refundTypeModal", res, "نحوه بازگشت وجه با موفقیت ثبت شد");
+                },
+                error: function (error) {
+                    WarningMessage(error.responseText);
+                }
+            });
+        }
+    });
+});
+
+$(function () {
     $("#btnSavePassword").click(function (e) {
         var data = $("#frmUserPassword").serialize();
         var isValidCurrentPassword = $("#UserPasswordVM_CurrentPassword").valid();
@@ -165,7 +188,12 @@ $(function () {
     });
 });
 
-
+$("#checkoutPayment01").click(function() {
+    $("#RefundCommand_AccountNumber").show();
+});
+$("#checkoutPayment02").click(function() {
+    $("#RefundCommand_AccountNumber").hide();
+});
 /*********************Email And Phone Number Existance *****************************/
 
 $("#btnCreateUser").click(function (e) {

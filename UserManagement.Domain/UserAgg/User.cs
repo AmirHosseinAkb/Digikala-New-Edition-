@@ -17,7 +17,7 @@ namespace UserManagement.Domain.UserAgg
         public bool IsActive { get;private set; }
         public int VerificationCode { get;private set; }
         public byte RefundType { get;private set; } // 1: Pay To Account Number    2:Pay To Wallet
-        public string AccountNumber { get; private set; }
+        public string? AccountNumber { get; private set; }
         public string AvatarName { get; private set; }
         public bool IsDeleted { get;private set; }
         public long RoleId { get;private set; }
@@ -90,6 +90,11 @@ namespace UserManagement.Domain.UserAgg
         public void ChangeRefundType(byte refundType)
         {
             RefundType = refundType;
+        }
+
+        public void ChangeAccountNumber(string accountNumber)
+        {
+            AccountNumber=accountNumber;
         }
     }
 }
