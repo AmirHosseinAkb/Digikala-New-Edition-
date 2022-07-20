@@ -20,5 +20,12 @@ namespace UserManagement.Infrastructure.EfCore.Repositories
         {
             return _context.Transactions.Where(t => t.UserId == userId).ToList();
         }
+
+        public long AddTransaction(Transaction transaction)
+        {
+            _context.Transactions.Add(transaction);
+            _context.SaveChanges();
+            return transaction.TransactionId;
+        }
     }
 }

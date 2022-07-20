@@ -19,7 +19,7 @@ namespace UserManagement.Infrastructure.EfCore.Mappings
 
             builder.HasMany<Transaction>(t => t.Transactions)
                 .WithOne(t => t.TransactionType)
-                .HasForeignKey(t => t.TransactionId);
+                .HasForeignKey(t => t.TypeId);
 
             #region SeedDatas
 

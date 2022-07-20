@@ -291,6 +291,9 @@
   <data name="Password" xml:space="preserve">
     <value>رمز عبور</value>
   </data>
+  <data name="PaymentDescription" xml:space="preserve">
+    <value>واریز به کیف پول</value>
+  </data>
   <data name="PayToAccountNumber" xml:space="preserve">
     <value>واریز به کارت بانکی</value>
   </data>

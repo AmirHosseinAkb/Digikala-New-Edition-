@@ -57,10 +57,13 @@ namespace UserManagement.Infrastructure.EfCore.Migrations
                         });
                 });
 
-            modelBuilder.Entity("UserManagement.Domain.Transaction.Transaction", b =>
+            modelBuilder.Entity("UserManagement.Domain.TransactionAgg.Transaction", b =>
                 {
                     b.Property<long>("TransactionId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("TransactionId"), 1L, 1);
 
                     b.Property<int>("Amount")
                         .HasColumnType("int");
@@ -84,12 +87,14 @@ namespace UserManagement.Infrastructure.EfCore.Migrations
 
                     b.HasKey("TransactionId");
 
+                    b.HasIndex("TypeId");
+
                     b.HasIndex("UserId");
 
                     b.ToTable("Transactions", (string)null);
                 });
 
-            modelBuilder.Entity("UserManagement.Domain.Transaction.TransactionType", b =>
+            modelBuilder.Entity("UserManagement.Domain.TransactionAgg.TransactionType", b =>
                 {
                     b.Property<long>("TypeId")
                         .ValueGeneratedOnAdd()
@@ -194,11 +199,11 @@ namespace UserManagement.Infrastructure.EfCore.Migrations
                     b.ToTable("Users", (string)null);
                 });
 
-            modelBuilder.Entity("UserManagement.Domain.Transaction.Transaction", b =>
+            modelBuilder.Entity("UserManagement.Domain.TransactionAgg.Transaction", b =>
                 {
-                    b.HasOne("UserManagement.Domain.Transaction.TransactionType", "TransactionType")
+                    b.HasOne("UserManagement.Domain.TransactionAgg.TransactionType", "TransactionType")
                         .WithMany("Transactions")
-                        .HasForeignKey("TransactionId")
+                        .HasForeignKey("TypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -229,7 +234,7 @@ namespace UserManagement.Infrastructure.EfCore.Migrations
                     b.Navigation("Users");
                 });
 
-            modelBuilder.Entity("UserManagement.Domain.Transaction.TransactionType", b =>
+            modelBuilder.Entity("UserManagement.Domain.TransactionAgg.TransactionType", b =>
                 {
                     b.Navigation("Transactions");
                 });

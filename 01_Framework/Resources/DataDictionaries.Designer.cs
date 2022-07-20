@@ -583,6 +583,15 @@ namespace _01_Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pay to wallet.
+        /// </summary>
+        public static string PaymentDescription {
+            get {
+                return ResourceManager.GetString("PaymentDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pay To Bank Card.
         /// </summary>
         public static string PayToAccountNumber {

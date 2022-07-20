@@ -40,7 +40,7 @@ namespace Server.Pages.Account
                 ErrorMessage = result.Message;
                 return Page();
             }
-            return Redirect("/");
+            return Redirect("/UserPanel");
         }
     }
 }

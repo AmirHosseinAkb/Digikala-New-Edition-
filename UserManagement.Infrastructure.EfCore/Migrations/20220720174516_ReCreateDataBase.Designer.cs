@@ -12,8 +12,8 @@ using UserManagement.Infrastructure.EfCore;
 namespace UserManagement.Infrastructure.EfCore.Migrations
 {
     [DbContext(typeof(AccountContext))]
-    [Migration("20220719105700_AddAccountNumberToUser")]
-    partial class AddAccountNumberToUser
+    [Migration("20220720174516_ReCreateDataBase")]
+    partial class ReCreateDataBase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -56,6 +56,73 @@ namespace UserManagement.Infrastructure.EfCore.Migrations
                         {
                             RoleId = 3L,
                             RoleTitle = "کاربر سایت"
+                        });
+                });
+
+            modelBuilder.Entity("UserManagement.Domain.TransactionAgg.Transaction", b =>
+                {
+                    b.Property<long>("TransactionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("TransactionId"), 1L, 1);
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<bool>("IsSucceeded")
+                        .HasColumnType("bit");
+
+                    b.Property<long>("TypeId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("TransactionId");
+
+                    b.HasIndex("TypeId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Transactions", (string)null);
+                });
+
+            modelBuilder.Entity("UserManagement.Domain.TransactionAgg.TransactionType", b =>
+                {
+                    b.Property<long>("TypeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("TypeId"), 1L, 1);
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("TypeId");
+
+                    b.ToTable("TransactionTypes", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            TypeId = 1L,
+                            Type = "واریز"
+                        },
+                        new
+                        {
+                            TypeId = 2L,
+                            Type = "برداشت"
                         });
                 });
 
@@ -134,6 +201,25 @@ namespace UserManagement.Infrastructure.EfCore.Migrations
                     b.ToTable("Users", (string)null);
                 });
 
+            modelBuilder.Entity("UserManagement.Domain.TransactionAgg.Transaction", b =>
+                {
+                    b.HasOne("UserManagement.Domain.TransactionAgg.TransactionType", "TransactionType")
+                        .WithMany("Transactions")
+                        .HasForeignKey("TypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("UserManagement.Domain.UserAgg.User", "User")
+                        .WithMany("Transactions")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("TransactionType");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("UserManagement.Domain.UserAgg.User", b =>
                 {
                     b.HasOne("UserManagement.Domain.RoleAgg.Role", "Role")
@@ -148,6 +234,16 @@ namespace UserManagement.Infrastructure.EfCore.Migrations
             modelBuilder.Entity("UserManagement.Domain.RoleAgg.Role", b =>
                 {
                     b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("UserManagement.Domain.TransactionAgg.TransactionType", b =>
+                {
+                    b.Navigation("Transactions");
+                });
+
+            modelBuilder.Entity("UserManagement.Domain.UserAgg.User", b =>
+                {
+                    b.Navigation("Transactions");
                 });
 #pragma warning restore 612, 618
         }

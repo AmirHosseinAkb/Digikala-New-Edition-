@@ -3,6 +3,7 @@ using _01_Framework.Application;
 using _01_Framework.Application.Convertors;
 using _01_Framework.Infrastructure.ExtensionMethods;
 using _01_Framework.Application.Email;
+using _01_Framework.Application.ZarinPal;
 using FoolProof.Core;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using UserManagement.Infrastructure.Configuration;
@@ -23,6 +24,7 @@ builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<IViewRenderService,RenderViewToString>();
 builder.Services.AddScoped<IAuthenticationHelper,AuthenticationHelper>();
 builder.Services.AddScoped<IPasswordHasher,PasswordHasher>();
+builder.Services.AddScoped<IZarinpalFactory, ZarinpalFactory>();
 
 #endregion
 

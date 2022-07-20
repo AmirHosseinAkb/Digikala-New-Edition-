@@ -291,6 +291,9 @@
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>
+  <data name="PaymentDescription" xml:space="preserve">
+    <value>Pay to wallet</value>
+  </data>
   <data name="PayToAccountNumber" xml:space="preserve">
     <value>Pay To Bank Card</value>
   </data>

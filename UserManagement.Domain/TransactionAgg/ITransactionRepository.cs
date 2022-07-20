@@ -9,5 +9,6 @@ namespace UserManagement.Domain.TransactionAgg
     public interface ITransactionRepository
     {
         List<Transaction> GetUserTransactions(long userId);
+        long AddTransaction(Transaction transaction);
     }
 }

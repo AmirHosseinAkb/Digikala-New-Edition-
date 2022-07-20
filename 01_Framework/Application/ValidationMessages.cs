@@ -21,6 +21,7 @@ namespace _01_Framework.Application.Convertors
         public const string BirthYearRange = "سال تولد باید بین سال های 1300 تا 1400 باشد";
         public const string BirthMonthRange = "ماه تولد باید بین 1 تا 12 باشد";
         public const string BirthDayRange = "روز تولد باید بین روز های 1 و 31 باشد";
-        public const string IntegerValue = "لطفا فقط عدد وارد نمایید";
+        public const string IntegerValue = "لطفا فقط عدد وارد کنید";
+        public const string IntegerRange = "مقدار وارد شده در محدوده مجاز نمی باشد";
     }
 }
