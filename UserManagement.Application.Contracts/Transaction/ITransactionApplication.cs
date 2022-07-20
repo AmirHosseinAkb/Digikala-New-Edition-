@@ -12,5 +12,7 @@ namespace UserManagement.Application.Contracts.Transaction
         List<TransactionViewModel> GetUserTransactionsForShow();
         long AddTransaction(TransactionCommand command);
         PaymentResponse TransactionPayment(TransactionCommand command);
+        VerificationResponse TransactionVerification(long transactionId,string authority);
+        void ConfirmTransacttion(long transactionId);
     }
 }

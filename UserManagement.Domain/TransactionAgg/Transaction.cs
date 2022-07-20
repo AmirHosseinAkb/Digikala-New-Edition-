@@ -33,6 +33,11 @@ namespace UserManagement.Domain.TransactionAgg
             IsSucceeded=isSucceeded;
             CreationDate = DateTime.Now;
         }
+
+        public void Confirm()
+        {
+            IsSucceeded = true;
+        }
         
     }
 }

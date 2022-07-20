@@ -9,5 +9,6 @@ namespace _01_Framework.Application.ZarinPal
     public interface IZarinpalFactory
     {
         PaymentResponse CreatePaymentRequest(long transactionId,int amount, string description);
+        VerificationResponse CreateVerificationRequest(int amount,string authority);
     }
 }

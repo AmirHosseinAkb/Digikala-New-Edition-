@@ -36,7 +36,6 @@ namespace Server.Pages.UserPanel.Wallet
             return RedirectToPage();
         }
 
-
        
     }
 }

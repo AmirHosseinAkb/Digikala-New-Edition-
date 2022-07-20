@@ -27,5 +27,15 @@ namespace UserManagement.Infrastructure.EfCore.Repositories
             _context.SaveChanges();
             return transaction.TransactionId;
         }
+
+        public Transaction GetTransaction(long transactionId)
+        {
+            return _context.Transactions.Find(transactionId);
+        }
+
+        public void SaveChanges()
+        {
+            _context.SaveChanges();
+        }
     }
 }

@@ -16,13 +16,13 @@ namespace UserManagement.Application
     {
         private readonly ITransactionRepository _transactionRepository;
         private readonly IAuthenticationHelper _authenticationHelper;
-        private readonly IZarinpalFactory _zarinpoFactory;
+        private readonly IZarinpalFactory _zarinpalFactory;
 
-        public TransactionApplication(ITransactionRepository transactionRepository, IAuthenticationHelper authenticationHelper, IZarinpalFactory zarinpoFactory)
+        public TransactionApplication(ITransactionRepository transactionRepository, IAuthenticationHelper authenticationHelper, IZarinpalFactory zarinpalFactory)
         {
             _transactionRepository = transactionRepository;
             _authenticationHelper = authenticationHelper;
-            _zarinpoFactory = zarinpoFactory;
+            _zarinpalFactory = zarinpalFactory;
         }
 
         public List<TransactionViewModel> GetUserTransactionsForShow()
@@ -49,9 +49,23 @@ namespace UserManagement.Application
         {
             var transactionId = AddTransaction(command);
             var paymentResponse =
-                _zarinpoFactory.CreatePaymentRequest(transactionId, command.Amount,
+                _zarinpalFactory.CreatePaymentRequest(transactionId, command.Amount,
                     DataDictionaries.PaymentDescription);
             return paymentResponse;;
+        }
+
+        public VerificationResponse TransactionVerification(long transactionId,string authority)
+        {
+            var transaction = _transactionRepository.GetTransaction(transactionId);
+            var verificationResponse=_zarinpalFactory.CreateVerificationRequest(transaction.Amount,authority);
+            return verificationResponse;
+        }
+
+        public void ConfirmTransacttion(long transactionId)
+        {
+            var transaction = _transactionRepository.GetTransaction(transactionId);
+            transaction.Confirm();
+            _transactionRepository.SaveChanges();
         }
     }
 }
