@@ -15,20 +15,18 @@ namespace UserManagement.Application
     public class UserApplication : IUserApplication
     {
         private readonly IUserRepository _userRepository;
-        private readonly ITransactionRepository _transactionRepository;
         private readonly IViewRenderService _viewRenderService;
         private readonly IEmailService _emailService;
         private readonly IPasswordHasher _passwordHasher;
         private readonly IAuthenticationHelper _authenticationHelper;
 
-        public UserApplication(IUserRepository userRepository, IViewRenderService viewRenderService, IEmailService emailService, IPasswordHasher passwordHasher, IAuthenticationHelper authenticationHelper, ITransactionRepository transactionRepository)
+        public UserApplication(IUserRepository userRepository, IViewRenderService viewRenderService, IEmailService emailService, IPasswordHasher passwordHasher, IAuthenticationHelper authenticationHelper)
         {
             _userRepository = userRepository;
             _viewRenderService = viewRenderService;
             _emailService = emailService;
             _passwordHasher = passwordHasher;
             _authenticationHelper = authenticationHelper;
-            _transactionRepository = transactionRepository;
         }
 
         public OperationResult RegisterAndLogin(RegisterAndLoginCommand command)
@@ -149,6 +147,18 @@ namespace UserManagement.Application
                 BirthDate = user.BirthDate?.ToShamsi(),
                 NationalNumber = user.NationalNumber,
                 AccountNumber = user.AccountNumber
+            };
+        }
+
+        public SidebarInformationsViewModel GetUserSidebarInformationsForShow()
+        {
+            var user = _userRepository.GetUserById(_authenticationHelper.GetCurrentUserId());
+            return new SidebarInformationsViewModel()
+            {
+                FullName = user.FirstName + " " + user.LastName,
+                PhoneNumber = user.PhoneNumber,
+                WalletBalance = _userRepository.GetUserWalletBalance(user.UserId),
+                AvatarName = user.AvatarName
             };
         }
 

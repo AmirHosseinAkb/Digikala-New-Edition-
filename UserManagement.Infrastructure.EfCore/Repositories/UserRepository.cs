@@ -1,4 +1,5 @@
-﻿using UserManagement.Domain.UserAgg;
+﻿using _01_Framework.Infrastructure;
+using UserManagement.Domain.UserAgg;
 
 namespace UserManagement.Infrastructure.EfCore.Repositories
 {
@@ -44,6 +45,13 @@ namespace UserManagement.Infrastructure.EfCore.Repositories
         public User GetUserById(long id)
         {
             return _context.Users.SingleOrDefault(u => u.UserId==id);
+        }
+
+        public long GetUserWalletBalance(long userId)
+        {
+            var deposit=_context.Transactions.Where(t => t.UserId == userId && t.TypeId==TransactionTypes.Deposit && t.IsSucceeded).Sum(t => t.Amount);
+            var withdraw=_context.Transactions.Where(t => t.UserId == userId && t.TypeId==TransactionTypes.Withdraw && t.IsSucceeded).Sum(t => t.Amount);
+            return deposit - withdraw;
         }
 
         public void SaveChanges()

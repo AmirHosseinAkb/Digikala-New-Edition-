@@ -231,6 +231,9 @@
   <data name="Hello" xml:space="preserve">
     <value>Hello</value>
   </data>
+  <data name="IncreaseBalance" xml:space="preserve">
+    <value>Increase Balance</value>
+  </data>
   <data name="January" xml:space="preserve">
     <value>January</value>
   </data>
@@ -410,6 +413,9 @@
   </data>
   <data name="Verfication" xml:space="preserve">
     <value>Verfication</value>
+  </data>
+  <data name="Wallet" xml:space="preserve">
+    <value>Wallet</value>
   </data>
   <data name="Warning" xml:space="preserve">
     <value>Warning</value>

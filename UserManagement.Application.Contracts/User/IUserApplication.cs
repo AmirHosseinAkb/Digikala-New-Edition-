@@ -22,6 +22,7 @@ namespace UserManagement.Application.Contracts.User
         #region UserPanel
 
         UserInformationsViewModel GetUserInformationsForShow();
+        SidebarInformationsViewModel GetUserSidebarInformationsForShow();
         string ConfirmUserFullName(FullNameCommand command);
         OperationResult ConfirmUserEmail(EmailCommand command);
         OperationResult ConfirmUserPhoneNumber(PhoneNumberCommand command);

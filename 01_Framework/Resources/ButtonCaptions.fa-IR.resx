@@ -141,6 +141,9 @@
   <data name="Continue" xml:space="preserve">
     <value>ادامه</value>
   </data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>داشبورد</value>
+  </data>
   <data name="Delete" xml:space="preserve">
     <value>حذف</value>
   </data>

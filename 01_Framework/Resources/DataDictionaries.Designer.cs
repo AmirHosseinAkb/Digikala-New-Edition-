@@ -403,6 +403,15 @@ namespace _01_Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Increase Balance.
+        /// </summary>
+        public static string IncreaseBalance {
+            get {
+                return ResourceManager.GetString("IncreaseBalance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to January.
         /// </summary>
         public static string January {
@@ -939,6 +948,15 @@ namespace _01_Framework.Resources {
         public static string Verfication {
             get {
                 return ResourceManager.GetString("Verfication", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wallet.
+        /// </summary>
+        public static string Wallet {
+            get {
+                return ResourceManager.GetString("Wallet", resourceCulture);
             }
         }
         
