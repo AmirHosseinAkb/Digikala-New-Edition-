@@ -138,6 +138,9 @@
   <data name="AllRightsReserved" xml:space="preserve">
     <value>All Rights Reserved</value>
   </data>
+  <data name="Amount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
   <data name="AmountPlaceHolder" xml:space="preserve">
     <value>Amount in Toman</value>
   </data>
@@ -162,6 +165,9 @@
   <data name="Congratulations" xml:space="preserve">
     <value>Congratulations</value>
   </data>
+  <data name="CreationDate" xml:space="preserve">
+    <value>Creation Date</value>
+  </data>
   <data name="CurrentPassword" xml:space="preserve">
     <value>CurrentPassword</value>
   </data>
@@ -179,6 +185,12 @@
   </data>
   <data name="DeleteUser" xml:space="preserve">
     <value>Delete User</value>
+  </data>
+  <data name="Deposit" xml:space="preserve">
+    <value>Deposit</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
   </data>
   <data name="EditPassword" xml:space="preserve">
     <value>Edit Password</value>
@@ -354,11 +366,20 @@
   <data name="Showing" xml:space="preserve">
     <value>Showing</value>
   </data>
+  <data name="SuccessfullTransaction" xml:space="preserve">
+    <value>Successfull Transaction</value>
+  </data>
   <data name="TermsOfUse" xml:space="preserve">
     <value>By entering or registering on this site You accept the Site and its &lt;a href="#" class="link"&gt;terms and Rules&lt;/a&gt; of use of all services &lt;a href="#" class="link"&gt;Privacy Policy&lt;/a&gt;.</value>
   </data>
   <data name="To" xml:space="preserve">
     <value>to</value>
+  </data>
+  <data name="Toman" xml:space="preserve">
+    <value>Toman</value>
+  </data>
+  <data name="TransactionType" xml:space="preserve">
+    <value>Transaction Type</value>
   </data>
   <data name="UserAvatar" xml:space="preserve">
     <value>User avatar</value>
@@ -386,6 +407,9 @@
   </data>
   <data name="Welcome" xml:space="preserve">
     <value>Welcome</value>
+  </data>
+  <data name="Withdraw" xml:space="preserve">
+    <value>Withdraw</value>
   </data>
   <data name="Year" xml:space="preserve">
     <value>Year</value>

@@ -11,4 +11,11 @@ namespace _01_Framework.Infrastructure
         public const byte PayToAccountNumber = 1;
         public const byte PayToWallet = 2;
     }
+
+    public static class TransactionTypes
+    {
+        public const int Deposit = 1;
+        public const int Withdraw = 2;
+
+    }
 }

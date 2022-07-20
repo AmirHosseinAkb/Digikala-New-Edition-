@@ -124,6 +124,15 @@ namespace _01_Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Amount.
+        /// </summary>
+        public static string Amount {
+            get {
+                return ResourceManager.GetString("Amount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Amount in Toman.
         /// </summary>
         public static string AmountPlaceHolder {
@@ -196,6 +205,15 @@ namespace _01_Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Creation Date.
+        /// </summary>
+        public static string CreationDate {
+            get {
+                return ResourceManager.GetString("CreationDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to CurrentPassword.
         /// </summary>
         public static string CurrentPassword {
@@ -246,6 +264,24 @@ namespace _01_Framework.Resources {
         public static string DeleteUser {
             get {
                 return ResourceManager.GetString("DeleteUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deposit.
+        /// </summary>
+        public static string Deposit {
+            get {
+                return ResourceManager.GetString("Deposit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
             }
         }
         
@@ -772,6 +808,15 @@ namespace _01_Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Successfull Transaction.
+        /// </summary>
+        public static string SuccessfullTransaction {
+            get {
+                return ResourceManager.GetString("SuccessfullTransaction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to By entering or registering on this site You accept the Site and its &lt;a href=&quot;#&quot; class=&quot;link&quot;&gt;terms and Rules&lt;/a&gt; of use of all services &lt;a href=&quot;#&quot; class=&quot;link&quot;&gt;Privacy Policy&lt;/a&gt;..
         /// </summary>
         public static string TermsOfUse {
@@ -786,6 +831,24 @@ namespace _01_Framework.Resources {
         public static string To {
             get {
                 return ResourceManager.GetString("To", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toman.
+        /// </summary>
+        public static string Toman {
+            get {
+                return ResourceManager.GetString("Toman", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transaction Type.
+        /// </summary>
+        public static string TransactionType {
+            get {
+                return ResourceManager.GetString("TransactionType", resourceCulture);
             }
         }
         
@@ -867,6 +930,15 @@ namespace _01_Framework.Resources {
         public static string Welcome {
             get {
                 return ResourceManager.GetString("Welcome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Withdraw.
+        /// </summary>
+        public static string Withdraw {
+            get {
+                return ResourceManager.GetString("Withdraw", resourceCulture);
             }
         }
         
