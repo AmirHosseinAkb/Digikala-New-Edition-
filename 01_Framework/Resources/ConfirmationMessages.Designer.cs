@@ -115,6 +115,24 @@ namespace _01_Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The transaction was completed successfully.
+        /// </summary>
+        public static string PaymentSuccessMessage {
+            get {
+                return ResourceManager.GetString("PaymentSuccessMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The transaction was completed successfully.
+        /// </summary>
+        public static string PaymentSuccessMessage1 {
+            get {
+                return ResourceManager.GetString("PaymentSuccessMessage1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reset Password Email Sent Successfully.
         /// </summary>
         public static string ResetPasswordEmailSent {

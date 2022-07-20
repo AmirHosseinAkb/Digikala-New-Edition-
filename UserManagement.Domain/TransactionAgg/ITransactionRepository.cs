@@ -10,7 +10,7 @@ namespace UserManagement.Domain.TransactionAgg
     {
         List<Transaction> GetUserTransactions(long userId);
         long AddTransaction(Transaction transaction);
-        Transaction GetTransaction(long transactionId);
+        Transaction GetUserTransaction(long transactionId,long userId);
         void SaveChanges();
     }
 }

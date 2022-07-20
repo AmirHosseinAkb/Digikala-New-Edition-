@@ -232,6 +232,15 @@ namespace _01_Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Return To Wallet.
+        /// </summary>
+        public static string ReturnToWallet {
+            get {
+                return ResourceManager.GetString("ReturnToWallet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Return User.
         /// </summary>
         public static string ReturnUser {

@@ -12,8 +12,21 @@ namespace Server.Pages.UserPanel.Wallet
         {
             _transactionApplication = transactionApplication;
         }
-        public void OnGet()
+        public void OnGet(int transactionId)
         {
+            var requestQuery = HttpContext.Request.Query;
+            if (requestQuery["Status"] != ""
+                && requestQuery["Status"].ToString().ToLower() == "ok"
+                && requestQuery["Authority"] != "")
+            {
+                var verificationResponse = _transactionApplication.TransactionVerification(transactionId, requestQuery["Authority"]);
+                if (verificationResponse.Status == 100)
+                {
+                    _transactionApplication.ConfirmTransacttion(transactionId);
+                    ViewData["RefId"] = verificationResponse.RefId;
+                    ViewData["PaymentSuccess"] = true;
+                }
+            }
         }
     }
 }

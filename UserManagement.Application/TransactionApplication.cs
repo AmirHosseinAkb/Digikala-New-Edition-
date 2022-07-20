@@ -56,14 +56,14 @@ namespace UserManagement.Application
 
         public VerificationResponse TransactionVerification(long transactionId,string authority)
         {
-            var transaction = _transactionRepository.GetTransaction(transactionId);
+            var transaction = _transactionRepository.GetUserTransaction(transactionId,_authenticationHelper.GetCurrentUserId());
             var verificationResponse=_zarinpalFactory.CreateVerificationRequest(transaction.Amount,authority);
             return verificationResponse;
         }
 
         public void ConfirmTransacttion(long transactionId)
         {
-            var transaction = _transactionRepository.GetTransaction(transactionId);
+            var transaction = _transactionRepository.GetUserTransaction(transactionId,_authenticationHelper.GetCurrentUserId());
             transaction.Confirm();
             _transactionRepository.SaveChanges();
         }

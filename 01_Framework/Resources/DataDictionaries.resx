@@ -294,6 +294,9 @@
   <data name="PaymentDescription" xml:space="preserve">
     <value>Pay to wallet</value>
   </data>
+  <data name="PaymentRefundMessage" xml:space="preserve">
+    <value>If an amount has been deducted from your account, it will be returned to your account within 24 hours.</value>
+  </data>
   <data name="PayToAccountNumber" xml:space="preserve">
     <value>Pay To Bank Card</value>
   </data>
@@ -380,6 +383,9 @@
   </data>
   <data name="Toman" xml:space="preserve">
     <value>Toman</value>
+  </data>
+  <data name="TrackingId" xml:space="preserve">
+    <value>TrackingId</value>
   </data>
   <data name="TransactionType" xml:space="preserve">
     <value>Transaction Type</value>

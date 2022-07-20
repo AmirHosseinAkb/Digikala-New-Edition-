@@ -28,9 +28,9 @@ namespace UserManagement.Infrastructure.EfCore.Repositories
             return transaction.TransactionId;
         }
 
-        public Transaction GetTransaction(long transactionId)
+        public Transaction GetUserTransaction(long transactionId,long userId)
         {
-            return _context.Transactions.Find(transactionId);
+            return _context.Transactions.SingleOrDefault(t=>t.TransactionId==transactionId && t.UserId==userId);
         }
 
         public void SaveChanges()

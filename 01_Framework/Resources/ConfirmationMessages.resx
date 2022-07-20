@@ -135,6 +135,12 @@
   <data name="PasswordChangedSuccessfully" xml:space="preserve">
     <value>PasswordChangedSuccessfully</value>
   </data>
+  <data name="PaymentSuccessMessage" xml:space="preserve">
+    <value>The transaction was completed successfully</value>
+  </data>
+  <data name="PaymentSuccessMessage1" xml:space="preserve">
+    <value>The transaction was completed successfully</value>
+  </data>
   <data name="ResetPasswordEmailSent" xml:space="preserve">
     <value>Reset Password Email Sent Successfully</value>
   </data>

@@ -592,6 +592,15 @@ namespace _01_Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to If an amount has been deducted from your account, it will be returned to your account within 24 hours..
+        /// </summary>
+        public static string PaymentRefundMessage {
+            get {
+                return ResourceManager.GetString("PaymentRefundMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pay To Bank Card.
         /// </summary>
         public static string PayToAccountNumber {
@@ -849,6 +858,15 @@ namespace _01_Framework.Resources {
         public static string Toman {
             get {
                 return ResourceManager.GetString("Toman", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TrackingId.
+        /// </summary>
+        public static string TrackingId {
+            get {
+                return ResourceManager.GetString("TrackingId", resourceCulture);
             }
         }
         

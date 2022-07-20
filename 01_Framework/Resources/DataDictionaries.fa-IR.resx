@@ -294,6 +294,9 @@
   <data name="PaymentDescription" xml:space="preserve">
     <value>واریز به کیف پول</value>
   </data>
+  <data name="PaymentRefundMessage" xml:space="preserve">
+    <value>چنانچه مبلغی از حساب شما کسر شده است، تا ۲۴ ساعت آینده به حساب شما باز خواهد گشت.</value>
+  </data>
   <data name="PayToAccountNumber" xml:space="preserve">
     <value>واریز به کارت بانکی</value>
   </data>
@@ -383,6 +386,9 @@
   </data>
   <data name="Toman" xml:space="preserve">
     <value>تومان</value>
+  </data>
+  <data name="TrackingId" xml:space="preserve">
+    <value>کد پیگیری</value>
   </data>
   <data name="TransactionType" xml:space="preserve">
     <value>نوع تراکنش</value>
