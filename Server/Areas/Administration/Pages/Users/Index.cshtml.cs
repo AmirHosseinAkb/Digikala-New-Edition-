@@ -40,10 +40,8 @@ namespace Server.Areas.Administration.Pages.Users
             if (!result.IsSucceeded)
             {
                 ErrorMessage = result.Message;
-                return RedirectToPage();
             }
 
-            ViewData["IsUserCreated"] = true;
             return RedirectToPage();
         }
 
