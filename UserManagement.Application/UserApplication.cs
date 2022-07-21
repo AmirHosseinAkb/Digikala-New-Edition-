@@ -6,6 +6,7 @@ using _01_Framework.Infrastructure;
 using _01_Framework.Resources;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using UserManagement.Application.Contracts.User;
+using UserManagement.Application.Contracts.User.Administration;
 using UserManagement.Application.Contracts.User.UserPanel;
 using UserManagement.Domain.TransactionAgg;
 using UserManagement.Domain.UserAgg;
@@ -126,8 +127,18 @@ namespace UserManagement.Application
 
         public bool IsExistByEmail(string email)
         {
-            return _userRepository.IsExistByEmail(email);
+            return _userRepository.IsExistByEmail(EmailConvertor.FixEmail(email));
         }
+
+        public bool IsExistEmailOrPhoneNumber(string email = "", string phoneNumber = "")
+        {
+            if (!string.IsNullOrWhiteSpace(email))
+                return _userRepository.IsExistByEmail(EmailConvertor.FixEmail(email));
+            if (!string.IsNullOrWhiteSpace(phoneNumber))
+                return _userRepository.IsExistByPhoneNumber(phoneNumber);
+            return false;
+        }
+
 
         public void SignOut()
         {
@@ -254,7 +265,7 @@ namespace UserManagement.Application
                     user.ChangeRefundType(RefundTypes.PayToAccountNumber);
                     user.ChangeAccountNumber(command.AccountNumber);
                     _userRepository.SaveChanges();
-                    return result.Succeeded(DataDictionaries.PayToAccountNumber+" - "+command.AccountNumber);
+                    return result.Succeeded(DataDictionaries.PayToAccountNumber + " - " + command.AccountNumber);
                 }
                 return result.Failed(ApplicationMessages.InvalidAccountNumber);
             }
@@ -268,7 +279,35 @@ namespace UserManagement.Application
             {
                 return result.Failed(ApplicationMessages.ProcessFailed);
             }
-            
+
+        }
+
+        public Tuple<List<UserAdminInformationsViewModel>, int, int, int> GetUsersAdminInformationsForShow(int pageId = 1, string fullName = "", string email = "", string phoneNumber = "", int take = 20)
+        {
+            if (take % 20 != 0 || take < 0)
+                take = 20;
+
+            int skip = (pageId - 1) * take;
+            var query = _userRepository.GetUsers(fullName,EmailConvertor.FixEmail(email),phoneNumber)
+                .Skip(skip)
+                .Take(take)
+                .Select(u => new UserAdminInformationsViewModel()
+                {
+                    UserId = u.UserId,
+                    Email = u.Email,
+                    PhoneNumber = u.PhoneNumber,
+                    AvatarName = u.AvatarName,
+                    FullName = u.FirstName + " " + u.LastName,
+                    NationalNumber = u.NationalNumber,
+                    RegisterDate = u.RegisterDate.ToShamsi(),
+                    RoleTitle = u.Role.RoleTitle,
+                    RoleId = u.RoleId
+                }).ToList();
+
+            int pageCount = query.Count() / take;
+            if (query.Count() % take != 0)
+                pageCount++;
+            return Tuple.Create(query, pageId, pageCount, take);
         }
     }
 }

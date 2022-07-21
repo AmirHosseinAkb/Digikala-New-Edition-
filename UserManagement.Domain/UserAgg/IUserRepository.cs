@@ -16,6 +16,8 @@ namespace UserManagement.Domain.UserAgg
         User GetUserByEmail(string email);
         User GetUserById(long id);
         long GetUserWalletBalance(long userId);
+        List<User> GetUsers();
+        List<User> GetUsers(string fullName = "", string email = "", string phoneNumber = "");
         void SaveChanges();
     }
 }

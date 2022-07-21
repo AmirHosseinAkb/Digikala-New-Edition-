@@ -23,5 +23,7 @@ namespace _01_Framework.Application.Convertors
         public const string BirthDayRange = "روز تولد باید بین روز های 1 و 31 باشد";
         public const string IntegerValue = "لطفا فقط عدد وارد کنید";
         public const string IntegerRange = "مقدار وارد شده در محدوده مجاز نمی باشد";
+        public const string EnterEmailOrPhoneNumber = "حداقل یک از موارد ایمیل یا شماره همراه را وارد کنید";
+        public const string PasswordRequiredIfEmailNotEmpty = "در صورت وارد کردن ایمیل رمز عبور را باید وارد کنید";
     }
 }

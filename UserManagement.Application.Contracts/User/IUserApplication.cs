@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using _01_Framework.Application.Convertors;
+using UserManagement.Application.Contracts.User.Administration;
 using UserManagement.Application.Contracts.User.UserPanel;
 
 namespace UserManagement.Application.Contracts.User
@@ -17,6 +18,7 @@ namespace UserManagement.Application.Contracts.User
         OperationResult ResetPassword(ResetPasswordCommand command);
         bool ActiveAccount(string activationCode);
         bool IsExistByEmail(string email);
+        bool IsExistEmailOrPhoneNumber(string email = "", string phoneNumber = "");
         void SignOut();
 
         #region UserPanel
@@ -30,6 +32,12 @@ namespace UserManagement.Application.Contracts.User
         string ConfirmUserBirthDate(BirthDateCommand command);
         OperationResult ConfirmUserPassword(PasswordCommand command);
         OperationResult ConfirmUserRefundType(RefundCommand command);
+
+        #endregion
+
+        #region Administration
+
+        Tuple<List<UserAdminInformationsViewModel>, int, int, int> GetUsersAdminInformationsForShow(int pageId = 1, string fullName = "", string email = "", string phoneNumber = "", int take = 20);
 
         #endregion
     }

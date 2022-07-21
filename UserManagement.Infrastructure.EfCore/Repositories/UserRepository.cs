@@ -1,9 +1,10 @@
 ﻿using _01_Framework.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 using UserManagement.Domain.UserAgg;
 
 namespace UserManagement.Infrastructure.EfCore.Repositories
 {
-    public class UserRepository:IUserRepository
+    public class UserRepository : IUserRepository
     {
         private readonly AccountContext _context;
 
@@ -44,14 +45,35 @@ namespace UserManagement.Infrastructure.EfCore.Repositories
 
         public User GetUserById(long id)
         {
-            return _context.Users.SingleOrDefault(u => u.UserId==id);
+            return _context.Users.SingleOrDefault(u => u.UserId == id);
         }
 
         public long GetUserWalletBalance(long userId)
         {
-            var deposit=_context.Transactions.Where(t => t.UserId == userId && t.TypeId==TransactionTypes.Deposit && t.IsSucceeded).Sum(t => t.Amount);
-            var withdraw=_context.Transactions.Where(t => t.UserId == userId && t.TypeId==TransactionTypes.Withdraw && t.IsSucceeded).Sum(t => t.Amount);
+            var deposit = _context.Transactions.Where(t => t.UserId == userId && t.TypeId == TransactionTypes.Deposit && t.IsSucceeded).Sum(t => t.Amount);
+            var withdraw = _context.Transactions.Where(t => t.UserId == userId && t.TypeId == TransactionTypes.Withdraw && t.IsSucceeded).Sum(t => t.Amount);
             return deposit - withdraw;
+        }
+
+        public List<User> GetUsers()
+        {
+            return _context.Users.ToList();
+        }
+
+        public List<User> GetUsers(string fullName = "", string email = "", string phoneNumber = "")
+        {
+            IQueryable<User> result = _context.Users.Include(u=>u.Role);
+
+            if (!string.IsNullOrEmpty(fullName))
+                result = result.Where(u => u.FirstName.Contains(fullName) || u.LastName.Contains(fullName));
+
+            if (!string.IsNullOrEmpty(email))
+                result = result.Where(u => u.Email == email);
+
+            if (!string.IsNullOrEmpty(phoneNumber))
+                result=result.Where(u => u.PhoneNumber == phoneNumber);
+
+            return result.ToList();
         }
 
         public void SaveChanges()

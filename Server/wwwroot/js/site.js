@@ -193,16 +193,16 @@ $("#btnCreateUser").click(function (e) {
 
     if (isValidForm) {
         e.preventDefault();
-        if ($("#CreateUserVM_Email").val() != "") {
+        if ($("#CreateUserCommand_Email").val() != "") {
             $.ajax({
                 type: "Get",
-                url: "/Admin/Users/IsExistEmailOrPhoneNumber?email=" + $("#CreateUserVM_Email").val()
+                url: "/Administration/Users/IsExistEmailOrPhoneNumber?email=" + $("#CreateUserCommand_Email").val()
             }).done(function (result) {
                 if (result == "true") {
                     sweetAlert("پیغام", "این ایمیل از قبل وجود دارد", "error");
                 }
                 else {
-                    if ($("#CreateUserVM_PhoneNumber").val() == "") {
+                    if ($("#CreateUserCommand_PhoneNumber").val() == "") {
                         $("#frmCreateUser").submit();
                     }
                     else {
@@ -211,16 +211,16 @@ $("#btnCreateUser").click(function (e) {
                 }
             });
         }
-        if ($("#CreateUserVM_PhoneNumber").val() != "") {
+        if ($("#CreateUserCommand_PhoneNumber").val() != "") {
             $.ajax({
                 type: "Get",
-                url: "/Admin/Users/IsExistEmailOrPhoneNumber?phoneNumber=" + $("#CreateUserVM_PhoneNumber").val()
+                url: "/Administration/Users/IsExistEmailOrPhoneNumber?phoneNumber=" + $("#CreateUserCommand_PhoneNumber").val()
             }).done(function (result) {
                 if (result == "true") {
                     sweetAlert("پیغام", "این شماره تلفن از قبل وجود دارد", "error");
                 }
                 else {
-                    if ($("#CreateUserVM_Email").val() != "") {
+                    if ($("#CreateUserCommand_Email").val() != "") {
                         if (isValidEmail) {
                             $("#frmCreateUser").submit();
                         }
