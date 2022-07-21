@@ -217,22 +217,22 @@
                 <form id="frmEditUser" method="post" asp-page-handler="EditUser" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-md-8">
-                            <input asp-for="EditUserVM.UserId" id="userIdInp" type="hidden" />
-                            <input asp-for="EditUserVM.FirstName" type="text" placeholder="@DataDictionaries.FirstName" class="form-control m-t-10" />
-                            <span asp-validation-for="EditUserVM.FirstName" class="text-danger"></span>
+                            <input asp-for="EditUserCommand.UserId" id="userIdInp" type="hidden" />
+                            <input asp-for="EditUserCommand.FirstName" type="text" placeholder="@DataDictionaries.FirstName" class="form-control m-t-10" />
+                            <span asp-validation-for="EditUserCommand.FirstName" class="text-danger"></span>
 
-                            <input asp-for="EditUserVM.LastName" type="text" placeholder="@DataDictionaries.LastName" class="form-control m-t-10" />
-                            <span asp-validation-for="EditUserVM.LastName" class="text-danger"></span>
+                            <input asp-for="EditUserCommand.LastName" type="text" placeholder="@DataDictionaries.LastName" class="form-control m-t-10" />
+                            <span asp-validation-for="EditUserCommand.LastName" class="text-danger"></span>
 
-                            <input asp-for="EditUserVM.Email" type="text" placeholder="@DataDictionaries.Email" class="form-control m-t-10" />
-                            <span asp-validation-for="EditUserVM.Email" class="text-danger"></span>
+                            <input asp-for="EditUserCommand.Email" type="text" placeholder="@DataDictionaries.Email" class="form-control m-t-10" />
+                            <span asp-validation-for="EditUserCommand.Email" class="text-danger"></span>
 
-                            <input asp-for="EditUserVM.PhoneNumber" type="text" placeholder="@DataDictionaries.PhoneNumber" class="form-control m-t-10" />
-                            <span asp-validation-for="EditUserVM.PhoneNumber" class="text-danger"></span>
+                            <input asp-for="EditUserCommand.PhoneNumber" type="text" placeholder="@DataDictionaries.PhoneNumber" class="form-control m-t-10" />
+                            <span asp-validation-for="EditUserCommand.PhoneNumber" class="text-danger"></span>
 
-                            <input asp-for="EditUserVM.Password" type="password" placeholder="@DataDictionaries.Password" class="form-control m-t-10" />
+                            <input asp-for="EditUserCommand.Password" type="password" placeholder="@DataDictionaries.Password" class="form-control m-t-10" />
                             <p class="help-block"><span class="text-danger">*</span> @DataDictionaries.EditPasswordMessage</p>
-                            <span asp-validation-for="EditUserVM.Password" class="text-danger"></span>
+                            <span asp-validation-for="EditUserCommand.Password" class="text-danger"></span>
 
                             <hr />
                             <div class="m-t-10 m-r-10">
@@ -244,7 +244,7 @@
                                         <div class="radio radio-success" style="direction:ltr;text-align:right">
                                             <input class="editRoleRadio" type="radio" name="roleId" id="r@(role.RoleId)" value="@role.RoleId">
                                             <label for="r@(role.RoleId)">
-                                                @role.RoleTiltle
+                                                @role.RoleTitle
                                             </label>
                                         </div>
                                     }
@@ -260,7 +260,7 @@
                                     <img id="editImgAvatar" class="img img-thumbnail" alt="UserAvatar" style="width:100%;height:100%;object-fit:cover" asp-append-version=true />
                                 </div>
                                 <div>
-                                    <input asp-for="EditUserVM.UserAvatar" id="editImgInp" type="file" class="form-control" />
+                                    <input asp-for="EditUserCommand.UserAvatar" id="editImgInp" type="file" class="form-control" />
                                 </div>
                             </div>
                         </div>

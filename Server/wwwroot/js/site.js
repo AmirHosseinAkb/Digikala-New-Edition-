@@ -242,16 +242,16 @@ function GetUserInformationsForEdit(firstName, lastName, email, phoneNumber, ava
     $("#userIdInp").val(userId);
 
     var inputs = $(".editRoleRadio");
-    for (var i = 0; i < inputs.length; i++) {
-        if ($(inputs[i]).val() == roleId) {
-            $(inputs[i]).attr("checked", "true");
-        }
-    }
 
-    $("#EditUserVM_FirstName").val(firstName);
-    $("#EditUserVM_LastName").val(lastName);
-    $("#EditUserVM_Email").val(email);
-    $("#EditUserVM_PhoneNumber").val(phoneNumber);
+    inputs.each(function(i) {
+        this.checked = false;
+    });
+    inputs[roleId-1].checked = true;
+
+    $("#EditUserCommand_FirstName").val(firstName);
+    $("#EditUserCommand_LastName").val(lastName);
+    $("#EditUserCommand_Email").val(email);
+    $("#EditUserCommand_PhoneNumber").val(phoneNumber);
     $("#editImgAvatar").attr("src", "/UserAvatar/" + avatarName);
     $("#modalEditUser").modal('show');
 }
@@ -264,18 +264,18 @@ $("#btnEditUser").click(function (e) {
 
     if (isValidForm) {
         e.preventDefault();
-        if ($("#EditUserVM_Email").val() != "" && $("#EditUserVM_Email").val() != localStorage.getItem("UserEmail")) {
+        if ($("#EditUserCommand_Email").val() != "" && $("#EditUserCommand_Email").val() != localStorage.getItem("UserEmail")) {
             $.ajax({
                 type: "Get",
-                url: "/Admin/Users/IsExistEmailOrPhoneNumber?email=" + $("#EditUserVM_Email").val()
+                url: "/Admin/Users/IsExistEmailOrPhoneNumber?email=" + $("#EditUserCommand_Email").val()
             }).done(function (result) {
                 if (result == "true") {
                     sweetAlert("پیغام", "این ایمیل از قبل وجود دارد", "error");
                 }
-                else if ($("#EditUserVM_PhoneNumber").val() == "") {
+                else if ($("#EditUserCommand_PhoneNumber").val() == "") {
                     $("#frmEditUser").submit();
                 }
-                else if (!($("#EditUserVM_PhoneNumber").val() != "" && $("#EditUserVM_PhoneNumber").val() != localStorage.getItem("PhoneNumber"))) {
+                else if (!($("#EditUserCommand_PhoneNumber").val() != "" && $("#EditUserCommand_PhoneNumber").val() != localStorage.getItem("PhoneNumber"))) {
                     $("#frmEditUser").submit();
                 }
                 else {
@@ -284,15 +284,15 @@ $("#btnEditUser").click(function (e) {
             });
         }
 
-        if ($("#EditUserVM_PhoneNumber").val() != "" && $("#EditUserVM_PhoneNumber").val() != localStorage.getItem("PhoneNumber")) {
+        if ($("#EditUserCommand_PhoneNumber").val() != "" && $("#EditUserCommand_PhoneNumber").val() != localStorage.getItem("PhoneNumber")) {
             $.ajax({
                 type: "Get",
-                url: "/Admin/Users/IsExistEmailOrPhoneNumber?phoneNumber=" + $("#EditUserVM_PhoneNumber").val()
+                url: "/Admin/Users/IsExistEmailOrPhoneNumber?phoneNumber=" + $("#EditUserCommand_PhoneNumber").val()
             }).done(function (result) {
                 if (result == "true") {
                     sweetAlert("پیغام", "این شماره تلفن از قبل وجود دارد", "error");
                 }
-                else if ($("#EditUserVM_Email").val() == "" || $("#EditUserVM_Email").val() == localStorage.getItem("UserEmail")) {
+                else if ($("#EditUserCommand_Email").val() == "" || $("#EditUserCommand_Email").val() == localStorage.getItem("UserEmail")) {
                     $("#frmEditUser").submit();
                 }
                 else if (isValidEmailInEdit) {

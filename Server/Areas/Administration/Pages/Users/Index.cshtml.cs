@@ -21,6 +21,9 @@ namespace Server.Areas.Administration.Pages.Users
         public Tuple<List<UserAdminInformationsViewModel>,int,int,int> UsersInformationsVm { get; set; }
         [BindProperty]
         public CreateUserCommand CreateUserCommand { get; set; }
+
+        [BindProperty] 
+        public EditUserCommand EditUserCommand { get; set; }
         
         public void OnGet(int pageId = 1, string fullName = "", string email = "", string phoneNumber = "", int take = 20)
         {
@@ -43,6 +46,11 @@ namespace Server.Areas.Administration.Pages.Users
             }
 
             return RedirectToPage();
+        }
+
+        public IActionResult OnPostEditUser()
+        {
+            return null;
         }
 
         public IActionResult OnGetIsExistEmailOrPhoneNumber(string email = "", string phoneNumber = "")
