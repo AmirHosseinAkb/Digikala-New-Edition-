@@ -37,7 +37,10 @@ namespace UserManagement.Application.Contracts.User
 
         #region Administration
 
-        Tuple<List<UserAdminInformationsViewModel>, int, int, int> GetUsersAdminInformationsForShow(int pageId = 1, string fullName = "", string email = "", string phoneNumber = "", int take = 20);
+        Tuple<List<UserAdminInformationsViewModel>, int, int, int> GetUsersAdminInformationsForShow(int pageId = 1, string fullName = ""
+            , string email = "", string phoneNumber = "", int take = 20);
+
+        OperationResult AddUserFromAdmin(CreateUserCommand command,long roleId);
 
         #endregion
     }

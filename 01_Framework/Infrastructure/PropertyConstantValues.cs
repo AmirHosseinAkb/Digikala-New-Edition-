@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 
 namespace _01_Framework.Infrastructure
 {
+    public static class Roles
+    {
+        public static long Administrator = 1;
+        public static long AdminAssistant = 2;
+        public static long CommonUser = 3;
+    }
     public static class RefundTypes
     {
         public const byte PayToAccountNumber = 1;

@@ -126,6 +126,9 @@
   <data name="ConfirmResetPassword" xml:space="preserve">
     <value>Reset Password Confirmed Redirecting...</value>
   </data>
+  <data name="ConfirmUserCreation" xml:space="preserve">
+    <value>User has created successfully.</value>
+  </data>
   <data name="DeleteUserConfirmationS1" xml:space="preserve">
     <value>Are you sure you want delete user?</value>
   </data>

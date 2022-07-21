@@ -88,6 +88,15 @@ namespace _01_Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User has created successfully..
+        /// </summary>
+        public static string ConfirmUserCreation {
+            get {
+                return ResourceManager.GetString("ConfirmUserCreation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure you want delete user?.
         /// </summary>
         public static string DeleteUserConfirmationS1 {

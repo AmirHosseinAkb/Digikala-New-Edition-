@@ -33,8 +33,11 @@ namespace UserManagement.Domain.UserAgg
             
         }
 
-        public User(string activationCode,int verificationCode,long roleId,string? email=null,string? phoneNumber=null,string? password=null)
+        public User(string activationCode,int verificationCode,long roleId,string? firstName=null
+            ,string? lastName=null,string? email=null,string? phoneNumber=null,string? password=null)
         {
+            FirstName = firstName;
+            LastName = lastName;
             Email = email;
             PhoneNumber = phoneNumber;
             ActivationCode = activationCode;
@@ -47,6 +50,7 @@ namespace UserManagement.Domain.UserAgg
             IsDeleted = false;
             Password = password;
         }
+
 
         
         public void Activate()

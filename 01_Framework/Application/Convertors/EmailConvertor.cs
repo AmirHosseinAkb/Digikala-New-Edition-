@@ -10,6 +10,8 @@ namespace _01_Framework.Application.Convertors
     {
         public static string FixEmail(string email)
         {
+            if (email == null)
+                return null;
             return email.ToLower().Replace(" ", "");
         }
     }

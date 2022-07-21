@@ -9,5 +9,6 @@ namespace UserManagement.Domain.RoleAgg
     public interface IRoleRepository
     {
         List<Role> GetRoles();
+        Role GetRoleById(long roleId);
     }
 }

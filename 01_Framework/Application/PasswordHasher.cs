@@ -9,8 +9,10 @@ namespace _01_Framework.Application
 {
     public class PasswordHasher:IPasswordHasher
     {
-        public string HashMD5(string password)
+        public string HashMD5(string? password)
         {
+            if (password == null)
+                return null;
             byte[] originalPassword;
             byte[] encodedPassword;
             MD5 md5=new MD5CryptoServiceProvider();

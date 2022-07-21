@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using UserManagement.Application.Contracts.User;
 using UserManagement.Application.Contracts.User.Administration;
 using UserManagement.Application.Contracts.User.UserPanel;
+using UserManagement.Domain.RoleAgg;
 using UserManagement.Domain.TransactionAgg;
 using UserManagement.Domain.UserAgg;
 
@@ -16,18 +17,20 @@ namespace UserManagement.Application
     public class UserApplication : IUserApplication
     {
         private readonly IUserRepository _userRepository;
+        private readonly IRoleRepository _roleRepository;
         private readonly IViewRenderService _viewRenderService;
         private readonly IEmailService _emailService;
         private readonly IPasswordHasher _passwordHasher;
         private readonly IAuthenticationHelper _authenticationHelper;
 
-        public UserApplication(IUserRepository userRepository, IViewRenderService viewRenderService, IEmailService emailService, IPasswordHasher passwordHasher, IAuthenticationHelper authenticationHelper)
+        public UserApplication(IUserRepository userRepository, IViewRenderService viewRenderService, IEmailService emailService, IPasswordHasher passwordHasher, IAuthenticationHelper authenticationHelper, IRoleRepository roleRepository)
         {
             _userRepository = userRepository;
             _viewRenderService = viewRenderService;
             _emailService = emailService;
             _passwordHasher = passwordHasher;
             _authenticationHelper = authenticationHelper;
+            _roleRepository = roleRepository;
         }
 
         public OperationResult RegisterAndLogin(RegisterAndLoginCommand command)
@@ -61,7 +64,7 @@ namespace UserManagement.Application
             var activationCode = CodeGenerator.GenerateUniqName();
             var hashedPassword = _passwordHasher.HashMD5(command.Password);
             var user = new User(activationCode, CodeGenerator.GenerateRandomNumber()
-                    , 3, email: command.Email, password: hashedPassword);
+                    , Roles.CommonUser, email: command.Email, password: hashedPassword);
 
             var body = _viewRenderService.RenderToStringAsync
                 ("_ActivationEmailBody", new EmailViewModel() { Email = command.Email, ActivationCode = activationCode }); // Email Body
@@ -288,7 +291,7 @@ namespace UserManagement.Application
                 take = 20;
 
             int skip = (pageId - 1) * take;
-            var query = _userRepository.GetUsers(fullName,EmailConvertor.FixEmail(email),phoneNumber)
+            var query = _userRepository.GetUsers(fullName, EmailConvertor.FixEmail(email), phoneNumber)
                 .Skip(skip)
                 .Take(take)
                 .Select(u => new UserAdminInformationsViewModel()
@@ -308,6 +311,32 @@ namespace UserManagement.Application
             if (query.Count() % take != 0)
                 pageCount++;
             return Tuple.Create(query, pageId, pageCount, take);
+        }
+
+        public OperationResult AddUserFromAdmin(CreateUserCommand command, long roleId)
+        {
+            var result = new OperationResult();
+            if (!string.IsNullOrWhiteSpace(command.Email))
+            {
+                if (_userRepository.IsExistByEmail(command.Email))
+                    return result.Failed(ApplicationMessages.DuplicatedEmail);
+            }
+
+            if (!string.IsNullOrWhiteSpace(command.PhoneNumber))
+            {
+                if (_userRepository.IsExistByPhoneNumber(command.PhoneNumber))
+                    return result.Failed(ApplicationMessages.DuplicatedPhone);
+            }
+
+            if (_roleRepository.GetRoleById(roleId) == null)
+                return result.Failed(ApplicationMessages.RoleNotExist);
+
+            var user = new User(CodeGenerator.GenerateUniqName(), CodeGenerator.GenerateRandomNumber()
+                , roleId, command.FirstName, command.LastName, EmailConvertor.FixEmail(command.Email)
+                , command.PhoneNumber, _passwordHasher.HashMD5(command.Password!));
+
+            _userRepository.Add(user);
+            return result.Succeeded();
         }
     }
 }

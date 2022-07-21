@@ -16,6 +16,8 @@ namespace Server.Areas.Administration.Pages.Users
         }
         private readonly IUserApplication _userApplication;
         private readonly  IRoleApplication _roleApplication;
+
+        public string ErrorMessage { get; set; }
         public Tuple<List<UserAdminInformationsViewModel>,int,int,int> UsersInformationsVm { get; set; }
         [BindProperty]
         public CreateUserCommand CreateUserCommand { get; set; }
@@ -27,9 +29,21 @@ namespace Server.Areas.Administration.Pages.Users
             UsersInformationsVm = _userApplication.GetUsersAdminInformationsForShow(pageId,fullName,email,phoneNumber,take);
         }
 
-        public IActionResult OnPostCreateUser()
+        public IActionResult OnPostCreateUser(long roleId)
         {
+            if (!ModelState.IsValid || roleId==0)
+            {
+                return RedirectToPage();
+            }
 
+            var result = _userApplication.AddUserFromAdmin(CreateUserCommand,roleId);
+            if (!result.IsSucceeded)
+            {
+                ErrorMessage = result.Message;
+                return RedirectToPage();
+            }
+
+            ViewData["IsUserCreated"] = true;
             return RedirectToPage();
         }
 

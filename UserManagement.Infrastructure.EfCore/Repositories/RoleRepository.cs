@@ -19,5 +19,10 @@ namespace UserManagement.Infrastructure.EfCore.Repositories
         {
             return _context.Roles.ToList();
         }
+
+        public Role GetRoleById(long roleId)
+        {
+            return _context.Roles.Find(roleId);
+        }
     }
 }

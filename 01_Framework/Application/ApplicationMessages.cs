@@ -22,6 +22,7 @@ namespace _01_Framework.Application.Convertors
         public const string InvalidCurrentPassword = "رمز عبور فعلی خود را بصورت صحیح وارد کنید";
         public const string IdenticalEmailEntered = "ایمیلی غیر از ایمیل فعلی تان را وارد کنید";
         public const string IdenticalPhoneNumberEntered = "شماره ای غیر از شماره همراه فعلی تان را وارد کنید";
+        public const string RoleNotExist = "نقش انتخاب شده وجود ندارد";
 
     }
 }
