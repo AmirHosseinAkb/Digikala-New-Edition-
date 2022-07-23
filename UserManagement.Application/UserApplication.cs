@@ -407,5 +407,12 @@ namespace UserManagement.Application
             _userRepository.SaveChanges();
             return result.Succeeded();
         }
+
+        public void DeleteUser(long userId)
+        {
+            var user = _userRepository.GetUserById(userId);
+            user.Deleted();
+            _userRepository.SaveChanges();
+        }
     }
 }

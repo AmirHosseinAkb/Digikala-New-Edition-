@@ -290,9 +290,38 @@
         </div>
     </div>
 </div>
+<div id="modalDeleteUser" class="modal fade">
+    <div class="modal-dialog" style="width:45%">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="modal-header">
+                    <h3>@DataDictionaries.DeleteUser</h3>
+                </div>
+                <form id="frmDeleteUser" method="post" asp-page-handler="DeleteUser">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img id="deleteImgAvatar" class="img img-thumbnail" alt="UserAvatar" style="width:100%;height:100%;object-fit:cover" asp-append-version=true />
+                        </div>
+                        <div class="col-md-8">
+                            <h4>@ConfirmationMessages.DeleteUserConfirmationS1 (<span id="userNameInp" class="text-danger"></span>) @ConfirmationMessages.DeleteUserConfirmationS2</h4>
+                            <input id="userIdForDeleteInp" name="userId" type="hidden" />
+                            <p class="help-block">@DataDictionaries.ReturnDeletedUsersHelp</p>
+                        </div>
+                    </div>
+                    <hr />
+                    <div>
+                        <input id="btnDeleteUser" type="submit" class="btn btn-danger" value="@ButtonCaptions.Delete" />
+                        <a class="btn btn-success" data-dismiss="modal">@ButtonCaptions.Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 @section Scripts{
-   
+
 <script>
     $(function() {
         $("#btnAddUser").click(function() {

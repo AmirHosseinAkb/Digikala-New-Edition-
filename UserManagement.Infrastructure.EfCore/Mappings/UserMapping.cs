@@ -40,6 +40,8 @@ namespace UserManagement.Infrastructure.EfCore.Mappings
             builder.HasMany<Transaction>(u => u.Transactions)
                 .WithOne(t => t.User)
                 .HasForeignKey(t => t.UserId);
+
+            builder.HasQueryFilter(u => !u.IsDeleted);
         }
     }
 }

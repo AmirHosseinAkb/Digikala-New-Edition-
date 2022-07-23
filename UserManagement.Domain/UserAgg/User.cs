@@ -63,6 +63,15 @@ namespace UserManagement.Domain.UserAgg
             AvatarName = avatarName;
         }
 
+        public void Deleted()
+        {
+            IsDeleted = true;
+        }
+
+        public void Return()
+        {
+            IsDeleted = false;
+        }
         
         public void Activate()
         {

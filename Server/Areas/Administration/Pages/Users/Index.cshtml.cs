@@ -34,6 +34,8 @@ namespace Server.Areas.Administration.Pages.Users
 
         public IActionResult OnPostCreateUser(long roleId)
         {
+            ModelState.Remove("Email");
+            ModelState.Remove("PhoneNumber");
             if (!ModelState.IsValid || roleId==0)
             {
                 return RedirectToPage();
@@ -60,6 +62,12 @@ namespace Server.Areas.Administration.Pages.Users
             {
                 ErrorMessage=result.Message;
             }
+            return RedirectToPage();
+        }
+
+        public IActionResult OnPostDeleteUser(long userId)
+        {
+            _userApplication.DeleteUser(userId);
             return RedirectToPage();
         }
 

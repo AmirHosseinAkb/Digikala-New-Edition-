@@ -42,8 +42,9 @@ namespace UserManagement.Application.Contracts.User
 
         OperationResult AddUserFromAdmin(CreateUserCommand command,long roleId);
 
-
         OperationResult EditUserFromAdmin(EditUserCommand command, long roleId);
+
+        void DeleteUser(long userId);
 
         #endregion
     }
