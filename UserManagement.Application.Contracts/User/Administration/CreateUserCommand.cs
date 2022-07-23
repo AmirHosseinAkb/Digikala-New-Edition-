@@ -30,8 +30,9 @@ namespace UserManagement.Application.Contracts.User.Administration
         [MaxLength(200, ErrorMessage = ValidationMessages.MaxLenght)]
         public string? LastName { get; set; }
 
-        [MaxLength(50, ErrorMessage = ValidationMessages.MaxLenght)]
         [RequiredIfEmpty(nameof(Email), ErrorMessage = ValidationMessages.EnterEmailOrPhoneNumber)]
+        [StringLength(11,MinimumLength = 11,ErrorMessage =ValidationMessages.PhoneNumberLength )]
+        [Range(0,long.MaxValue,ErrorMessage = ValidationMessages.IntegerValue)]
         public string? PhoneNumber { get; set; }
         public IFormFile? UserAvatar { get; set; }
     }

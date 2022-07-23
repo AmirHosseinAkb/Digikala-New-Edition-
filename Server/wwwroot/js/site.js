@@ -177,10 +177,10 @@ $(function () {
     });
 });
 
-$("#checkoutPayment01").click(function() {
+$("#checkoutPayment01").click(function () {
     $("#RefundCommand_AccountNumber").show();
 });
-$("#checkoutPayment02").click(function() {
+$("#checkoutPayment02").click(function () {
     $("#RefundCommand_AccountNumber").hide();
     $("#accountNumberValidation").hide();
 });
@@ -243,10 +243,10 @@ function GetUserInformationsForEdit(firstName, lastName, email, phoneNumber, ava
 
     var inputs = $(".editRoleRadio");
 
-    inputs.each(function(i) {
+    inputs.each(function (i) {
         this.checked = false;
     });
-    inputs[roleId-1].checked = true;
+    inputs[roleId - 1].checked = true;
 
     $("#EditUserCommand_FirstName").val(firstName);
     $("#EditUserCommand_LastName").val(lastName);
@@ -264,7 +264,7 @@ $("#btnEditUser").click(function (e) {
 
     if (isValidForm) {
         e.preventDefault();
-        if ($("#EditUserCommand_Email").val() != "" && $("#EditUserCommand_Email").val() != localStorage.getItem("UserEmail")) {
+        if ($("#EditUserCommand_Email").val() !== "" && $("#EditUserCommand_Email").val() !== localStorage.getItem("UserEmail")) {
             $.ajax({
                 type: "Get",
                 url: "/Administration/Users/IsExistEmailOrPhoneNumber?email=" + $("#EditUserCommand_Email").val()
@@ -287,18 +287,24 @@ $("#btnEditUser").click(function (e) {
         if ($("#EditUserCommand_PhoneNumber").val() != "" && $("#EditUserCommand_PhoneNumber").val() != localStorage.getItem("PhoneNumber")) {
             $.ajax({
                 type: "Get",
-                url: "/Administration/Users/IsExistEmailOrPhoneNumber?phoneNumber=" + $("#EditUserCommand_PhoneNumber").val()
+                url: "/Administration/Users/IsExistEmailOrPhoneNumber?phoneNumber=" +
+                    $("#EditUserCommand_PhoneNumber").val()
             }).done(function (result) {
                 if (result == "true") {
                     sweetAlert("پیغام", "این شماره تلفن از قبل وجود دارد", "error");
-                }
-                else if ($("#EditUserCommand_Email").val() == "" || $("#EditUserCommand_Email").val() == localStorage.getItem("UserEmail")) {
+                } else if ($("#EditUserCommand_Email").val() === "" ||
+                    $("#EditUserCommand_Email").val() == localStorage.getItem("UserEmail")) {
                     $("#frmEditUser").submit();
-                }
-                else if (isValidEmailInEdit) {
+                } else if (isValidEmailInEdit) {
                     $("#frmEditUser").submit();
                 }
             });
+        }
+        else if ($("#EditUserCommand_Email").val() == "" || $("#EditUserCommand_Email").val() == localStorage.getItem("UserEmail")) {
+            $("#frmEditUser").submit();
+        } 
+        else if (isValidEmailInEdit) {
+            $("#frmEditUser").submit();
         }
     }
 });

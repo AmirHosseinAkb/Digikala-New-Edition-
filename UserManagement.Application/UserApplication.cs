@@ -320,16 +320,14 @@ namespace UserManagement.Application
                 if (_userRepository.IsExistByEmail(command.Email))
                     return result.Failed(ApplicationMessages.DuplicatedEmail);
             }
-            else
-                return result.Failed(ApplicationMessages.InvalidEmail);
+
 
             if (command.PhoneNumber.IsPhoneNumber())
             {
                 if (_userRepository.IsExistByPhoneNumber(command.PhoneNumber))
                     return result.Failed(ApplicationMessages.DuplicatedPhone);
             }
-            else
-                return result.Failed(ApplicationMessages.InvalidPhoneNumber);
+
 
 
             if (_roleRepository.GetRoleById(roleId) == null)
@@ -368,8 +366,7 @@ namespace UserManagement.Application
                         return result.Failed(ApplicationMessages.DuplicatedEmail);
                 }
             }
-            else
-                return result.Failed(ApplicationMessages.InvalidEmail);
+
 
             if (command.PhoneNumber.IsPhoneNumber())
             {
@@ -379,8 +376,7 @@ namespace UserManagement.Application
                         return result.Failed(ApplicationMessages.InvalidPhoneNumber);
                 }
             }
-            else
-                return result.Failed(ApplicationMessages.InvalidPhoneNumber);
+
 
             if (_roleRepository.GetRoleById(roleId) == null)
                 return result.Failed(ApplicationMessages.RoleNotExist);
