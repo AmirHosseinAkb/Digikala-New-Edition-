@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _01_Framework.Application.Generators
+namespace _01_Framework.Application
 {
-    public interface IPasswordHasher
+    public class UserDefaultImage
     {
-        string HashMD5(string password);
+        public const string DefaultImageName = "Default.png";
     }
 }

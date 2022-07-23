@@ -234,6 +234,9 @@
   <data name="IncreaseBalance" xml:space="preserve">
     <value>Increase Balance</value>
   </data>
+  <data name="IsActive" xml:space="preserve">
+    <value>Is Active</value>
+  </data>
   <data name="January" xml:space="preserve">
     <value>January</value>
   </data>

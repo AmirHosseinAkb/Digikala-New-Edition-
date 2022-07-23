@@ -1,8 +1,8 @@
 
-using _01_Framework.Application;
+using _01_Framework.Application.Generators;
 using _01_Framework.Infrastructure.ExtensionMethods;
-using _01_Framework.Application.Email;
-using _01_Framework.Application.ZarinPal;
+using _01_Framework.Application.Generators.Email;
+using _01_Framework.Application.Generators.ZarinPal;
 using FoolProof.Core;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using UserManagement.Infrastructure.Configuration;

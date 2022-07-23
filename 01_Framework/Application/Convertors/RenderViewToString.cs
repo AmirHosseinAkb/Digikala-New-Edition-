@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Routing;
 
-namespace _01_Framework.Application
+namespace _01_Framework.Application.Generators
 {
     public interface IViewRenderService
     {

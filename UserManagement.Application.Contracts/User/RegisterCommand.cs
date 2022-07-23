@@ -6,7 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using _01_Framework.Application;
+using _01_Framework.Application.Generators;
 using _01_Framework.Resources;
 
 namespace UserManagement.Application.Contracts.User

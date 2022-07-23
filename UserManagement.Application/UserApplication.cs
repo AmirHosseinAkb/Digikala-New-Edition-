@@ -1,14 +1,13 @@
 ﻿using System.Globalization;
 using _01_Framework.Application;
-using _01_Framework.Application.Email;
+using _01_Framework.Application.Generators;
+using _01_Framework.Application.Generators.Email;
 using _01_Framework.Infrastructure;
 using _01_Framework.Resources;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using UserManagement.Application.Contracts.User;
 using UserManagement.Application.Contracts.User.Administration;
 using UserManagement.Application.Contracts.User.UserPanel;
 using UserManagement.Domain.RoleAgg;
-using UserManagement.Domain.TransactionAgg;
 using UserManagement.Domain.UserAgg;
 
 namespace UserManagement.Application
@@ -62,8 +61,8 @@ namespace UserManagement.Application
 
             var activationCode = CodeGenerator.GenerateUniqName();
             var hashedPassword = _passwordHasher.HashMD5(command.Password);
-            var user = new User(activationCode, CodeGenerator.GenerateRandomNumber()
-                    , Roles.CommonUser, email: command.Email, password: hashedPassword);
+            var user = new User(null, null, EmailConvertor.FixEmail(command.Email), null, hashedPassword
+                , Roles.CommonUser, activationCode, CodeGenerator.GenerateRandomNumber());
 
             var body = _viewRenderService.RenderToStringAsync
                 ("_ActivationEmailBody", new EmailViewModel() { Email = command.Email, ActivationCode = activationCode }); // Email Body
@@ -296,6 +295,7 @@ namespace UserManagement.Application
                 .Select(u => new UserAdminInformationsViewModel()
                 {
                     UserId = u.UserId,
+                    RoleId = u.RoleId,
                     Email = u.Email,
                     PhoneNumber = u.PhoneNumber,
                     AvatarName = u.AvatarName,
@@ -303,7 +303,7 @@ namespace UserManagement.Application
                     NationalNumber = u.NationalNumber,
                     RegisterDate = u.RegisterDate.ToShamsi(),
                     RoleTitle = u.Role.RoleTitle,
-                    RoleId = u.RoleId
+                    IsActive = u.IsActive
                 }).ToList();
 
             int pageCount = query.Count() / take;
@@ -315,26 +315,100 @@ namespace UserManagement.Application
         public OperationResult AddUserFromAdmin(CreateUserCommand command, long roleId)
         {
             var result = new OperationResult();
-            if (!string.IsNullOrWhiteSpace(command.Email))
+            if (command.Email.IsEmail())
             {
                 if (_userRepository.IsExistByEmail(command.Email))
                     return result.Failed(ApplicationMessages.DuplicatedEmail);
             }
+            else
+                return result.Failed(ApplicationMessages.InvalidEmail);
 
-            if (!string.IsNullOrWhiteSpace(command.PhoneNumber))
+            if (command.PhoneNumber.IsPhoneNumber())
             {
                 if (_userRepository.IsExistByPhoneNumber(command.PhoneNumber))
                     return result.Failed(ApplicationMessages.DuplicatedPhone);
             }
+            else
+                return result.Failed(ApplicationMessages.InvalidPhoneNumber);
+
 
             if (_roleRepository.GetRoleById(roleId) == null)
                 return result.Failed(ApplicationMessages.RoleNotExist);
 
-            var user = new User(CodeGenerator.GenerateUniqName(), CodeGenerator.GenerateRandomNumber()
-                , roleId, command.FirstName, command.LastName, EmailConvertor.FixEmail(command.Email)
-                , command.PhoneNumber, _passwordHasher.HashMD5(command.Password!));
+            User user;
+            string avatarName = UserDefaultImage.DefaultImageName;
+
+            if (command.UserAvatar != null)
+            {
+                avatarName = CodeGenerator.GenerateUniqName() + Path.GetExtension(command.UserAvatar.FileName);
+
+                string imagePath = ImagePathGenerator.GenerateUserImagePath(avatarName);
+
+                using (var stream = new FileStream(imagePath, FileMode.Create))
+                    command.UserAvatar.CopyTo(stream);
+            }
+
+            user = new User(command.FirstName, command.LastName, EmailConvertor.FixEmail(command.Email)
+                , command.PhoneNumber, _passwordHasher.HashMD5(command.Password!)
+                , roleId, CodeGenerator.GenerateUniqName(), CodeGenerator.GenerateRandomNumber(), avatarName, isActive: true);
 
             _userRepository.Add(user);
+            return result.Succeeded();
+        }
+
+        public OperationResult EditUserFromAdmin(EditUserCommand command, long roleId)
+        {
+            var result = new OperationResult();
+            var user = _userRepository.GetUserById(command.UserId);
+            if (command.Email.IsEmail())
+            {
+                if (user.Email != EmailConvertor.FixEmail(command.Email!))
+                {
+                    if (_userRepository.IsExistByEmail(EmailConvertor.FixEmail(command.Email!)))
+                        return result.Failed(ApplicationMessages.DuplicatedEmail);
+                }
+            }
+            else
+                return result.Failed(ApplicationMessages.InvalidEmail);
+
+            if (command.PhoneNumber.IsPhoneNumber())
+            {
+                if (user.PhoneNumber != command.PhoneNumber)
+                {
+                    if (_userRepository.IsExistByPhoneNumber(command.PhoneNumber))
+                        return result.Failed(ApplicationMessages.InvalidPhoneNumber);
+                }
+            }
+            else
+                return result.Failed(ApplicationMessages.InvalidPhoneNumber);
+
+            if (_roleRepository.GetRoleById(roleId) == null)
+                return result.Failed(ApplicationMessages.RoleNotExist);
+
+            var avatarName = user.AvatarName;
+
+            if (command.UserAvatar != null)
+            {
+                string imagePath = "";
+                if (user.AvatarName != UserDefaultImage.DefaultImageName)
+                {
+                    imagePath = ImagePathGenerator.GenerateUserImagePath(user.AvatarName);
+                    if (File.Exists(imagePath))
+                    {
+                        File.Delete(imagePath);
+                    }
+                }
+
+                avatarName = CodeGenerator.GenerateUniqName() + Path.GetExtension(command.UserAvatar.FileName);
+
+                imagePath = ImagePathGenerator.GenerateUserImagePath(avatarName);
+
+                using (var stream = new FileStream(imagePath, FileMode.Create))
+                    command.UserAvatar.CopyTo(stream);
+            }
+            user.Edit(command.FirstName, command.LastName, EmailConvertor.FixEmail(command.Email), command.PhoneNumber
+                , _passwordHasher.HashMD5(command.Password!), avatarName, roleId);
+
             return result.Succeeded();
         }
     }

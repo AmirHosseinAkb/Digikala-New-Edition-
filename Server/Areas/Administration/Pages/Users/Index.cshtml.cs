@@ -48,9 +48,16 @@ namespace Server.Areas.Administration.Pages.Users
             return RedirectToPage();
         }
 
-        public IActionResult OnPostEditUser()
+        public IActionResult OnPostEditUser(long roleId)
         {
-            return null;
+            if (!ModelState.IsValid)
+                return RedirectToPage();
+            var result = _userApplication.EditUserFromAdmin(EditUserCommand, roleId);
+            if (!result.IsSucceeded)
+            {
+                ErrorMessage=result.Message;
+            }
+            return RedirectToPage();
         }
 
         public IActionResult OnGetIsExistEmailOrPhoneNumber(string email = "", string phoneNumber = "")

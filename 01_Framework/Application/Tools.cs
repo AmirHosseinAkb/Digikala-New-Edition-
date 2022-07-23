@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _01_Framework.Application
+namespace _01_Framework.Application.Generators
 {
     public static class Tools
     {

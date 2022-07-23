@@ -33,24 +33,35 @@ namespace UserManagement.Domain.UserAgg
             
         }
 
-        public User(string activationCode,int verificationCode,long roleId,string? firstName=null
-            ,string? lastName=null,string? email=null,string? phoneNumber=null,string? password=null)
+        public User(string? firstName,string? lastName,string? email,string? phoneNumber,string? password,long roleId
+            ,string activationCode,int verificationCode,string avatarName="Default.png",bool isActive=false)
         {
             FirstName = firstName;
             LastName = lastName;
             Email = email;
             PhoneNumber = phoneNumber;
+            Password = password;
+            RoleId = roleId;
             ActivationCode = activationCode;
             VerificationCode = verificationCode;
-            RoleId = roleId;
-            IsActive = false;
+            IsActive = isActive;
             RegisterDate=DateTime.Now;
-            AvatarName = "Default.png";
+            AvatarName = avatarName;
             RefundType = 0;
             IsDeleted = false;
-            Password = password;
         }
 
+        public void Edit(string? firstName, string? lastName, string? email, string? phoneNumber, string? password,
+            string avatarName,long roleId)
+        {
+            FirstName=firstName;
+            LastName = lastName;
+            Email = email;
+            PhoneNumber = phoneNumber;
+            Password = password;
+            RoleId = roleId;
+            AvatarName = avatarName;
+        }
 
         
         public void Activate()

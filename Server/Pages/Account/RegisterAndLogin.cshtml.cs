@@ -1,4 +1,4 @@
-using _01_Framework.Application;
+using _01_Framework.Application.Generators;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using UserManagement.Application.Contracts.User;

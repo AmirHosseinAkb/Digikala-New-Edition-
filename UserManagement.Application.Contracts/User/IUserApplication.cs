@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using _01_Framework.Application;
+using _01_Framework.Application.Generators;
 using UserManagement.Application.Contracts.User.Administration;
 using UserManagement.Application.Contracts.User.UserPanel;
 
@@ -41,6 +41,9 @@ namespace UserManagement.Application.Contracts.User
             , string email = "", string phoneNumber = "", int take = 20);
 
         OperationResult AddUserFromAdmin(CreateUserCommand command,long roleId);
+
+
+        OperationResult EditUserFromAdmin(EditUserCommand command, long roleId);
 
         #endregion
     }

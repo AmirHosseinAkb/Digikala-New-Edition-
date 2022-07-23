@@ -3,7 +3,7 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 
-namespace _01_Framework.Application
+namespace _01_Framework.Application.Generators
 {
     public class AuthenticationHelper:IAuthenticationHelper
     {
