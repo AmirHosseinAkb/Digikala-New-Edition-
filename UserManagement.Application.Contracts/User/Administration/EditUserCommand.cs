@@ -35,7 +35,7 @@ namespace UserManagement.Application.Contracts.User.Administration
 
 
         [MaxLength(200, ErrorMessage = ValidationMessages.MaxLenght)]
-        [RequiredIfEmpty(nameof(PhoneNumber), ErrorMessage = ValidationMessages.EnterEmailOrPhoneNumber)]
+        [RequiredIfEmpty(nameof(Email), ErrorMessage = ValidationMessages.EnterEmailOrPhoneNumber)]
         public string? PhoneNumber { get; set; }
         public IFormFile? UserAvatar { get; set; }
     }

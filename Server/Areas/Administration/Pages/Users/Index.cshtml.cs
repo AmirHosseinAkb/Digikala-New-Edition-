@@ -50,6 +50,9 @@ namespace Server.Areas.Administration.Pages.Users
 
         public IActionResult OnPostEditUser(long roleId)
         {
+            ModelState.Remove("Email");
+            ModelState.Remove("PhoneNumber");
+
             if (!ModelState.IsValid)
                 return RedirectToPage();
             var result = _userApplication.EditUserFromAdmin(EditUserCommand, roleId);

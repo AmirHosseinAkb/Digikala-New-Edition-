@@ -267,7 +267,7 @@ $("#btnEditUser").click(function (e) {
         if ($("#EditUserCommand_Email").val() != "" && $("#EditUserCommand_Email").val() != localStorage.getItem("UserEmail")) {
             $.ajax({
                 type: "Get",
-                url: "/Admin/Users/IsExistEmailOrPhoneNumber?email=" + $("#EditUserCommand_Email").val()
+                url: "/Administration/Users/IsExistEmailOrPhoneNumber?email=" + $("#EditUserCommand_Email").val()
             }).done(function (result) {
                 if (result == "true") {
                     sweetAlert("پیغام", "این ایمیل از قبل وجود دارد", "error");
@@ -287,7 +287,7 @@ $("#btnEditUser").click(function (e) {
         if ($("#EditUserCommand_PhoneNumber").val() != "" && $("#EditUserCommand_PhoneNumber").val() != localStorage.getItem("PhoneNumber")) {
             $.ajax({
                 type: "Get",
-                url: "/Admin/Users/IsExistEmailOrPhoneNumber?phoneNumber=" + $("#EditUserCommand_PhoneNumber").val()
+                url: "/Administration/Users/IsExistEmailOrPhoneNumber?phoneNumber=" + $("#EditUserCommand_PhoneNumber").val()
             }).done(function (result) {
                 if (result == "true") {
                     sweetAlert("پیغام", "این شماره تلفن از قبل وجود دارد", "error");

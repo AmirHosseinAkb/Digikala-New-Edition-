@@ -408,7 +408,7 @@ namespace UserManagement.Application
             }
             user.Edit(command.FirstName, command.LastName, EmailConvertor.FixEmail(command.Email), command.PhoneNumber
                 , _passwordHasher.HashMD5(command.Password!), avatarName, roleId);
-
+            _userRepository.SaveChanges();
             return result.Succeeded();
         }
     }
