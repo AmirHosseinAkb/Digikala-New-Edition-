@@ -21,7 +21,8 @@ namespace UserManagement.Application
             return _reoleRepository.GetRoles().Select(r => new RoleViewModel()
             {
                 RoleId = r.RoleId,
-                RoleTitle = r.RoleTitle
+                RoleTitle = r.RoleTitle,
+                Permissions = r.Permissions.Select(p=>p.PermissionTitle).ToList()
             }).ToList();
         }
     }

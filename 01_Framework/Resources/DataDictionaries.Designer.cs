@@ -106,6 +106,15 @@ namespace _01_Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add New Role.
+        /// </summary>
+        public static string AddNewRole {
+            get {
+                return ResourceManager.GetString("AddNewRole", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add new user.
         /// </summary>
         public static string AddNewUser {
