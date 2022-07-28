@@ -312,6 +312,33 @@ namespace UserManagement.Application
             return Tuple.Create(query, pageId, pageCount, take);
         }
 
+        public Tuple<List<UserAdminInformationsViewModel>, int, int, int> GetDeletedUsersAdminInformationsForShow(int pageId = 1, string fullName = "", string email = "",
+            string phoneNumber = "", int take = 20)
+        {
+            int skip = (pageId - 1) * take;
+            var query = _userRepository.GetDeletedUsers(fullName, EmailConvertor.FixEmail(email), phoneNumber)
+                .Skip(skip)
+                .Take(take)
+                .Select(u => new UserAdminInformationsViewModel()
+                {
+                    UserId = u.UserId,
+                    RoleId = u.RoleId,
+                    Email = u.Email,
+                    PhoneNumber = u.PhoneNumber,
+                    AvatarName = u.AvatarName,
+                    FullName = u.FirstName + " " + u.LastName,
+                    NationalNumber = u.NationalNumber,
+                    RegisterDate = u.RegisterDate.ToShamsi(),
+                    RoleTitle = u.Role.RoleTitle,
+                    IsActive = u.IsActive
+                }).ToList();
+
+            int pageCount = query.Count() / take;
+            if (query.Count() % take != 0)
+                pageCount++;
+            return Tuple.Create(query, pageId, pageCount, take);
+        }
+
         public OperationResult AddUserFromAdmin(CreateUserCommand command, long roleId)
         {
             var result = new OperationResult();
@@ -411,8 +438,21 @@ namespace UserManagement.Application
         public void DeleteUser(long userId)
         {
             var user = _userRepository.GetUserById(userId);
-            user.Deleted();
-            _userRepository.SaveChanges();
+            if (user != null)
+            {
+                user.Deleted();
+                _userRepository.SaveChanges();
+            }
+        }
+
+        public void ReturnUser(long userId)
+        {
+            var user = _userRepository.GetDeletedUser(userId);
+            if (user != null)
+            {
+                user.Return();
+                _userRepository.SaveChanges();
+            }
         }
     }
 }

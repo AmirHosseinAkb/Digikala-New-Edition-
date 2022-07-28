@@ -39,12 +39,16 @@ namespace UserManagement.Application.Contracts.User
 
         Tuple<List<UserAdminInformationsViewModel>, int, int, int> GetUsersAdminInformationsForShow(int pageId = 1, string fullName = ""
             , string email = "", string phoneNumber = "", int take = 20);
+        Tuple<List<UserAdminInformationsViewModel>, int, int, int> GetDeletedUsersAdminInformationsForShow(int pageId = 1, string fullName = ""
+            , string email = "", string phoneNumber = "", int take = 20);
 
         OperationResult AddUserFromAdmin(CreateUserCommand command,long roleId);
 
         OperationResult EditUserFromAdmin(EditUserCommand command, long roleId);
 
         void DeleteUser(long userId);
+
+        void ReturnUser(long userId);
 
         #endregion
     }

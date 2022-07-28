@@ -48,6 +48,11 @@ namespace UserManagement.Infrastructure.EfCore.Repositories
             return _context.Users.SingleOrDefault(u => u.UserId == id);
         }
 
+        public User GetDeletedUser(long userId)
+        {
+            return _context.Users.IgnoreQueryFilters().SingleOrDefault(u => u.IsDeleted && u.UserId == userId);
+        }
+
         public long GetUserWalletBalance(long userId)
         {
             var deposit = _context.Transactions.Where(t => t.UserId == userId && t.TypeId == TransactionTypes.Deposit && t.IsSucceeded).Sum(t => t.Amount);
@@ -63,6 +68,22 @@ namespace UserManagement.Infrastructure.EfCore.Repositories
         public List<User> GetUsers(string fullName = "", string email = "", string phoneNumber = "")
         {
             IQueryable<User> result = _context.Users.Include(u=>u.Role);
+
+            if (!string.IsNullOrEmpty(fullName))
+                result = result.Where(u => u.FirstName.Contains(fullName) || u.LastName.Contains(fullName));
+
+            if (!string.IsNullOrEmpty(email))
+                result = result.Where(u => u.Email == email);
+
+            if (!string.IsNullOrEmpty(phoneNumber))
+                result=result.Where(u => u.PhoneNumber == phoneNumber);
+
+            return result.ToList();
+        }
+
+        public List<User> GetDeletedUsers(string fullName = "", string email = "", string phoneNumber = "")
+        {
+            IQueryable<User> result = _context.Users.IgnoreQueryFilters().Include(u=>u.Role).Where(u=>u.IsDeleted);
 
             if (!string.IsNullOrEmpty(fullName))
                 result = result.Where(u => u.FirstName.Contains(fullName) || u.LastName.Contains(fullName));

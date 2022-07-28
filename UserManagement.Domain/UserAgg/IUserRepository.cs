@@ -15,9 +15,11 @@ namespace UserManagement.Domain.UserAgg
         User GetUserForLogin(string email,string password);
         User GetUserByEmail(string email);
         User GetUserById(long id);
+        User GetDeletedUser(long userId);
         long GetUserWalletBalance(long userId);
         List<User> GetUsers();
         List<User> GetUsers(string fullName = "", string email = "", string phoneNumber = "");
+        List<User> GetDeletedUsers(string fullName = "", string email = "", string phoneNumber = "");
         void SaveChanges();
     }
 }
