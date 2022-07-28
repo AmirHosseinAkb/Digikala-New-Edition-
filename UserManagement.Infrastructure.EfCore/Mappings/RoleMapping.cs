@@ -22,6 +22,9 @@ namespace UserManagement.Infrastructure.EfCore.Mappings
                 .WithOne(u => u.Role)
                 .HasForeignKey(u => u.RoleId);
 
+            builder.HasMany(r => r.Permissions)
+                .WithOne(p => p.Role).HasForeignKey(p => p.RoleId);
+
             builder.HasData(
                 new Role(1,"مدیر سایت"),
                 new Role(2,"دستیار مدیر"),

@@ -8,15 +8,17 @@ namespace UserManagement.Domain.RoleAgg
         public string RoleTitle { get; private set; }
 
         public List<User> Users { get; private set; }
+        public List<Permission> Permissions { get; set; }
 
         protected Role()
         {
             
         }
 
-        public Role(string roleTitle)
+        public Role(string roleTitle,List<Permission> permissions)
         {
             RoleTitle=roleTitle;
+            Permissions=permissions;    
             Users=new List<User>();
         }
 
