@@ -28,6 +28,10 @@ namespace _01_Framework.Infrastructure
 
     public static class UserPermissions
     {
-        
+        public const int UsersList = 100;
+        public const int CreateUser = 101;
+        public const int EditUser = 102;
+        public const int DeleteUser = 103;
+        public const int DeletedUsersList = 104;
     }
 }
