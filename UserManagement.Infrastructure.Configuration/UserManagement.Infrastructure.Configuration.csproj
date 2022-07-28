@@ -17,8 +17,4 @@
     <ProjectReference Include="..\UserManagement.Infrastructure.EfCore\UserManagement.Infrastructure.EfCore.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Permissions\" />
-  </ItemGroup>
-
 </Project>

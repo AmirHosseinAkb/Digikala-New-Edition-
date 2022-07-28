@@ -18,6 +18,7 @@ namespace UserManagement.Infrastructure.EfCore.Mappings
             builder.Property(p => p.PermissionTitle).HasMaxLength(200);
             builder.Property(p => p.PermissionCode);
             builder.Property(p => p.RoleId);
+
             builder.HasOne<Role>(p => p.Role)
                 .WithMany(r => r.Permissions).HasForeignKey(p => p.RoleId);
 

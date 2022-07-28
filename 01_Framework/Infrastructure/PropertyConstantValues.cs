@@ -24,4 +24,10 @@ namespace _01_Framework.Infrastructure
         public const int Withdraw = 2;
 
     }
+
+
+    public static class UserPermissions
+    {
+        
+    }
 }
