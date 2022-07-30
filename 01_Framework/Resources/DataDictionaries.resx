@@ -186,6 +186,9 @@
   <data name="DeletedUsersList" xml:space="preserve">
     <value>Deleted Users List</value>
   </data>
+  <data name="DeleteRole" xml:space="preserve">
+    <value>Delete Role</value>
+  </data>
   <data name="DeleteUser" xml:space="preserve">
     <value>Delete User</value>
   </data>

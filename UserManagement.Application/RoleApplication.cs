@@ -1,21 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Reflection.Metadata.Ecma335;
 using _01_Framework.Application.Generators;
 using UserManagement.Application.Contracts.Role;
 using UserManagement.Domain.RoleAgg;
+using UserManagement.Domain.UserAgg;
 
 namespace UserManagement.Application
 {
     public class RoleApplication:IRoleApplication
     {
         private readonly IRoleRepository _roleRepository;
+        private readonly IUserRepository _userRepository;
 
-        public RoleApplication(IRoleRepository roleRepository)
+        public RoleApplication(IRoleRepository roleRepository, IUserRepository userRepository)
         {
             _roleRepository = roleRepository;
+            _userRepository = userRepository;
         }
         public List<RoleViewModel> GetRoles()
         {
@@ -69,6 +68,23 @@ namespace UserManagement.Application
                 permissions.Add(new Permission(code));
             }
             role.Edit(Command.RoleTitle,permissions);
+            _roleRepository.SaveChanges();
+            return result.Succeeded();
+        }
+
+        public OperationResult Delete(long roleId)
+        {
+            var result = new OperationResult();
+
+            if ( roleId==0 ||_roleRepository.GetRoleById(roleId) == null)
+                return result.NullResult(ApplicationMessages.RoleNotExist);
+
+            if (_userRepository.IsExistUserByRole(roleId))
+                return result.Failed(ApplicationMessages.SomeUsersExistWithThisRole);
+
+            var role = _roleRepository.GetRoleById(roleId);
+            _roleRepository.DeleteRolePermissions(role);
+            role.Delete();
             _roleRepository.SaveChanges();
             return result.Succeeded();
         }

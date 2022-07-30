@@ -14,5 +14,6 @@ namespace UserManagement.Application.Contracts.Role
         OperationResult Create(CreateRoleCommand command);
         EditRoleCommand GetRoleForEdit(long roleId);
         OperationResult Edit(EditRoleCommand Command);
+        OperationResult Delete(long roleId);
     }
 }

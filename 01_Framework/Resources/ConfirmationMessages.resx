@@ -129,6 +129,12 @@
   <data name="ConfirmUserCreation" xml:space="preserve">
     <value>User has created successfully.</value>
   </data>
+  <data name="DeleteRoleConfirmationS1" xml:space="preserve">
+    <value>Are you sure you want delete role?</value>
+  </data>
+  <data name="DeleteRoleConfirmationS2" xml:space="preserve">
+    <value />
+  </data>
   <data name="DeleteUserConfirmationS1" xml:space="preserve">
     <value>Are you sure you want delete user?</value>
   </data>

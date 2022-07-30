@@ -20,6 +20,7 @@ namespace UserManagement.Domain.UserAgg
         List<User> GetUsers();
         List<User> GetUsers(string fullName = "", string email = "", string phoneNumber = "");
         List<User> GetDeletedUsers(string fullName = "", string email = "", string phoneNumber = "");
+        bool IsExistUserByRole(long roleId);
         void SaveChanges();
     }
 }

@@ -129,6 +129,12 @@
   <data name="ConfirmUserCreation" xml:space="preserve">
     <value>کاربر مورد نظر با موفقیت ایجاد شد</value>
   </data>
+  <data name="DeleteRoleConfirmationS1" xml:space="preserve">
+    <value>آیا مطمئنید که می خواهید نقش</value>
+  </data>
+  <data name="DeleteRoleConfirmationS2" xml:space="preserve">
+    <value>را حذف کنید؟</value>
+  </data>
   <data name="DeleteUserConfirmationS1" xml:space="preserve">
     <value>آیا مطمئنید که می خواهید کاربر </value>
   </data>

@@ -37,6 +37,12 @@ namespace UserManagement.Infrastructure.EfCore.Repositories
             return _context.Roles.Any(r => r.RoleTitle == title);
         }
 
+        public void DeleteRolePermissions(Role role)
+        {
+            role.Permissions.ForEach(p=>_context.Permissions.Remove(p));
+            _context.SaveChanges();
+        }
+
         public void SaveChanges()
         {
             _context.SaveChanges();

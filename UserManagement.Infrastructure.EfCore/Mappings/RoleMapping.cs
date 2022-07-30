@@ -17,6 +17,7 @@ namespace UserManagement.Infrastructure.EfCore.Mappings
             builder.ToTable("Roles");
             builder.HasKey(r => r.RoleId);
             builder.Property(r => r.RoleTitle).HasMaxLength(200);
+            builder.Property(r=>r.IsDeleted);
 
             builder.HasMany(r => r.Users)
                 .WithOne(u => u.Role)
@@ -30,6 +31,8 @@ namespace UserManagement.Infrastructure.EfCore.Mappings
                 new Role(2,"دستیار مدیر"),
                 new Role(3,"کاربر سایت")
                 );
+
+            builder.HasQueryFilter(r => !r.IsDeleted);
         }
     }
 }

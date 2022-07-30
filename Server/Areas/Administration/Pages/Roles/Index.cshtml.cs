@@ -8,7 +8,7 @@ namespace Server.Areas.Administration.Pages.Roles
 {
     public class IndexModel : PageModel
     {
-
+        public string ErrorMessage { get; set; }
         public IndexModel(IRoleApplication roleApplication)
         {
             _roleApplication = roleApplication;
@@ -24,6 +24,16 @@ namespace Server.Areas.Administration.Pages.Roles
             RoleVm = _roleApplication.GetRoles();
         }
 
-       
+        public IActionResult OnPostDeleteRole(long roleId)
+        {
+            var result = _roleApplication.Delete(roleId);
+            if (!result.IsSucceeded)
+            {
+                RoleVm = _roleApplication.GetRoles();
+                ErrorMessage = result.Message;
+                return Page();
+            }
+            return RedirectToPage();
+        }
     }
 }

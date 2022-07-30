@@ -97,6 +97,24 @@ namespace _01_Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want delete role?.
+        /// </summary>
+        public static string DeleteRoleConfirmationS1 {
+            get {
+                return ResourceManager.GetString("DeleteRoleConfirmationS1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string DeleteRoleConfirmationS2 {
+            get {
+                return ResourceManager.GetString("DeleteRoleConfirmationS2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure you want delete user?.
         /// </summary>
         public static string DeleteUserConfirmationS1 {

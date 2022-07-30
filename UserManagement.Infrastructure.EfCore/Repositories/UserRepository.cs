@@ -97,6 +97,11 @@ namespace UserManagement.Infrastructure.EfCore.Repositories
             return result.ToList();
         }
 
+        public bool IsExistUserByRole(long roleId)
+        {
+            return _context.Users.Any(u => u.RoleId == roleId);
+        }
+
         public void SaveChanges()
         {
             _context.SaveChanges();
