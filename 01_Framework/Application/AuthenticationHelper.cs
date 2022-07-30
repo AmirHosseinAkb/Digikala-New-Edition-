@@ -2,6 +2,7 @@
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 
 namespace _01_Framework.Application.Generators
 {
@@ -15,10 +16,12 @@ namespace _01_Framework.Application.Generators
         }
         public void SignIn(AuthenticationViewModel authenticationVM)
         {
+            var permissions = JsonConvert.SerializeObject(authenticationVM.Permissions);
             var claims = new List<Claim>()
             {
                 new Claim("UserId", authenticationVM.UserId.ToString()),
-                new Claim(ClaimTypes.Role, authenticationVM.RoleId.ToString())
+                new Claim(ClaimTypes.Role, authenticationVM.RoleId.ToString()),
+                new Claim("Permissions",permissions)
             };
 
             if(!string.IsNullOrEmpty(authenticationVM.Email))

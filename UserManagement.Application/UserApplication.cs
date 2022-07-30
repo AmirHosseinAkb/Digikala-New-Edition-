@@ -81,7 +81,9 @@ namespace UserManagement.Application
                 return operation.Failed(ApplicationMessages.WrongUserPass);
             if (!user.IsActive)
                 return operation.Failed(ApplicationMessages.UserIsNotActive);
-            var authVm = new AuthenticationViewModel(user.UserId, user.RoleId, user.Email, user.PhoneNumber);
+            var permissions = _roleRepository.GetRoleById(user.RoleId).Permissions.Select(p => p.PermissionCode)
+                .ToList();
+            var authVm = new AuthenticationViewModel(user.UserId, user.RoleId, user.Email, user.PhoneNumber,permissions);
             _authenticationHelper.SignIn(authVm);
             return operation.Succeeded();
         }
@@ -197,7 +199,9 @@ namespace UserManagement.Application
             user.ChangeEmail(EmailConvertor.FixEmail(command.Email));
             _userRepository.SaveChanges();
             //Login With New Email
-            var authVm = new AuthenticationViewModel(user.UserId, user.RoleId, user.Email, user.PhoneNumber);
+            var permissions = _roleRepository.GetRoleById(user.RoleId).Permissions.Select(p => p.PermissionCode)
+                .ToList();
+            var authVm = new AuthenticationViewModel(user.UserId, user.RoleId, user.Email, user.PhoneNumber,permissions);
             _authenticationHelper.SignOut();
             _authenticationHelper.SignIn(authVm);
             return result.Succeeded();
@@ -219,8 +223,9 @@ namespace UserManagement.Application
                 return result.Failed(ApplicationMessages.DuplicatedPhone);
 
             user.ChangePhoneNumber(command.PhoneNumber);
-            _userRepository.SaveChanges();
-            var authVm = new AuthenticationViewModel(user.UserId, user.RoleId, user.Email, user.PhoneNumber);
+            _userRepository.SaveChanges(); var permissions = _roleRepository.GetRoleById(user.RoleId).Permissions.Select(p => p.PermissionCode)
+                .ToList();
+            var authVm = new AuthenticationViewModel(user.UserId, user.RoleId, user.Email, user.PhoneNumber,permissions);
             _authenticationHelper.SignOut();
             _authenticationHelper.SignIn(authVm);
             return result.Succeeded();

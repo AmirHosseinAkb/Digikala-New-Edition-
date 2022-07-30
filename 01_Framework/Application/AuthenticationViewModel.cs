@@ -12,14 +12,16 @@ namespace _01_Framework.Application.Generators
         public long RoleId { get; set; }
         public string? Email { get; set; }
         public string? PhoneNumber { get; set; }
+        public List<int> Permissions { get; set; }
 
 
-        public AuthenticationViewModel(long userId,long roleId,string? email,string? phoneNumber)
+        public AuthenticationViewModel(long userId,long roleId,string? email,string? phoneNumber,List<int> permissions)
         {
             UserId = userId;
             RoleId = roleId;
             Email = email;
             PhoneNumber = phoneNumber;
+            Permissions = permissions;
         }
     }
 }
