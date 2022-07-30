@@ -204,6 +204,9 @@
   <data name="EditPhoneNumber" xml:space="preserve">
     <value>ویرایش شماره موبایل</value>
   </data>
+  <data name="EditRole" xml:space="preserve">
+    <value>ویرایش نقش</value>
+  </data>
   <data name="EditUser" xml:space="preserve">
     <value>ویرایش کاربر</value>
   </data>

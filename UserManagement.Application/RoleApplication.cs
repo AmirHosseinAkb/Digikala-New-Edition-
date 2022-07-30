@@ -35,5 +35,15 @@ namespace UserManagement.Application
             var role = new Role(command.RoleTitle,permissions);
             _roleRepository.Add(role);
         }
+
+        public EditRoleCommand GetRoleForEdit(long roleId)
+        {
+            var role = _roleRepository.GetRoleById(roleId);
+            return new EditRoleCommand()
+            {
+                RoleTitle = role.RoleTitle,
+                PermissionCodes = role.Permissions.Select(p => p.PermissionCode).ToList()
+            };
+        }
     }
 }

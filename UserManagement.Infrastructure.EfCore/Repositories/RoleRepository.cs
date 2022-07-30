@@ -23,7 +23,7 @@ namespace UserManagement.Infrastructure.EfCore.Repositories
 
         public Role GetRoleById(long roleId)
         {
-            return _context.Roles.Find(roleId);
+            return _context.Roles.Include(r=>r.Permissions).SingleOrDefault(r=>r.RoleId==roleId);
         }
 
         public void Add(Role role)

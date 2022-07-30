@@ -34,7 +34,7 @@
                                                 <tr role="row">
                                                     <td>@role.RoleTitle</td>
                                                     <td>
-                                                        <a class="btn btn-primary btn-xs btnEditUser">@ButtonCaptions.Edit</a>
+                                                        <a asp-page="Edit" asp-route-roleId="@role.RoleId" class="btn btn-primary btn-xs btnEditUser">@ButtonCaptions.Edit</a>
                                                         @if (!Model.RoleVm.Take(3).Contains(role))
                                                         {
                                                             <a class="btn btn-danger btn-xs">@ButtonCaptions.Delete</a>
@@ -65,7 +65,7 @@
                 <form method="post" asp-page-handler="CreateRole">
                     <div class="row">
                         <div class="col-md-6">
-                            <input asp-for="Command.RoleTitle" type="text" placeholder="@DataDictionaries.FirstName" class="form-control m-t-10" />
+                            <input asp-for="Command.RoleTitle" type="text" placeholder="@DataDictionaries.RoleTitle" class="form-control m-t-10" />
                             <span asp-validation-for="Command.RoleTitle" class="text-danger"></span>
                         </div>
                         <div class="col-md-6">
@@ -78,7 +78,39 @@
                     </div>
                     <hr />
                     <div>
-                        <input id="btnCreateUser" type="submit" class="btn btn-success" value="@ButtonCaptions.AddNewRole" />
+                        <input  type="submit" class="btn btn-success" value="@ButtonCaptions.AddNewRole" />
+                        <a class="btn btn-danger" data-dismiss="modal">@ButtonCaptions.Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modalEditRole" class="modal fade">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="modal-header">
+                    <h3>@DataDictionaries.AddNewRole</h3>
+                </div>
+                <form method="post" asp-page-handler="EditRole">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input asp-for="Command.RoleTitle" type="text" placeholder="@DataDictionaries.RoleTitle" class="form-control m-t-10" />
+                            <span asp-validation-for="Command.RoleTitle" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="control-label col-md-3">@DataDictionaries.SelectPermissions</label>
+                            <div class="col-md-12">
+                                <select asp-for="Command.PermissionCodes" asp-items="Model.Permissions" class="multi-select" multiple="multiple" id="my_multi_select3">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div>
+                        <input  type="submit" class="btn btn-success" value="@ButtonCaptions.AddNewRole" />
                         <a class="btn btn-danger" data-dismiss="modal">@ButtonCaptions.Cancel</a>
                     </div>
                 </form>

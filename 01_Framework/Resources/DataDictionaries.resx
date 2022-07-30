@@ -204,6 +204,9 @@
   <data name="EditPhoneNumber" xml:space="preserve">
     <value>EditPhoneNumber</value>
   </data>
+  <data name="EditRole" xml:space="preserve">
+    <value>Edit Role</value>
+  </data>
   <data name="EditUser" xml:space="preserve">
     <value>EditUser</value>
   </data>

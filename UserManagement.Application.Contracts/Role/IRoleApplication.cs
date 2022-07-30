@@ -11,5 +11,6 @@ namespace UserManagement.Application.Contracts.Role
     {
         List<RoleViewModel> GetRoles();
         void Create(CreateRoleCommand command);
+        EditRoleCommand GetRoleForEdit(long roleId);
     }
 }
