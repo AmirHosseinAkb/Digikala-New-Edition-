@@ -10,5 +10,6 @@ namespace UserManagement.Domain.RoleAgg
     {
         List<Role> GetRoles();
         Role GetRoleById(long roleId);
+        void Add(Role role);
     }
 }

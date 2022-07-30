@@ -369,6 +369,9 @@
   <data name="RoleTitle" xml:space="preserve">
     <value>Role Title</value>
   </data>
+  <data name="SelectPermissions" xml:space="preserve">
+    <value>Select Permissions</value>
+  </data>
   <data name="September" xml:space="preserve">
     <value>September</value>
   </data>

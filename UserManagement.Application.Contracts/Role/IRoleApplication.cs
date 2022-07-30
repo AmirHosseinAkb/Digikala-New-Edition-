@@ -10,5 +10,6 @@ namespace UserManagement.Application.Contracts.Role
     public interface IRoleApplication
     {
         List<RoleViewModel> GetRoles();
+        void Create(CreateRoleCommand command);
     }
 }

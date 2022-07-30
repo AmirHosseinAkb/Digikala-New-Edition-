@@ -10,20 +10,29 @@ namespace UserManagement.Application
 {
     public class RoleApplication:IRoleApplication
     {
-        private readonly IRoleRepository _reoleRepository;
+        private readonly IRoleRepository _roleRepository;
 
-        public RoleApplication(IRoleRepository reoleRepository)
+        public RoleApplication(IRoleRepository roleRepository)
         {
-            _reoleRepository = reoleRepository;
+            _roleRepository = roleRepository;
         }
         public List<RoleViewModel> GetRoles()
         {
-            return _reoleRepository.GetRoles().Select(r => new RoleViewModel()
+            return _roleRepository.GetRoles().Select(r => new RoleViewModel()
             {
                 RoleId = r.RoleId,
                 RoleTitle = r.RoleTitle,
-                Permissions = r.Permissions.Select(p=>p.PermissionTitle).ToList()
             }).ToList();
+        }
+
+        public void Create(CreateRoleCommand command)
+        {
+            var role = new Role(command.RoleTitle);
+            var permissions = new List<Permission>();
+            foreach (int permissionCode in command.PermissionCodes)
+            {
+                
+            }
         }
     }
 }

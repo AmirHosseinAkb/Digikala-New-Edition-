@@ -15,11 +15,9 @@ namespace UserManagement.Domain.RoleAgg
             
         }
 
-        public Role(string roleTitle,List<Permission> permissions)
+        public Role(string roleTitle)
         {
             RoleTitle=roleTitle;
-            Permissions=permissions;    
-            Users=new List<User>();
         }
 
         public Role(long roleId, string roleTitle)

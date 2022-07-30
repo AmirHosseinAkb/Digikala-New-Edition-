@@ -25,5 +25,11 @@ namespace UserManagement.Infrastructure.EfCore.Repositories
         {
             return _context.Roles.Find(roleId);
         }
+
+        public void Add(Role role)
+        {
+            _context.Roles.Add(role);
+            _context.SaveChanges();
+        }
     }
 }

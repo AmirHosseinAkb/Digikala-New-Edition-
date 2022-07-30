@@ -817,6 +817,15 @@ namespace _01_Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select Permissions.
+        /// </summary>
+        public static string SelectPermissions {
+            get {
+                return ResourceManager.GetString("SelectPermissions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to September.
         /// </summary>
         public static string September {

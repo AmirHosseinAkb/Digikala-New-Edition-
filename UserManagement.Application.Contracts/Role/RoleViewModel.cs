@@ -10,6 +10,5 @@ namespace UserManagement.Application.Contracts.Role
     {
         public long RoleId { get; set; }
         public string RoleTitle { get; set; }
-        public List<string> Permissions { get; set; }
     }
 }

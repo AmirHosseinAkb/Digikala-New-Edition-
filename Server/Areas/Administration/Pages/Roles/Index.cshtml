@@ -15,7 +15,7 @@
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div id="datatable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
                             <div class="m-b-15">
-                                <a id="btnAddUser" class="btn btn-info">@ButtonCaptions.AddNewRole</a>
+                                <a id="btnAddRole" class="btn btn-info">@ButtonCaptions.AddNewRole</a>
                             </div>
                             <div class="row m-t-10">
                                 <div class="col-sm-12">
@@ -35,17 +35,11 @@
                                                 <tr role="row">
                                                     <td>@role.RoleTitle</td>
                                                     <td>
-                                                        <ul>
-                                                            @foreach (var permission in role.Permissions)
-                                                            {
-                                                                <li>@permission</li>
-                                                            }
-                                                        </ul>
-                                                    </td>
-
-                                                    <td>
                                                         <a class="btn btn-primary btn-xs btnEditUser">@ButtonCaptions.Edit</a>
-                                                        <a class="btn btn-danger btn-xs">@ButtonCaptions.Delete</a>
+                                                        @if (!Model.RoleVm.Take(3).Contains(role))
+                                                        {
+                                                            <a class="btn btn-danger btn-xs">@ButtonCaptions.Delete</a>
+                                                        }
                                                     </td>
                                                 </tr>
                                             }
@@ -69,26 +63,19 @@
                 <div class="modal-header">
                     <h3>@DataDictionaries.AddNewRole</h3>
                 </div>
-                <form id="frmCreateUser" method="post" asp-page-handler="CreateUser" enctype="multipart/form-data">
+                <form method="post" asp-page-handler="CreateRole" enctype="multipart/form-data">
                     <div class="row">
-                       @* <div class="col-md-8">
-                            <input asp-for="CreateUserCommand.FirstName" type="text" placeholder="@DataDictionaries.FirstName" class="form-control m-t-10" />
-                            <span asp-validation-for="CreateUserCommand.FirstName" class="text-danger"></span>
-
+                        <div class="col-md-6">
+                            <input asp-for="Command.RoleTitle" type="text" placeholder="@DataDictionaries.FirstName" class="form-control m-t-10" />
+                            <span asp-validation-for="Command.RoleTitle" class="text-danger"></span>
                         </div>
-                        <div class="col-md-4">
-                            <div class="m-t-15">
-                                <div style="border:1px solid gray" class="form-control">
-                                    <p style="font-size:large">@DataDictionaries.UserAvatar</p>
-                                </div>
-                                <div>
-                                    <img id="imgAvatar" class="img img-thumbnail" src="~/UserAvatar/Default.png" alt="UserAvatar" style="width:100%;height:100%;object-fit:cover" asp-append-version=true />
-                                </div>
-                                <div>
-                                    <input asp-for="CreateUserCommand.UserAvatar" id="imgInp" type="file" class="form-control" />
-                                </div>
+                        <div class="col-md-6">
+                            <label class="control-label col-md-3">@DataDictionaries.SelectPermissions</label>
+                            <div class="col-md-12">
+                                <select asp-for="Command.PermissionCodes" asp-items="Model.Permissions" class="multi-select" multiple="multiple" id="my_multi_select3">
+                                </select>
                             </div>
-                        </div>*@
+                        </div>
                     </div>
                     <hr />
                     <div>
@@ -100,3 +87,66 @@
         </div>
     </div>
 </div>
+
+
+@section Styles
+{
+<link href="~/AdminContent/assets/jquery-multi-select/multi-select.css" rel="stylesheet" type="text/css" />
+}
+
+@section Scripts{
+<script src="~/AdminContent/assets/jquery-multi-select/jquery.multi-select.js"></script>
+<script src="~/AdminContent/assets/jquery-multi-select/jquery.quicksearch.js"></script>
+
+<script>
+    jQuery(document).ready(function() {
+        $('#my_multi_select3').multiSelect({
+            selectableOptgroup: true,
+            selectableHeader:
+                "<input type='text' class='form-control search-input' autocomplete='off' placeholder='search...'>",
+            selectionHeader:
+                "<input type='text' class='form-control search-input' autocomplete='off' placeholder='search...'>",
+            afterInit: function(ms) {
+                var that = this,
+                    $selectableSearch = that.$selectableUl.prev(),
+                    $selectionSearch = that.$selectionUl.prev(),
+                    selectableSearchString =
+                        '#' + that.$container.attr('id') + ' .ms-elem-selectable:not(.ms-selected)',
+                    selectionSearchString = '#' + that.$container.attr('id') + ' .ms-elem-selection.ms-selected';
+
+                that.qs1 = $selectableSearch.quicksearch(selectableSearchString)
+                    .on('keydown',
+                        function(e) {
+                            if (e.which === 40) {
+                                that.$selectableUl.focus();
+                                return false;
+                            }
+                        });
+
+                that.qs2 = $selectionSearch.quicksearch(selectionSearchString)
+                    .on('keydown',
+                        function(e) {
+                            if (e.which == 40) {
+                                that.$selectionUl.focus();
+                                return false;
+                            }
+                        });
+            },
+            afterSelect: function() {
+                this.qs1.cache();
+                this.qs2.cache();
+            },
+            afterDeselect: function() {
+                this.qs1.cache();
+                this.qs2.cache();
+            }
+        });
+    });
+</script>
+<script>
+
+    $("#btnAddRole").click(function() {
+        $("#modalAddRole").modal('show');
+    });
+</script>
+}

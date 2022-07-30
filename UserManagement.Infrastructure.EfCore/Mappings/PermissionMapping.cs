@@ -15,7 +15,6 @@ namespace UserManagement.Infrastructure.EfCore.Mappings
         {
             builder.ToTable("Permissions");
             builder.HasKey(p => p.PermissionId);
-            builder.Property(p => p.PermissionTitle).HasMaxLength(200);
             builder.Property(p => p.PermissionCode);
             builder.Property(p => p.RoleId);
 

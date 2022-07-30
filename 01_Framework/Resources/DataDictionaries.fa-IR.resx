@@ -369,6 +369,9 @@
   <data name="RoleTitle" xml:space="preserve">
     <value>عنوان نقش</value>
   </data>
+  <data name="SelectPermissions" xml:space="preserve">
+    <value>انتخاب دسترسی ها</value>
+  </data>
   <data name="September" xml:space="preserve">
     <value>شهریور</value>
   </data>
