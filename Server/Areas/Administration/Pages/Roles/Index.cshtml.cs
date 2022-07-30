@@ -21,6 +21,7 @@ namespace Server.Areas.Administration.Pages.Roles
         public List<RoleViewModel> RoleVm { get; set; }
 
         public List<SelectListItem> Permissions { get; set; } = new List<SelectListItem>();
+        [BindProperty]
         public CreateRoleCommand Command { get; set; }
         public void OnGet()
         {
@@ -45,7 +46,9 @@ namespace Server.Areas.Administration.Pages.Roles
         {
             if (!ModelState.IsValid)
                 return RedirectToPage();
-            return null;
+
+            _roleApplication.Create(Command);
+            return RedirectToPage();
         }
     }
 }

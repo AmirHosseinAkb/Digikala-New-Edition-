@@ -23,7 +23,6 @@
                                         <thead>
                                             <tr role="row">
                                                 <th>@DataDictionaries.RoleTitle</th>
-                                                <th>@DataDictionaries.RolePermissions</th>
                                                 <th>@DataDictionaries.Operations</th>
                                             </tr>
                                         </thead>
@@ -63,7 +62,7 @@
                 <div class="modal-header">
                     <h3>@DataDictionaries.AddNewRole</h3>
                 </div>
-                <form method="post" asp-page-handler="CreateRole" enctype="multipart/form-data">
+                <form method="post" asp-page-handler="CreateRole">
                     <div class="row">
                         <div class="col-md-6">
                             <input asp-for="Command.RoleTitle" type="text" placeholder="@DataDictionaries.FirstName" class="form-control m-t-10" />

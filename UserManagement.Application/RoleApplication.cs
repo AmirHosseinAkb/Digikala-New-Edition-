@@ -27,12 +27,13 @@ namespace UserManagement.Application
 
         public void Create(CreateRoleCommand command)
         {
-            var role = new Role(command.RoleTitle);
             var permissions = new List<Permission>();
             foreach (int permissionCode in command.PermissionCodes)
             {
-                
+                permissions.Add(new Permission(permissionCode));
             }
+            var role = new Role(command.RoleTitle,permissions);
+            _roleRepository.Add(role);
         }
     }
 }
