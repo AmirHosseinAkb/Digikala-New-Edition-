@@ -11,5 +11,7 @@ namespace UserManagement.Domain.RoleAgg
         List<Role> GetRoles();
         Role GetRoleById(long roleId);
         void Add(Role role);
+        bool IsExistRoleByTitle(string title);
+        void SaveChanges();
     }
 }

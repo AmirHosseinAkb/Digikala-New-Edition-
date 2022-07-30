@@ -31,5 +31,15 @@ namespace UserManagement.Infrastructure.EfCore.Repositories
             _context.Roles.Add(role);
             _context.SaveChanges();
         }
+
+        public bool IsExistRoleByTitle(string title)
+        {
+            return _context.Roles.Any(r => r.RoleTitle == title);
+        }
+
+        public void SaveChanges()
+        {
+            _context.SaveChanges();
+        }
     }
 }

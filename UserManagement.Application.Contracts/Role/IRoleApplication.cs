@@ -4,13 +4,15 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using _01_Framework.Application.Generators;
 
 namespace UserManagement.Application.Contracts.Role
 {
     public interface IRoleApplication
     {
         List<RoleViewModel> GetRoles();
-        void Create(CreateRoleCommand command);
+        OperationResult Create(CreateRoleCommand command);
         EditRoleCommand GetRoleForEdit(long roleId);
+        OperationResult Edit(EditRoleCommand Command);
     }
 }

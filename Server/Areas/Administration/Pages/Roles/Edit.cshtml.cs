@@ -16,13 +16,15 @@ namespace Server.Areas.Administration.Pages.Roles
 
         private readonly IEnumerable<IPermissionExposer> _exposers;
         private readonly IRoleApplication _roleApplication;
+
+        public string ErrorMessage { get; set; }
         [BindProperty]
         public EditRoleCommand Command { get; set; }
 
         public List<SelectListItem> Permissions { get; set; } = new List<SelectListItem>();
-        public void OnGet(long roleId)
+
+        public void GetInformations()
         {
-            Command = _roleApplication.GetRoleForEdit(roleId);
             foreach (var exposer in _exposers)
             {
                 var exposedPermissions = exposer.Expose();
@@ -43,6 +45,25 @@ namespace Server.Areas.Administration.Pages.Roles
                     }
                 }
             }
+        }
+        public void OnGet(long roleId)
+        {
+            Command = _roleApplication.GetRoleForEdit(roleId);
+            GetInformations();
+        }
+        
+        public IActionResult OnPost()
+        {
+            if (!ModelState.IsValid)
+                return RedirectToPage();
+            var result = _roleApplication.Edit(Command);
+            if (!result.IsSucceeded)
+            {
+                ErrorMessage = result.Message;
+                GetInformations();
+                return Page();
+            }
+            return RedirectToPage("Index");
         }
     }
 }

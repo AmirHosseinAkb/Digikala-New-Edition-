@@ -10,6 +10,7 @@ namespace UserManagement.Application.Contracts.Role
 {
     public class EditRoleCommand
     {
+        public long RoleId { get; set; }
         [Required(ErrorMessage = ValidationMessages.IsRequired)]
         [MaxLength(200,ErrorMessage = ValidationMessages.MaxLenght)]
         public string RoleTitle { get; set; }

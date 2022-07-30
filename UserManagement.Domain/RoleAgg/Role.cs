@@ -8,7 +8,7 @@ namespace UserManagement.Domain.RoleAgg
         public string RoleTitle { get; private set; }
 
         public List<User> Users { get; private set; }
-        public List<Permission> Permissions { get; set; }
+        public List<Permission> Permissions { get;private set; }
 
         protected Role()
         {
@@ -25,6 +25,12 @@ namespace UserManagement.Domain.RoleAgg
         {
             RoleId = roleId;
             RoleTitle=roleTitle;
+        }
+
+        public void Edit(string roleTitle, List<Permission> permissions)
+        {
+            RoleTitle = roleTitle;
+            Permissions = permissions;
         }
     }
 }

@@ -13,10 +13,16 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12">
-
+                        @if (Model.ErrorMessage != null)
+                        {
+                            <div class="alert alert-warning">
+                                @Model.ErrorMessage
+                            </div>
+                        }
                         <form method="post" asp-page-handler="EditRole">
                             <div class="row">
                                 <div class="col-md-6">
+                                    <input asp-for="Command.RoleId" type="hidden" />
                                     <input asp-for="Command.RoleTitle" type="text" placeholder="@DataDictionaries.RoleTitle" class="form-control m-t-10" />
                                     <span asp-validation-for="Command.RoleTitle" class="text-danger"></span>
                                 </div>
