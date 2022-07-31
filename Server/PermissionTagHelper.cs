@@ -6,7 +6,7 @@ namespace Server
     [HtmlTargetElement(Attributes="Permission")]
     public class PermissionTagHelper:TagHelper
     {
-        public int PermissionCode { get; set; }
+        public int[] PermissionCodes { get; set; }
         private readonly IAuthenticationHelper _authenticationHelper;
 
         public PermissionTagHelper(IAuthenticationHelper authenticationHelper)
@@ -22,7 +22,7 @@ namespace Server
             }
 
             var permissions = _authenticationHelper.GetCurrentUserPermissions();
-            if (!permissions.Contains(PermissionCode))
+            if (!permissions.Intersect(PermissionCodes).Any())
             {
                 output.SuppressOutput();
                 return;
