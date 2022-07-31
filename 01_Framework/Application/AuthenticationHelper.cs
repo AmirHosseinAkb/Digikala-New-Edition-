@@ -70,5 +70,13 @@ namespace _01_Framework.Application.Generators
                 ? long.Parse(_httpContextAccessor.HttpContext.User.Claims.First(c => c.Type == "UserId").Value)
                 : 0;
         }
+
+        public List<int> GetCurrentUserPermissions()
+        {
+            if (!IsAuthenticated())
+                return new List<int>();
+            var permissions=JsonConvert.DeserializeObject<List<int>>(_httpContextAccessor.HttpContext.User.Claims?.FirstOrDefault(c => c.Type == "Permissions").Value);
+            return permissions;
+        }
     }
 }

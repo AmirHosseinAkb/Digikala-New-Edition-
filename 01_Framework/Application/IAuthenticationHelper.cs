@@ -14,5 +14,6 @@ namespace _01_Framework.Application.Generators
         string GetCurrentUserEmail();
         string GetCurrentUserPhoneNumber();
         long GetCurrentUserId();
+        List<int> GetCurrentUserPermissions();
     }
 }

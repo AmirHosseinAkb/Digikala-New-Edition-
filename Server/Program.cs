@@ -5,6 +5,7 @@ using _01_Framework.Application.Generators.Email;
 using _01_Framework.Application.Generators.ZarinPal;
 using FoolProof.Core;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Server;
 using UserManagement.Infrastructure.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -47,7 +48,8 @@ builder.Services.AddSession(options =>
 
 #endregion
 
-builder.Services.AddRazorPages();
+builder.Services.AddRazorPages().AddMvcOptions(options=>
+    options.Filters.Add<SecurityPageFilter>());
 builder.Services.AddAntiforgery(o => o.HeaderName="XSRF-TOKEN");
 builder.Services.AddFoolProof();
 var app = builder.Build();
