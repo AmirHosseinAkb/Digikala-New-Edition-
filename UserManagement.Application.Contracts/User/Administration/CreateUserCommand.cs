@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
-using _01_Framework.Application.Generators;
+using _01_Framework.Application;
 using FoolProof.Core;
 using Microsoft.AspNetCore.Http;
 

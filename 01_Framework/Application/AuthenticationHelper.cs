@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 
-namespace _01_Framework.Application.Generators
+namespace _01_Framework.Application
 {
     public class AuthenticationHelper:IAuthenticationHelper
     {
@@ -78,5 +78,7 @@ namespace _01_Framework.Application.Generators
             var permissions=JsonConvert.DeserializeObject<List<int>>(_httpContextAccessor.HttpContext.User.Claims?.FirstOrDefault(c => c.Type == "Permissions").Value);
             return permissions;
         }
+
+        
     }
 }

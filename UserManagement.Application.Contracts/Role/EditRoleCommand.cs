@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using _01_Framework.Application.Generators;
+using _01_Framework.Application;
 
 namespace UserManagement.Application.Contracts.Role
 {

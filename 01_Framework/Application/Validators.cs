@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _01_Framework.Application.Generators
+namespace _01_Framework.Application
 {
     public static class Validators
     {

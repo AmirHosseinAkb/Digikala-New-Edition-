@@ -1,3 +1,4 @@
+using _01_Framework.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using UserManagement.Application.Contracts.Role;
@@ -8,7 +9,6 @@ namespace Server.Areas.Administration.Pages.Users
 {
     public class IndexModel : PageModel
     {
-
         public IndexModel(IUserApplication userApplication, IRoleApplication roleApplication)
         {
             _userApplication = userApplication;
@@ -25,6 +25,7 @@ namespace Server.Areas.Administration.Pages.Users
         [BindProperty] 
         public EditUserCommand EditUserCommand { get; set; }
         
+        [NeedsPermission(UserPermissions.UsersList)]
         public void OnGet(int pageId = 1, string fullName = "", string email = "", string phoneNumber = "", int take = 20)
         {
             ViewData["Take"] = take;
@@ -32,6 +33,7 @@ namespace Server.Areas.Administration.Pages.Users
             UsersInformationsVm = _userApplication.GetUsersAdminInformationsForShow(pageId,fullName,email,phoneNumber,take);
         }
 
+        [NeedsPermission(UserPermissions.CreateUser)]
         public IActionResult OnPostCreateUser(long roleId)
         {
             ModelState.Remove("Email");
@@ -50,6 +52,7 @@ namespace Server.Areas.Administration.Pages.Users
             return RedirectToPage();
         }
 
+        [NeedsPermission(UserPermissions.EditUser)]
         public IActionResult OnPostEditUser(long roleId)
         {
             ModelState.Remove("Email");
@@ -65,6 +68,7 @@ namespace Server.Areas.Administration.Pages.Users
             return RedirectToPage();
         }
 
+        [NeedsPermission(UserPermissions.DeleteUser)]
         public IActionResult OnPostDeleteUser(long userId)
         {
             _userApplication.DeleteUser(userId);

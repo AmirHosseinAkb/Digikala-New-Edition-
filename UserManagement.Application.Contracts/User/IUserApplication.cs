@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using _01_Framework.Application.Generators;
+using _01_Framework.Application;
 using UserManagement.Application.Contracts.User.Administration;
 using UserManagement.Application.Contracts.User.UserPanel;
 

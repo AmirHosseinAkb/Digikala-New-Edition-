@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 
-namespace _01_Framework.Application.Generators.ZarinPal
+namespace _01_Framework.Application.ZarinPal
 {
     public class ZarinpalFactory:IZarinpalFactory
     {

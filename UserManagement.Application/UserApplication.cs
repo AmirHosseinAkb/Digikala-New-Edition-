@@ -1,7 +1,6 @@
 ﻿using System.Globalization;
 using _01_Framework.Application;
-using _01_Framework.Application.Generators;
-using _01_Framework.Application.Generators.Email;
+using _01_Framework.Application.Email;
 using _01_Framework.Infrastructure;
 using _01_Framework.Resources;
 using UserManagement.Application.Contracts.User;

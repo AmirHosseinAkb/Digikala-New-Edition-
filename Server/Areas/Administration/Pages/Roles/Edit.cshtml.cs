@@ -1,3 +1,4 @@
+using _01_Framework.Application;
 using _01_Framework.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -8,13 +9,15 @@ namespace Server.Areas.Administration.Pages.Roles
 {
     public class EditModel : PageModel
     {
-        public EditModel(IRoleApplication roleApplication,IEnumerable<IPermissionExposer> exposers)
+        public EditModel(IRoleApplication roleApplication,IEnumerable<IPermissionExposer> exposers,IAuthenticationHelper authenticationHelper)
         {
             _roleApplication=roleApplication;
             _exposers=exposers;
+            _authenticationHelper=authenticationHelper;
         }
 
         private readonly IEnumerable<IPermissionExposer> _exposers;
+        private readonly IAuthenticationHelper _authenticationHelper;
         private readonly IRoleApplication _roleApplication;
 
         public string ErrorMessage { get; set; }
@@ -63,6 +66,7 @@ namespace Server.Areas.Administration.Pages.Roles
                 GetInformations();
                 return Page();
             }
+            _authenticationHelper.UpdateCurrentUserPermissions(Command.PermissionCodes);
             return RedirectToPage("Index");
         }
     }

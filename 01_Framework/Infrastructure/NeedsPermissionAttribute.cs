@@ -2,11 +2,11 @@
 {
     public class NeedsPermissionAttribute:Attribute
     {
-        public int PermissionId { get; set; }
+        public int PermissionCode { get; set; }
 
-        public NeedsPermissionAttribute(int permissionId)
+        public NeedsPermissionAttribute(int permissionCode)
         {
-            PermissionId = permissionId;
+            PermissionCode = permissionCode;
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-using _01_Framework.Application.Generators;
+using _01_Framework.Application;
 using _01_Framework.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -21,18 +21,17 @@ namespace Server
 
         public void OnPageHandlerExecuting(PageHandlerExecutingContext context)
         {
-            if (!_authenticationHelper.IsAuthenticated())
-                context.HttpContext.Response.Redirect("/RegisterAndLogin");
+            var handlerPermission =
+                (NeedsPermissionAttribute) context.HandlerMethod.MethodInfo.GetCustomAttribute(
+                    typeof(NeedsPermissionAttribute));
 
-            var handlerPermission =(NeedsPermissionAttribute)context.HandlerMethod.MethodInfo.GetCustomAttribute(typeof(NeedsPermissionAttribute));
-
-            var currentUserPermissions = _authenticationHelper.GetCurrentUserPermissions();
-
-            if (currentUserPermissions == null)
+            if (handlerPermission == null)
                 return;
 
-            if(!currentUserPermissions.Contains(handlerPermission.PermissionId))
-                context.HttpContext.Response.Redirect("/RegisterAndLogin");
+            var accountPermissions = _authenticationHelper.GetCurrentUserPermissions();
+
+            if (accountPermissions.All(x => x != handlerPermission.PermissionCode))
+                context.HttpContext.Response.Redirect("/Account/RegisterAndLogin");
 
         }
 

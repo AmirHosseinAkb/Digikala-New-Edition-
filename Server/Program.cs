@@ -1,8 +1,8 @@
 
-using _01_Framework.Application.Generators;
+using _01_Framework.Application;
 using _01_Framework.Infrastructure.ExtensionMethods;
-using _01_Framework.Application.Generators.Email;
-using _01_Framework.Application.Generators.ZarinPal;
+using _01_Framework.Application.Email;
+using _01_Framework.Application.ZarinPal;
 using FoolProof.Core;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Server;
@@ -33,9 +33,10 @@ builder.Services.AddScoped<IZarinpalFactory, ZarinpalFactory>();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
-        options.LoginPath = "/RegisterAndLogin";
-        options.LogoutPath = "/Logout";
+        options.LoginPath = "/Account/RegisterAndLogin";
+        options.LogoutPath = "/Account/Logout";
         options.ExpireTimeSpan = TimeSpan.FromDays(14);
+        
     });
 
 #endregion
@@ -48,8 +49,9 @@ builder.Services.AddSession(options =>
 
 #endregion
 
-builder.Services.AddRazorPages().AddMvcOptions(options=>
+builder.Services.AddRazorPages().AddMvcOptions(options =>
     options.Filters.Add<SecurityPageFilter>());
+
 builder.Services.AddAntiforgery(o => o.HeaderName="XSRF-TOKEN");
 builder.Services.AddFoolProof();
 var app = builder.Build();

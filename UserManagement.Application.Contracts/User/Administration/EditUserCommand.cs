@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using FoolProof.Core;
-using _01_Framework.Application.Generators;
+using _01_Framework.Application;
 using Microsoft.AspNetCore.Http;
 
 namespace UserManagement.Application.Contracts.User.Administration

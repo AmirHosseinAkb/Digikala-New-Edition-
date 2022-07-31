@@ -1,5 +1,5 @@
 ﻿using System.Reflection.Metadata.Ecma335;
-using _01_Framework.Application.Generators;
+using _01_Framework.Application;
 using UserManagement.Application.Contracts.Role;
 using UserManagement.Domain.RoleAgg;
 using UserManagement.Domain.UserAgg;
