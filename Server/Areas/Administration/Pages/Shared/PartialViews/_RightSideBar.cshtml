@@ -22,6 +22,13 @@
         UserPermissions.DeletedUsersList,
         UserPermissions.ReturnUser
             };
+    var manageRolePermissions = new int[]
+    {
+        RolePermissions.RolesList,
+        RolePermissions.CreateRole,
+        RolePermissions.EditRole,
+        RolePermissions.DeleteRole
+    };
 }
 <div class="left side-menu">
     <div class="sidebar-inner slimscrollleft">
@@ -64,7 +71,7 @@
                     </ul>
                 </li>
 
-                <li>
+                <li permissions="manageRolePermissions">
                     <a href="/Administration/Roles" class="waves-effect"><i class="md-settings"></i><span> @DataDictionaries.ManageRolesAndPermissions </span></a>
                 </li>
 

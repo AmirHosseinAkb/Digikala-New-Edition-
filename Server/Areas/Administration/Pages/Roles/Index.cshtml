@@ -15,7 +15,7 @@
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div id="datatable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
                             <div class="m-b-15">
-                                <a asp-page="Create" class="btn btn-info">@ButtonCaptions.AddNewRole</a>
+                                <a permissions="new int[]{RolePermissions.CreateRole}" asp-page="Create" class="btn btn-info">@ButtonCaptions.AddNewRole</a>
                             </div>
                             <div class="row m-t-10">
                                 <div class="col-sm-12">
@@ -34,10 +34,10 @@
                                                 <tr role="row">
                                                     <td>@role.RoleTitle</td>
                                                     <td>
-                                                        <a asp-page="Edit" asp-route-roleId="@role.RoleId" class="btn btn-primary btn-xs btnEditUser">@ButtonCaptions.Edit</a>
+                                                        <a permissions="new int[]{RolePermissions.EditRole}" asp-page="Edit" asp-route-roleId="@role.RoleId" class="btn btn-primary btn-xs btnEditUser">@ButtonCaptions.Edit</a>
                                                         @if (!Model.RoleVm.Take(3).Contains(role))
                                                         {
-                                                            <a onclick="GetRoleInformationsForDelete('@role.RoleId','@role.RoleTitle')" class="btn btn-danger btn-xs">@ButtonCaptions.Delete</a>
+                                                            <a permissions="new int[]{RolePermissions.DeleteRole}" onclick="GetRoleInformationsForDelete('@role.RoleId','@role.RoleTitle')" class="btn btn-danger btn-xs">@ButtonCaptions.Delete</a>
                                                         }
                                                     </td>
                                                 </tr>

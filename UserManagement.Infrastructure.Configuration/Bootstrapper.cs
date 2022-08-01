@@ -30,6 +30,7 @@ namespace UserManagement.Infrastructure.Configuration
             services.AddScoped<ITransactionRepository,TransactionRepository>();
             services.AddScoped<ITransactionApplication,TransactionApplication>();
             services.AddTransient<IPermissionExposer,UserPermissionExposer>();
+            services.AddTransient<IPermissionExposer,RolePermissionExposer>();
             services.AddDbContext<AccountContext>(options =>
                 options.UseSqlServer(connectionString));
         }

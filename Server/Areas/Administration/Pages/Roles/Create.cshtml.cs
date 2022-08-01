@@ -41,11 +41,14 @@ namespace Server.Areas.Administration.Pages.Roles
                 }
             }
         }
+
+        [NeedsPermission(RolePermissions.CreateRole)]
         public void OnGet()
         {
             GetInformations();
         }
 
+        [NeedsPermission(RolePermissions.CreateRole)]
         public IActionResult OnPost()
         {
             if (!ModelState.IsValid)

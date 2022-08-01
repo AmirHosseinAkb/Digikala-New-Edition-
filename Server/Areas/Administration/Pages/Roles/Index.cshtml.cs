@@ -18,12 +18,13 @@ namespace Server.Areas.Administration.Pages.Roles
 
         public List<RoleViewModel> RoleVm { get; set; }
 
-
+        [NeedsPermission(RolePermissions.RolesList)]
         public void OnGet()
         {
             RoleVm = _roleApplication.GetRoles();
         }
 
+        [NeedsPermission(RolePermissions.DeleteRole)]
         public IActionResult OnPostDeleteRole(long roleId)
         {
             var result = _roleApplication.Delete(roleId);

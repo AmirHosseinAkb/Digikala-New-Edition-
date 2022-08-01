@@ -49,12 +49,15 @@ namespace Server.Areas.Administration.Pages.Roles
                 }
             }
         }
+
+        [NeedsPermission(RolePermissions.EditRole)]
         public void OnGet(long roleId)
         {
             Command = _roleApplication.GetRoleForEdit(roleId);
             GetInformations();
         }
         
+        [NeedsPermission(RolePermissions.EditRole)]
         public IActionResult OnPost()
         {
             if (!ModelState.IsValid)

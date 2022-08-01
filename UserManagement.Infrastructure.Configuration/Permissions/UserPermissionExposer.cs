@@ -15,11 +15,11 @@ namespace UserManagement.Infrastructure.Configuration.Permissions
             {
                 {"User",new List<PermissionDto>()
                     {
-                        new PermissionDto("UsersList",UserPermissions.UsersList),
-                        new PermissionDto("CreateUser",UserPermissions.CreateUser),
-                        new PermissionDto("EditUser",UserPermissions.EditUser),
-                        new PermissionDto("DeleteUser",UserPermissions.DeleteUser),
-                        new PermissionDto("DeletedUsersList",UserPermissions.DeletedUsersList),
+                        new PermissionDto("Users List",UserPermissions.UsersList),
+                        new PermissionDto("Create User",UserPermissions.CreateUser),
+                        new PermissionDto("Edit User",UserPermissions.EditUser),
+                        new PermissionDto("Delete User",UserPermissions.DeleteUser),
+                        new PermissionDto("Deleted UsersList",UserPermissions.DeletedUsersList),
                         new PermissionDto("Return User",UserPermissions.ReturnUser)
                     }
                 }
