@@ -3,6 +3,10 @@
 @model Server.Areas.Administration.Pages.Users.IndexModel
 @{
     var roles = ViewData["Roles"] as List<RoleViewModel>;
+
+    var createUserPermission = new int[] {UserPermissions.CreateUser};
+    var editUserPermission = new int[] {UserPermissions.EditUser};
+    var deleteUserPermission = new int[] {UserPermissions.DeleteUser};
 }
 
 <div class="row">
@@ -16,11 +20,11 @@
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div id="datatable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
-                            <div class="m-b-15">
-                                <a id="btnAddUser" class="btn btn-info">@ButtonCaptions.AddNewUser</a>
+                            <div permissions="createUserPermission" class="m-b-15">
+                                <a  id="btnAddUser" class="btn btn-info">@ButtonCaptions.AddNewUser</a>
                             </div>
 
-                            <div class="row">
+                            <div permissions="new int[]{UserPermissions.SearchUser}" class="row">
                                 <form method="get">
                                     <div class="col-md-3">
                                         <div id="datatable_filter" class="dataTables_filter">
@@ -112,8 +116,8 @@
                                                         var splitFullName = user.FullName.Split(' ');
                                                     }
                                                     <td>
-                                                        <a onclick="GetUserInformationsForEdit('@splitFullName[0]','@splitFullName[1]','@user.Email','@user.PhoneNumber','@user.AvatarName',@user.UserId,@user.RoleId)" class="btn btn-primary btn-xs btnEditUser">@ButtonCaptions.Edit</a>
-                                                        <a onclick="GetUserInformationsForDelete(@user.UserId,'@user.FullName','@user.AvatarName')" class="btn btn-danger btn-xs">@ButtonCaptions.Delete</a>
+                                                        <a permissions="editUserPermission" onclick="GetUserInformationsForEdit('@splitFullName[0]','@splitFullName[1]','@user.Email','@user.PhoneNumber','@user.AvatarName',@user.UserId,@user.RoleId)" class="btn btn-primary btn-xs btnEditUser">@ButtonCaptions.Edit</a>
+                                                        <a permissions="deleteUserPermission" onclick="GetUserInformationsForDelete(@user.UserId,'@user.FullName','@user.AvatarName')" class="btn btn-danger btn-xs">@ButtonCaptions.Delete</a>
                                                     </td>
                                                 </tr>
                                             }
@@ -157,7 +161,7 @@
         </div>
     </div>
 </div>
-<div id="modalAddUser" class="modal fade">
+<div permissions="createUserPermission" id="modalAddUser" class="modal fade">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
@@ -222,7 +226,7 @@
         </div>
     </div>
 </div>
-<div id="modalEditUser" class="modal fade">
+<div permissions="editUserPermission" id="modalEditUser" class="modal fade">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
@@ -290,7 +294,7 @@
         </div>
     </div>
 </div>
-<div id="modalDeleteUser" class="modal fade">
+<div permissions="deleteUserPermission" id="modalDeleteUser" class="modal fade">
     <div class="modal-dialog" style="width:45%">
         <div class="modal-content">
             <div class="modal-body">

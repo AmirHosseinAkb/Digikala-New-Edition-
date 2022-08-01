@@ -1,6 +1,8 @@
 ﻿@page
 @model Server.Areas.Administration.Pages.Users.DeletedUsersModel
 @{
+    var searchUserPermission = new int[] {UserPermissions.SearchUser};
+    var returnUserPermission = new int[] {UserPermissions.ReturnUser};
 }
 
 <div class="row">
@@ -11,10 +13,10 @@
             </div>
 
             <div class="panel-body">
-                <div class="row">
+                <div  class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div id="datatable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
-                            <div class="row">
+                            <div permissions="searchUserPermission" class="row">
                                 <form method="get">
                                     <div class="col-md-3">
                                         <div id="datatable_filter" class="dataTables_filter">

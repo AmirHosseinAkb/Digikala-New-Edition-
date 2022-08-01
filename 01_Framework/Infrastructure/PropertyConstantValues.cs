@@ -32,6 +32,7 @@ namespace _01_Framework.Infrastructure
         public const int DeleteUser = 103;
         public const int DeletedUsersList = 104;
         public const int ReturnUser = 105;
+        public const int SearchUser = 106;
     }
 
     public static class RolePermissions
