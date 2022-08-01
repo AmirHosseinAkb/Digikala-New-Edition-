@@ -222,6 +222,9 @@
   <data name="Entries" xml:space="preserve">
     <value>entries</value>
   </data>
+  <data name="Exit" xml:space="preserve">
+    <value>Exit</value>
+  </data>
   <data name="February" xml:space="preserve">
     <value>February</value>
   </data>

@@ -63,10 +63,14 @@ namespace UserManagement.Application
             }
 
             var permissions = new List<Permission>();
-            foreach (var code in Command.PermissionCodes)
+            if (Command.PermissionCodes != null)
             {
-                permissions.Add(new Permission(code));
+                foreach (var code in Command.PermissionCodes)
+                {
+                    permissions.Add(new Permission(code));
+                }
             }
+            
             role.Edit(Command.RoleTitle,permissions);
             _roleRepository.SaveChanges();
             return result.Succeeded();

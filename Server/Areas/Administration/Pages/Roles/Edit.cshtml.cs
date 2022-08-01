@@ -66,7 +66,6 @@ namespace Server.Areas.Administration.Pages.Roles
                 GetInformations();
                 return Page();
             }
-            _authenticationHelper.UpdateCurrentUserPermissions(Command.PermissionCodes);
             return RedirectToPage("Index");
         }
     }

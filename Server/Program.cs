@@ -34,7 +34,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     .AddCookie(options =>
     {
         options.LoginPath = "/Account/RegisterAndLogin";
-        options.LogoutPath = "/Account/Logout";
+        options.LogoutPath = "/Account/RegisterAndLogin/Logout";
         options.ExpireTimeSpan = TimeSpan.FromDays(14);
         
     });

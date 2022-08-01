@@ -53,7 +53,7 @@ namespace Server.Pages.Account
             return Page();
         }
 
-        public IActionResult OnGetSignOut()
+        public IActionResult OnGetLogout()
         {
             _userApplication.SignOut();
             return Redirect("/");

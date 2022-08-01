@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace Server
 {
-    [HtmlTargetElement(Attributes="Permission")]
+    [HtmlTargetElement(Attributes="Permissions")]
     public class PermissionTagHelper:TagHelper
     {
-        public int[] PermissionCodes { get; set; }
+        public int[] Permissions { get; set; }
         private readonly IAuthenticationHelper _authenticationHelper;
 
         public PermissionTagHelper(IAuthenticationHelper authenticationHelper)
@@ -22,7 +22,7 @@ namespace Server
             }
 
             var permissions = _authenticationHelper.GetCurrentUserPermissions();
-            if (!permissions.Intersect(PermissionCodes).Any())
+            if (!permissions.Intersect(Permissions).Any())
             {
                 output.SuppressOutput();
                 return;

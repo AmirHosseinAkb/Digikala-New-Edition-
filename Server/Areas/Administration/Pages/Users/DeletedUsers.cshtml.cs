@@ -1,3 +1,4 @@
+using _01_Framework.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -16,6 +17,7 @@ namespace Server.Areas.Administration.Pages.Users
         }
 
         public Tuple<List<UserAdminInformationsViewModel>,int,int,int> UsersInformationsVm { get; set; }
+        [NeedsPermission(UserPermissions.DeletedUsersList)]
         public void OnGet(int pageId = 1, string fullName = "", string email = "",
             string phoneNumber = "", int take = 20)
         {

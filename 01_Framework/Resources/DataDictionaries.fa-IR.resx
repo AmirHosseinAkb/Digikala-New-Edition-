@@ -222,6 +222,9 @@
   <data name="Entries" xml:space="preserve">
     <value>ورودی</value>
   </data>
+  <data name="Exit" xml:space="preserve">
+    <value>خروج</value>
+  </data>
   <data name="February" xml:space="preserve">
     <value>بهمن</value>
   </data>

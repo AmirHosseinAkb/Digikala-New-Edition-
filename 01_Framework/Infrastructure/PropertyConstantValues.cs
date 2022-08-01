@@ -22,9 +22,7 @@ namespace _01_Framework.Infrastructure
     {
         public const int Deposit = 1;
         public const int Withdraw = 2;
-
     }
-
 
     public static class UserPermissions
     {
@@ -33,5 +31,6 @@ namespace _01_Framework.Infrastructure
         public const int EditUser = 102;
         public const int DeleteUser = 103;
         public const int DeletedUsersList = 104;
+        public const int ReturnUser = 105;
     }
 }

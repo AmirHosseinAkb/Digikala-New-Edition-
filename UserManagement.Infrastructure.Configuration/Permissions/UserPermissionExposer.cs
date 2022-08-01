@@ -20,6 +20,7 @@ namespace UserManagement.Infrastructure.Configuration.Permissions
                         new PermissionDto("EditUser",UserPermissions.EditUser),
                         new PermissionDto("DeleteUser",UserPermissions.DeleteUser),
                         new PermissionDto("DeletedUsersList",UserPermissions.DeletedUsersList),
+                        new PermissionDto("Return User",UserPermissions.ReturnUser)
                     }
                 }
             };
