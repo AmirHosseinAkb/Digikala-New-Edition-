@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -8,6 +9,7 @@ using ShopManagement.Domain.ProductAgg;
 using ShopManagement.Domain.ProductColorAgg;
 using ShopManagement.Domain.ProductGroupAgg;
 using ShopManagement.Domain.ProductImageAgg;
+using ShopManagement.Infrastructure.EfCore.Mappings;
 
 namespace ShopManagement.Infrastructure.EfCore
 {
@@ -25,7 +27,8 @@ namespace ShopManagement.Infrastructure.EfCore
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+            var assembley = typeof(ProductMapping).Assembly;
+            modelBuilder.ApplyConfigurationsFromAssembly(assembley);
             base.OnModelCreating(modelBuilder);
         }
     }

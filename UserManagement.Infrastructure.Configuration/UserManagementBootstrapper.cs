@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using _01_Framework.Infrastructure;
+﻿using _01_Framework.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using UserManagement.Application;
@@ -19,7 +14,7 @@ using UserManagement.Infrastructure.EfCore.Repositories;
 
 namespace UserManagement.Infrastructure.Configuration
 {
-    public class Bootstrapper
+    public class UserManagementBootstrapper
     {
         public static void Config(IServiceCollection services,string connectionString)
         {
