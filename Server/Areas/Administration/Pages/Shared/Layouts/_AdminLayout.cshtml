@@ -9,34 +9,33 @@
 
 <body class="fixed-left">
 
-<div id="wrapper">
+    <div id="wrapper">
 
-    <partial name="PartialViews/_Header"></partial>
+        <partial name="PartialViews/_Header"></partial>
 
-    <partial name="PartialViews/_RightSideBar"></partial>
+        <partial name="PartialViews/_RightSideBar"></partial>
 
-    <div class="content-page">
-        <!-- Start content -->
-        <div class="content">
-            @RenderBody()
-        </div>
-        <partial name="PartialViews/_Footer"></partial>
-        
-        <div id="MainModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-            <div class="modal-dialog">
-                <div class="modal-content" id="ModalContent">
-
-                </div>
+        <div class="content-page">
+            <!-- Start content -->
+            <div class="content">
+                @RenderBody()
             </div>
+            <partial name="PartialViews/_Footer"></partial>
         </div>
+
+        <partial name="PartialViews/_LeftSideBar"></partial>
 
     </div>
 
-    <partial name="PartialViews/_LeftSideBar"></partial>
+    <partial name="PartialViews/_Scripts"></partial>
+    @RenderSection("Scripts",false)
 
+<div id="MainModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div id="ModalDialog" class="modal-dialog">
+        <div class="modal-content" id="ModalContent">
+        </div>
+    </div>
 </div>
 
-<partial name="PartialViews/_Scripts"></partial>
-@RenderSection("Scripts",false)
 </body>
 </html>

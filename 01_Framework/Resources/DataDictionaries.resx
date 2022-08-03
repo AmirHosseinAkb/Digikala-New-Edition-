@@ -240,8 +240,14 @@
   <data name="FullName" xml:space="preserve">
     <value>Full Name</value>
   </data>
+  <data name="Group" xml:space="preserve">
+    <value>Group</value>
+  </data>
   <data name="Hello" xml:space="preserve">
     <value>Hello</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>Image</value>
   </data>
   <data name="IncreaseBalance" xml:space="preserve">
     <value>Increase Balance</value>
@@ -306,6 +312,9 @@
   <data name="OrderPendingPayment" xml:space="preserve">
     <value>Your order is pending payment. To avoid order cancellation, please complete the payment.</value>
   </data>
+  <data name="OtherLangTitle" xml:space="preserve">
+    <value>Other Language Title</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>
@@ -323,6 +332,12 @@
   </data>
   <data name="PhoneNumber" xml:space="preserve">
     <value>Phone Number</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="PrimaryGroup" xml:space="preserve">
+    <value>Primary Group</value>
   </data>
   <data name="ProductGroups" xml:space="preserve">
     <value>Product Groups</value>
@@ -390,6 +405,9 @@
   <data name="RoleTitle" xml:space="preserve">
     <value>Role Title</value>
   </data>
+  <data name="SecondaryGroup" xml:space="preserve">
+    <value>Secondary Group</value>
+  </data>
   <data name="SelectPermissions" xml:space="preserve">
     <value>Select Permissions</value>
   </data>
@@ -411,8 +429,14 @@
   <data name="SuccessfullTransaction" xml:space="preserve">
     <value>Successfull Transaction</value>
   </data>
+  <data name="Tags" xml:space="preserve">
+    <value>Tags</value>
+  </data>
   <data name="TermsOfUse" xml:space="preserve">
     <value>By entering or registering on this site You accept the Site and its &lt;a href="#" class="link"&gt;terms and Rules&lt;/a&gt; of use of all services &lt;a href="#" class="link"&gt;Privacy Policy&lt;/a&gt;.</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Title</value>
   </data>
   <data name="To" xml:space="preserve">
     <value>to</value>

@@ -5,11 +5,17 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace ShopManagement.Application.Contracts.Product
 {
     public class CreateProductCommand
     {
+        public CreateProductCommand()
+        {
+            
+        }
+
         [Required(ErrorMessage = ValidationMessages.IsRequired)]
         public long GroupId { get; set; }
 
@@ -20,15 +26,24 @@ namespace ShopManagement.Application.Contracts.Product
         [MaxLength(200, ErrorMessage = ValidationMessages.MaxLenght)]
 
         public string Title { get; set; }
+
+        [Required(ErrorMessage = ValidationMessages.IsRequired)]
+        [MaxLength(200,ErrorMessage = ValidationMessages.MaxLenght)]
+        public string OtherLangTitle { get; set; }
+
         [Required(ErrorMessage = ValidationMessages.IsRequired)]
         public string Description { get; set; }
 
         [Required(ErrorMessage = ValidationMessages.IsRequired)]
-        [MaxLength(200,ErrorMessage = ValidationMessages.MaxLenght)]
-        public string ShortDescription { get; set; }
-
+        [Range(0,int.MaxValue,ErrorMessage = ValidationMessages.IntegerValue)]
         public int Price { get; set; }
+
+        [Required(ErrorMessage = ValidationMessages.IsRequired)]
+        [MaxLength(300,ErrorMessage = ValidationMessages.MaxLenght)]
         public string Tags { get; set; }
-        public string ImageName { get; set; }
+
+        public IFormFile? ProductImage { get; set; }
+
+        
     }
 }

@@ -430,11 +430,29 @@ namespace _01_Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Group.
+        /// </summary>
+        public static string Group {
+            get {
+                return ResourceManager.GetString("Group", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hello.
         /// </summary>
         public static string Hello {
             get {
                 return ResourceManager.GetString("Hello", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Image.
+        /// </summary>
+        public static string Image {
+            get {
+                return ResourceManager.GetString("Image", resourceCulture);
             }
         }
         
@@ -628,6 +646,15 @@ namespace _01_Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Other Language Title.
+        /// </summary>
+        public static string OtherLangTitle {
+            get {
+                return ResourceManager.GetString("OtherLangTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
         public static string Password {
@@ -678,6 +705,24 @@ namespace _01_Framework.Resources {
         public static string PhoneNumber {
             get {
                 return ResourceManager.GetString("PhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Price.
+        /// </summary>
+        public static string Price {
+            get {
+                return ResourceManager.GetString("Price", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Primary Group.
+        /// </summary>
+        public static string PrimaryGroup {
+            get {
+                return ResourceManager.GetString("PrimaryGroup", resourceCulture);
             }
         }
         
@@ -880,6 +925,15 @@ namespace _01_Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Secondary Group.
+        /// </summary>
+        public static string SecondaryGroup {
+            get {
+                return ResourceManager.GetString("SecondaryGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select Permissions.
         /// </summary>
         public static string SelectPermissions {
@@ -943,11 +997,29 @@ namespace _01_Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tags.
+        /// </summary>
+        public static string Tags {
+            get {
+                return ResourceManager.GetString("Tags", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to By entering or registering on this site You accept the Site and its &lt;a href=&quot;#&quot; class=&quot;link&quot;&gt;terms and Rules&lt;/a&gt; of use of all services &lt;a href=&quot;#&quot; class=&quot;link&quot;&gt;Privacy Policy&lt;/a&gt;..
         /// </summary>
         public static string TermsOfUse {
             get {
                 return ResourceManager.GetString("TermsOfUse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title.
+        /// </summary>
+        public static string Title {
+            get {
+                return ResourceManager.GetString("Title", resourceCulture);
             }
         }
         

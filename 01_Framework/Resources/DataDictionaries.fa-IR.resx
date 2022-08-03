@@ -240,8 +240,14 @@
   <data name="FullName" xml:space="preserve">
     <value>نام و نام خانوادگی</value>
   </data>
+  <data name="Group" xml:space="preserve">
+    <value>گروه اصلی</value>
+  </data>
   <data name="Hello" xml:space="preserve">
     <value>سلام</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>عکس</value>
   </data>
   <data name="IncreaseBalance" xml:space="preserve">
     <value>افزایش موجودی</value>
@@ -306,6 +312,9 @@
   <data name="OrderPendingPayment" xml:space="preserve">
     <value>سفارش شما در انتظار پرداخت است. برای جلوگیری از لغو سفارش، لطفا پرداخت را انجام دهید.</value>
   </data>
+  <data name="OtherLangTitle" xml:space="preserve">
+    <value>عنوان به انگلیسی</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>رمز عبور</value>
   </data>
@@ -323,6 +332,12 @@
   </data>
   <data name="PhoneNumber" xml:space="preserve">
     <value>شماره همراه</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>قیمت</value>
+  </data>
+  <data name="PrimaryGroup" xml:space="preserve">
+    <value>گروه فرعی اول</value>
   </data>
   <data name="ProductGroups" xml:space="preserve">
     <value>گروه محصولات</value>
@@ -390,6 +405,9 @@
   <data name="RoleTitle" xml:space="preserve">
     <value>عنوان نقش</value>
   </data>
+  <data name="SecondaryGroup" xml:space="preserve">
+    <value>گروه فرعی دوم</value>
+  </data>
   <data name="SelectPermissions" xml:space="preserve">
     <value>انتخاب دسترسی ها</value>
   </data>
@@ -414,8 +432,14 @@
   <data name="SuccessfullTransaction" xml:space="preserve">
     <value>تراکنش موفق</value>
   </data>
+  <data name="Tags" xml:space="preserve">
+    <value>تگ ها</value>
+  </data>
   <data name="TermsOfUse" xml:space="preserve">
     <value>با ورود و یا ثبت نام در سایت شما &lt;a href="#" class="link"&gt;شرایط و  قوانین&lt;/a&gt; استفاده از تمام سرویس های سایت و &lt;a href="#" class="link"&gt;قوانین حریم خصوصی&lt;/a&gt; آن را می‌پذیرید.</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>عنوان</value>
   </data>
   <data name="To" xml:space="preserve">
     <value>تا</value>

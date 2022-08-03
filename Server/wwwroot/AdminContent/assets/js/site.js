@@ -35,10 +35,6 @@ $(document).ready(function () {
     $("#MainModal").on("shown.bs.modal",
         function () {
             window.location.hash = "##";
-            $('.persianDateInput').persianDatepicker({
-                format: 'YYYY/MM/DD',
-                autoClose: true
-            });
         });
 
     $(document).on("submit",
@@ -118,31 +114,6 @@ function get(url, refereshDiv) {
         });
 }
 
-function makeSlug(source, dist) {
-    const value = $('#' + source).val();
-    $('#' + dist).val(convertToSlug(value));
-}
-
-var convertToSlug = function (str) {
-    var $slug = '';
-    const trimmed = $.trim(str);
-    $slug = trimmed.replace(/[^a-z0-9-آ-ی-]/gi, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
-    return $slug.toLowerCase();
-};
-
-function checkSlugDuplication(url, dist) {
-    const slug = $('#' + dist).val();
-    const id = convertToSlug(slug);
-    $.get({
-        url: url + '/' + id,
-        success: function (data) {
-            if (data) {
-                sendNotification('error', 'top right', "خطا", "اسلاگ نمی تواند تکراری باشد");
-            }
-        }
-    });
-}
-
 function fillField(source, dist) {
     const value = $('#' + source).val();
     $('#' + dist).val(value);
@@ -184,27 +155,3 @@ function handleAjaxCall(method, url, data) {
     }
 }
 
-jQuery.validator.addMethod("maxFileSize",
-    function (value, element, params) {
-        var size = element.files[0].size;
-        var maxSize = 3 * 1024 * 1024;
-        if (size > maxSize)
-            return false;
-        else {
-            return true;
-        }
-    });
-jQuery.validator.unobtrusive.adapters.addBool("maxFileSize");
-
-//jQuery.validator.addMethod("maxFileSize",
-//    function (value, element, params) {
-//        var size = element.files[0].size;
-//        var maxSize = 3 * 1024 * 1024;
-//        debugger;
-//        if (size > maxSize)
-//            return false;
-//        else {
-//            return true;
-//        }
-//    });
-//jQuery.validator.unobtrusive.adapters.addBool("maxFileSize");
