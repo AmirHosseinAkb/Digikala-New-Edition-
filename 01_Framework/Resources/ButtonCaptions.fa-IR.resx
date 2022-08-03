@@ -123,6 +123,9 @@
   <data name="ActiveAccount" xml:space="preserve">
     <value>فعالسازی حساب کاربری</value>
   </data>
+  <data name="AddNewProduct" xml:space="preserve">
+    <value>افزودن محصول جدید</value>
+  </data>
   <data name="AddNewRole" xml:space="preserve">
     <value>ایجاد نقش جدید</value>
   </data>

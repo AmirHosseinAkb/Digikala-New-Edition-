@@ -682,6 +682,42 @@ namespace _01_Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Product Groups.
+        /// </summary>
+        public static string ProductGroups {
+            get {
+                return ResourceManager.GetString("ProductGroups", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Products.
+        /// </summary>
+        public static string Products {
+            get {
+                return ResourceManager.GetString("Products", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Products List.
+        /// </summary>
+        public static string ProductsList {
+            get {
+                return ResourceManager.GetString("ProductsList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Products Management.
+        /// </summary>
+        public static string ProductsManagement {
+            get {
+                return ResourceManager.GetString("ProductsManagement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Record.
         /// </summary>
         public static string Record {
@@ -858,6 +894,15 @@ namespace _01_Framework.Resources {
         public static string September {
             get {
                 return ResourceManager.GetString("September", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shop Management.
+        /// </summary>
+        public static string ShopManagement {
+            get {
+                return ResourceManager.GetString("ShopManagement", resourceCulture);
             }
         }
         

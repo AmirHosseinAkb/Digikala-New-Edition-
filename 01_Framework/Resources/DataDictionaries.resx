@@ -324,6 +324,18 @@
   <data name="PhoneNumber" xml:space="preserve">
     <value>Phone Number</value>
   </data>
+  <data name="ProductGroups" xml:space="preserve">
+    <value>Product Groups</value>
+  </data>
+  <data name="Products" xml:space="preserve">
+    <value>Products</value>
+  </data>
+  <data name="ProductsList" xml:space="preserve">
+    <value>Products List</value>
+  </data>
+  <data name="ProductsManagement" xml:space="preserve">
+    <value>Products Management</value>
+  </data>
   <data name="Record" xml:space="preserve">
     <value>Record</value>
   </data>
@@ -383,6 +395,9 @@
   </data>
   <data name="September" xml:space="preserve">
     <value>September</value>
+  </data>
+  <data name="ShopManagement" xml:space="preserve">
+    <value>Shop Management</value>
   </data>
   <data name="ShopName" xml:space="preserve">
     <value>MyStore</value>

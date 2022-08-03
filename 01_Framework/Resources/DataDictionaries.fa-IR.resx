@@ -324,6 +324,18 @@
   <data name="PhoneNumber" xml:space="preserve">
     <value>شماره همراه</value>
   </data>
+  <data name="ProductGroups" xml:space="preserve">
+    <value>گروه محصولات</value>
+  </data>
+  <data name="Products" xml:space="preserve">
+    <value>محصولات</value>
+  </data>
+  <data name="ProductsList" xml:space="preserve">
+    <value>لیست محصولات</value>
+  </data>
+  <data name="ProductsManagement" xml:space="preserve">
+    <value>مدیریت محصولات</value>
+  </data>
   <data name="Record" xml:space="preserve">
     <value>رکورد</value>
   </data>
@@ -383,6 +395,9 @@
   </data>
   <data name="September" xml:space="preserve">
     <value>شهریور</value>
+  </data>
+  <data name="ShopManagement" xml:space="preserve">
+    <value>مدیریت فروشگاه</value>
   </data>
   <data name="ShopName" xml:space="preserve">
     <value>مای استور</value>
