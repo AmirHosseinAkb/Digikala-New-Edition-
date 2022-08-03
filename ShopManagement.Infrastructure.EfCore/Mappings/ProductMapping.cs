@@ -22,8 +22,8 @@ namespace ShopManagement.Infrastructure.EfCore.Mappings
             builder.Property(p => p.PrimaryGroupId).IsRequired(false);
             builder.Property(p => p.SecondaryGroupId).IsRequired(false);
             builder.Property(p => p.Title).HasMaxLength(300);
+            builder.Property(p => p.OtherLangTitle).HasMaxLength(300);
             builder.Property(p => p.Description);
-            builder.Property(p => p.ShortDescription).HasMaxLength(500);
             builder.Property(p => p.Price);
             builder.Property(p => p.Tags).HasMaxLength(300);
             builder.Property(p => p.ImageName).HasMaxLength(300);

@@ -16,8 +16,8 @@ namespace ShopManagement.Domain.ProductAgg
         public long? PrimaryGroupId { get; private set; }
         public long? SecondaryGroupId { get;private set; }
         public string Title { get; private set; }
+        public string OtherLangTitle { get; private set; }
         public string Description { get;private set; }
-        public string ShortDescription { get; private set; }
         public int Price { get; private set; }
         public string Tags { get; private set; }
         public string ImageName { get;private set; }
@@ -36,15 +36,15 @@ namespace ShopManagement.Domain.ProductAgg
         }
 
         public Product(long groupId, long? primaryGroupId, long? secondaryGroupId, string title, string description, int price
-            , string shortDescription, string tags, string imageName)
+            , string otherLangTitle, string tags, string imageName)
         {
             GroupId = groupId;
             PrimaryGroupId = primaryGroupId;
             SecondaryGroupId = secondaryGroupId;
             Title = title;
+            OtherLangTitle = otherLangTitle;
             Description = description;
             Price = price;
-            ShortDescription = shortDescription;
             Tags = tags;
             ImageName = imageName;
             CreationDate = DateTime.Now;
