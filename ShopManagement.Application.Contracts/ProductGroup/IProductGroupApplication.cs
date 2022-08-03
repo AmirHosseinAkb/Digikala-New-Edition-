@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShopManagement.Domain.ProductAgg
+namespace ShopManagement.Application.Contracts.ProductGroup
 {
-    public interface IProductRepository
+    public class IProductGroupApplication
     {
-        bool IsExistProduct(string title);
     }
 }
