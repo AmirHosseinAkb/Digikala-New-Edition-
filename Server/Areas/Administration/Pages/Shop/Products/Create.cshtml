@@ -1,16 +1,24 @@
-﻿@model ShopManagement.Application.Contracts.Product.CreateProductCommand
+﻿@using ShopManagement.Application.Contracts.ProductGroup
+@model ShopManagement.Application.Contracts.Product.CreateProductCommand
 
+@inject IProductGroupApplication _productGroupApplication
+
+@{
+    var groups = _productGroupApplication.GetGroups();
+    var Groups= new SelectList(groups, "Value", "Text");
+
+    var primaryGroups = _productGroupApplication.GetSubGroups(int.Parse(groups.First().Value));
+    var PrimaryGroups = new SelectList(primaryGroups, "Value", "Text");
+
+    var secondaryGroups = _productGroupApplication.GetSubGroups(int.Parse(primaryGroups.First().Value));
+    var SecondaryGroups = new SelectList(secondaryGroups, "Value", "Text");
+}
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h4 class="modal-title">ایجاد محصول جدید</h4>
 </div>
 
-<form asp-page="./Index" asp-page-handler="Create"
-      method="post"
-      data-ajax="true"
-      data-callback=""
-      data-action="Refresh"
-      enctype="multipart/form-data">
+<form asp-page="./Index" asp-page-handler="Create" enctype="multipart/form-data">
     <div class="modal-body">
         <div class="row">
             <div class="col-md-8">
@@ -27,7 +35,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label asp-for="GroupId" class="control-label">@DataDictionaries.Group</label>
-                            <select class="form-control" asp-for="GroupId"></select>
+                            <select class="form-control" asp-for="GroupId" asp-items="Groups"></select>
                             <span asp-validation-for="GroupId" class="error"></span>
                         </div>
                     </div>
@@ -35,7 +43,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label asp-for="PrimaryGroupId" class="control-label">@DataDictionaries.PrimaryGroup</label>
-                            <select class="form-control" asp-for="PrimaryGroupId"></select>
+                            <select class="form-control" asp-for="PrimaryGroupId" asp-items="PrimaryGroups"></select>
                             <span asp-validation-for="PrimaryGroupId" class="error"></span>
                         </div>
                     </div>
@@ -43,7 +51,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label asp-for="SecondaryGroupId" class="control-label">@DataDictionaries.SecondaryGroup</label>
-                            <select class="form-control" asp-for="SecondaryGroupId"></select>
+                            <select class="form-control" asp-for="SecondaryGroupId" asp-items="SecondaryGroups"></select>
                             <span asp-validation-for="SecondaryGroupId" class="error"></span>
                         </div>
                     </div>
@@ -87,7 +95,7 @@
         <button type="submit" class="btn btn-info waves-effect waves-light">@ButtonCaptions.AddNewProduct</button>
         <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">@ButtonCaptions.Cancel</button>
     </div>
-    
+
 </form>
 <script>
     CKEDITOR.replace("ProductDescription", {

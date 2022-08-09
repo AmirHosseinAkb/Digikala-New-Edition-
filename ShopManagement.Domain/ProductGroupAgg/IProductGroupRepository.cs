@@ -8,5 +8,7 @@ namespace ShopManagement.Domain.ProductGroupAgg
 {
     public interface IProductGroupRepository
     {
+        List<ProductGroup> GetProductGroups();
+        List<ProductGroup> GetSubProductGroups(long groupId);
     }
 }

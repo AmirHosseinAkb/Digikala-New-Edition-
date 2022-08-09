@@ -79,6 +79,5 @@ namespace _01_Framework.Application
             return permissions;
         }
 
-        
     }
 }

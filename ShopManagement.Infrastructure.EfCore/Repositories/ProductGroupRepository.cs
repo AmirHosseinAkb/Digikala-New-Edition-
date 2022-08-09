@@ -9,5 +9,21 @@ namespace ShopManagement.Infrastructure.EfCore.Repositories
 {
     public class ProductGroupRepository:IProductGroupRepository
     {
+        private readonly ShopContext _context;
+
+        public ProductGroupRepository(ShopContext context)
+        {
+            _context = context;
+        }
+        public List<ProductGroup> GetProductGroups()
+        {
+            return _context.ProductGroups.Where(g=>g.ParentId==null).ToList();
+        }
+
+        public List<ProductGroup> GetSubProductGroups(long groupId)
+        {
+            return _context.ProductGroups.Where(g => g.ParentId == groupId).ToList();
+        }
+
     }
 }

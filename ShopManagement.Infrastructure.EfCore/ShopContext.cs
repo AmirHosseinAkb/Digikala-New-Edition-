@@ -27,8 +27,10 @@ namespace ShopManagement.Infrastructure.EfCore
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            var assembley = typeof(ProductMapping).Assembly;
-            modelBuilder.ApplyConfigurationsFromAssembly(assembley);
+            modelBuilder.ApplyConfiguration(new ProductMapping());
+            modelBuilder.ApplyConfiguration(new ProductGroupMapping());
+            modelBuilder.ApplyConfiguration(new ProductImageMapping());
+            modelBuilder.ApplyConfiguration(new ProductColorMapping());
             base.OnModelCreating(modelBuilder);
         }
     }

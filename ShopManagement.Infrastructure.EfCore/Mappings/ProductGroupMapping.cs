@@ -19,15 +19,15 @@ namespace ShopManagement.Infrastructure.EfCore.Mappings
             builder.Property(g => g.GroupTitle);
             builder.Property(g => g.ParentId);
 
-            builder.HasMany(g=>g.ProductGroups).WithOne().HasForeignKey(g => g.GroupdId);
+            builder.HasMany(g=>g.ProductGroups).WithOne().HasForeignKey(g => g.ParentId);
 
             builder.HasMany<Product>(g => g.Products).WithOne(p => p.ProductGroup)
                 .HasForeignKey(p => p.GroupId);
 
-            builder.HasMany<Product>(g => g.Products).WithOne(p => p.PrimaryProductGroup)
+            builder.HasMany<Product>(g => g.PrimaryProducts).WithOne(p => p.PrimaryProductGroup)
                 .HasForeignKey(p => p.PrimaryGroupId);
 
-            builder.HasMany<Product>(g => g.Products).WithOne(p => p.SecondaryProductGroup)
+            builder.HasMany<Product>(g => g.SecondaryProducts).WithOne(p => p.SecondaryProductGroup)
                 .HasForeignKey(p => p.SecondaryGroupId);
         }
     }

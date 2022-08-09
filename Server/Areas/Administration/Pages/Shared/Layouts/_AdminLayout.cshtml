@@ -21,6 +21,12 @@
                 @RenderBody()
             </div>
             <partial name="PartialViews/_Footer"></partial>
+            <div id="MainModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                <div id="ModalDialog" class="modal-dialog">
+                    <div class="modal-content" id="ModalContent">
+                    </div>
+                </div>
+            </div>
         </div>
 
         <partial name="PartialViews/_LeftSideBar"></partial>
@@ -30,12 +36,12 @@
     <partial name="PartialViews/_Scripts"></partial>
     @RenderSection("Scripts",false)
 
-<div id="MainModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-    <div id="ModalDialog" class="modal-dialog">
-        <div class="modal-content" id="ModalContent">
+    <div id="MainModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div id="ModalDialog" class="modal-dialog">
+            <div class="modal-content" id="ModalContent">
+            </div>
         </div>
     </div>
-</div>
 
 </body>
 </html>

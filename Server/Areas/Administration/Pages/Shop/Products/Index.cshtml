@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "{handler?}"
 @model Server.Areas.Administration.Pages.Shop.Products.IndexModel
 @{
 }
@@ -15,7 +15,7 @@
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div id="datatable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
                             <div class="m-b-15">
-                                <a id="btnCreateProduct" href="#showmodal=@Url.Page("./Index","Create")" class="btn btn-info">@ButtonCaptions.AddNewProduct</a>
+                                <a id="btnCreateProduct" class="btn btn-info">@ButtonCaptions.AddNewProduct</a>
                             </div>
 
                             <div class="row">
