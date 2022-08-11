@@ -943,6 +943,15 @@ namespace _01_Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please select a group.
+        /// </summary>
+        public static string SelectGroupMessage {
+            get {
+                return ResourceManager.GetString("SelectGroupMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select Permissions.
         /// </summary>
         public static string SelectPermissions {

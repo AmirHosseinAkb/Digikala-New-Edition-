@@ -411,6 +411,9 @@
   <data name="SecondaryGroup" xml:space="preserve">
     <value>گروه فرعی دوم</value>
   </data>
+  <data name="SelectGroupMessage" xml:space="preserve">
+    <value>گروهی را انتخاب کنید</value>
+  </data>
   <data name="SelectPermissions" xml:space="preserve">
     <value>انتخاب دسترسی ها</value>
   </data>

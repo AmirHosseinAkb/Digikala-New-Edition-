@@ -70,3 +70,28 @@ function CallBackHandler(data, action, form) {
     }
 }
 
+$("#IndexGroup").change(function () {
+    $("#IndexPrimaryGroup").empty();
+    $("#IndexSecondaryGroup").empty();
+    $.getJSON("/Administration/Shop/Products/GetSubGroups?id=" + $("#IndexGroup :selected").val(),
+        function (data) {
+
+            $.each(data,
+                function () {
+                    $("#IndexPrimaryGroup").append('<option value=' + this.value + '>' + this.text + '</option>');
+
+                });
+        });
+});
+$("#IndexPrimaryGroup").change(function () {
+    $("#IndexSecondaryGroup").empty();
+    $.getJSON("/Administration/Shop/Products/GetSubGroups?id=" + $("#IndexPrimaryGroup :selected").val(),
+        function (data) {
+
+            $.each(data,
+                function () {
+                    $("#IndexSecondaryGroup").append('<option value=' + this.value + '>' + this.text + '</option>');
+
+                });
+        });
+});

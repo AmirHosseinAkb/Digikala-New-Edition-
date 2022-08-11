@@ -11,19 +11,29 @@ namespace Server.Areas.Administration.Pages.Shop.Products
         private readonly IProductApplication _productApplication;
         private readonly IProductGroupApplication _productGroupApplication;
 
-        public Tuple<List<ProductViewModel>,int,int,int> ProductVM { get; set; }
+        public Tuple<List<ProductViewModel>, int, int, int> ProductVM { get; set; }
         public IndexModel(IProductApplication productApplication, IProductGroupApplication productGroupApplication)
         {
             _productApplication = productApplication;
             _productGroupApplication = productGroupApplication;
         }
 
-        public void OnGet(int pageId=1,string title="",long groupId=0,long primaryGroupId=0,long secondaryGroupId=0,int take=10)
+        public void OnGet(int pageId = 1, string title = "", long groupId = 0, long primaryGroupId = 0, long secondaryGroupId = 0, int take = 10)
         {
-            if(take%10!=0)
-                take=10;
-            ViewData["Take"]=take;
-            ProductVM=_productApplication.GetProducts(pageId,title,groupId,primaryGroupId,secondaryGroupId,take);
+            if (take % 10 != 0)
+                take = 10;
+            ViewData["Take"] = take;
+
+            var groups = _productGroupApplication.GetGroups();
+            ViewData["Groups"] = new SelectList(groups, "Value", "Text");
+
+            var primaryGroups = _productGroupApplication.GetSubGroups(int.Parse(groups.First().Value));
+            ViewData["PrimaryGroups"] = new SelectList(primaryGroups, "Value", "Text");
+
+            var secondaryGroups = _productGroupApplication.GetSubGroups(int.Parse(primaryGroups.First().Value));
+            ViewData["SecondaryGroups"] = new SelectList(secondaryGroups, "Value", "Text");
+
+            ProductVM = _productApplication.GetProducts(pageId, title, groupId, primaryGroupId, secondaryGroupId, take);
         }
 
         public IActionResult OnGetCreate()
@@ -43,14 +53,14 @@ namespace Server.Areas.Administration.Pages.Shop.Products
         {
             if (!ModelState.IsValid)
                 return BadRequest();
-            
+
             var result = _productApplication.Create(command);
             return new JsonResult(result);
         }
 
         public IActionResult OnGetGetSubGroups(long id)
         {
-            var subGroups=_productGroupApplication.GetSubGroups(id);
+            var subGroups = _productGroupApplication.GetSubGroups(id);
             return new JsonResult(new SelectList(subGroups, "Value", "Text"));
         }
     }
