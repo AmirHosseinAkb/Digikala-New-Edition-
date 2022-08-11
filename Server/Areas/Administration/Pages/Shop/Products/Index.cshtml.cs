@@ -38,14 +38,6 @@ namespace Server.Areas.Administration.Pages.Shop.Products
 
         public IActionResult OnGetCreate()
         {
-            var groups = _productGroupApplication.GetGroups();
-            ViewData["Groups"] = new SelectList(groups, "Value", "Text");
-
-            var primaryGroups = _productGroupApplication.GetSubGroups(int.Parse(groups.First().Value));
-            ViewData["PrimaryGroups"] = new SelectList(primaryGroups, "Value", "Text");
-
-            var secondaryGroups = _productGroupApplication.GetSubGroups(int.Parse(primaryGroups.First().Value));
-            ViewData["SecondaryGroups"] = new SelectList(secondaryGroups, "Value", "Text");
             return Partial("./Create", new CreateProductCommand());
         }
 
@@ -56,6 +48,12 @@ namespace Server.Areas.Administration.Pages.Shop.Products
 
             var result = _productApplication.Create(command);
             return new JsonResult(result);
+        }
+
+        public IActionResult OnGetEdit(long productId)
+        {
+            var product = _productApplication.GetProductForEdit(productId);
+            return Partial("./Edit",product);
         }
 
         public IActionResult OnGetGetSubGroups(long id)

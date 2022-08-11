@@ -3,6 +3,11 @@
     $("#MainModal").modal('show');
 });
 
+function GetProductForEdit(productId) {
+    $("#ModalContent").load('/Administration/Shop/Products/Edit?productId='+productId);
+    $("#MainModal").modal('show');
+}
+
 $(document).on("submit", 'form[data-ajax="true"]',
     function (e) {
         e.preventDefault();

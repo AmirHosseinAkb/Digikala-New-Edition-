@@ -17,6 +17,11 @@ namespace ShopManagement.Infrastructure.EfCore.Repositories
             _context.SaveChanges();
         }
 
+        public Product GetProductById(long productId)
+        {
+            return _context.Products.Find(productId);
+        }
+
         public List<Product> GetAll(string title="",long groupId=0,long primaryGroupId=0,long secondaryGroupId=0)
         {
            IQueryable<Product> products = _context.Products;

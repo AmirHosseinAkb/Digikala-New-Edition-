@@ -46,10 +46,28 @@ namespace ShopManagement.Application
             return result.Succeeded();
         }
 
+        public EditProductCommand GetProductForEdit(long productId)
+        {
+            var product = _productRepository.GetProductById(productId);
+            return new EditProductCommand()
+            {
+                Title = product.Title,
+                Description = product.Description,
+                GroupId = product.GroupId,
+                ImageName = product.ImageName,
+                OtherLangTitle = product.OtherLangTitle,
+                Price = product.Price,
+                Tags = product.Tags,
+                PrimaryGroupId = product.PrimaryGroupId,
+                SecondaryGroupId = product.SecondaryGroupId
+            };
+        }
+
         public Tuple<List<ProductViewModel>,int,int,int> GetProducts(int pageId=1,string title="",long groupId=0,long primaryGroupId=0,long secondaryGroupId=0,int take=0)
         {
             var products=_productRepository.GetAll(title,groupId,primaryGroupId,secondaryGroupId).Select(p=>new ProductViewModel()
             {
+                ProductId = p.ProductId,
                 Title = p.Title,
                 ImageName=p.ImageName,
                 CreationDate=p.CreationDate.ToShamsi(),

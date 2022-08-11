@@ -15,7 +15,7 @@
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div id="datatable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
                             <div class="m-b-15">
-                                <a id="btnCreateProduct" class="btn btn-info">@ButtonCaptions.AddNewProduct</a>
+                                <a id="btnCreateProduct"  class="btn btn-info largeModal">@ButtonCaptions.AddNewProduct</a>
                             </div>
                             <form method="get">
                                 <div class="row">
@@ -107,7 +107,7 @@
                                                     <td>@product.Price.ToString("#,0")</td>
                                                     <td>@product.CreationDate</td>
                                                     <td>
-                                                        <a class="btn btn-primary btn-xs btnEditUser">@ButtonCaptions.Edit</a>
+                                                        <a onclick="GetProductForEdit(@product.ProductId)" class="btn btn-primary btn-xs largeModal">@ButtonCaptions.Edit</a>
                                                         <a class="btn btn-danger btn-xs">@ButtonCaptions.Delete</a>
                                                     </td>
                                                 </tr>
@@ -155,7 +155,7 @@
 </div>
 @section Scripts{
 <script>
-    $("#btnCreateProduct").click(function () {
+    $(".largeModal").click(function () {
         $("#ModalDialog").css("width", "80%");
     });
 </script>
