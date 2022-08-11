@@ -22,12 +22,14 @@
                                 <form method="get">
                                     <div class="col-md-3">
                                         <div id="datatable_filter" class="dataTables_filter">
-                                            <input name="fullName" type="search" class="form-control input-sm" placeholder="@DataDictionaries.FullName" aria-controls="datatable">
+                                            <input name="fullName" type="search" class="form-control input-sm" placeholder="@DataDictionaries.Title" aria-controls="datatable">
                                         </div>
                                     </div>
                                     <div class="col-md-2">
                                         <div id="datatable_filter" class="dataTables_filter">
-                                            <input name="email" type="search" class="form-control input-sm" placeholder="@DataDictionaries.Email" aria-controls="datatable">
+                                            <select class="form-control">
+                                                <option value="0">Please Choose a Group</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-md-2">
@@ -70,84 +72,64 @@
                                     <table id="datatable" class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="datatable_info">
                                         <thead>
                                             <tr role="row">
-                                                <th>@DataDictionaries.FirstName</th>
-                                                <th>@DataDictionaries.Email</th>
-                                                <th>@DataDictionaries.NationalNumber</th>
-                                                <th>@DataDictionaries.PhoneNumber</th>
-                                                <th>@DataDictionaries.RegisterDate</th>
-                                                <th>@DataDictionaries.IsActive</th>
-                                                <th>@DataDictionaries.Role</th>
+                                                <th>@DataDictionaries.Image</th>
+                                                <th>@DataDictionaries.Title</th>
+                                                <th>@DataDictionaries.Price</th>
+                                                <th>@DataDictionaries.CreationDate</th>
                                                 <th>@DataDictionaries.Operations</th>
                                             </tr>
                                         </thead>
 
                                         <tbody>
 
-                                            @*@foreach (var user in Model.UsersInformationsVm.Item1)
-                                                {
+                                            @foreach (var product in Model.ProductVM.Item1)
+                                            {
                                                 <tr role="row">
-                                                <td>@user.FullName</td>
-                                                <td>@user.Email</td>
-                                                <td>@user.NationalNumber</td>
-                                                <td>@user.PhoneNumber</td>
-                                                <td>@user.RegisterDate</td>
-                                                <td>
-                                                @if (user.IsActive)
-                                                {
-                                                <span class="text-success">
-                                                <i class="fa fa-check-circle"></i>
-                                                </span>
-                                                }
-                                                else
-                                                {
-                                                <span class="text-danger">
-                                                <i class="fa fa-close"></i>
-                                                </span>
-                                                }
-                                                </td>
-                                                <td>@user.RoleTitle</td>
-                                                @{
-                                                var splitFullName = user.FullName.Split(' ');
-                                                }
-                                                <td>
-                                                <a onclick="GetUserInformationsForEdit('@splitFullName[0]','@splitFullName[1]','@user.Email','@user.PhoneNumber','@user.AvatarName',@user.UserId,@user.RoleId)" class="btn btn-primary btn-xs btnEditUser">@ButtonCaptions.Edit</a>
-                                                <a onclick="GetUserInformationsForDelete(@user.UserId,'@user.FullName','@user.AvatarName')" class="btn btn-danger btn-xs">@ButtonCaptions.Delete</a>
-                                                </td>
+                                                    <td>
+                                                        <img src="/Products/Images/@product.ImageName" style="width:200px;height:200px" class="img-thumbnail">
+                                                    </td>
+                                                    <td>@product.Title</td>
+                                                    <td>@product.Price.ToString("#,0")</td>
+                                                    <td>@product.CreationDate</td>
+                                                    <td>
+                                                        <a class="btn btn-primary btn-xs btnEditUser">@ButtonCaptions.Edit</a>
+                                                        <a class="btn btn-danger btn-xs">@ButtonCaptions.Delete</a>
+                                                    </td>
                                                 </tr>
-                                                }*@
+                                            }
 
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
-                            @*<div class="row">
+                            <div class="row">
                                 <div class="col-sm-6">
-                                @{
-                                int take = Model.UsersInformationsVm.Item4;
-                                int pageId = Model.UsersInformationsVm.Item2;
-                                int totalEntries = Model.UsersInformationsVm.Item1.Count();
-                                int startEntry = (pageId - 1) * take;
-                                if (totalEntries != 0)
-                                startEntry += 1;
-                                int endEntry = pageId * take;
-                                if (totalEntries < endEntry)
-                                endEntry = totalEntries;
-                                }
-                                <div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">
-                                @DataDictionaries.Showing @startEntry @DataDictionaries.To @endEntry @DataDictionaries.Of @totalEntries @DataDictionaries.Entries
-                                </div>
+                                    @{
+                                        int take = Model.ProductVM.Item4;
+                                        int pageId = Model.ProductVM.Item2;
+                                        int totalEntries = Model.ProductVM.Item1.Count();
+                                        int startEntry = (pageId - 1) * take;
+                                        if (totalEntries != 0)
+                                            startEntry += 1;
+                                        int endEntry = pageId * take;
+                                        if (totalEntries < endEntry)
+                                            endEntry = totalEntries;
+                                    }
+                                    <div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">
+                                        @DataDictionaries.Showing @startEntry @DataDictionaries.To @endEntry @DataDictionaries.Of @totalEntries @DataDictionaries.Entries
+                                    </div>
                                 </div>
                                 <div class="col-sm-6">
-                                <div class="dataTables_paginate paging_simple_numbers" id="datatable_paginate">
-                                <ul class="pagination">
-                                @for (var i = 1; i <= Model.UsersInformationsVm.Item3; i++)
-                                {
-                                <li class="paginate_button @((Model.UsersInformationsVm.Item2==i)?"active":"")" aria-controls="datatable" tabindex="0"><a href="/Admin/Users?pageId=@i">@i</a></li>
-                                }
-                                </ul>
+                                    <div class="dataTables_paginate paging_simple_numbers" id="datatable_paginate">
+                                        <ul class="pagination">
+                                            @for (var i = 1; i <= Model.ProductVM.Item3; i++)
+                                            {
+                                                <li class="paginate_button @((Model.ProductVM.Item2==i)?"active":"")" aria-controls="datatable" tabindex="0"><a href="/Admin/Users?pageId=@i">@i</a></li>
+                                            }
+                                        </ul>
+                                    </div>
                                 </div>
-                                </div>
-                                </div>*@
+                            </div>
                         </div>
 
                     </div>
@@ -157,9 +139,9 @@
     </div>
 </div>
 @section Scripts{
-    <script>
-        $("#btnCreateProduct").click(function () {
-            $("#ModalDialog").css("width", "80%");
-        });
-    </script>
+<script>
+    $("#btnCreateProduct").click(function () {
+        $("#ModalDialog").css("width", "80%");
+    });
+</script>
 }
