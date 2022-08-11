@@ -22,6 +22,7 @@ namespace Server.Areas.Administration.Pages.Shop.Products
         {
             if(take%10!=0)
                 take=10;
+            ViewData["Take"]=take;
             ProductVM=_productApplication.GetProducts(pageId,title,groupId,primaryGroupId,secondaryGroupId,take);
         }
 
@@ -45,6 +46,12 @@ namespace Server.Areas.Administration.Pages.Shop.Products
             
             var result = _productApplication.Create(command);
             return new JsonResult(result);
+        }
+
+        public IActionResult OnGetGetSubGroups(long id)
+        {
+            var subGroups=_productGroupApplication.GetSubGroups(id);
+            return new JsonResult(new SelectList(subGroups, "Value", "Text"));
         }
     }
 }

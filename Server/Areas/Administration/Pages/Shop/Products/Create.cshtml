@@ -5,7 +5,7 @@
 
 @{
     var groups = _productGroupApplication.GetGroups();
-    var Groups= new SelectList(groups, "Value", "Text");
+    var Groups = new SelectList(groups, "Value", "Text");
 
     var primaryGroups = _productGroupApplication.GetSubGroups(int.Parse(groups.First().Value));
     var PrimaryGroups = new SelectList(primaryGroups, "Value", "Text");
@@ -18,14 +18,12 @@
     <h4 class="modal-title">@DataDictionaries.AddNewProduct</h4>
 </div>
 
-<form 
-asp-page="./Index"
-asp-page-handler="Create" 
-data-ajax="true"
-data-action="Refresh"
-enctype="multipart/form-data"
-method="post"
->
+<form asp-page="./Index"
+      asp-page-handler="Create"
+      data-ajax="true"
+      data-action="Refresh"
+      enctype="multipart/form-data"
+      method="post">
     <div class="modal-body">
         <div class="row">
             <div class="col-md-8">
@@ -42,7 +40,7 @@ method="post"
                     <div class="col-md-4">
                         <div class="form-group">
                             <label asp-for="GroupId" class="control-label">@DataDictionaries.Group</label>
-                            <select class="form-control" asp-for="GroupId" asp-items="Groups"></select>
+                            <select id="createGroup" class="form-control" asp-for="GroupId" asp-items="Groups"></select>
                             <span asp-validation-for="GroupId" class="error"></span>
                         </div>
                     </div>
@@ -50,7 +48,7 @@ method="post"
                     <div class="col-md-4">
                         <div class="form-group">
                             <label asp-for="PrimaryGroupId" class="control-label">@DataDictionaries.PrimaryGroup</label>
-                            <select class="form-control" asp-for="PrimaryGroupId" asp-items="PrimaryGroups"></select>
+                            <select id="createPrimaryGroup" class="form-control" asp-for="PrimaryGroupId" asp-items="PrimaryGroups"></select>
                             <span asp-validation-for="PrimaryGroupId" class="error"></span>
                         </div>
                     </div>
@@ -58,7 +56,7 @@ method="post"
                     <div class="col-md-4">
                         <div class="form-group">
                             <label asp-for="SecondaryGroupId" class="control-label">@DataDictionaries.SecondaryGroup</label>
-                            <select class="form-control" asp-for="SecondaryGroupId" asp-items="SecondaryGroups"></select>
+                            <select id="createSecondaryGroup" class="form-control" asp-for="SecondaryGroupId" asp-items="SecondaryGroups"></select>
                             <span asp-validation-for="SecondaryGroupId" class="error"></span>
                         </div>
                     </div>
@@ -105,8 +103,34 @@ method="post"
 
 </form>
 <script>
-    CKEDITOR.replace("ProductDescription", {
-        customConfig: '/js/Config.js'
+        CKEDITOR.replace("ProductDescription", {
+            customConfig: '/js/Config.js'
+        });
+
+        $("#createGroup").change(function () {
+        $("#createPrimaryGroup").empty();
+        $("#createSecondaryGroup").empty();
+        $.getJSON("/Administration/Shop/Products/GetSubGroups?id=" + $("#createGroup :selected").val(),
+            function (data) {
+
+                $.each(data,
+                    function () {
+                        $("#createPrimaryGroup").append('<option value=' + this.value + '>' + this.text + '</option>');
+
+                    });
+            });
+    });
+    $("#createPrimaryGroup").change(function () {
+        $("#createSecondaryGroup").empty();
+        $.getJSON("/Administration/Shop/Products/GetSubGroups?id=" + $("#createPrimaryGroup :selected").val(),
+            function (data) {
+
+                $.each(data,
+                    function () {
+                        $("#createSecondaryGroup").append('<option value=' + this.value + '>' + this.text + '</option>');
+
+                    });
+            });
     });
 </script>
 

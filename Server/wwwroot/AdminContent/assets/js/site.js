@@ -28,7 +28,7 @@ $(document).on("submit", 'form[data-ajax="true"]',
                 dataType: "json",
                 processData: false,
                 contentType: false,
-                beforeSend:function (xhr) { xhr.setRequestHeader("XSRF-TOKEN", $('input:hidden[name="__RequestVerificationToken"]').val()); },
+                beforeSend: function (xhr) { xhr.setRequestHeader("XSRF-TOKEN", $('input:hidden[name="__RequestVerificationToken"]').val()); },
                 success: function (data) {
                     CallBackHandler(data, action, form);
                 },
@@ -69,3 +69,4 @@ function CallBackHandler(data, action, form) {
         default:
     }
 }
+
