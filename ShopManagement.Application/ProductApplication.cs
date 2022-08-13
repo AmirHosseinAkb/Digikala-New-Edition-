@@ -107,6 +107,33 @@ namespace ShopManagement.Application
             return result.Succeeded();
         }
 
+        public DeleteProductCommand GetProductForDelete(long productId)
+        {
+            var product = _productRepository.GetProductWithGroups(productId);
+            return new DeleteProductCommand()
+            {
+                ProductId = product.ProductId,
+                Title = product.Title,
+                GroupName = product.ProductGroup.GroupTitle,
+                PrimaryGroupName = product.PrimaryProductGroup.GroupTitle,
+                SecondaryGroupName = product.SecondaryProductGroup.GroupTitle,
+                ImageName = product.ImageName
+            };
+        }
+
+        public OperationResult Delete(long productId)
+        {
+            var result = new OperationResult();
+            if (productId == 0)
+                return result.Failed(ApplicationMessages.RecordNotFound);
+            var product = _productRepository.GetProductById(productId);
+            if (product == null)
+                return result.NullResult();
+            product.Delete();
+            _productRepository.SaveChanges();
+            return result.Succeeded();
+        }
+
         public Tuple<List<ProductViewModel>,int,int,int> GetProducts(int pageId=1,string title="",long groupId=0,long primaryGroupId=0,long secondaryGroupId=0,int take=0)
         {
             var products=_productRepository.GetAll(title,groupId,primaryGroupId,secondaryGroupId).Select(p=>new ProductViewModel()

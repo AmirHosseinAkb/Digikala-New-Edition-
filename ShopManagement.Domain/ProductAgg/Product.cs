@@ -63,5 +63,10 @@ namespace ShopManagement.Domain.ProductAgg
             Tags = tags;
             ImageName = imageName;
         }
+
+        public void Delete()
+        {
+            IsDeleted = true;
+        }
     }
 }

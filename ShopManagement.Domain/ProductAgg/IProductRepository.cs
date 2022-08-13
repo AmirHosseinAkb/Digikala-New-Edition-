@@ -12,6 +12,7 @@ namespace ShopManagement.Domain.ProductAgg
         bool IsExistProduct(string title);
         void AddProduct(Product product);
         Product GetProductById(long productId);
+        Product GetProductWithGroups(long productId);
         void SaveChanges();
     }
 }

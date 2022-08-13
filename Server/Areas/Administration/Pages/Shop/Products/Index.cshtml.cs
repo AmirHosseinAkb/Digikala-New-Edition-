@@ -64,6 +64,20 @@ namespace Server.Areas.Administration.Pages.Shop.Products
             return new JsonResult(result);
         }
 
+        public IActionResult OnGetDelete(long productId)
+        {
+            var command = _productApplication.GetProductForDelete(productId);
+            return Partial("./Delete", command);
+        }
+
+        public IActionResult OnPostDelete(long productId)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest();
+            var result= _productApplication.Delete(productId);
+            return new JsonResult(result);
+        }
+
         public IActionResult OnGetGetSubGroups(long id)
         {
             var subGroups = _productGroupApplication.GetSubGroups(id);

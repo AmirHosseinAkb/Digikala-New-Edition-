@@ -4,10 +4,16 @@
 });
 
 function GetProductForEdit(productId) {
-    $("#ModalContent").load('/Administration/Shop/Products/Edit?productId='+productId);
+    $("#ModalContent").load('/Administration/Shop/Products/Edit?productId=' + productId);
     $("#MainModal").modal('show');
 }
 
+
+function GetProductForDelete(productId, productTitle) {
+    $("#ModalContent").load('/Administration/Shop/Products/Delete?productId=' + productId);
+    $("#MainModal").modal('show');
+    $("#productTitle").text(productTitle);
+}
 $(document).on("submit", 'form[data-ajax="true"]',
     function (e) {
         e.preventDefault();
@@ -51,7 +57,7 @@ function CallBackHandler(data, action, form) {
             alert(data.Message);
             break;
         case "Refresh":
-            if (data.isSucceeded==true) {
+            if (data.isSucceeded == true) {
                 window.location.reload();
             } else {
                 alert(data.message);

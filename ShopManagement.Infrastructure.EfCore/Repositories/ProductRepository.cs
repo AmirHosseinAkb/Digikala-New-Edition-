@@ -1,4 +1,5 @@
-﻿using ShopManagement.Domain.ProductAgg;
+﻿using Microsoft.EntityFrameworkCore;
+using ShopManagement.Domain.ProductAgg;
 
 namespace ShopManagement.Infrastructure.EfCore.Repositories
 {
@@ -20,6 +21,14 @@ namespace ShopManagement.Infrastructure.EfCore.Repositories
         public Product GetProductById(long productId)
         {
             return _context.Products.Find(productId);
+        }
+
+        public Product GetProductWithGroups(long productId)
+        {
+            return _context.Products.Include(p => p.ProductGroup)
+                .Include(p => p.PrimaryProductGroup)
+                .Include(p => p.SecondaryProductGroup)
+                .SingleOrDefault(p => p.ProductId == productId);
         }
 
         public List<Product> GetAll(string title="",long groupId=0,long primaryGroupId=0,long secondaryGroupId=0)

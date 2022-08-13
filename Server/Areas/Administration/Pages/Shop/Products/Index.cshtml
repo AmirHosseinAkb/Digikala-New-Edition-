@@ -106,7 +106,7 @@
                                                 <td>@product.CreationDate</td>
                                                 <td>
                                                     <a onclick="GetProductForEdit(@product.ProductId)" class="btn btn-primary btn-xs largeModal">@ButtonCaptions.Edit</a>
-                                                    <a class="btn btn-danger btn-xs">@ButtonCaptions.Delete</a>
+                                                    <a onclick="GetProductForDelete(@product.ProductId,'@product.Title')" class="btn btn-danger btn-xs smallModal">@ButtonCaptions.Delete</a>
                                                 </td>
                                             </tr>
                                         }
@@ -155,6 +155,9 @@
 <script>
     $(".largeModal").click(function () {
         $("#ModalDialog").css("width", "80%");
+    });
+    $(".smallModal").click(function() {
+        $("#ModalDialog").css("width","40%");
     });
 </script>
 }

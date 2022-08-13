@@ -277,6 +277,15 @@ namespace _01_Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DeleteProduct.
+        /// </summary>
+        public static string DeleteProduct {
+            get {
+                return ResourceManager.GetString("DeleteProduct", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete Role.
         /// </summary>
         public static string DeleteRole {
@@ -309,6 +318,15 @@ namespace _01_Framework.Resources {
         public static string Description {
             get {
                 return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Details.
+        /// </summary>
+        public static string Details {
+            get {
+                return ResourceManager.GetString("Details", resourceCulture);
             }
         }
         
@@ -768,6 +786,15 @@ namespace _01_Framework.Resources {
         public static string ProductsManagement {
             get {
                 return ResourceManager.GetString("ProductsManagement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please seperate tags with (-) dash.
+        /// </summary>
+        public static string ProductTagsMessage {
+            get {
+                return ResourceManager.GetString("ProductTagsMessage", resourceCulture);
             }
         }
         

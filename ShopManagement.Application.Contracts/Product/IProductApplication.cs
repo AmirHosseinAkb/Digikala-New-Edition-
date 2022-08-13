@@ -14,5 +14,7 @@ namespace ShopManagement.Application.Contracts.Product
         OperationResult Create(CreateProductCommand command);
         EditProductCommand GetProductForEdit(long productId);
         OperationResult Edit(EditProductCommand command);
+        DeleteProductCommand GetProductForDelete(long productId);
+        OperationResult Delete(long productId);
     }
 }

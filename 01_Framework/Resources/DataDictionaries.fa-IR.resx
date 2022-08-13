@@ -189,6 +189,9 @@
   <data name="DeletedUsersList" xml:space="preserve">
     <value>لیست کاربران حذف شده</value>
   </data>
+  <data name="DeleteProduct" xml:space="preserve">
+    <value>حذف محصول</value>
+  </data>
   <data name="DeleteRole" xml:space="preserve">
     <value>حذف نقش</value>
   </data>
@@ -200,6 +203,9 @@
   </data>
   <data name="Description" xml:space="preserve">
     <value>توضیح</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>جزئیات</value>
   </data>
   <data name="EditPassword" xml:space="preserve">
     <value>ویرایش رمز عبور</value>
@@ -353,6 +359,9 @@
   </data>
   <data name="ProductsManagement" xml:space="preserve">
     <value>مدیریت محصولات</value>
+  </data>
+  <data name="ProductTagsMessage" xml:space="preserve">
+    <value>لطفا تگ های محصول را با (-) از هم جدا کنید</value>
   </data>
   <data name="Record" xml:space="preserve">
     <value>رکورد</value>
