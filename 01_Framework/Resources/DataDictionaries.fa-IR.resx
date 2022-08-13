@@ -132,6 +132,9 @@
   <data name="ActiveRegisterText" xml:space="preserve">
     <value>برای فعال سازی حساب کاربری خود وارد ایمیل خود شده و روی لینک فعالسازی کلیک نمایید سپس میتوانید وارد حساب کاربری خود شده و با تکمیل اطلاعات حساب کاربری خود به کلیه امکانات و سرویس‌ها و سرویس‌های وابسته به آن دسترسی داشته باشید</value>
   </data>
+  <data name="AddNewGroup" xml:space="preserve">
+    <value>افزودن گروه جدید</value>
+  </data>
   <data name="AddNewProduct" xml:space="preserve">
     <value>افزودن محصول جدید</value>
   </data>

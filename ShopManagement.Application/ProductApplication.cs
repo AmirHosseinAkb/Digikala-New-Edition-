@@ -24,7 +24,7 @@ namespace ShopManagement.Application
             var result=new OperationResult();
             if (_productRepository.IsExistProduct(command.Title))
                 return result.Failed(ApplicationMessages.DuplicatedProduct);
-            string produtImage = ProductImageName.DefaultName;
+            string produtImage = DefaultImages.DefaultProductImage;
 
             if (command.ProductImage != null)
             {
@@ -77,7 +77,7 @@ namespace ShopManagement.Application
             if (command.ProductImage != null)
             {
                 string imagePath = "";
-                if (product.ImageName != ProductImageName.DefaultName)
+                if (product.ImageName != DefaultImages.DefaultProductImage)
                 {
                     imagePath = Path.Combine(Directory.GetCurrentDirectory(),
                         "wwwroot",

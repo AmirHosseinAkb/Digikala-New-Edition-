@@ -18,7 +18,7 @@ namespace Server.Areas.Administration.Pages.Shop.ProductGroups
 
         public IActionResult OnGetCreate()
         {
-            return RedirectToPage();
+            return Partial("./Create");
         }
     }
 }

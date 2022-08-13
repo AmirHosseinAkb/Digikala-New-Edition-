@@ -90,13 +90,13 @@
                 <div class="form-group">
                     <div class="card">
                         <div class="card-header-pills">
-                            <label asp-for="Tags" class="control-label">@DataDictionaries.Image</label>
+                            <label class="control-label">@DataDictionaries.Image</label>
                         </div>
                         <div class="card-body">
-                            <img src="/Products/Images/@Model.ImageName" class="card-img-top img-thumbnail" alt="ProductImage" />
+                            <img id="proImage" src="/Products/Images/@Model.ImageName" class="card-img-top img-thumbnail" alt="ProductImage" />
                         </div>
                         <div class="card-footer">
-                            <input type="file" class="form-control" asp-for="ProductImage">
+                            <input id="imgInp" type="file" class="form-control" asp-for="ProductImage">
                             <span asp-validation-for="ProductImage" class="error"></span>
                         </div>
                     </div>
@@ -140,6 +140,23 @@
                     });
             });
     });
-</script>
 
+</script>
+<script>
+    function readURL(input) {
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#proImage').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#imgInp").change(function () {
+        readURL(this);
+    });
+</script>
 

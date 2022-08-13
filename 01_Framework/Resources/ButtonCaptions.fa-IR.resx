@@ -123,6 +123,9 @@
   <data name="ActiveAccount" xml:space="preserve">
     <value>فعالسازی حساب کاربری</value>
   </data>
+  <data name="Add" xml:space="preserve">
+    <value>افزودن</value>
+  </data>
   <data name="AddNewGroup" xml:space="preserve">
     <value>افزودن گروه جدید</value>
   </data>

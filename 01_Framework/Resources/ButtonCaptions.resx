@@ -123,6 +123,9 @@
   <data name="ActiveAccount" xml:space="preserve">
     <value>Active Account</value>
   </data>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
   <data name="AddNewGroup" xml:space="preserve">
     <value>Add New Group</value>
   </data>

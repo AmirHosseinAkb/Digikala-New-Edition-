@@ -365,7 +365,7 @@ namespace UserManagement.Application
                 return result.Failed(ApplicationMessages.RoleNotExist);
 
             User user;
-            string avatarName = UserDefaultImage.DefaultImageName;
+            string avatarName = DefaultImages.DefaultUserImage;
 
             if (command.UserAvatar != null)
             {
@@ -417,7 +417,7 @@ namespace UserManagement.Application
             if (command.UserAvatar != null)
             {
                 string imagePath = "";
-                if (user.AvatarName != UserDefaultImage.DefaultImageName)
+                if (user.AvatarName != DefaultImages.DefaultUserImage)
                 {
                     imagePath = ImagePathGenerator.GenerateUserImagePath(user.AvatarName);
                     if (File.Exists(imagePath))
