@@ -294,6 +294,9 @@
   <data name="May" xml:space="preserve">
     <value>اردیبهشت</value>
   </data>
+  <data name="Message" xml:space="preserve">
+    <value>پیغام</value>
+  </data>
   <data name="Month" xml:space="preserve">
     <value>ماه</value>
   </data>

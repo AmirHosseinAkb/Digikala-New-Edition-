@@ -159,6 +159,9 @@
   <data name="NoActiveUserAccount" xml:space="preserve">
     <value>حساب کاربری شما فعال نمی باشد لطفا ایمیل خود را بررسی کنید یا ازطریق شماره موبایل وارد شوید</value>
   </data>
+  <data name="NoProductGroupFound" xml:space="preserve">
+    <value>لطفا ابتدا گروه محصولی را ایجاد کنید</value>
+  </data>
   <data name="NoUserWithEnteredEmail" xml:space="preserve">
     <value>کاربری با ایمیل وارد شده وجود ندارد</value>
   </data>

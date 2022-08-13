@@ -2,3 +2,19 @@
 @model Server.Areas.Administration.Pages.Shop.ProductGroups.IndexModel
 @{
 }
+
+
+
+
+@if (Convert.ToBoolean(TempData["IsExistGroup"]))
+{
+    <script src="~/AdminContent/assets/sweet-alert/sweet-alert.min.js"></script>
+    <script src="~/AdminContent/assets/sweet-alert/sweet-alert.init.js"></script>
+    <link href="~/AdminContent/assets/sweet-alert/sweet-alert.min.css" rel="stylesheet">
+    <text>
+        <script>
+            sweetAlert("پیغام", "لطفا ابتدا گروه محصولی را ایجاد کنید", "error");
+        </script>
+    </text>
+}
+

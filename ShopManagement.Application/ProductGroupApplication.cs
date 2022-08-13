@@ -17,6 +17,14 @@ namespace ShopManagement.Application
         {
             _productGroupRepository = productGroupRepository;
         }
+
+        public bool IsExistAnyGroup()
+        {
+            if (_productGroupRepository.GetAll().Count == 0)
+                return false;
+            return true;
+        }
+
         public List<SelectListItem> GetGroups()
         {
             return _productGroupRepository.GetProductGroups().Select(g => new SelectListItem()

@@ -187,6 +187,15 @@ namespace _01_Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please create a product group first.
+        /// </summary>
+        public static string NoProductGroupFound {
+            get {
+                return ResourceManager.GetString("NoProductGroupFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There is no user with the entered email.
         /// </summary>
         public static string NoUserWithEnteredEmail {

@@ -18,8 +18,14 @@ namespace Server.Areas.Administration.Pages.Shop.Products
             _productGroupApplication = productGroupApplication;
         }
 
-        public void OnGet(int pageId = 1, string title = "", long groupId = 0, long primaryGroupId = 0, long secondaryGroupId = 0, int take = 10)
+        public IActionResult OnGet(int pageId = 1, string title = "", long groupId = 0, long primaryGroupId = 0, long secondaryGroupId = 0, int take = 10)
         {
+            if (!_productGroupApplication.IsExistAnyGroup())
+            {
+                TempData["IsExistGroup"]=true;
+                return Redirect("/Administration/Shop/ProductGroups");
+
+            }
             if (take % 10 != 0)
                 take = 10;
             ViewData["Take"] = take;
@@ -34,6 +40,7 @@ namespace Server.Areas.Administration.Pages.Shop.Products
             ViewData["SecondaryGroups"] = new SelectList(secondaryGroups, "Value", "Text");
 
             ProductVM = _productApplication.GetProducts(pageId, title, groupId, primaryGroupId, secondaryGroupId, take);
+            return Page();
         }
 
         public IActionResult OnGetCreate()
@@ -53,7 +60,7 @@ namespace Server.Areas.Administration.Pages.Shop.Products
         public IActionResult OnGetEdit(long productId)
         {
             var product = _productApplication.GetProductForEdit(productId);
-            return Partial("./Edit",product);
+            return Partial("./Edit", product);
         }
 
         public IActionResult OnPostEdit(EditProductCommand command)
@@ -74,7 +81,7 @@ namespace Server.Areas.Administration.Pages.Shop.Products
         {
             if (!ModelState.IsValid)
                 return BadRequest();
-            var result= _productApplication.Delete(productId);
+            var result = _productApplication.Delete(productId);
             return new JsonResult(result);
         }
 

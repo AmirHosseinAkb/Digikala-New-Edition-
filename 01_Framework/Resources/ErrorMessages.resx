@@ -159,6 +159,9 @@
   <data name="NoActiveUserAccount" xml:space="preserve">
     <value>Your account is inactive. Please check your email or sign in with your phone number</value>
   </data>
+  <data name="NoProductGroupFound" xml:space="preserve">
+    <value>Please create a product group first</value>
+  </data>
   <data name="NoUserWithEnteredEmail" xml:space="preserve">
     <value>There is no user with the entered email</value>
   </data>

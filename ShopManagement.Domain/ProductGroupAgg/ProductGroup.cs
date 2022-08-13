@@ -27,5 +27,12 @@ namespace ShopManagement.Domain.ProductGroupAgg
             GroupTitle=groupTitle;
             ParentId=parentId;
         }
+
+        public ProductGroup(long groupdId, string groupTitle, long? parentId)
+        {
+            GroupdId = groupdId;
+            GroupTitle = groupTitle;
+            ParentId = parentId;
+        }
     }
 }

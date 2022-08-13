@@ -15,6 +15,12 @@ namespace ShopManagement.Infrastructure.EfCore.Repositories
         {
             _context = context;
         }
+
+        public List<ProductGroup> GetAll()
+        {
+            return _context.ProductGroups.ToList();
+        }
+
         public List<ProductGroup> GetProductGroups()
         {
             return _context.ProductGroups.Where(g=>g.ParentId==null).ToList();
