@@ -9,6 +9,10 @@ $("#btnCreateProduct").click(function () {
     $("#ModalContent").load('/Administration/Shop/Products/Create');
     $("#MainModal").modal('show');
 });
+$("#btnCreateGroup").click(function () {
+    $("#ModalContent").load('/Administration/Shop/ProductGroups/Create');
+    $("#MainModal").modal('show');
+});
 
 function GetProductForEdit(productId) {
     $("#ModalContent").load('/Administration/Shop/Products/Edit?productId=' + productId);

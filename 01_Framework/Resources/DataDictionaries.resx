@@ -354,6 +354,9 @@
   <data name="ProductGroups" xml:space="preserve">
     <value>Product Groups</value>
   </data>
+  <data name="ProductGroupsList" xml:space="preserve">
+    <value>Product Groups List</value>
+  </data>
   <data name="Products" xml:space="preserve">
     <value>Products</value>
   </data>

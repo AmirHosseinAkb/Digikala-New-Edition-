@@ -772,6 +772,15 @@ namespace _01_Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Product Groups List.
+        /// </summary>
+        public static string ProductGroupsList {
+            get {
+                return ResourceManager.GetString("ProductGroupsList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Products.
         /// </summary>
         public static string Products {

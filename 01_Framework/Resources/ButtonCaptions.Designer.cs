@@ -79,6 +79,15 @@ namespace _01_Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add New Group.
+        /// </summary>
+        public static string AddNewGroup {
+            get {
+                return ResourceManager.GetString("AddNewGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add New Product.
         /// </summary>
         public static string AddNewProduct {

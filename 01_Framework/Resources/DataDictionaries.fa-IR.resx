@@ -354,6 +354,9 @@
   <data name="ProductGroups" xml:space="preserve">
     <value>گروه محصولات</value>
   </data>
+  <data name="ProductGroupsList" xml:space="preserve">
+    <value>لیست گروه محصولات</value>
+  </data>
   <data name="Products" xml:space="preserve">
     <value>محصولات</value>
   </data>
