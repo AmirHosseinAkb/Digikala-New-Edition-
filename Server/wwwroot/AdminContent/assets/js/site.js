@@ -1,4 +1,11 @@
-﻿$("#btnCreateProduct").click(function () {
+﻿$(".largeModal").click(function () {
+    $("#ModalDialog").css("width", "80%");
+});
+$(".smallModal").click(function () {
+    $("#ModalDialog").css("width", "40%");
+});
+
+$("#btnCreateProduct").click(function () {
     $("#ModalContent").load('/Administration/Shop/Products/Create');
     $("#MainModal").modal('show');
 });
