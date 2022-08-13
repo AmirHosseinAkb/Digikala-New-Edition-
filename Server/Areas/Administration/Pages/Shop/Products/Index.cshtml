@@ -76,7 +76,7 @@
                                         <div id="datatable_filter" class="dataTables_filter">
                                             <input type="submit" class="btn btn-primary" value="@ButtonCaptions.Search" />
                                             &nbsp;
-                                            <a href="/Admin/Users" class="btn btn-warning">@ButtonCaptions.Clear</a>
+                                            <a href="/Administration/Shop/Products" class="btn btn-warning">@ButtonCaptions.Clear</a>
                                         </div>
                                     </div>
                                 </div>
@@ -94,24 +94,22 @@
                                                 <th>@DataDictionaries.Operations</th>
                                             </tr>
                                         </thead>
-
                                         <tbody>
-
-                                            @foreach (var product in Model.ProductVM.Item1)
-                                            {
-                                                <tr role="row">
-                                                    <td>
-                                                        <img src="/Products/Images/@product.ImageName" style="width:200px;height:200px" class="img-thumbnail">
-                                                    </td>
-                                                    <td>@product.Title</td>
-                                                    <td>@product.Price.ToString("#,0")</td>
-                                                    <td>@product.CreationDate</td>
-                                                    <td>
-                                                        <a onclick="GetProductForEdit(@product.ProductId)" class="btn btn-primary btn-xs largeModal">@ButtonCaptions.Edit</a>
-                                                        <a class="btn btn-danger btn-xs">@ButtonCaptions.Delete</a>
-                                                    </td>
-                                                </tr>
-                                            }
+                                        @foreach (var product in Model.ProductVM.Item1)
+                                        {
+                                            <tr role="row">
+                                                <td>
+                                                    <img src="/Products/Images/@product.ImageName" style="width: 200px; height: 200px" class="img-thumbnail">
+                                                </td>
+                                                <td>@product.Title</td>
+                                                <td>@product.Price.ToString("#,0")</td>
+                                                <td>@product.CreationDate</td>
+                                                <td>
+                                                    <a onclick="GetProductForEdit(@product.ProductId)" class="btn btn-primary btn-xs largeModal">@ButtonCaptions.Edit</a>
+                                                    <a class="btn btn-danger btn-xs">@ButtonCaptions.Delete</a>
+                                                </td>
+                                            </tr>
+                                        }
 
                                         </tbody>
                                     </table>

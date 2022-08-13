@@ -56,6 +56,14 @@ namespace Server.Areas.Administration.Pages.Shop.Products
             return Partial("./Edit",product);
         }
 
+        public IActionResult OnPostEdit(EditProductCommand command)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest();
+            var result = _productApplication.Edit(command);
+            return new JsonResult(result);
+        }
+
         public IActionResult OnGetGetSubGroups(long id)
         {
             var subGroups = _productGroupApplication.GetSubGroups(id);

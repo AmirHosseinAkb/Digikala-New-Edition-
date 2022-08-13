@@ -24,7 +24,7 @@ namespace ShopManagement.Application
             var result=new OperationResult();
             if (_productRepository.IsExistProduct(command.Title))
                 return result.Failed(ApplicationMessages.DuplicatedProduct);
-            string produtImage = "Product.png";
+            string produtImage = ProductImageName.DefaultName;
 
             if (command.ProductImage != null)
             {
@@ -61,6 +61,50 @@ namespace ShopManagement.Application
                 PrimaryGroupId = product.PrimaryGroupId,
                 SecondaryGroupId = product.SecondaryGroupId
             };
+        }
+
+        public OperationResult Edit(EditProductCommand command)
+        {
+            var result = new OperationResult();
+            var product = _productRepository.GetProductById(command.ProductId);
+            if (product.Title != command.Title)
+            {
+                if (_productRepository.IsExistProduct(command.Title))
+                    return result.Failed(ApplicationMessages.DuplicatedProduct);
+            }
+
+            var productImage = product.ImageName;
+            if (command.ProductImage != null)
+            {
+                string imagePath = "";
+                if (product.ImageName != ProductImageName.DefaultName)
+                {
+                    imagePath = Path.Combine(Directory.GetCurrentDirectory(),
+                        "wwwroot",
+                        "Products",
+                        "Images",
+                        product.ImageName);
+                    if (File.Exists(imagePath))
+                    {
+                        File.Delete(imagePath);
+                    }
+                }
+
+                productImage = CodeGenerator.GenerateUniqName() + Path.GetExtension(command.ProductImage.FileName);
+                imagePath = Path.Combine(Directory.GetCurrentDirectory(),
+                    "wwwroot",
+                    "Products",
+                    "Images",
+                    productImage);
+                using (var stream=new FileStream(imagePath,FileMode.Create))
+                {
+                    command.ProductImage.CopyTo(stream);
+                }
+            }
+            product.Edit(command.GroupId,command.PrimaryGroupId,command.SecondaryGroupId,command.Title
+                ,command.Description,command.Price,command.OtherLangTitle,command.Tags,productImage);
+            _productRepository.SaveChanges();
+            return result.Succeeded();
         }
 
         public Tuple<List<ProductViewModel>,int,int,int> GetProducts(int pageId=1,string title="",long groupId=0,long primaryGroupId=0,long secondaryGroupId=0,int take=0)

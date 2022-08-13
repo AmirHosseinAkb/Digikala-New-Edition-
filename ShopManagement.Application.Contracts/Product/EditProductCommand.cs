@@ -9,6 +9,6 @@ namespace ShopManagement.Application.Contracts.Product
     public class EditProductCommand:CreateProductCommand
     {
         public long ProductId { get; set; }
-        public string ImageName { get; set; }
+        public string? ImageName { get; set; }
     }
 }

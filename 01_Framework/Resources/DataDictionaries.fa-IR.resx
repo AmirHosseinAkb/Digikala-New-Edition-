@@ -172,7 +172,7 @@
     <value>تبریک میگوییم!</value>
   </data>
   <data name="CreationDate" xml:space="preserve">
-    <value>تاریخ</value>
+    <value>تاریخ ایجاد</value>
   </data>
   <data name="CurrentPassword" xml:space="preserve">
     <value>رمز عبور فعلی</value>

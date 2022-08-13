@@ -51,7 +51,7 @@ function CallBackHandler(data, action, form) {
             alert(data.Message);
             break;
         case "Refresh":
-            if (data.IsSucceeded) {
+            if (data.isSucceeded==true) {
                 window.location.reload();
             } else {
                 alert(data.message);

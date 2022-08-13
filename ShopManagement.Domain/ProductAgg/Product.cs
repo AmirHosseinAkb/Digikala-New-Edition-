@@ -50,5 +50,18 @@ namespace ShopManagement.Domain.ProductAgg
             CreationDate = DateTime.Now;
             IsDeleted = false;
         }
+        public void Edit(long groupId, long? primaryGroupId, long? secondaryGroupId, string title, string description, int price
+            , string otherLangTitle, string tags, string imageName)
+        {
+            GroupId = groupId;
+            PrimaryGroupId = primaryGroupId;
+            SecondaryGroupId = secondaryGroupId;
+            Title = title;
+            OtherLangTitle = otherLangTitle;
+            Description = description;
+            Price = price;
+            Tags = tags;
+            ImageName = imageName;
+        }
     }
 }
