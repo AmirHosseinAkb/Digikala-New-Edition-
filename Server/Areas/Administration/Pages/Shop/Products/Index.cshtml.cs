@@ -36,7 +36,9 @@ namespace Server.Areas.Administration.Pages.Shop.Products
             var primaryGroups = _productGroupApplication.GetSubGroups(int.Parse(groups.First().Value));
             ViewData["PrimaryGroups"] = new SelectList(primaryGroups, "Value", "Text");
 
-            var secondaryGroups = _productGroupApplication.GetSubGroups(int.Parse(primaryGroups.First().Value));
+            var secondaryGroups = new List<SelectListItem>();
+            if(primaryGroups.Count()!=0)
+                secondaryGroups = _productGroupApplication.GetSubGroups(int.Parse(primaryGroups.First().Value));
             ViewData["SecondaryGroups"] = new SelectList(secondaryGroups, "Value", "Text");
 
             ProductVM = _productApplication.GetProducts(pageId, title, groupId, primaryGroupId, secondaryGroupId, take);

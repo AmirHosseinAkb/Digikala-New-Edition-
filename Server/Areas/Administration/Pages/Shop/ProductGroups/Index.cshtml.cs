@@ -15,6 +15,7 @@ namespace Server.Areas.Administration.Pages.Shop.ProductGroups
         }
         public void OnGet()
         {
+
         }
 
         public IActionResult OnGetCreate()
