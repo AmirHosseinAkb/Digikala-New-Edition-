@@ -1,4 +1,5 @@
-﻿using ShopManagement.Domain.ProductGroupAgg;
+﻿using Microsoft.EntityFrameworkCore;
+using ShopManagement.Domain.ProductGroupAgg;
 
 namespace ShopManagement.Infrastructure.EfCore.Repositories
 {
@@ -18,10 +19,15 @@ namespace ShopManagement.Infrastructure.EfCore.Repositories
 
         public List<ProductGroup> GetProductGroups(long? groupId)
         {
-            IQueryable<ProductGroup> groups = _context.ProductGroups;
-            if(groupId == null)
-                return groups.Where(g=>g.ParentId==null).ToList();
-            return groups.Where(p => p.ParentId == groupId).ToList();
+            return _context.ProductGroups.Where(g => g.ParentId==groupId).ToList();
+        }
+
+        public List<ProductGroup> GetProductGroupsForShow(string title = "")
+        {
+            IQueryable<ProductGroup> groups=_context.ProductGroups;
+            if (!string.IsNullOrEmpty(title))
+                groups = groups.Where(g => g.GroupTitle.Contains(title));
+            return groups.ToList();
         }
 
         public void Add(ProductGroup group)

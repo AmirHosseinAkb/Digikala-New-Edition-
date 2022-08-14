@@ -10,6 +10,6 @@ namespace _01_Framework.Application
     {
         public const string DefaultUserImage = "Default.png";
         public static string DefaultProductImage = "Product.png";
-        public static string DefaultProductGroupImage = "ProductGroup.png";
+        public static string DefaultProductGroupImage = "ProductGroup.jpg";
     }
 }

@@ -49,9 +49,26 @@ namespace ShopManagement.Application
                     command.GroupImage.CopyTo(stream);
             }
 
-            var group = new ProductGroup(command.Title, null, imageName);
+            var group = new ProductGroup(command.Title, command.ParentId, imageName);
             _productGroupRepository.Add(group);
             return result.Succeeded();
+        }
+
+        public Tuple<List<ProductGroupViewModel> , int, int, int> GetProductGroupsForShow(int pageId = 1, string title = "", int take = 10)
+        {
+            var skip = (pageId - 1) * take;
+            var groups = _productGroupRepository.GetProductGroupsForShow(title).Skip(skip).Take(take)
+                .Select(g=>new ProductGroupViewModel()
+                {
+                    GroupId = g.GroupdId,
+                    ParentId = g.ParentId,
+                    ImageName = g.ImageName,
+                    GroupTitle = g.GroupTitle
+                }).ToList();
+            var pageCount = groups.Count() / take;
+            if (groups.Count() % take != 0)
+                pageCount++;
+            return Tuple.Create(groups, pageId, pageCount, take);
         }
 
         public Tuple<List<ProductGroupViewModel>, int, int, int> GetProductGroupdForShow(int pageId = 1, string title = "", int take = 10)

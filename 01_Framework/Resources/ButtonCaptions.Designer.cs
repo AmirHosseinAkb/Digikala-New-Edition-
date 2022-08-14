@@ -124,6 +124,15 @@ namespace _01_Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Sub Group.
+        /// </summary>
+        public static string AddSubGroup {
+            get {
+                return ResourceManager.GetString("AddSubGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string Cancel {

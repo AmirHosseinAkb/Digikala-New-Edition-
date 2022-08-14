@@ -453,6 +453,9 @@
   <data name="String" xml:space="preserve">
     <value>زمان باقی مانده</value>
   </data>
+  <data name="SubGroups" xml:space="preserve">
+    <value>گروه های فرعی</value>
+  </data>
   <data name="SuccessfullTransaction" xml:space="preserve">
     <value>تراکنش موفق</value>
   </data>

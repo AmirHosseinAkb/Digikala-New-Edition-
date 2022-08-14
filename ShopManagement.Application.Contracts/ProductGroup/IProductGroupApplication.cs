@@ -8,8 +8,8 @@ namespace ShopManagement.Application.Contracts.ProductGroup
         bool IsExistAnyGroup();
         List<SelectListItem> GetGroups(long? groupId);
         OperationResult CreateGroup(CreateGroupCommand command);
-
-        Tuple<List<ProductGroupViewModel>, int, int, int> GetProductGroupdForShow(int pageId = 1, string title = "",
+        
+        Tuple<List<ProductGroupViewModel> , int, int, int> GetProductGroupsForShow(int pageId = 1, string title = "",
             int take = 10);
     }
 }

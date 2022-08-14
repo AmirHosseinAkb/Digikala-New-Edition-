@@ -13,28 +13,42 @@
       method="post">
     <div class="modal-body">
         <div class="row">
-            <div class="col-md-8">
-                <div class="form-group">
-                    <input type="text" class="form-control" asp-for="Title" placeholder="@DataDictionaries.Title">
-                    <span asp-validation-for="Title" class="error"></span>
+            @if (Model.ParentId == null)
+            {
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <input type="hidden" asp-for="ParentId" />
+                        <input type="text" class="form-control" asp-for="Title" placeholder="@DataDictionaries.Title">
+                        <span asp-validation-for="Title" class="error"></span>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <div class="card">
-                        <div class="card-header-pills">
-                            <label class="control-label">@DataDictionaries.Image</label>
-                        </div>
-                        <div class="card-body">
-                            <img id="groupImage" src="/Products/ProductGroupImages/ProductGroup.jpg" class="card-img-top img-thumbnail" alt="ProductImage" />
-                        </div>
-                        <div class="card-footer">
-                            <input id="imgInp" type="file" class="form-control" asp-for="GroupImage">
-                            <span asp-validation-for="GroupImage" class="error"></span>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <div class="card">
+                            <div class="card-header-pills">
+                                <label class="control-label">@DataDictionaries.Image</label>
+                            </div>
+                            <div class="card-body">
+                                <img id="groupImage" src="/Products/ProductGroupImages/ProductGroup.jpg" class="card-img-top img-thumbnail" alt="ProductImage" />
+                            </div>
+                            <div class="card-footer">
+                                <input id="imgInp" type="file" class="form-control" asp-for="GroupImage">
+                                <span asp-validation-for="GroupImage" class="error"></span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            }
+            else
+            {
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <input type="hidden" asp-for="ParentId" />
+                        <input type="text" class="form-control" asp-for="Title" placeholder="@DataDictionaries.Title">
+                        <span asp-validation-for="Title" class="error"></span>
+                    </div>
+                </div>
+            }
         </div>
     </div>
     <div class="modal-footer">

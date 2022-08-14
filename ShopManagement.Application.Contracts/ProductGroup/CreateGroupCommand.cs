@@ -11,6 +11,7 @@ namespace ShopManagement.Application.Contracts.ProductGroup
 {
     public class CreateGroupCommand
     {
+        public long? ParentId { get; set; }
         [Required(ErrorMessage = ValidationMessages.IsRequired)]
         [MaxLength(200, ErrorMessage = ValidationMessages.MaxLength)]
         public string Title { get; set; }

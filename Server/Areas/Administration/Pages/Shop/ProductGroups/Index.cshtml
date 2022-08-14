@@ -15,18 +15,18 @@
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div id="datatable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
                             <div class="m-b-15">
-                                <a id="btnCreateGroup"  class="btn btn-info">@ButtonCaptions.AddNewGroup</a>
+                                <a onclick="CreateGroup()"  class="btn btn-info">@ButtonCaptions.AddNewGroup</a>
                             </div>
                             <form method="get">
                                 <div class="row">
-                                    <div class="col-md-3">
+                                    <div class="col-md-6">
                                         <div id="datatable_filter" class="dataTables_filter">
                                             <label style="display:block">@DataDictionaries.Title</label>
                                             <input name="fullName" type="search" class="form-control input-sm" placeholder="@DataDictionaries.Title" aria-controls="datatable">
                                         </div>
                                     </div>
 
-                                    @*<div class="col-md-3">
+                                    <div class="col-md-3">
                                         <div class="dataTables_length" id="datatable_length">
                                             <label style="display:block">@DataDictionaries.Show</label>
                                             <select name="take" aria-controls="datatable" class="form-control input-sm">
@@ -45,10 +45,8 @@
                                             </select>
                                             @DataDictionaries.Record
                                         </div>
-                                    </div>*@
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-2 m-t-10">
+                                    </div>
+                                    <div class="col-md-3">
                                         <div id="datatable_filter" class="dataTables_filter">
                                             <input type="submit" class="btn btn-primary" value="@ButtonCaptions.Search" />
                                             &nbsp;
@@ -56,7 +54,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <hr />
                             </form>
                             <div class="row m-t-10">
                                 <div class="col-sm-12">
@@ -65,38 +62,57 @@
                                             <tr role="row">
                                                 <th>@DataDictionaries.Image</th>
                                                 <th>@DataDictionaries.Group</th>
-                                                <th>@DataDictionaries.PrimaryGroup</th>
-                                                <th>@DataDictionaries.SecondaryGroup</th>
+                                                <th>@DataDictionaries.SubGroups</th>
                                                 <th>@DataDictionaries.Operations</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        @*@foreach (var product in Model.ProductVM.Item1)
+                                        @foreach (var group in Model.ProductGroupVm.Item1.Where(g=>g.ParentId==null))
                                         {
                                             <tr role="row">
                                                 <td>
-                                                    <img src="/Products/Images/@product.ImageName" style="width: 200px; height: 200px" class="img-thumbnail">
+                                                    <img src="/Products/ProductGroupImages/@group.ImageName" style="width: 200px; height: 200px" class="img-thumbnail">
                                                 </td>
-                                                <td>@product.Title</td>
-                                                <td>@product.Price.ToString("#,0")</td>
-                                                <td>@product.CreationDate</td>
+                                                <td>@group.GroupTitle</td>
                                                 <td>
-                                                    <a onclick="GetProductForEdit(@product.ProductId)" class="btn btn-primary btn-xs largeModal">@ButtonCaptions.Edit</a>
-                                                    <a onclick="GetProductForDelete(@product.ProductId,'@product.Title')" class="btn btn-danger btn-xs smallModal">@ButtonCaptions.Delete</a>
+                                                    @if (Model.ProductGroupVm.Item1.Any(g=>g.ParentId==group.GroupId))
+                                                    {
+                                                        <ul>
+                                                            @foreach (var primaryGroup in Model.ProductGroupVm.Item1.Where(g => g.ParentId == group.GroupId))
+                                                            {
+                                                                <li>@primaryGroup.GroupTitle</li><a onclick="CreateGroup(@primaryGroup.GroupId)" class="btn btn-warning btn-xs ">@ButtonCaptions.AddSubGroup</a>
+                                                                @if (Model.ProductGroupVm.Item1.Any(g => g.ParentId == primaryGroup.GroupId))
+                                                                {
+                                                                    <ul>
+                                                                        @foreach (var secondaryGroup in Model.ProductGroupVm.Item1.Where(g => g.ParentId == primaryGroup.GroupId))
+                                                                        {
+                                                                            <li>@secondaryGroup.GroupTitle</li>
+                                                                        }
+                                                                    </ul>
+                                                                }
+                                                            }
+                                                        </ul>
+                                                    }
+                                                </td>
+
+                                                <td>
+                                                    <a onclick="CreateGroup(@group.GroupId)" class="btn btn-warning btn-xs ">@ButtonCaptions.AddSubGroup</a>
+                                                    <a  class="btn btn-primary btn-xs ">@ButtonCaptions.Edit</a>
+                                                    <a  class="btn btn-danger btn-xs ">@ButtonCaptions.Delete</a>
                                                 </td>
                                             </tr>
-                                        }*@
+                                        }
 
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
-                            @*<div class="row">
+                            <div class="row">
                                 <div class="col-sm-6">
                                     @{
-                                        int take = Model.ProductVM.Item4;
-                                        int pageId = Model.ProductVM.Item2;
-                                        int totalEntries = Model.ProductVM.Item1.Count();
+                                        int take = Model.ProductGroupVm.Item4;
+                                        int pageId = Model.ProductGroupVm.Item2;
+                                        int totalEntries = Model.ProductGroupVm.Item1.Count();
                                         int startEntry = (pageId - 1) * take;
                                         if (totalEntries != 0)
                                             startEntry += 1;
@@ -111,17 +127,15 @@
                                 <div class="col-sm-6">
                                     <div class="dataTables_paginate paging_simple_numbers" id="datatable_paginate">
                                         <ul class="pagination">
-                                            @for (var i = 1; i <= Model.ProductVM.Item3; i++)
+                                            @for (var i = 1; i <= Model.ProductGroupVm.Item3; i++)
                                             {
-                                                <li class="paginate_button @((Model.ProductVM.Item2==i)?"active":"")" aria-controls="datatable" tabindex="0"><a href="/Admin/Users?pageId=@i">@i</a></li>
+                                                <li class="paginate_button @((Model.ProductGroupVm.Item2==i)?"active":"")" aria-controls="datatable" tabindex="0"><a href="/Admin/Users?pageId=@i">@i</a></li>
                                             }
                                         </ul>
                                     </div>
                                 </div>
-                            </div>*@
-                        </div>
-
-                    </div>
+                            </div>
+                        </div>                    </div>
                 </div>
             </div>
         </div>

@@ -450,6 +450,9 @@
   <data name="Showing" xml:space="preserve">
     <value>Showing</value>
   </data>
+  <data name="SubGroups" xml:space="preserve">
+    <value>Sub Groups</value>
+  </data>
   <data name="SuccessfullTransaction" xml:space="preserve">
     <value>Successfull Transaction</value>
   </data>

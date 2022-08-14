@@ -10,7 +10,7 @@ namespace ShopManagement.Application.Contracts.ProductGroup
     {
         public long GroupId { get; set; }
         public string ImageName { get; set; }
-        public string Title { get; set; }
+        public string GroupTitle { get; set; }
         public long? ParentId { get; set; }
 
     }

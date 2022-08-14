@@ -138,6 +138,9 @@
   <data name="AddNewUser" xml:space="preserve">
     <value>Add new user</value>
   </data>
+  <data name="AddSubGroup" xml:space="preserve">
+    <value>Add Sub Group</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>

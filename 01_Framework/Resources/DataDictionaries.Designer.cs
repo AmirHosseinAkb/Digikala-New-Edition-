@@ -1060,6 +1060,15 @@ namespace _01_Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sub Groups.
+        /// </summary>
+        public static string SubGroups {
+            get {
+                return ResourceManager.GetString("SubGroups", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Successfull Transaction.
         /// </summary>
         public static string SuccessfullTransaction {

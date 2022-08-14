@@ -138,6 +138,9 @@
   <data name="AddNewUser" xml:space="preserve">
     <value>افزودن کاربر جدید</value>
   </data>
+  <data name="AddSubGroup" xml:space="preserve">
+    <value>افزودن زیرگروه</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>انصراف</value>
   </data>
