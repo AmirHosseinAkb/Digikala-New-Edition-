@@ -14,23 +14,23 @@ namespace UserManagement.Application.Contracts.User.Administration
     {
         public int UserId { get; set; }
 
-        [MaxLength(200, ErrorMessage = ValidationMessages.MaxLenght)]
+        [MaxLength(200, ErrorMessage = ValidationMessages.MaxLength)]
         [EmailAddress(ErrorMessage = ValidationMessages.InvalidEmail)]
         [RequiredIfEmpty(nameof(PhoneNumber), ErrorMessage = ValidationMessages.EnterEmailOrPhoneNumber)]
         public string? Email { get; set; }
 
 
-        [MaxLength(200, ErrorMessage = ValidationMessages.MaxLenght)]
+        [MaxLength(200, ErrorMessage = ValidationMessages.MaxLength)]
         [MinLength(8, ErrorMessage = ValidationMessages.PasswordMinLength)]
         [DataType(DataType.Password)]
         public string? Password { get; set; }
 
 
-        [MaxLength(200, ErrorMessage = ValidationMessages.MaxLenght)]
+        [MaxLength(200, ErrorMessage = ValidationMessages.MaxLength)]
         public string? FirstName { get; set; }
 
 
-        [MaxLength(200, ErrorMessage = ValidationMessages.MaxLenght)]
+        [MaxLength(200, ErrorMessage = ValidationMessages.MaxLength)]
         public string? LastName { get; set; }
 
 

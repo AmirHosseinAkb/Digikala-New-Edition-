@@ -12,7 +12,7 @@ namespace UserManagement.Application.Contracts.Role
     {
         public long RoleId { get; set; }
         [Required(ErrorMessage = ValidationMessages.IsRequired)]
-        [MaxLength(200,ErrorMessage = ValidationMessages.MaxLenght)]
+        [MaxLength(200,ErrorMessage = ValidationMessages.MaxLength)]
         public string RoleTitle { get; set; }
 
         public List<int>? PermissionCodes { get; set; }

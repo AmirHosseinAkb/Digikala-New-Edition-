@@ -12,6 +12,7 @@ namespace _01_Framework.Application
         public const string DuplicatedPhone = "این شماره همراه از قبل وجود دارد";
         public const string DuplicatedRole = "این نقش از قبل وجود دارد";
         public const string DuplicatedProduct = "این محصول از قبل وجود دارد";
+        public const string DuplicatedGroup = "این گروه محصول از قبل وجود دارد";
         public const string RecordNotFound = "کاربری با اطلاعات وارد شده یافت نشد.";
         public static string WrongUserPass = "رمز عبور وارد شده صحیح نمی باشد";
         public const string InvalidEmailOrPhoneNumber = "ایمیل یا شماره همراه را بصورت صحیح وارد کنید";

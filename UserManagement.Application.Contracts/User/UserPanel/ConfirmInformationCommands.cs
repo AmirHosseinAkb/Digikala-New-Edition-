@@ -67,19 +67,19 @@ namespace UserManagement.Application.Contracts.User.UserPanel
     public class PasswordCommand
     {
         [Required(ErrorMessage = ValidationMessages.IsRequired)]
-        [MaxLength(50,ErrorMessage = ValidationMessages.MaxLenght)]
+        [MaxLength(50,ErrorMessage = ValidationMessages.MaxLength)]
         [MinLength(8,ErrorMessage = ValidationMessages.PasswordMinLength)]
         [DataType(DataType.Password)]
         public string CurrentPassword { get; set; }
 
         [Required(ErrorMessage = ValidationMessages.IsRequired)]
-        [MaxLength(30,ErrorMessage = ValidationMessages.MaxLenght)]
+        [MaxLength(30,ErrorMessage = ValidationMessages.MaxLength)]
         [MinLength(8,ErrorMessage = ValidationMessages.PasswordMinLength)]
         [DataType(DataType.Password)]
         public string NewPassword { get; set; }
 
         [Required(ErrorMessage = ValidationMessages.IsRequired)]
-        [MaxLength(50,ErrorMessage = ValidationMessages.MaxLenght)]
+        [MaxLength(50,ErrorMessage = ValidationMessages.MaxLength)]
         [MinLength(8,ErrorMessage = ValidationMessages.PasswordMinLength)]
         [DataType(DataType.Password)]
         [Compare(nameof(NewPassword),ErrorMessage = ValidationMessages.InvalidPasswordCompare)]

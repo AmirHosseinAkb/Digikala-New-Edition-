@@ -22,7 +22,7 @@ namespace Server.Areas.Administration.Pages.Shop.Products
         {
             if (!_productGroupApplication.IsExistAnyGroup())
             {
-                TempData["IsExistGroup"]=true;
+                TempData["IsExistGroup"] = true;
                 return Redirect("/Administration/Shop/ProductGroups");
 
             }

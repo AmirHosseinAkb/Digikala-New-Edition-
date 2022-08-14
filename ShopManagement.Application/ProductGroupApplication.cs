@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using _01_Framework.Application;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using ShopManagement.Application.Contracts.ProductGroup;
 using ShopManagement.Domain.ProductGroupAgg;
 
@@ -36,6 +37,29 @@ namespace ShopManagement.Application
                 Text = g.GroupTitle,
                 Value = g.GroupdId.ToString()
             }).ToList();
+        }
+
+        public OperationResult CreateGroup(CreateGroupCommand command)
+        {
+            var result = new OperationResult();
+            if (_productGroupRepository.IsExistGroup(command.Title))
+                return result.Failed(ApplicationMessages.DuplicatedGroup);
+            var imageName = DefaultImages.DefaultProductGroupImage;
+            if (command.GroupImage != null)
+            {
+                imageName = CodeGenerator.GenerateUniqName() + Path.GetExtension(command.GroupImage.FileName);
+                string imagePath = Path.Combine(Directory.GetCurrentDirectory(),
+                    "wwwroot",
+                    "Products",
+                    "ProductGroupImages",
+                    imageName);
+                using (var stream = new FileStream(imagePath, FileMode.Create))
+                    command.GroupImage.CopyTo(stream);
+            }
+
+            var group = new ProductGroup(command.Title, null, imageName);
+            _productGroupRepository.Add(group);
+            return result.Succeeded();
         }
     }
 }

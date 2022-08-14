@@ -23,12 +23,12 @@ namespace ShopManagement.Application.Contracts.Product
 
         public long? SecondaryGroupId { get; set; }
         [Required(ErrorMessage = ValidationMessages.IsRequired)]
-        [MaxLength(200, ErrorMessage = ValidationMessages.MaxLenght)]
+        [MaxLength(200, ErrorMessage = ValidationMessages.MaxLength)]
 
         public string Title { get; set; }
 
         [Required(ErrorMessage = ValidationMessages.IsRequired)]
-        [MaxLength(200,ErrorMessage = ValidationMessages.MaxLenght)]
+        [MaxLength(200,ErrorMessage = ValidationMessages.MaxLength)]
         public string OtherLangTitle { get; set; }
 
         [Required(ErrorMessage = ValidationMessages.IsRequired)]
@@ -39,7 +39,7 @@ namespace ShopManagement.Application.Contracts.Product
         public int Price { get; set; }
 
         [Required(ErrorMessage = ValidationMessages.IsRequired)]
-        [MaxLength(300,ErrorMessage = ValidationMessages.MaxLenght)]
+        [MaxLength(300,ErrorMessage = ValidationMessages.MaxLength)]
         public string Tags { get; set; }
 
         public IFormFile? ProductImage { get; set; }

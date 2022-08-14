@@ -8,6 +8,7 @@
       asp-page-handler="Create"
       data-ajax="true"
       data-action="Refresh"
+      data-callback=""
       enctype="multipart/form-data"
       method="post">
     <div class="modal-body">
@@ -35,14 +36,16 @@
                 </div>
             </div>
         </div>
-
     </div>
     <div class="modal-footer">
         <button type="submit" class="btn btn-info waves-effect waves-light">@ButtonCaptions.Add</button>
         <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">@ButtonCaptions.Cancel</button>
     </div>
-
 </form>
+
+<script src="~/assets/js/library/jquery.validate.min.js"></script>
+<script src="~/assets/js/library/jquery.validate.unobtrusive.min.js"></script>
+
 
 <script>
     function readURL(input) {

@@ -12,7 +12,7 @@ namespace UserManagement.Application.Contracts.Role
     public class CreateRoleCommand
     {
         [Required(ErrorMessage = ValidationMessages.IsRequired)]
-        [MaxLength(200,ErrorMessage = ValidationMessages.MaxLenght)]
+        [MaxLength(200,ErrorMessage = ValidationMessages.MaxLength)]
         public string RoleTitle { get; set; }
 
         public List<int>? PermissionCodes { get; set; }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using _01_Framework.Application;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ShopManagement.Application.Contracts.ProductGroup
 {
@@ -7,5 +8,7 @@ namespace ShopManagement.Application.Contracts.ProductGroup
         bool IsExistAnyGroup();
         List<SelectListItem> GetGroups();
         List<SelectListItem> GetSubGroups(long groupId);
+        OperationResult CreateGroup(CreateGroupCommand command);
+        
     }
 }

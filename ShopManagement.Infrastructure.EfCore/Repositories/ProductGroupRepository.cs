@@ -26,5 +26,15 @@ namespace ShopManagement.Infrastructure.EfCore.Repositories
             return _context.ProductGroups.Where(g => g.ParentId == groupId).ToList();
         }
 
+        public void Add(ProductGroup group)
+        {
+            _context.ProductGroups.Add(group);
+            _context.SaveChanges();
+        }
+
+        public bool IsExistGroup(string title)
+        {
+            return _context.ProductGroups.Any(g => g.ParentId==null &&g.GroupTitle == title);
+        }
     }
 }
