@@ -6,9 +6,10 @@ namespace ShopManagement.Application.Contracts.ProductGroup
     public interface IProductGroupApplication
     {
         bool IsExistAnyGroup();
-        List<SelectListItem> GetGroups();
-        List<SelectListItem> GetSubGroups(long groupId);
+        List<SelectListItem> GetGroups(long? groupId);
         OperationResult CreateGroup(CreateGroupCommand command);
-        
+
+        Tuple<List<ProductGroupViewModel>, int, int, int> GetProductGroupdForShow(int pageId = 1, string title = "",
+            int take = 10);
     }
 }

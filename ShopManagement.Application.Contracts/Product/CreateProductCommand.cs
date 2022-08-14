@@ -35,7 +35,7 @@ namespace ShopManagement.Application.Contracts.Product
         public string Description { get; set; }
 
         [Required(ErrorMessage = ValidationMessages.IsRequired)]
-        [Range(0,int.MaxValue,ErrorMessage = ValidationMessages.IntegerValue)]
+        [Range(100,int.MaxValue,ErrorMessage = ValidationMessages.IntegerRange)]
         public int Price { get; set; }
 
         [Required(ErrorMessage = ValidationMessages.IsRequired)]

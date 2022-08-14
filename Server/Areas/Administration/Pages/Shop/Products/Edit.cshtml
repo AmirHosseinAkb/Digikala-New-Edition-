@@ -4,19 +4,19 @@
 @inject IProductGroupApplication _productGroupApplication
 
 @{
-    var groups = _productGroupApplication.GetGroups();
+    var groups = _productGroupApplication.GetGroups(null);
     var Groups = new SelectList(groups, "Value", "Text",Model.GroupId);
 
     var PrimaryGroups = new SelectList(new List<SelectListItem>());
     if (Model.PrimaryGroupId != null)
     {
-        var primaryGroups = _productGroupApplication.GetSubGroups(Model.GroupId);
+        var primaryGroups = _productGroupApplication.GetGroups(Model.GroupId);
          PrimaryGroups= new SelectList(primaryGroups, "Value", "Text",Model.PrimaryGroupId);
     }
     var SecondaryGroups = new SelectList(new List<SelectListItem>());
     if (Model.SecondaryGroupId != null)
     {
-        var secondaryGroups = _productGroupApplication.GetSubGroups(Model.PrimaryGroupId!.Value);
+        var secondaryGroups = _productGroupApplication.GetGroups(Model.PrimaryGroupId!.Value);
          SecondaryGroups= new SelectList(secondaryGroups, "Value", "Text",Model.SecondaryGroupId);
     }
 }

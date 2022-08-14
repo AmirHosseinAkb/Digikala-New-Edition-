@@ -16,14 +16,12 @@ namespace ShopManagement.Infrastructure.EfCore.Repositories
             return _context.ProductGroups.ToList();
         }
 
-        public List<ProductGroup> GetProductGroups()
+        public List<ProductGroup> GetProductGroups(long? groupId)
         {
-            return _context.ProductGroups.Where(g=>g.ParentId==null).ToList();
-        }
-
-        public List<ProductGroup> GetSubProductGroups(long groupId)
-        {
-            return _context.ProductGroups.Where(g => g.ParentId == groupId).ToList();
+            IQueryable<ProductGroup> groups = _context.ProductGroups;
+            if(groupId == null)
+                return groups.Where(g=>g.ParentId==null).ToList();
+            return groups.Where(p => p.ParentId == groupId).ToList();
         }
 
         public void Add(ProductGroup group)

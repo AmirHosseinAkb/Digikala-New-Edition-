@@ -4,15 +4,15 @@
 @inject IProductGroupApplication _productGroupApplication
 
 @{
-    var groups = _productGroupApplication.GetGroups();
+    var groups = _productGroupApplication.GetGroups(null);
     var Groups = new SelectList(groups, "Value", "Text");
 
-    var primaryGroups = _productGroupApplication.GetSubGroups(int.Parse(groups.First().Value));
+    var primaryGroups = _productGroupApplication.GetGroups(int.Parse(groups.First().Value));
     var PrimaryGroups = new SelectList(primaryGroups, "Value", "Text");
 
     var secondaryGroups = new List<SelectListItem>();
     if(primaryGroups.Count()!=0)
-        secondaryGroups= _productGroupApplication.GetSubGroups(int.Parse(primaryGroups.First().Value));
+        secondaryGroups= _productGroupApplication.GetGroups(int.Parse(primaryGroups.First().Value));
     var SecondaryGroups=new SelectList(secondaryGroups,"Value","Text");
 }
 <div class="modal-header">

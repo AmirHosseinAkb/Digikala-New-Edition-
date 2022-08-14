@@ -21,23 +21,15 @@ namespace ShopManagement.Application
             return true;
         }
 
-        public List<SelectListItem> GetGroups()
+        public List<SelectListItem> GetGroups(long? groupId)
         {
-            return _productGroupRepository.GetProductGroups().Select(g => new SelectListItem()
+            return _productGroupRepository.GetProductGroups(groupId).Select(g => new SelectListItem()
             {
                 Text = g.GroupTitle,
                 Value = g.GroupdId.ToString()
             }).ToList();
         }
 
-        public List<SelectListItem> GetSubGroups(long groupId)
-        {
-            return _productGroupRepository.GetSubProductGroups(groupId).Select(g => new SelectListItem()
-            {
-                Text = g.GroupTitle,
-                Value = g.GroupdId.ToString()
-            }).ToList();
-        }
 
         public OperationResult CreateGroup(CreateGroupCommand command)
         {
@@ -60,6 +52,11 @@ namespace ShopManagement.Application
             var group = new ProductGroup(command.Title, null, imageName);
             _productGroupRepository.Add(group);
             return result.Succeeded();
+        }
+
+        public Tuple<List<ProductGroupViewModel>, int, int, int> GetProductGroupdForShow(int pageId = 1, string title = "", int take = 10)
+        {
+            throw new NotImplementedException();
         }
     }
 }

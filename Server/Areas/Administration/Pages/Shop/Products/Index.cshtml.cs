@@ -30,15 +30,15 @@ namespace Server.Areas.Administration.Pages.Shop.Products
                 take = 10;
             ViewData["Take"] = take;
 
-            var groups = _productGroupApplication.GetGroups();
+            var groups = _productGroupApplication.GetGroups(null);
             ViewData["Groups"] = new SelectList(groups, "Value", "Text");
 
-            var primaryGroups = _productGroupApplication.GetSubGroups(int.Parse(groups.First().Value));
+            var primaryGroups = _productGroupApplication.GetGroups(int.Parse(groups.First().Value));
             ViewData["PrimaryGroups"] = new SelectList(primaryGroups, "Value", "Text");
 
             var secondaryGroups = new List<SelectListItem>();
             if(primaryGroups.Count()!=0)
-                secondaryGroups = _productGroupApplication.GetSubGroups(int.Parse(primaryGroups.First().Value));
+                secondaryGroups = _productGroupApplication.GetGroups(int.Parse(primaryGroups.First().Value));
             ViewData["SecondaryGroups"] = new SelectList(secondaryGroups, "Value", "Text");
 
             ProductVM = _productApplication.GetProducts(pageId, title, groupId, primaryGroupId, secondaryGroupId, take);
@@ -89,7 +89,7 @@ namespace Server.Areas.Administration.Pages.Shop.Products
 
         public IActionResult OnGetGetSubGroups(long id)
         {
-            var subGroups = _productGroupApplication.GetSubGroups(id);
+            var subGroups = _productGroupApplication.GetGroups(id);
             return new JsonResult(new SelectList(subGroups, "Value", "Text"));
         }
     }
