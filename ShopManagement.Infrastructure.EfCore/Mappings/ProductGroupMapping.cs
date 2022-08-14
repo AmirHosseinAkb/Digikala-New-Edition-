@@ -18,7 +18,7 @@ namespace ShopManagement.Infrastructure.EfCore.Mappings
             builder.HasKey(g => g.GroupdId);
             builder.Property(g => g.GroupTitle).HasMaxLength(300);
             builder.Property(g => g.ParentId);
-            builder.Property(g => g.ImageName).HasMaxLength(300);
+            builder.Property(g => g.ImageName).IsRequired(false).HasMaxLength(300);
 
             builder.HasMany(g=>g.ProductGroups).WithOne().HasForeignKey(g => g.ParentId);
 

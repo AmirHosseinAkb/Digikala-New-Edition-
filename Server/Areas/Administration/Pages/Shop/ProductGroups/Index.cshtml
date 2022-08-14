@@ -22,7 +22,7 @@
                                     <div class="col-md-6">
                                         <div id="datatable_filter" class="dataTables_filter">
                                             <label style="display:block">@DataDictionaries.Title</label>
-                                            <input name="fullName" type="search" class="form-control input-sm" placeholder="@DataDictionaries.Title" aria-controls="datatable">
+                                            <input name="title" type="search" class="form-control input-sm" placeholder="@DataDictionaries.Title" aria-controls="datatable">
                                         </div>
                                     </div>
 
@@ -80,13 +80,20 @@
                                                         <ul>
                                                             @foreach (var primaryGroup in Model.ProductGroupVm.Item1.Where(g => g.ParentId == group.GroupId))
                                                             {
-                                                                <li>@primaryGroup.GroupTitle</li><a onclick="CreateGroup(@primaryGroup.GroupId)" class="btn btn-warning btn-xs ">@ButtonCaptions.AddSubGroup</a>
+                                                                <li class="m-t-10 m-b-10">
+                                                                    @primaryGroup.GroupTitle
+                                                                    <a onclick="CreateGroup(@primaryGroup.GroupId)" class="text-black md md-add" title="@ButtonCaptions.AddSubGroup"></a>
+                                                                    <a onclick="EditGroup(@primaryGroup.GroupId)" class="text-primary md md-edit" title="@ButtonCaptions.Edit"></a>
+                                                                    <a  class="text-danger md md-delete" title="@ButtonCaptions.Delete"></a>
+                                                                </li>
+                                                                
                                                                 @if (Model.ProductGroupVm.Item1.Any(g => g.ParentId == primaryGroup.GroupId))
                                                                 {
-                                                                    <ul>
+                                                                    <ul style="border: 1px dashed gray">
                                                                         @foreach (var secondaryGroup in Model.ProductGroupVm.Item1.Where(g => g.ParentId == primaryGroup.GroupId))
                                                                         {
-                                                                            <li>@secondaryGroup.GroupTitle</li>
+                                                                            <li>@secondaryGroup.GroupTitle <a  class="text-danger md md-delete pull-left"></a></li>
+                                                                            
                                                                         }
                                                                     </ul>
                                                                 }
@@ -97,7 +104,7 @@
 
                                                 <td>
                                                     <a onclick="CreateGroup(@group.GroupId)" class="btn btn-warning btn-xs ">@ButtonCaptions.AddSubGroup</a>
-                                                    <a  class="btn btn-primary btn-xs ">@ButtonCaptions.Edit</a>
+                                                    <a onclick="EditGroup(@group.GroupId)" class="btn btn-primary btn-xs ">@ButtonCaptions.Edit</a>
                                                     <a  class="btn btn-danger btn-xs ">@ButtonCaptions.Delete</a>
                                                 </td>
                                             </tr>
@@ -112,7 +119,7 @@
                                     @{
                                         int take = Model.ProductGroupVm.Item4;
                                         int pageId = Model.ProductGroupVm.Item2;
-                                        int totalEntries = Model.ProductGroupVm.Item1.Count();
+                                        int totalEntries = Model.ProductGroupVm.Item1.Where(g=>g.ParentId==null).Count();
                                         int startEntry = (pageId - 1) * take;
                                         if (totalEntries != 0)
                                             startEntry += 1;

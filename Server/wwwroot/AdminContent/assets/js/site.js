@@ -14,6 +14,11 @@ function CreateGroup(parentId=null) {
     $("#MainModal").modal('show');
 }
 
+function EditGroup(groupId) {
+    $("#ModalContent").load('/Administration/Shop/ProductGroups/Edit?groupId='+groupId);
+    $("#MainModal").modal('show');
+}
+
 function GetProductForEdit(productId) {
     $("#ModalContent").load('/Administration/Shop/Products/Edit?productId=' + productId);
     $("#MainModal").modal('show');

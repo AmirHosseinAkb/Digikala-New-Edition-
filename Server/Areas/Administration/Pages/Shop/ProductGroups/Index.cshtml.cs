@@ -37,5 +37,11 @@ namespace Server.Areas.Administration.Pages.Shop.ProductGroups
             var result = _productGroupApplication.CreateGroup(command);
             return new JsonResult(result);
         }
+
+        public IActionResult OnGetEdit(long groupId)
+        {
+            var group = _productGroupApplication.GetGroupForEdit(groupId);
+            return Partial("./Edit",group);
+        }
     }
 }

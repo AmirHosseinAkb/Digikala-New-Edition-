@@ -13,7 +13,7 @@ namespace ShopManagement.Domain.ProductGroupAgg
         public string GroupTitle { get; private set; }
         public long? ParentId { get; private set; }
         public List<ProductGroup> ProductGroups { get; set; }
-        public string ImageName { get; set; }
+        public string? ImageName { get; set; }
 
         public List<Product> Products { get; set; }
         public List<Product> PrimaryProducts { get; set; }
@@ -23,7 +23,7 @@ namespace ShopManagement.Domain.ProductGroupAgg
         {
             
         }
-        public ProductGroup(string groupTitle,long? parentId,string imageName)
+        public ProductGroup(string groupTitle,long? parentId,string? imageName)
         {
             GroupTitle=groupTitle;
             ParentId=parentId;

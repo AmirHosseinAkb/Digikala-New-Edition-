@@ -11,5 +11,6 @@ namespace ShopManagement.Application.Contracts.ProductGroup
         
         Tuple<List<ProductGroupViewModel> , int, int, int> GetProductGroupsForShow(int pageId = 1, string title = "",
             int take = 10);
+        EditGroupCommand GetGroupForEdit(long groupId);
     }
 }

@@ -36,7 +36,7 @@ namespace ShopManagement.Application
             var result = new OperationResult();
             if (_productGroupRepository.IsExistGroup(command.Title))
                 return result.Failed(ApplicationMessages.DuplicatedGroup);
-            var imageName = DefaultImages.DefaultProductGroupImage;
+            string? imageName = null;
             if (command.GroupImage != null)
             {
                 imageName = CodeGenerator.GenerateUniqName() + Path.GetExtension(command.GroupImage.FileName);
@@ -71,9 +71,17 @@ namespace ShopManagement.Application
             return Tuple.Create(groups, pageId, pageCount, take);
         }
 
-        public Tuple<List<ProductGroupViewModel>, int, int, int> GetProductGroupdForShow(int pageId = 1, string title = "", int take = 10)
+        public EditGroupCommand GetGroupForEdit(long groupId)
         {
-            throw new NotImplementedException();
+            var group = _productGroupRepository.GetGroupById(groupId);
+            return new EditGroupCommand()
+            {
+                Title = group.GroupTitle,
+                ParentId = group.ParentId,
+                GroupId = group.GroupdId,
+                ImageName = group.ImageName
+            };
         }
+
     }
 }

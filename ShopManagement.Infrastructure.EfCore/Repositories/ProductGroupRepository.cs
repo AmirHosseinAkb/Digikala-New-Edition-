@@ -40,5 +40,10 @@ namespace ShopManagement.Infrastructure.EfCore.Repositories
         {
             return _context.ProductGroups.Any(g => g.ParentId==null &&g.GroupTitle == title);
         }
+
+        public ProductGroup GetGroupById(long id)
+        {
+            return _context.ProductGroups.Find(id);
+        }
     }
 }

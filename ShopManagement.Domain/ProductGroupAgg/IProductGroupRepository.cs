@@ -7,6 +7,7 @@
         List<ProductGroup> GetProductGroupsForShow(string title = "");
         void Add(ProductGroup group);
         bool IsExistGroup(string title);
+        ProductGroup GetGroupById(long id);
 
     }
 }
