@@ -210,6 +210,9 @@
   <data name="Details" xml:space="preserve">
     <value>Details</value>
   </data>
+  <data name="EditGroup" xml:space="preserve">
+    <value>Edit Group</value>
+  </data>
   <data name="EditPassword" xml:space="preserve">
     <value>Edit Password</value>
   </data>

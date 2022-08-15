@@ -45,5 +45,10 @@ namespace ShopManagement.Infrastructure.EfCore.Repositories
         {
             return _context.ProductGroups.Find(id);
         }
+
+        public void SaveChanges()
+        {
+            _context.SaveChanges();
+        }
     }
 }

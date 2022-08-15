@@ -15,7 +15,7 @@
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div id="datatable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
                             <div class="m-b-15">
-                                <a onclick="CreateGroup()"  class="btn btn-info">@ButtonCaptions.AddNewGroup</a>
+                                <a onclick="CreateGroup()" class="btn btn-info">@ButtonCaptions.AddNewGroup</a>
                             </div>
                             <form method="get">
                                 <div class="row">
@@ -67,48 +67,47 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach (var group in Model.ProductGroupVm.Item1.Where(g=>g.ParentId==null))
-                                        {
-                                            <tr role="row">
-                                                <td>
-                                                    <img src="/Products/ProductGroupImages/@group.ImageName" style="width: 200px; height: 200px" class="img-thumbnail">
-                                                </td>
-                                                <td>@group.GroupTitle</td>
-                                                <td>
-                                                    @if (Model.ProductGroupVm.Item1.Any(g=>g.ParentId==group.GroupId))
-                                                    {
-                                                        <ul>
-                                                            @foreach (var primaryGroup in Model.ProductGroupVm.Item1.Where(g => g.ParentId == group.GroupId))
-                                                            {
-                                                                <li class="m-t-10 m-b-10">
-                                                                    @primaryGroup.GroupTitle
-                                                                    <a onclick="CreateGroup(@primaryGroup.GroupId)" class="text-black md md-add" title="@ButtonCaptions.AddSubGroup"></a>
-                                                                    <a onclick="EditGroup(@primaryGroup.GroupId)" class="text-primary md md-edit" title="@ButtonCaptions.Edit"></a>
-                                                                    <a  class="text-danger md md-delete" title="@ButtonCaptions.Delete"></a>
-                                                                </li>
-                                                                
-                                                                @if (Model.ProductGroupVm.Item1.Any(g => g.ParentId == primaryGroup.GroupId))
+                                            @foreach (var group in Model.ProductGroupVm.Item1.Where(g => g.ParentId == null))
+                                            {
+                                                <tr role="row" >
+                                                    <td>
+                                                        <img src="/Products/ProductGroupImages/@group.ImageName" style="width: 200px; height: 200px" class="img-thumbnail">
+                                                    </td>
+                                                    <td>@group.GroupTitle</td>
+                                                    <td>
+                                                        @if (Model.ProductGroupVm.Item1.Any(g => g.ParentId == group.GroupId))
+                                                        {
+                                                            <ul>
+                                                                @foreach (var primaryGroup in Model.ProductGroupVm.Item1.Where(g => g.ParentId == group.GroupId))
                                                                 {
-                                                                    <ul style="border: 1px dashed gray">
-                                                                        @foreach (var secondaryGroup in Model.ProductGroupVm.Item1.Where(g => g.ParentId == primaryGroup.GroupId))
-                                                                        {
-                                                                            <li>@secondaryGroup.GroupTitle <a  class="text-danger md md-delete pull-left"></a></li>
-                                                                            
-                                                                        }
-                                                                    </ul>
-                                                                }
-                                                            }
-                                                        </ul>
-                                                    }
-                                                </td>
+                                                                    <li class="m-t-10 m-b-10">
+                                                                        @primaryGroup.GroupTitle
+                                                                        <a onclick="CreateGroup(@primaryGroup.GroupId)" class="text-black md md-add" title="@ButtonCaptions.AddSubGroup"></a>
+                                                                        <a onclick="EditGroup(@primaryGroup.GroupId)" class="text-primary md md-edit" title="@ButtonCaptions.Edit"></a>
+                                                                        <a class="text-danger md md-delete" title="@ButtonCaptions.Delete"></a>
+                                                                    </li>
 
-                                                <td>
-                                                    <a onclick="CreateGroup(@group.GroupId)" class="btn btn-warning btn-xs ">@ButtonCaptions.AddSubGroup</a>
-                                                    <a onclick="EditGroup(@group.GroupId)" class="btn btn-primary btn-xs ">@ButtonCaptions.Edit</a>
-                                                    <a  class="btn btn-danger btn-xs ">@ButtonCaptions.Delete</a>
-                                                </td>
-                                            </tr>
-                                        }
+                                                                    @if (Model.ProductGroupVm.Item1.Any(g => g.ParentId == primaryGroup.GroupId))
+                                                                    {
+                                                                        <ul style="border: 1px dashed gray">
+                                                                            @foreach (var secondaryGroup in Model.ProductGroupVm.Item1.Where(g => g.ParentId == primaryGroup.GroupId))
+                                                                            {
+                                                                                <li>@secondaryGroup.GroupTitle <a class="text-danger md md-delete pull-left"></a></li>
+                                                                            }
+                                                                        </ul>
+                                                                    }
+                                                                }
+                                                            </ul>
+                                                        }
+                                                    </td>
+
+                                                    <td>
+                                                        <a onclick="CreateGroup(@group.GroupId)" class="btn btn-warning btn-xs ">@ButtonCaptions.AddSubGroup</a>
+                                                        <a onclick="EditGroup(@group.GroupId)" class="btn btn-primary btn-xs ">@ButtonCaptions.Edit</a>
+                                                        <a class="btn btn-danger btn-xs ">@ButtonCaptions.Delete</a>
+                                                    </td>
+                                                </tr>
+                                            }
 
                                         </tbody>
                                     </table>
@@ -119,7 +118,7 @@
                                     @{
                                         int take = Model.ProductGroupVm.Item4;
                                         int pageId = Model.ProductGroupVm.Item2;
-                                        int totalEntries = Model.ProductGroupVm.Item1.Where(g=>g.ParentId==null).Count();
+                                        int totalEntries = Model.ProductGroupVm.Item1.Where(g => g.ParentId == null).Count();
                                         int startEntry = (pageId - 1) * take;
                                         if (totalEntries != 0)
                                             startEntry += 1;
@@ -142,7 +141,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>                    </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -152,11 +152,11 @@
 @section Scripts{
     @if (Convert.ToBoolean(TempData["IsExistGroup"]))
     {
-        <text>
-            <script>
-                sweetAlert("پیغام", "لطفا ابتدا گروه محصولی را ایجاد کنید", "error");
-            </script>
-        </text>
+<text>
+    <script>
+        sweetAlert("پیغام", "لطفا ابتدا گروه محصولی را ایجاد کنید", "error");
+    </script>
+</text>
     }
 }
 

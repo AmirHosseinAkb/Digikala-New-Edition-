@@ -9,7 +9,7 @@ namespace ShopManagement.Domain.ProductGroupAgg
 {
     public class ProductGroup
     {
-        public long GroupdId { get;private set; }
+        public long GroupId { get;private set; }
         public string GroupTitle { get; private set; }
         public long? ParentId { get; private set; }
         public List<ProductGroup> ProductGroups { get; set; }
@@ -27,6 +27,13 @@ namespace ShopManagement.Domain.ProductGroupAgg
         {
             GroupTitle=groupTitle;
             ParentId=parentId;
+            ImageName = imageName;
+        }
+
+        public void Edit(string groupTitle, long? parentId, string? imageName)
+        {
+            GroupTitle = groupTitle;
+            ParentId = parentId;
             ImageName = imageName;
         }
     }

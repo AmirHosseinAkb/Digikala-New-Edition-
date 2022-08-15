@@ -15,7 +15,7 @@ namespace ShopManagement.Infrastructure.EfCore.Mappings
         public void Configure(EntityTypeBuilder<ProductGroup> builder)
         {
             builder.ToTable("ProductGroups");
-            builder.HasKey(g => g.GroupdId);
+            builder.HasKey(g => g.GroupId);
             builder.Property(g => g.GroupTitle).HasMaxLength(300);
             builder.Property(g => g.ParentId);
             builder.Property(g => g.ImageName).IsRequired(false).HasMaxLength(300);

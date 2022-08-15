@@ -8,6 +8,7 @@
         void Add(ProductGroup group);
         bool IsExistGroup(string title);
         ProductGroup GetGroupById(long id);
+        void SaveChanges();
 
     }
 }

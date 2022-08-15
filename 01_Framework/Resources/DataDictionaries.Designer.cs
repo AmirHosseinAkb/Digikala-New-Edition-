@@ -340,6 +340,15 @@ namespace _01_Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit Group.
+        /// </summary>
+        public static string EditGroup {
+            get {
+                return ResourceManager.GetString("EditGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit Password.
         /// </summary>
         public static string EditPassword {

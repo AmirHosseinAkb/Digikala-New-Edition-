@@ -26,7 +26,7 @@ namespace ShopManagement.Application
             return _productGroupRepository.GetProductGroups(groupId).Select(g => new SelectListItem()
             {
                 Text = g.GroupTitle,
-                Value = g.GroupdId.ToString()
+                Value = g.GroupId.ToString()
             }).ToList();
         }
 
@@ -40,11 +40,7 @@ namespace ShopManagement.Application
             if (command.GroupImage != null)
             {
                 imageName = CodeGenerator.GenerateUniqName() + Path.GetExtension(command.GroupImage.FileName);
-                string imagePath = Path.Combine(Directory.GetCurrentDirectory(),
-                    "wwwroot",
-                    "Products",
-                    "ProductGroupImages",
-                    imageName);
+                string imagePath = Directories.ProductGroupDirectory(imageName);
                 using (var stream = new FileStream(imagePath, FileMode.Create))
                     command.GroupImage.CopyTo(stream);
             }
@@ -57,18 +53,34 @@ namespace ShopManagement.Application
         public Tuple<List<ProductGroupViewModel> , int, int, int> GetProductGroupsForShow(int pageId = 1, string title = "", int take = 10)
         {
             var skip = (pageId - 1) * take;
-            var groups = _productGroupRepository.GetProductGroupsForShow(title).Skip(skip).Take(take)
-                .Select(g=>new ProductGroupViewModel()
+            var groups = _productGroupRepository.GetProductGroupsForShow(title);
+            var list = groups.Where(g => g.ParentId == null).Skip(skip).Take(take).ToList();
+
+            foreach (var group in list.ToList())
+            {
+                var primaryGroups = groups.Where(g => g.ParentId == group.GroupId);
+                list.AddRange(primaryGroups);
+                foreach (var primaryGroup in primaryGroups)
                 {
-                    GroupId = g.GroupdId,
-                    ParentId = g.ParentId,
-                    ImageName = g.ImageName,
-                    GroupTitle = g.GroupTitle
-                }).ToList();
-            var pageCount = groups.Count() / take;
-            if (groups.Count() % take != 0)
+                    var secondaryGroups = groups.Where(g => g.ParentId == primaryGroup.GroupId);
+                    list.AddRange(secondaryGroups);
+                }
+            }
+
+            var groupCount = list.Where(g => g.ParentId == null).Count();
+            var pageCount = groupCount / take;
+            if (groupCount % take != 0)
                 pageCount++;
-            return Tuple.Create(groups, pageId, pageCount, take);
+
+            var finallGroups=list.Select(g => new ProductGroupViewModel()
+            {
+                GroupTitle = g.GroupTitle,
+                ImageName =g.ImageName,
+                GroupId = g.GroupId,
+                ParentId =g.ParentId,
+                
+            }).ToList();
+            return Tuple.Create(finallGroups, pageId, pageCount, take);
         }
 
         public EditGroupCommand GetGroupForEdit(long groupId)
@@ -78,10 +90,42 @@ namespace ShopManagement.Application
             {
                 Title = group.GroupTitle,
                 ParentId = group.ParentId,
-                GroupId = group.GroupdId,
+                GroupId = group.GroupId,
                 ImageName = group.ImageName
             };
         }
 
+        public OperationResult EditGroup(EditGroupCommand command)
+        {
+            var result = new OperationResult();
+            var group = _productGroupRepository.GetGroupById(command.GroupId);
+            if (group.GroupTitle != command.Title && command.ParentId==null)
+            {
+                if (_productGroupRepository.IsExistGroup(command.Title))
+                    return result.Failed(ApplicationMessages.DuplicatedGroup);
+            }
+
+            string? imageName = command.ImageName;
+            if (command.GroupImage != null)
+            {
+                string imagePath = "";
+                if (command.ImageName != DefaultImages.DefaultProductGroupImage)
+                {
+                    imagePath = Directories.ProductGroupDirectory(command.ImageName);
+                    if (File.Exists(imagePath))
+                    {
+                        File.Delete(imagePath);
+                    }
+                }
+                imageName = CodeGenerator.GenerateUniqName() + Path.GetExtension(command.GroupImage.FileName);
+                imagePath = Directories.ProductGroupDirectory(imageName);
+                using (var stream = new FileStream(imagePath, FileMode.Create))
+                    command.GroupImage.CopyTo(stream);
+            }
+
+            group.Edit(command.Title, command.ParentId, imageName);
+            _productGroupRepository.SaveChanges();
+            return result.Succeeded();
+        }
     }
 }

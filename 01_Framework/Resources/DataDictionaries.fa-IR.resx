@@ -210,6 +210,9 @@
   <data name="Details" xml:space="preserve">
     <value>جزئیات</value>
   </data>
+  <data name="EditGroup" xml:space="preserve">
+    <value>ویرایش گروه</value>
+  </data>
   <data name="EditPassword" xml:space="preserve">
     <value>ویرایش رمز عبور</value>
   </data>
