@@ -115,8 +115,8 @@ namespace ShopManagement.Application
                 ProductId = product.ProductId,
                 Title = product.Title,
                 GroupName = product.ProductGroup.GroupTitle,
-                PrimaryGroupName = product.PrimaryProductGroup.GroupTitle,
-                SecondaryGroupName = product.SecondaryProductGroup.GroupTitle,
+                PrimaryGroupName = product.PrimaryProductGroup?.GroupTitle,
+                SecondaryGroupName = product.SecondaryProductGroup?.GroupTitle,
                 ImageName = product.ImageName
             };
         }
@@ -132,6 +132,14 @@ namespace ShopManagement.Application
             product.Delete();
             _productRepository.SaveChanges();
             return result.Succeeded();
+        }
+
+        public bool IsExistProductByGroup(long groupId)
+        {
+            var product = _productRepository.GetProductByGroupId(groupId);
+            if (product != null)
+                return true;
+            return false;
         }
 
         public Tuple<List<ProductViewModel>,int,int,int> GetProducts(int pageId=1,string title="",long groupId=0,long primaryGroupId=0,long secondaryGroupId=0,int take=0)

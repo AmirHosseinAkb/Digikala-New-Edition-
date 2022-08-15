@@ -192,6 +192,9 @@
   <data name="DeletedUsersList" xml:space="preserve">
     <value>لیست کاربران حذف شده</value>
   </data>
+  <data name="DeleteGroup" xml:space="preserve">
+    <value>حذف گروه</value>
+  </data>
   <data name="DeleteProduct" xml:space="preserve">
     <value>حذف محصول</value>
   </data>

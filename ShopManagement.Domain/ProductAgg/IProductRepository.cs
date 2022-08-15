@@ -14,5 +14,6 @@ namespace ShopManagement.Domain.ProductAgg
         Product GetProductById(long productId);
         Product GetProductWithGroups(long productId);
         void SaveChanges();
+        Product GetProductByGroupId(long groupId);
     }
 }

@@ -15,7 +15,7 @@ namespace ShopManagement.Application.Contracts.Product
         public long ProductId { get; set; }
         public string Title { get; set; }
         public string GroupName { get; set; }
-        public string PrimaryGroupName { get; set; }
+        public string? PrimaryGroupName { get; set; }
         public string? SecondaryGroupName { get; set; }
         public string? ImageName { get; set; }
     }

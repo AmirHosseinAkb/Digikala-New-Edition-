@@ -1,3 +1,4 @@
+﻿using _01_Framework.Resources;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ShopManagement.Application.Contracts.Product;
@@ -7,11 +8,13 @@ namespace Server.Areas.Administration.Pages.Shop.ProductGroups
 {
     public class IndexModel : PageModel
     {
-        public IndexModel(IProductGroupApplication productGroupApplication)
+        public IndexModel(IProductGroupApplication productGroupApplication,IProductApplication productApplication)
         {
             _productGroupApplication = productGroupApplication;
+            _productApplication = productApplication;
         }
         private readonly IProductGroupApplication _productGroupApplication;
+        private readonly IProductApplication _productApplication;
         public Tuple<List<ProductGroupViewModel>,int,int,int> ProductGroupVm { get; set; }
         public void OnGet(int pageId=1,string title="",int take=10)
         {
@@ -49,6 +52,25 @@ namespace Server.Areas.Administration.Pages.Shop.ProductGroups
             if (!ModelState.IsValid)
                 return BadRequest();
             var result = _productGroupApplication.EditGroup(command);
+            return new JsonResult(result);
+        }
+
+        public IActionResult OnGetDelete(long groupId)
+        {
+            if (_productApplication.IsExistProductByGroup(groupId))
+            {
+                return BadRequest(ErrorMessages.DeleteGroupErrorMessage);
+            }
+
+            var group = _productGroupApplication.GetGroupForDelete(groupId);
+            return Partial("./Delete",group);
+        }
+
+        public IActionResult OnPostDelete(long groupId)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest();
+            var result = _productGroupApplication.DeleteGroup(groupId);
             return new JsonResult(result);
         }
     }

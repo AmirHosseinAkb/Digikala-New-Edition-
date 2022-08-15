@@ -30,6 +30,20 @@ function GetProductForDelete(productId, productTitle) {
     $("#MainModal").modal('show');
     $("#productTitle").text(productTitle);
 }
+
+function GetGroupForDelete(groupId) {
+    $.ajax({
+        url:'/Administration/Shop/ProductGroups/Delete?groupId=' + groupId,
+        method:"Get",
+        success: function (response) {
+            $("#ModalContent").load('/Administration/Shop/ProductGroups/Delete?groupId=' + groupId);
+            $("#MainModal").modal('show');
+        },
+        error: function (error) {
+            sweetAlert("پیغام", error.responseText, "error");
+        }
+    });  
+}
 $(document).on("submit", 'form[data-ajax="true"]',
     function (e) {
         var form = $(this);

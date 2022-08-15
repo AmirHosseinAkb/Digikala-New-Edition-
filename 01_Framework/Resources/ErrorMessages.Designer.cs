@@ -79,6 +79,15 @@ namespace _01_Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This Group Have Some Products And Its Impossible To Delete.
+        /// </summary>
+        public static string DeleteGroupErrorMessage {
+            get {
+                return ResourceManager.GetString("DeleteGroupErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This Email Exists currently..
         /// </summary>
         public static string EmailExists {

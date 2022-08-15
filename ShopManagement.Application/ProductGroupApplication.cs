@@ -86,6 +86,9 @@ namespace ShopManagement.Application
         public EditGroupCommand GetGroupForEdit(long groupId)
         {
             var group = _productGroupRepository.GetGroupById(groupId);
+            if (group == null)
+                return new EditGroupCommand();
+
             return new EditGroupCommand()
             {
                 Title = group.GroupTitle,
@@ -99,6 +102,8 @@ namespace ShopManagement.Application
         {
             var result = new OperationResult();
             var group = _productGroupRepository.GetGroupById(command.GroupId);
+            if (group == null)
+                return result.NullResult();
             if (group.GroupTitle != command.Title && command.ParentId==null)
             {
                 if (_productGroupRepository.IsExistGroup(command.Title))
@@ -125,6 +130,30 @@ namespace ShopManagement.Application
 
             group.Edit(command.Title, command.ParentId, imageName);
             _productGroupRepository.SaveChanges();
+            return result.Succeeded();
+        }
+
+        public DeleteGroupCommand GetGroupForDelete(long groupId)
+        {
+            var group = _productGroupRepository.GetGroupById(groupId);
+            if (group == null)
+                return new DeleteGroupCommand();
+            return new DeleteGroupCommand()
+            {
+                GroupTitle = group.GroupTitle,
+                ImageName = group.ImageName,
+                GroupId = group.GroupId,
+                ParentId = group.ParentId
+            };
+        }
+
+        public OperationResult DeleteGroup(long groupId)
+        {
+            var result = new OperationResult();
+            var group = _productGroupRepository.GetGroupById(groupId);
+            if (group == null)
+                return result.NullResult();
+            _productGroupRepository.Delete(group);
             return result.Succeeded();
         }
     }

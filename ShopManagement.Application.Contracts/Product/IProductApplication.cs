@@ -16,5 +16,6 @@ namespace ShopManagement.Application.Contracts.Product
         OperationResult Edit(EditProductCommand command);
         DeleteProductCommand GetProductForDelete(long productId);
         OperationResult Delete(long productId);
+        bool IsExistProductByGroup(long groupId);
     }
 }

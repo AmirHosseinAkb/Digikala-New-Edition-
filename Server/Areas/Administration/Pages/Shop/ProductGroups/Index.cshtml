@@ -84,7 +84,7 @@
                                                                         @primaryGroup.GroupTitle
                                                                         <a onclick="CreateGroup(@primaryGroup.GroupId)" class="text-black md md-add" title="@ButtonCaptions.AddSubGroup"></a>
                                                                         <a onclick="EditGroup(@primaryGroup.GroupId)" class="text-primary md md-edit" title="@ButtonCaptions.Edit"></a>
-                                                                        <a class="text-danger md md-delete" title="@ButtonCaptions.Delete"></a>
+                                                                        <a onclick="GetGroupForDelete(@primaryGroup.GroupId)" class="text-danger md md-delete" title="@ButtonCaptions.Delete"></a>
                                                                     </li>
 
                                                                     @if (Model.ProductGroupVm.Item1.Any(g => g.ParentId == primaryGroup.GroupId))
@@ -92,7 +92,7 @@
                                                                         <ul style="border: 1px dashed gray">
                                                                             @foreach (var secondaryGroup in Model.ProductGroupVm.Item1.Where(g => g.ParentId == primaryGroup.GroupId))
                                                                             {
-                                                                                <li>@secondaryGroup.GroupTitle <a class="text-danger md md-delete pull-left"></a></li>
+                                                                                <li>@secondaryGroup.GroupTitle <a onclick="GetGroupForDelete(@secondaryGroup.GroupId)" class="text-danger md md-delete pull-left"></a></li>
                                                                             }
                                                                         </ul>
                                                                     }
@@ -104,7 +104,7 @@
                                                     <td>
                                                         <a onclick="CreateGroup(@group.GroupId)" class="btn btn-warning btn-xs ">@ButtonCaptions.AddSubGroup</a>
                                                         <a onclick="EditGroup(@group.GroupId)" class="btn btn-primary btn-xs ">@ButtonCaptions.Edit</a>
-                                                        <a class="btn btn-danger btn-xs ">@ButtonCaptions.Delete</a>
+                                                        <a onclick="GetGroupForDelete(@group.GroupId)" class="btn btn-danger btn-xs ">@ButtonCaptions.Delete</a>
                                                     </td>
                                                 </tr>
                                             }
@@ -152,11 +152,11 @@
 @section Scripts{
     @if (Convert.ToBoolean(TempData["IsExistGroup"]))
     {
-<text>
-    <script>
-        sweetAlert("پیغام", "لطفا ابتدا گروه محصولی را ایجاد کنید", "error");
-    </script>
-</text>
+        <text>
+            <script>
+                sweetAlert("پیغام", "لطفا ابتدا گروه محصولی را ایجاد کنید", "error");
+            </script>
+        </text>
     }
 }
 

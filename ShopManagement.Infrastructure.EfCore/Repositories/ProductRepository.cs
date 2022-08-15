@@ -3,7 +3,7 @@ using ShopManagement.Domain.ProductAgg;
 
 namespace ShopManagement.Infrastructure.EfCore.Repositories
 {
-    public class ProductRepository:IProductRepository
+    public class ProductRepository : IProductRepository
     {
         private readonly ShopContext _context;
 
@@ -31,22 +31,22 @@ namespace ShopManagement.Infrastructure.EfCore.Repositories
                 .SingleOrDefault(p => p.ProductId == productId);
         }
 
-        public List<Product> GetAll(string title="",long groupId=0,long primaryGroupId=0,long secondaryGroupId=0)
+        public List<Product> GetAll(string title = "", long groupId = 0, long primaryGroupId = 0, long secondaryGroupId = 0)
         {
-           IQueryable<Product> products = _context.Products;
+            IQueryable<Product> products = _context.Products;
 
-            if(!string.IsNullOrWhiteSpace(title))
-                products=products.Where(p=>p.Title.Contains(title));
+            if (!string.IsNullOrWhiteSpace(title))
+                products = products.Where(p => p.Title.Contains(title));
 
-            if(groupId!=0)
-                products=products.Where(p=>p.GroupId==groupId);
+            if (groupId != 0)
+                products = products.Where(p => p.GroupId == groupId);
 
-            if(primaryGroupId!=0)
-                products=products.Where(p=>p.PrimaryGroupId==primaryGroupId);
+            if (primaryGroupId != 0)
+                products = products.Where(p => p.PrimaryGroupId == primaryGroupId);
 
-            if(secondaryGroupId!=0)
-                products=products.Where(p=>p.SecondaryGroupId==secondaryGroupId);
-            
+            if (secondaryGroupId != 0)
+                products = products.Where(p => p.SecondaryGroupId == secondaryGroupId);
+
             return products.ToList();
         }
 
@@ -58,6 +58,11 @@ namespace ShopManagement.Infrastructure.EfCore.Repositories
         public void SaveChanges()
         {
             _context.SaveChanges();
+        }
+
+        public Product GetProductByGroupId(long groupId)
+        {
+            return _context.Products.SingleOrDefault(g => g.GroupId == groupId || g.PrimaryGroupId == groupId || g.SecondaryGroupId == groupId);
         }
     }
 }

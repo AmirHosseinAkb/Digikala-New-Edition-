@@ -9,6 +9,6 @@
         bool IsExistGroup(string title);
         ProductGroup GetGroupById(long id);
         void SaveChanges();
-
+        void Delete(ProductGroup group);
     }
 }

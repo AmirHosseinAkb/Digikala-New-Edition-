@@ -123,6 +123,9 @@
   <data name="ActivationErrorTitle" xml:space="preserve">
     <value>عملیات فعالسازی با شکست مواجه شد!</value>
   </data>
+  <data name="DeleteGroupErrorMessage" xml:space="preserve">
+    <value>این گروه شامل محصولاتی می باشد و حذف ان غیر ممکن است</value>
+  </data>
   <data name="EmailExists" xml:space="preserve">
     <value>این ایمیل از قبل وجود دارد</value>
   </data>

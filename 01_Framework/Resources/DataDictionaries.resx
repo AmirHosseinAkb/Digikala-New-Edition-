@@ -192,6 +192,9 @@
   <data name="DeletedUsersList" xml:space="preserve">
     <value>Deleted Users List</value>
   </data>
+  <data name="DeleteGroup" xml:space="preserve">
+    <value>Delete Group</value>
+  </data>
   <data name="DeleteProduct" xml:space="preserve">
     <value>DeleteProduct</value>
   </data>

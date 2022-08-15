@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
+using ShopManagement.Domain.ProductAgg;
 using ShopManagement.Domain.ProductGroupAgg;
 
 namespace ShopManagement.Infrastructure.EfCore.Repositories
@@ -48,6 +50,29 @@ namespace ShopManagement.Infrastructure.EfCore.Repositories
 
         public void SaveChanges()
         {
+            _context.SaveChanges();
+        }
+
+        public void Delete(ProductGroup group)
+        {
+            var primaryGroups = _context.ProductGroups.Where(g => g.ParentId == group.GroupId).ToList();
+            var secondaryGroups = new List<ProductGroup>();
+            if (primaryGroups.Any())
+            {
+                foreach (var primaryGroup in primaryGroups)
+                {
+                    secondaryGroups.AddRange(_context.ProductGroups.Where(g=>g.ParentId==primaryGroup.GroupId));
+                    _context.ProductGroups.Remove(primaryGroup);
+                }
+            }
+            if (secondaryGroups.Any())
+            {
+                foreach (var secondaryGroup in secondaryGroups)
+                {
+                    _context.ProductGroups.Remove(secondaryGroup);
+                }
+            }
+            _context.ProductGroups.Remove(group);
             _context.SaveChanges();
         }
     }

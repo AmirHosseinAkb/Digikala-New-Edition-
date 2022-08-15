@@ -13,5 +13,7 @@ namespace ShopManagement.Application.Contracts.ProductGroup
             int take = 10);
         EditGroupCommand GetGroupForEdit(long groupId);
         OperationResult EditGroup(EditGroupCommand command);
+        DeleteGroupCommand GetGroupForDelete(long groupId);
+        OperationResult DeleteGroup(long groupId);
     }
 }
