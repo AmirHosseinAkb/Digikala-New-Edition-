@@ -135,11 +135,8 @@
   <data name="DeleteProductConfirmation" xml:space="preserve">
     <value>آیا مطمئنید که میخواهید این محصول را حذف کنید؟</value>
   </data>
-  <data name="DeleteRoleConfirmationS1" xml:space="preserve">
-    <value>آیا مطمئنید که می خواهید نقش</value>
-  </data>
-  <data name="DeleteRoleConfirmationS2" xml:space="preserve">
-    <value>را حذف کنید؟</value>
+  <data name="DeleteRoleConfirmation" xml:space="preserve">
+    <value>آیا مطمئنید که میخواهید این نقش را حذف کنید؟</value>
   </data>
   <data name="DeleteUserConfirmationS1" xml:space="preserve">
     <value>آیا مطمئنید که می خواهید کاربر </value>

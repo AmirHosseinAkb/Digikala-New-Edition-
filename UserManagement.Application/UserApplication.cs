@@ -458,5 +458,13 @@ namespace UserManagement.Application
                 _userRepository.SaveChanges();
             }
         }
+
+        public bool IsExistUserByRoleId(long roleId)
+        {
+            var user = _userRepository.GetUserByRoleId(roleId);
+            if (user == null)
+                return false;
+            return true;
+        }
     }
 }

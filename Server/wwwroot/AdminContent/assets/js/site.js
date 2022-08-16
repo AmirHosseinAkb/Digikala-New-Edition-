@@ -5,17 +5,32 @@ $(".smallModal").click(function () {
     $("#ModalDialog").css("width", "40%");
 });
 
+function GetRoleForDelete(roleId) {
+    $.ajax({
+        url: '/Administration/Roles/Delete?roleId=' + roleId,
+        type: "Get",
+        success: function () {
+            $("#ModalContent").load('/Administration/Roles/Delete?roleId=' + roleId);
+            $("#roleIdInp").val(roleId);
+            $("#MainModal").modal('show');
+        },
+        error: function (error) {
+            sweetAlert("پیغام", error.responseText, "error");
+        }
+    })
+}
+
 $("#btnCreateProduct").click(function () {
     $("#ModalContent").load('/Administration/Shop/Products/Create');
     $("#MainModal").modal('show');
 });
-function CreateGroup(parentId=null) {
-    $("#ModalContent").load('/Administration/Shop/ProductGroups/Create?parentId='+parentId);
+function CreateGroup(parentId = null) {
+    $("#ModalContent").load('/Administration/Shop/ProductGroups/Create?parentId=' + parentId);
     $("#MainModal").modal('show');
 }
 
 function EditGroup(groupId) {
-    $("#ModalContent").load('/Administration/Shop/ProductGroups/Edit?groupId='+groupId);
+    $("#ModalContent").load('/Administration/Shop/ProductGroups/Edit?groupId=' + groupId);
     $("#MainModal").modal('show');
 }
 
@@ -33,8 +48,8 @@ function GetProductForDelete(productId, productTitle) {
 
 function GetGroupForDelete(groupId) {
     $.ajax({
-        url:'/Administration/Shop/ProductGroups/Delete?groupId=' + groupId,
-        method:"Get",
+        url: '/Administration/Shop/ProductGroups/Delete?groupId=' + groupId,
+        method: "Get",
         success: function (response) {
             $("#ModalContent").load('/Administration/Shop/ProductGroups/Delete?groupId=' + groupId);
             $("#MainModal").modal('show');
@@ -42,7 +57,7 @@ function GetGroupForDelete(groupId) {
         error: function (error) {
             sweetAlert("پیغام", error.responseText, "error");
         }
-    });  
+    });
 }
 $(document).on("submit", 'form[data-ajax="true"]',
     function (e) {

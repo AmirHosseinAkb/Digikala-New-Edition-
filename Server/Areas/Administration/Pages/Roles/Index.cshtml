@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "{handler?}"
 @model Server.Areas.Administration.Pages.Roles.IndexModel
 @{
 }
@@ -35,10 +35,7 @@
                                                     <td>@role.RoleTitle</td>
                                                     <td>
                                                         <a permissions="new int[]{RolePermissions.EditRole}" asp-page="Edit" asp-route-roleId="@role.RoleId" class="btn btn-primary btn-xs btnEditUser">@ButtonCaptions.Edit</a>
-                                                        @if (!Model.RoleVm.Take(3).Contains(role))
-                                                        {
-                                                            <a permissions="new int[]{RolePermissions.DeleteRole}" onclick="GetRoleInformationsForDelete('@role.RoleId','@role.RoleTitle')" class="btn btn-danger btn-xs">@ButtonCaptions.Delete</a>
-                                                        }
+                                                        <a permissions="new int[]{RolePermissions.DeleteRole}" onclick="GetRoleForDelete('@role.RoleId')" class="btn btn-danger btn-xs">@ButtonCaptions.Delete</a>
                                                     </td>
                                                 </tr>
                                             }
@@ -55,55 +52,24 @@
         </div>
     </div>
 </div>
-<div id="deleteRoleModal" class="modal fade">
-    <div class="modal-dialog" style="width:45%">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>@DataDictionaries.DeleteRole</h3>
-            </div>
-            <form method="post" asp-page-handler="DeleteRole">
-                <div class="row">
-                    <div class="col-md-8">
-                        <h4>@ConfirmationMessages.DeleteRoleConfirmationS1 (<span id="roleTitleInp" class="text-danger"></span>) @ConfirmationMessages.DeleteRoleConfirmationS2</h4>
-                        <input id="roleIdForDeleteInp" name="roleId" type="hidden" />
-                    </div>
-                </div>
-                <hr />
-                <div>
-                    <input type="submit" class="btn btn-danger" value="@ButtonCaptions.Delete" />
-                    <a class="btn btn-success" data-dismiss="modal">@ButtonCaptions.Cancel</a>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 
 
 @section Scripts{
-    <script>
-
-        function GetRoleInformationsForDelete(roleId, roleTitle) {
-            $("#roleTitleInp").text(roleTitle);
-            $("#roleIdForDeleteInp").val(roleId);
-            $("#deleteRoleModal").modal('show');
-        }
-    </script>
-
     @if (Model.ErrorMessage != null)
     {
-        <text>
-            <script src="~/AdminContent/assets/js/iziToast.min.js"></script>
-            <link href="~/AdminContent/assets/css/iziToast.min.css" rel="stylesheet" type="text/css" />
-            <script>
+<text>
+    <script src="~/AdminContent/assets/js/iziToast.min.js"></script>
+    <link href="~/AdminContent/assets/css/iziToast.min.css" rel="stylesheet" type="text/css" />
+    <script>
 
-                iziToast.warning({
-                    message: '@Model.ErrorMessage',
-                    rtl: true,
-                    position: 'bottomCenter',
-                    timeout: 3000
-                });
-            </script>
-        </text>
+        iziToast.warning({
+            message: '@Model.ErrorMessage',
+            rtl: true,
+            position: 'bottomCenter',
+            timeout: 3000
+        });
+    </script>
+</text>
 
     }
 }

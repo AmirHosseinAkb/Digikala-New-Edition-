@@ -50,6 +50,8 @@ namespace UserManagement.Application.Contracts.User
 
         void ReturnUser(long userId);
 
+        bool IsExistUserByRoleId(long roleId);
+
         #endregion
     }
 }

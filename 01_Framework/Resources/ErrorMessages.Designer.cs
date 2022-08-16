@@ -88,6 +88,15 @@ namespace _01_Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There is some users that have this role so its impossible to delete.
+        /// </summary>
+        public static string DeleteRoleErrorMessage {
+            get {
+                return ResourceManager.GetString("DeleteRoleErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This Email Exists currently..
         /// </summary>
         public static string EmailExists {

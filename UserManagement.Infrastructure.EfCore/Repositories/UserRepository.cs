@@ -102,6 +102,11 @@ namespace UserManagement.Infrastructure.EfCore.Repositories
             return _context.Users.Any(u => u.RoleId == roleId);
         }
 
+        public User GetUserByRoleId(long roleId)
+        {
+            return _context.Users.SingleOrDefault(u => u.RoleId == roleId);
+        }
+
         public void SaveChanges()
         {
             _context.SaveChanges();
