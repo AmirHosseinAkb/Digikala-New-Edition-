@@ -88,6 +88,15 @@ namespace _01_Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Color.
+        /// </summary>
+        public static string AddColor {
+            get {
+                return ResourceManager.GetString("AddColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add New Group.
         /// </summary>
         public static string AddNewGroup {

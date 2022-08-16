@@ -214,6 +214,15 @@ namespace _01_Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Colors.
+        /// </summary>
+        public static string Colors {
+            get {
+                return ResourceManager.GetString("Colors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Confirm Your Informations.
         /// </summary>
         public static string ConfirmUserInformations {
@@ -507,6 +516,15 @@ namespace _01_Framework.Resources {
         public static string Image {
             get {
                 return ResourceManager.GetString("Image", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Images.
+        /// </summary>
+        public static string Images {
+            get {
+                return ResourceManager.GetString("Images", resourceCulture);
             }
         }
         
@@ -1011,6 +1029,15 @@ namespace _01_Framework.Resources {
         public static string SecondaryGroup {
             get {
                 return ResourceManager.GetString("SecondaryGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select a color:.
+        /// </summary>
+        public static string SelectColorMessage {
+            get {
+                return ResourceManager.GetString("SelectColorMessage", resourceCulture);
             }
         }
         

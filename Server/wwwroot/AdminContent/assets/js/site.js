@@ -59,6 +59,11 @@ function GetGroupForDelete(groupId) {
         }
     });
 }
+
+function AddProductColor(productId) {
+    $("#ModalContent").load('/Administration/Shop/ProductColors/Create?productId=' + productId);
+    $("#MainModal").modal('show');
+}
 $(document).on("submit", 'form[data-ajax="true"]',
     function (e) {
         var form = $(this);

@@ -126,6 +126,9 @@
   <data name="Add" xml:space="preserve">
     <value>افزودن</value>
   </data>
+  <data name="AddColor" xml:space="preserve">
+    <value>افزودن رنگ</value>
+  </data>
   <data name="AddNewGroup" xml:space="preserve">
     <value>افزودن گروه جدید</value>
   </data>

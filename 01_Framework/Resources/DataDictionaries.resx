@@ -168,6 +168,9 @@
   <data name="ChargeWallet" xml:space="preserve">
     <value>Charge Wallet</value>
   </data>
+  <data name="Colors" xml:space="preserve">
+    <value>Colors</value>
+  </data>
   <data name="ConfirmUserInformations" xml:space="preserve">
     <value>Confirm Your Informations</value>
   </data>
@@ -266,6 +269,9 @@
   </data>
   <data name="Image" xml:space="preserve">
     <value>Image</value>
+  </data>
+  <data name="Images" xml:space="preserve">
+    <value>Images</value>
   </data>
   <data name="IncreaseBalance" xml:space="preserve">
     <value>Increase Balance</value>
@@ -434,6 +440,9 @@
   </data>
   <data name="SecondaryGroup" xml:space="preserve">
     <value>Secondary Group</value>
+  </data>
+  <data name="SelectColorMessage" xml:space="preserve">
+    <value>Please select a color:</value>
   </data>
   <data name="SelectGroupMessage" xml:space="preserve">
     <value>Please select a group</value>

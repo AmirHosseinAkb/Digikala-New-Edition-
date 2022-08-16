@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ShopManagement.Application.Contracts.Product;
+using ShopManagement.Application.Contracts.ProductColor;
 using ShopManagement.Application.Contracts.ProductGroup;
 
 namespace Server.Areas.Administration.Pages.Shop.Products
@@ -10,12 +11,15 @@ namespace Server.Areas.Administration.Pages.Shop.Products
     {
         private readonly IProductApplication _productApplication;
         private readonly IProductGroupApplication _productGroupApplication;
+        private readonly IProductColorApplication _productColorApplication;
 
         public Tuple<List<ProductViewModel>, int, int, int> ProductVM { get; set; }
-        public IndexModel(IProductApplication productApplication, IProductGroupApplication productGroupApplication)
+        public List<ProductColorViewModel> ProductColorVms { get; set; }
+        public IndexModel(IProductApplication productApplication, IProductGroupApplication productGroupApplication,IProductColorApplication productColorApplication)
         {
             _productApplication = productApplication;
             _productGroupApplication = productGroupApplication;
+            _productColorApplication = productColorApplication;
         }
 
         public IActionResult OnGet(int pageId = 1, string title = "", long groupId = 0, long primaryGroupId = 0, long secondaryGroupId = 0, int take = 10)
@@ -42,6 +46,7 @@ namespace Server.Areas.Administration.Pages.Shop.Products
             ViewData["SecondaryGroups"] = new SelectList(secondaryGroups, "Value", "Text");
 
             ProductVM = _productApplication.GetProducts(pageId, title, groupId, primaryGroupId, secondaryGroupId, take);
+            ProductColorVms = _productColorApplication.GetAll();
             return Page();
         }
 

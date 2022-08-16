@@ -15,7 +15,7 @@
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div id="datatable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
                             <div class="m-b-15">
-                                <a id="btnCreateProduct"  class="btn btn-info largeModal">@ButtonCaptions.AddNewProduct</a>
+                                <a id="btnCreateProduct" class="btn btn-info largeModal">@ButtonCaptions.AddNewProduct</a>
                             </div>
                             <form method="get">
                                 <div class="row">
@@ -90,25 +90,40 @@
                                                 <th>@DataDictionaries.Title</th>
                                                 <th>@DataDictionaries.Price</th>
                                                 <th>@DataDictionaries.CreationDate</th>
+                                                <th>@DataDictionaries.Colors</th>
                                                 <th>@DataDictionaries.Operations</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach (var product in Model.ProductVM.Item1)
-                                        {
-                                            <tr role="row">
-                                                <td>
-                                                    <img src="/Products/Images/@product.ImageName" style="width: 200px; height: 200px" class="img-thumbnail">
-                                                </td>
-                                                <td>@product.Title</td>
-                                                <td>@product.Price.ToString("#,0")</td>
-                                                <td>@product.CreationDate</td>
-                                                <td>
-                                                    <a onclick="GetProductForEdit(@product.ProductId)" class="btn btn-primary btn-xs largeModal">@ButtonCaptions.Edit</a>
-                                                    <a onclick="GetProductForDelete(@product.ProductId,'@product.Title')" class="btn btn-danger btn-xs smallModal">@ButtonCaptions.Delete</a>
-                                                </td>
-                                            </tr>
-                                        }
+                                            @foreach (var product in Model.ProductVM.Item1)
+                                            {
+                                                <tr role="row">
+                                                    <td>
+                                                        <img src="/Products/Images/@product.ImageName" style="width: 200px; height: 200px" class="img-thumbnail">
+                                                    </td>
+                                                    <td>@product.Title</td>
+                                                    <td>@product.Price.ToString("#,0")</td>
+                                                    <td>@product.CreationDate</td>
+                                                    <td>
+                                                        @foreach (var color in Model.ProductColorVms.Where(c => c.ProductId == product.ProductId))
+                                                        {
+                                                            <form method="post" action="~/Administration/Shop/ProductColors/Delete">
+                                                                <div style="background-color: @color.ColorCode; margin: 0px 30%; border-radius: 20px">
+                                                                    <br />
+                                                                </div>
+                                                                <input type="hidden" name="colorId" value="@color.ColorId" />
+                                                                <input type="submit" class="btn btn-danger btn-xs" value="@ButtonCaptions.Delete" />
+                                                                <br />
+                                                            </form>
+                                                        }
+                                                    </td>
+                                                    <td>
+                                                        <a onclick="GetProductForEdit(@product.ProductId)" class="btn btn-primary btn-xs largeModal">@ButtonCaptions.Edit</a>
+                                                        <a onclick="AddProductColor(@product.ProductId)" class="btn btn-purple btn-xs ">@ButtonCaptions.AddColor</a>
+                                                        <a onclick="GetProductForDelete(@product.ProductId,'@product.Title')" class="btn btn-danger btn-xs smallModal">@ButtonCaptions.Delete</a>
+                                                    </td>
+                                                </tr>
+                                            }
 
                                         </tbody>
                                     </table>
@@ -143,7 +158,6 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>

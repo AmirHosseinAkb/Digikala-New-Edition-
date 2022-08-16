@@ -168,6 +168,9 @@
   <data name="ChargeWallet" xml:space="preserve">
     <value>شارژ کیف پول</value>
   </data>
+  <data name="Colors" xml:space="preserve">
+    <value>رنگ ها</value>
+  </data>
   <data name="ConfirmUserInformations" xml:space="preserve">
     <value>تکمیل اطلاعات کاربری</value>
   </data>
@@ -266,6 +269,9 @@
   </data>
   <data name="Image" xml:space="preserve">
     <value>عکس</value>
+  </data>
+  <data name="Images" xml:space="preserve">
+    <value>تصاویر</value>
   </data>
   <data name="IncreaseBalance" xml:space="preserve">
     <value>افزایش موجودی</value>
@@ -434,6 +440,9 @@
   </data>
   <data name="SecondaryGroup" xml:space="preserve">
     <value>گروه فرعی دوم</value>
+  </data>
+  <data name="SelectColorMessage" xml:space="preserve">
+    <value>لطفا رنگ را انتخاب کنید:</value>
   </data>
   <data name="SelectGroupMessage" xml:space="preserve">
     <value>گروهی را انتخاب کنید</value>
