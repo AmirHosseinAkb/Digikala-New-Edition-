@@ -118,9 +118,10 @@
                                                         }
                                                     </td>
                                                     <td>
-                                                        <a onclick="GetProductForEdit(@product.ProductId)" class="btn btn-primary btn-xs largeModal">@ButtonCaptions.Edit</a>
-                                                        <a onclick="AddProductColor(@product.ProductId)" class="btn btn-purple btn-xs ">@ButtonCaptions.AddColor</a>
-                                                        <a onclick="GetProductForDelete(@product.ProductId,'@product.Title')" class="btn btn-danger btn-xs smallModal">@ButtonCaptions.Delete</a>
+                                                        <a onclick="GetProductForEdit(@product.ProductId)" class="btn btn-primary btn-block largeModal">@ButtonCaptions.Edit</a>
+                                                        <a onclick="AddProductColor(@product.ProductId)" class="btn btn-purple btn-block ">@ButtonCaptions.AddColor</a>
+                                                        <a  class="btn btn-warning btn-block largeModal">@ButtonCaptions.ProductImages</a>
+                                                        <a onclick="GetProductForDelete(@product.ProductId,'@product.Title')" class="btn btn-danger btn-block smallModal">@ButtonCaptions.Delete</a>
                                                     </td>
                                                 </tr>
                                             }

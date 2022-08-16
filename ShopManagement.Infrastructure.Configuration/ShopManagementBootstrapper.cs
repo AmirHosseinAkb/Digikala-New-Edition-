@@ -7,8 +7,10 @@ using ShopManagement.Domain.ProductAgg;
 using ShopManagement.Infrastructure.EfCore;
 using ShopManagement.Infrastructure.EfCore.Repositories;
 using ShopManagement.Application.Contracts.ProductGroup;
+using ShopManagement.Application.Contracts.ProductImage;
 using ShopManagement.Domain.ProductColorAgg;
 using ShopManagement.Domain.ProductGroupAgg;
+using ShopManagement.Domain.ProductImageAgg;
 
 namespace ShopManagement.Infrastructure.Configuration
 {
@@ -22,6 +24,8 @@ namespace ShopManagement.Infrastructure.Configuration
             services.AddScoped<IProductGroupRepository,ProductGroupRepository>();
             services.AddScoped<IProductColorApplication, ProductColorApplication>();
             services.AddScoped<IProductColorRepository, ProductColorRepository>();
+            services.AddScoped<IProductImageRepository, ProductImageRepository>();
+            services.AddScoped<IProductImageApplication, ProductImageApplication>();
             services.AddDbContext<ShopContext>(options => 
                 options.UseSqlServer(connectionString));
         }

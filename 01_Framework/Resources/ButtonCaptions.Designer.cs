@@ -259,6 +259,15 @@ namespace _01_Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Product Images.
+        /// </summary>
+        public static string ProductImages {
+            get {
+                return ResourceManager.GetString("ProductImages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Register.
         /// </summary>
         public static string Register {

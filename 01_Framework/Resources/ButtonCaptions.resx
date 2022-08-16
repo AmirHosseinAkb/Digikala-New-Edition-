@@ -183,6 +183,9 @@
   <data name="Pay" xml:space="preserve">
     <value>Pay</value>
   </data>
+  <data name="ProductImages" xml:space="preserve">
+    <value>Product Images</value>
+  </data>
   <data name="Register" xml:space="preserve">
     <value>Register</value>
   </data>
