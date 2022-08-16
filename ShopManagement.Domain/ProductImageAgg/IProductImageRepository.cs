@@ -8,5 +8,6 @@ namespace ShopManagement.Domain.ProductImageAgg
 {
     public interface IProductImageRepository
     {
+        List<ProductImage> GetProductImages(long productId);
     }
 }

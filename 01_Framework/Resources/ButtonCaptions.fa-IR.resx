@@ -141,6 +141,9 @@
   <data name="AddNewUser" xml:space="preserve">
     <value>افزودن کاربر جدید</value>
   </data>
+  <data name="AddProductImage" xml:space="preserve">
+    <value>افزودن عکس محصول</value>
+  </data>
   <data name="AddSubGroup" xml:space="preserve">
     <value>افزودن زیرگروه</value>
   </data>

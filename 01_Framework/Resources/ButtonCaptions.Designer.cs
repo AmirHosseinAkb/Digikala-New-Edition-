@@ -133,6 +133,15 @@ namespace _01_Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Product Image.
+        /// </summary>
+        public static string AddProductImage {
+            get {
+                return ResourceManager.GetString("AddProductImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Sub Group.
         /// </summary>
         public static string AddSubGroup {

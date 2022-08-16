@@ -21,4 +21,8 @@
     <ProjectReference Include="..\UserManagement.Infrastructure.Configuration\UserManagement.Infrastructure.Configuration.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Products\ProductImages\" />
+  </ItemGroup>
+
 </Project>

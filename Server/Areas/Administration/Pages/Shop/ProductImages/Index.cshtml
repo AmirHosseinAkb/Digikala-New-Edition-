@@ -1,0 +1,37 @@
+﻿@page "{handler?}"
+@model Server.Areas.Administration.Pages.Shop.ProductImages.IndexModel
+@{
+    Layout = null;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">@DataDictionaries.ProductImages</h3>
+            </div>
+
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div id="datatable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                            <div class="row">
+                                @foreach (var image in Model.ProductImages)
+                                {
+                                    <div class="col-md-3">
+                                        <div class="card">
+                                            <img src="/Products/ProductImages/@image" class=" img-thumbnail card-img-top" alt="Product Image">
+                                            <div class="card-footer" style="border: 1px solid lightgray">
+                                                <a href="#" class="btn btn-danger" style="margin:10px">@ButtonCaptions.Delete</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace ShopManagement.Application.Contracts.ProductImage
 {
-    public class IProductImageApplication
+    public interface IProductImageApplication
     {
+        List<string> GetProductImages(long productId);
     }
 }

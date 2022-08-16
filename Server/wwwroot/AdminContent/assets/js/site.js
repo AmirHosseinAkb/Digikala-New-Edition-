@@ -64,6 +64,11 @@ function AddProductColor(productId) {
     $("#ModalContent").load('/Administration/Shop/ProductColors/Create?productId=' + productId);
     $("#MainModal").modal('show');
 }
+
+function ShowProductImages(productId) {
+    $("#ModalContent").load('/Administration/Shop/ProductImages?productId=' + productId);
+    $("#MainModal").modal('show');
+}
 $(document).on("submit", 'form[data-ajax="true"]',
     function (e) {
         var form = $(this);
