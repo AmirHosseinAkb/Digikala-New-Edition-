@@ -1509,10 +1509,10 @@ body.fixed-left .side-menu.left {
 }
 
 .user-details .user-info {
-    margin-right: 60px;
     z-index: 99999;
     position: relative;
     color: #444;
+    text-align: center
 }
 
 .user-details .user-info a.dropdown-toggle {

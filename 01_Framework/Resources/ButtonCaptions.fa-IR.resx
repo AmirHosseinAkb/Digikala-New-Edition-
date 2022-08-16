@@ -213,6 +213,9 @@
   <data name="Submit" xml:space="preserve">
     <value>تایید</value>
   </data>
+  <data name="UserPanel" xml:space="preserve">
+    <value>پنل کاربری</value>
+  </data>
   <data name="Wallet" xml:space="preserve">
     <value>کیف پول</value>
   </data>

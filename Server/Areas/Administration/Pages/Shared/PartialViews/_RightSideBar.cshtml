@@ -1,4 +1,8 @@
-﻿@{
+﻿@using _01_Framework.Application
+@using UserManagement.Application.Contracts.User
+@inject IAuthenticationHelper _authenticationHelper;
+@inject IUserApplication _userApplication;
+@{
     Layout = null;
 }
 @{
@@ -33,21 +37,18 @@
 <div class="left side-menu">
     <div class="sidebar-inner slimscrollleft">
         <div class="user-details">
-            <div class="pull-left">
-                <img src="~/AdminContent/assets/images/users/avatar-1.jpg" alt="" class="thumb-md img-circle">
+            <div >
+                <img src="~/UserAvatar/@_authenticationHelper.GetCurrentUserAvatarName()" alt="" class="img-circle center-block" style="max-width: 30%;max-height: 30% ">
             </div>
             <div class="user-info">
                 <div class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">John Doe <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">@((!string.IsNullOrEmpty(_authenticationHelper.GetCurrentUserEmail()))?_authenticationHelper.GetCurrentUserEmail():_authenticationHelper.GetCurrentUserPhoneNumber())<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="javascript:void(0)"><i class="md md-face-unlock"></i> Profile<div class="ripple-wrapper"></div></a></li>
-                        <li><a href="javascript:void(0)"><i class="md md-settings"></i> Settings</a></li>
-                        <li><a href="javascript:void(0)"><i class="md md-lock"></i> Lock screen</a></li>
-                        <li><a href="javascript:void(0)"><i class="md md-settings-power"></i> Logout</a></li>
+                        <li><a href="/UserPanel"><i class="md md-face-unlock"></i> @ButtonCaptions.UserPanel<div class="ripple-wrapper"></div></a></li>
+                        <li><a href="/Account/RegisterAndLogin/Logout"><i class="md md-settings-power"></i> @ButtonCaptions.Logout</a></li>
                     </ul>
                 </div>
-
-                <p class="text-muted m-0">Administrator</p>
+                <p class="text-muted m-0">@_userApplication.GetCurrentUserRoleTitle()</p>
             </div>
         </div>
         <!--- Divider -->

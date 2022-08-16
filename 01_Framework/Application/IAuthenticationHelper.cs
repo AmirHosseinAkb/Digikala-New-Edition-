@@ -14,6 +14,8 @@ namespace _01_Framework.Application
         string GetCurrentUserEmail();
         string GetCurrentUserPhoneNumber();
         long GetCurrentUserId();
+        long GetCurrentUserRole();
+        string GetCurrentUserAvatarName();
         List<int> GetCurrentUserPermissions();
     }
 }

@@ -15,6 +15,7 @@ namespace UserManagement.Domain.UserAgg
         User GetUserForLogin(string email,string password);
         User GetUserByEmail(string email);
         User GetUserById(long id);
+        User GetUserWithRole(long userId);
         User GetDeletedUser(long userId);
         long GetUserWalletBalance(long userId);
         List<User> GetUsers();

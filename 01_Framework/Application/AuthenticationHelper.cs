@@ -21,7 +21,8 @@ namespace _01_Framework.Application
             {
                 new Claim("UserId", authenticationVM.UserId.ToString()),
                 new Claim(ClaimTypes.Role, authenticationVM.RoleId.ToString()),
-                new Claim("Permissions",permissions)
+                new Claim("Permissions",permissions),
+                new Claim("AvatarName",authenticationVM.AvatarName)
             };
 
             if(!string.IsNullOrEmpty(authenticationVM.Email))
@@ -69,6 +70,20 @@ namespace _01_Framework.Application
             return IsAuthenticated()
                 ? long.Parse(_httpContextAccessor.HttpContext.User.Claims.First(c => c.Type == "UserId").Value)
                 : 0;
+        }
+
+        public long GetCurrentUserRole()
+        {
+            return IsAuthenticated()
+                ? long.Parse(_httpContextAccessor.HttpContext.User.Claims.First(c => c.Type == ClaimTypes.Role).Value)
+                : 0;
+        }
+
+        public string GetCurrentUserAvatarName()
+        {
+            return IsAuthenticated()
+                ? _httpContextAccessor.HttpContext.User.Claims.First(c => c.Type == "AvatarName").Value
+                : "";
         }
 
         public List<int> GetCurrentUserPermissions()

@@ -213,6 +213,9 @@
   <data name="Submit" xml:space="preserve">
     <value>Submit</value>
   </data>
+  <data name="UserPanel" xml:space="preserve">
+    <value>UserPanel</value>
+  </data>
   <data name="Wallet" xml:space="preserve">
     <value>Wallet</value>
   </data>

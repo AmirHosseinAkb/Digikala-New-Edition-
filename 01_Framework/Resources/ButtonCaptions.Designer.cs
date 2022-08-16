@@ -349,6 +349,15 @@ namespace _01_Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to UserPanel.
+        /// </summary>
+        public static string UserPanel {
+            get {
+                return ResourceManager.GetString("UserPanel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Wallet.
         /// </summary>
         public static string Wallet {

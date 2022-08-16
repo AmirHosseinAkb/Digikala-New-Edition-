@@ -46,6 +46,7 @@ namespace UserManagement.Application.Contracts.User
 
         OperationResult EditUserFromAdmin(EditUserCommand command, long roleId);
 
+        string GetCurrentUserRoleTitle();
         void DeleteUser(long userId);
 
         void ReturnUser(long userId);
