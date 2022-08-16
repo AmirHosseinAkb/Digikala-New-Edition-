@@ -20,7 +20,15 @@ namespace Server.Areas.Administration.Pages.Shop.ProductImages
 
         public IActionResult OnGetCreate(long productId)
         {
-            return Partial("./Create");
+            return Partial("./Create",new CreateImageCommand(){ProductId = productId});
+        }
+
+        public IActionResult OnPostCreate(CreateImageCommand command)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest();
+            var result = _productImageApplication.Create(command);
+            return new JsonResult(result);
         }
     }
 }

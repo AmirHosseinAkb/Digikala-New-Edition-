@@ -20,5 +20,11 @@ namespace ShopManagement.Infrastructure.EfCore.Repositories
         {
             return _context.ProductImages.Where(i => i.ProductId == productId).ToList();
         }
+
+        public void Add(ProductImage Image)
+        {
+            _context.ProductImages.Add(Image);
+            _context.SaveChanges();
+        }
     }
 }

@@ -69,6 +69,11 @@ function ShowProductImages(productId) {
     $("#ModalContent").load('/Administration/Shop/ProductImages?productId=' + productId);
     $("#MainModal").modal('show');
 }
+
+function CreateImage(productId) {
+    $("#ModalContent").load('/Administration/Shop/ProductImages/Create?productId=' + productId);
+    $("#MainModal").modal('show');
+}
 $(document).on("submit", 'form[data-ajax="true"]',
     function (e) {
         var form = $(this);

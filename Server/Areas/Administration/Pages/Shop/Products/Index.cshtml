@@ -121,7 +121,7 @@
                                                         <a onclick="GetProductForEdit(@product.ProductId)" class="btn btn-primary btn-block largeModal">@ButtonCaptions.Edit</a>
                                                         <a onclick="AddProductColor(@product.ProductId)" class="btn btn-purple btn-block smallModal">@ButtonCaptions.AddColor</a>
                                                         <a onclick="ShowProductImages(@product.ProductId)" class="btn btn-warning btn-block largeModal">@ButtonCaptions.ProductImages</a>
-                                                        <a  class="btn btn-warning btn-block smallModal">@ButtonCaptions.AddProductImage</a>
+                                                        <a onclick="CreateImage(@product.ProductId)" class="btn btn-warning btn-block smallModal">@ButtonCaptions.AddProductImage</a>
                                                         <a onclick="GetProductForDelete(@product.ProductId,'@product.Title')" class="btn btn-danger btn-block smallModal">@ButtonCaptions.Delete</a>
                                                     </td>
                                                 </tr>

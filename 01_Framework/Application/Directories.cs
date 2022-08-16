@@ -16,5 +16,13 @@ namespace _01_Framework.Application
                 "ProductGroupImages",
                 imageName!);
         }
+        public static string ProductImageDirectory(string imageName)
+        {
+            return Path.Combine(Directory.GetCurrentDirectory(),
+                "wwwroot",
+                "Products",
+                "ProductImages",
+                imageName!);
+        }
     }
 }
