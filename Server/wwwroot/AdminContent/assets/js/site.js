@@ -74,6 +74,26 @@ function CreateImage(productId) {
     $("#ModalContent").load('/Administration/Shop/ProductImages/Create?productId=' + productId);
     $("#MainModal").modal('show');
 }
+//function DeleteImage(imageId, productId) {
+//    $(".btnDeleteImage").preventDefault();
+//    $.ajax({
+//        type: "Post",
+//        url: "/Administration/Shop/ProductImages/Delete?imageId=" + imageId,
+//        beforeSend: function (xhr) { xhr.setRequestHeader("XSRF-TOKEN", $('input:hidden[name="__RequestVerificationToken"]').val()); },
+//        success: function (data) {
+//            if (data.isSucceeded) {
+//                $("#MainModal").modal('toggle');
+//                $("#ModalContent").load('/Administration/Shop/ProductImages?productId=' + productId);
+//            }
+//            else {
+//                sweetAlert("پیغام", data.message, "error");
+//            }
+//        },
+//        error: function (error) {
+//            sweetAlert("پیغام", error.responseText, "error");
+//        }
+//    });
+//}
 $(document).on("submit", 'form[data-ajax="true"]',
     function (e) {
         var form = $(this);

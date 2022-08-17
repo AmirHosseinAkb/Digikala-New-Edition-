@@ -26,5 +26,21 @@ namespace ShopManagement.Infrastructure.EfCore.Repositories
             _context.ProductImages.Add(Image);
             _context.SaveChanges();
         }
+
+        public ProductImage GetById(long imageId)
+        {
+            return _context.ProductImages.Find(imageId);
+        }
+
+        public void Delete(ProductImage image)
+        {
+            _context.ProductImages.Remove(image);
+            _context.SaveChanges();
+        }
+
+        public void SaveChanges()
+        {
+            _context.SaveChanges();
+        }
     }
 }

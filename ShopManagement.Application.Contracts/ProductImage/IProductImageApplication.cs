@@ -9,7 +9,8 @@ namespace ShopManagement.Application.Contracts.ProductImage
 {
     public interface IProductImageApplication
     {
-        List<string> GetProductImages(long productId);
+        List<ProductImageViewModel> GetProductImages(long productId);
         OperationResult Create(CreateImageCommand command);
+        OperationResult Delete(long imageId);
     }
 }

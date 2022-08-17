@@ -20,9 +20,15 @@ namespace ShopManagement.Application
             _productRepository = productRepository;
         }
 
-        public List<string> GetProductImages(long productId)
+        public List<ProductImageViewModel> GetProductImages(long productId)
         {
-            return _productImageRepository.GetProductImages(productId).Select(i => i.ImageName).ToList();
+            return _productImageRepository.GetProductImages(productId)
+                .Select(i => new ProductImageViewModel()
+                {
+                    ImageId = i.ImageId,
+                    ProductId = i.ProductId,
+                    ImageName = i.ImageName
+                }).ToList();
         }
 
         public OperationResult Create(CreateImageCommand command)
@@ -40,6 +46,19 @@ namespace ShopManagement.Application
                 command.ProductImage.CopyTo(stream);
             var image = new ProductImage(command.ProductId, imageName);
             _productImageRepository.Add(image);
+            return result.Succeeded();
+        }
+
+        public OperationResult Delete(long imageId)
+        {
+            var result = new OperationResult();
+            var image = _productImageRepository.GetById(imageId);
+            if (image == null)
+                return result.NullResult();
+            _productImageRepository.Delete(image);
+            var imagePath = Directories.ProductImageDirectory(image.ImageName);
+            if (File.Exists(imagePath))
+                File.Delete(imagePath);
             return result.Succeeded();
         }
     }

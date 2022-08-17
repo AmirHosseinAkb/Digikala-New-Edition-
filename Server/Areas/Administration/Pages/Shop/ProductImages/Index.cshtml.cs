@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Org.BouncyCastle.Crypto.Tls;
 using ShopManagement.Application.Contracts.ProductImage;
 
 namespace Server.Areas.Administration.Pages.Shop.ProductImages
@@ -12,7 +13,7 @@ namespace Server.Areas.Administration.Pages.Shop.ProductImages
         {
             _productImageApplication = productImageApplication;
         }
-        public List<string> ProductImages { get; set; }
+        public List<ProductImageViewModel> ProductImages { get; set; }
         public void OnGet(long productId)
         {
             ProductImages = _productImageApplication.GetProductImages(productId);
@@ -29,6 +30,14 @@ namespace Server.Areas.Administration.Pages.Shop.ProductImages
                 return BadRequest();
             var result = _productImageApplication.Create(command);
             return new JsonResult(result);
+        }
+
+        public IActionResult OnPostDelete(long imageId)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest();
+            var result = _productImageApplication.Delete(imageId);
+            return Redirect("/Administration/Shop/Products");
         }
     }
 }

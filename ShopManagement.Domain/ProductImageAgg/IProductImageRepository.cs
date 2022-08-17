@@ -10,5 +10,7 @@ namespace ShopManagement.Domain.ProductImageAgg
     {
         List<ProductImage> GetProductImages(long productId);
         void Add(ProductImage Image);
+        ProductImage GetById(long imageId);
+        void Delete(ProductImage image);
     }
 }
