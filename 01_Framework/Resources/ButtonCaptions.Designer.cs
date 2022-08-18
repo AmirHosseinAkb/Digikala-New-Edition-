@@ -97,6 +97,15 @@ namespace _01_Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Group Details.
+        /// </summary>
+        public static string AddGroupDetails {
+            get {
+                return ResourceManager.GetString("AddGroupDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add New Group.
         /// </summary>
         public static string AddNewGroup {

@@ -129,6 +129,9 @@
   <data name="AddColor" xml:space="preserve">
     <value>Add Color</value>
   </data>
+  <data name="AddGroupDetails" xml:space="preserve">
+    <value>Add Group Details</value>
+  </data>
   <data name="AddNewGroup" xml:space="preserve">
     <value>Add New Group</value>
   </data>

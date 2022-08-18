@@ -37,6 +37,8 @@ namespace ShopManagement.Application
             if (_productGroupRepository.IsExistGroup(command.Title))
                 return result.Failed(ApplicationMessages.DuplicatedGroup);
             string? imageName = null;
+            if (command.ParentId == null)
+                imageName = DefaultImages.DefaultProductGroupImage;
             if (command.GroupImage != null)
             {
                 imageName = CodeGenerator.GenerateUniqName() + Path.GetExtension(command.GroupImage.FileName);

@@ -35,6 +35,7 @@ namespace Server.Areas.Administration.Pages.Shop.ProductGroups
 
         public IActionResult OnPostCreate(CreateGroupCommand command)
         {
+            ModelState.Remove("ParentId");
             if (!ModelState.IsValid)
                 return BadRequest();
             var result = _productGroupApplication.CreateGroup(command);
