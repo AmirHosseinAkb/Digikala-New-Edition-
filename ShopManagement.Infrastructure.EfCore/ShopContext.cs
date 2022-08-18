@@ -24,6 +24,8 @@ namespace ShopManagement.Infrastructure.EfCore
         public DbSet<ProductGroup> ProductGroups { get; set; }
         public DbSet<ProductImage> ProductImages { get; set; }
         public DbSet<ProductColor> ProductColors { get; set; }
+        public DbSet<GroupDetail> GroupDetails { get; set; }
+        public DbSet<ProductDetail> ProductDetails { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -31,6 +33,8 @@ namespace ShopManagement.Infrastructure.EfCore
             modelBuilder.ApplyConfiguration(new ProductGroupMapping());
             modelBuilder.ApplyConfiguration(new ProductImageMapping());
             modelBuilder.ApplyConfiguration(new ProductColorMapping());
+            modelBuilder.ApplyConfiguration(new GroupDetailMapping());
+            modelBuilder.ApplyConfiguration(new ProductDetailMapping());
             base.OnModelCreating(modelBuilder);
         }
     }

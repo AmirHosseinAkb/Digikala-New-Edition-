@@ -29,6 +29,7 @@ namespace ShopManagement.Domain.ProductAgg
         public ProductGroup SecondaryProductGroup { get;private set; }
         public List<ProductImage> ProductImages { get;private set; }
         public List<ProductColor> ProductColors { get;private set; }
+        public List<ProductDetail> ProductDetails { get; private set; }
 
         protected Product()
         {

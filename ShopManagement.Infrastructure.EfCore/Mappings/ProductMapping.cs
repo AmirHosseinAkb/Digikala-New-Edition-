@@ -45,6 +45,9 @@ namespace ShopManagement.Infrastructure.EfCore.Mappings
             builder.HasMany<ProductImage>(p => p.ProductImages).WithOne(i => i.Product)
                 .HasForeignKey(i => i.ProductId);
 
+            builder.HasMany<ProductDetail>(p => p.ProductDetails).WithOne(d => d.Product)
+                .HasForeignKey(d => d.ProductId);
+
             builder.HasQueryFilter(p => !p.IsDeleted);
         }
     }

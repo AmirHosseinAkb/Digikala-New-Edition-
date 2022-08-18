@@ -12,12 +12,13 @@ namespace ShopManagement.Domain.ProductGroupAgg
         public long GroupId { get;private set; }
         public string GroupTitle { get; private set; }
         public long? ParentId { get; private set; }
-        public List<ProductGroup> ProductGroups { get; set; }
-        public string? ImageName { get; set; }
+        public List<ProductGroup> ProductGroups { get;private set; }
+        public string? ImageName { get;private set; }
 
-        public List<Product> Products { get; set; }
-        public List<Product> PrimaryProducts { get; set; }
-        public List<Product> SecondaryProducts { get; set; }
+        public List<Product> Products { get;private set; }
+        public List<Product> PrimaryProducts { get;private set; }
+        public List<Product> SecondaryProducts { get;private set; }
+        public List<GroupDetail> GroupDetails { get;private set; }
 
         protected ProductGroup()
         {

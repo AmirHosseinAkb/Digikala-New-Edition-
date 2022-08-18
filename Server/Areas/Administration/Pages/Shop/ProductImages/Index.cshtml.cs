@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Org.BouncyCastle.Crypto.Tls;
 using ShopManagement.Application.Contracts.ProductImage;
 
 namespace Server.Areas.Administration.Pages.Shop.ProductImages
