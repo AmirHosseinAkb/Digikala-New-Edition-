@@ -27,9 +27,18 @@ namespace Server.Areas.Administration.Pages.Shop.ProductGroups.GroupDetails
 
         public IActionResult OnPostCreate()
         {
+            ModelState.Remove("DetailId");
             if (!ModelState.IsValid)
                 return BadRequest();
             var result = _productGroupApplication.CreateGroupDetail(command);
+            return new JsonResult(result);
+        }
+
+        public IActionResult OnPostEdit()
+        {
+            if (!ModelState.IsValid || command.DetailId==null)
+                return BadRequest();
+            var result = _productGroupApplication.EditGroupDetail(command);
             return new JsonResult(result);
         }
     }

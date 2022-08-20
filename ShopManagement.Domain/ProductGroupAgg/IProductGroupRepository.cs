@@ -1,4 +1,6 @@
-﻿namespace ShopManagement.Domain.ProductGroupAgg
+﻿using System.Text.RegularExpressions;
+
+namespace ShopManagement.Domain.ProductGroupAgg
 {
     public interface IProductGroupRepository
     {
@@ -13,5 +15,7 @@
         List<GroupDetail> GetGroupDetails(long groupId);
         void AddGroupDetail(GroupDetail detail);
         bool IsExistGroupDetail(string detailTitle,long groupId);
+        bool IsExistGroupDetail(long detailId,long groupId);
+        GroupDetail GetGroupDetail(long detailId);
     }
 }

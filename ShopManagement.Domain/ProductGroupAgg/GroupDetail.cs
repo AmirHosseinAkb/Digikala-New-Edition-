@@ -27,5 +27,10 @@ namespace ShopManagement.Domain.ProductGroupAgg
             GroupId = groupId;
             DetailTitle = detailTitle;
         }
+
+        public void Edit(string detailTitle)
+        {
+            DetailTitle=detailTitle;
+        }
     }
 }

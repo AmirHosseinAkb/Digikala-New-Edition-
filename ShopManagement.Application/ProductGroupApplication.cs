@@ -179,5 +179,24 @@ namespace ShopManagement.Application
             _productGroupRepository.AddGroupDetail(detail);
             return result.Succeeded();
         }
+
+        public OperationResult EditGroupDetail(CreateGroupDetailCommand command)
+        {
+            var result = new OperationResult();
+            var detail = _productGroupRepository.GetGroupDetail(command.DetailId!.Value);
+
+            if (!_productGroupRepository.IsExistGroupDetail(command.DetailId!.Value, command.GroupId))
+                return result.Failed(ApplicationMessages.RecordNotFound);
+
+            if (command.DetailTitle != detail.DetailTitle)
+            {
+                if (_productGroupRepository.IsExistGroupDetail(command.DetailTitle,command.GroupId))
+                    return result.Failed(ApplicationMessages.DuplicatedGroupDetail);
+            }
+
+            detail.Edit(command.DetailTitle);
+            _productGroupRepository.SaveChanges();
+            return result.Succeeded();
+        }
     }
 }

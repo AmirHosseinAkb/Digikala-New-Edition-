@@ -91,5 +91,15 @@ namespace ShopManagement.Infrastructure.EfCore.Repositories
         {
             return _context.GroupDetails.Any(g => g.GroupId == groupId && g.DetailTitle == detailTitle);
         }
+
+        public bool IsExistGroupDetail(long detailId, long groupId)
+        {
+            return _context.GroupDetails.Any(d => d.DetailId == detailId && d.GroupId == groupId);
+        }
+
+        public GroupDetail GetGroupDetail(long detailId)
+        {
+            return _context.GroupDetails.Find(detailId);
+        }
     }
 }

@@ -99,32 +99,64 @@ function CreateGroupDetails(groupId) {
     $("#ModalContent").load('/Administration/Shop/ProductGroups/GroupDetails?groupId=' + groupId);
     $("#MainModal").modal('show');
 }
+var IsForEditDetail = false;
 $(document).on("submit", 'form[id="frmDetail"]', function (e) {
     e.preventDefault();
     var isValidForm = $(this).valid();
     var groupId = $("#detailGroupId").val();
     if (isValidForm) {
         var data = $("#frmDetail").serialize();
-        $.ajax({
-            type: "Post",
-            url: "/Administration/Shop/ProductGroups/GroupDetails/Create",
-            beforeSend: function (xhr) { xhr.setRequestHeader("XSRF-TOKEN", $('input:hidden[name="__RequestVerificationToken"]').val()); },
-            data: data,
-            dataType: "json",
-            success: function (data) {
-                if (data.isSucceeded) {
-                    CreateGroupDetails(groupId);
+        if (IsForEditDetail == false) {
+            $.ajax({
+                type: "Post",
+                url: "/Administration/Shop/ProductGroups/GroupDetails/Create",
+                beforeSend: function (xhr) { xhr.setRequestHeader("XSRF-TOKEN", $('input:hidden[name="__RequestVerificationToken"]').val()); },
+                data: data,
+                dataType: "json",
+                success: function (data) {
+                    if (data.isSucceeded) {
+                        CreateGroupDetails(groupId);
+                    }
+                    else {
+                        sweetAlert("پیغام", data.message, "error");
+                    }
+                },
+                error: function (error) {
+                    sweetAlert("پیغام", error.responseText, "error");
                 }
-                else {
-                    sweetAlert("پیغام", data.message, "error");
+            })
+        }
+        else {
+            $.ajax({
+                type: "Post",
+                url: "/Administration/Shop/ProductGroups/GroupDetails/Edit",
+                beforeSend: function (xhr) { xhr.setRequestHeader("XSRF-TOKEN", $('input:hidden[name="__RequestVerificationToken"]').val()); },
+                data: data,
+                dataType: "json",
+                success: function (data) {
+                    if (data.isSucceeded) {
+                        CreateGroupDetails(groupId);
+                    }
+                    else {
+                        sweetAlert("پیغام", data.message, "error");
+                    }
+                },
+                error: function (error) {
+                    sweetAlert("پیغام", error.responseText, "error");
                 }
-            },
-            error: function (error) {
-                sweetAlert("پیغام", error.responseText, "error");
-            }
-        })
+            })
+        }
+
     }
 })
+
+function GetDetailForEdit(detailId,groupId, title) {
+    $("#detailGroupId").val(groupId);
+    $("#command_DetailTitle").val(title);
+    $("#command_DetailId").val(detailId);
+    $("#btnDetail").val("ویرایش");
+    IsForEditDetail=true;
+}
 
 $(document).on("submit", 'form[data-ajax="true"]',
     function (e) {
