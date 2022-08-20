@@ -10,5 +10,6 @@
         ProductGroup GetGroupById(long id);
         void SaveChanges();
         void Delete(ProductGroup group);
+        List<GroupDetail> GetGroupDetails(long groupId);
     }
 }

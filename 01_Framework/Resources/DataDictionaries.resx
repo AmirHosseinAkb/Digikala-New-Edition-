@@ -219,6 +219,9 @@
   <data name="Details" xml:space="preserve">
     <value>Details</value>
   </data>
+  <data name="DetailTitle" xml:space="preserve">
+    <value>Detail Title</value>
+  </data>
   <data name="EditGroup" xml:space="preserve">
     <value>Edit Group</value>
   </data>
@@ -446,6 +449,9 @@
   </data>
   <data name="RoleTitle" xml:space="preserve">
     <value>Role Title</value>
+  </data>
+  <data name="Row" xml:space="preserve">
+    <value>Row</value>
   </data>
   <data name="SecondaryGroup" xml:space="preserve">
     <value>Secondary Group</value>

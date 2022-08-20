@@ -158,5 +158,16 @@ namespace ShopManagement.Application
             _productGroupRepository.Delete(group);
             return result.Succeeded();
         }
+
+        public List<GroupDetailViewModel> GetDetailsOfGroup(long groupId)
+        {
+            return _productGroupRepository.GetGroupDetails(groupId)
+                .Select(d=>new GroupDetailViewModel()
+                {
+                    DetailId = d.DetailId,
+                    GroupId = d.GroupId,
+                    DetailTitle = d.DetailTitle
+                }).ToList();
+        }
     }
 }

@@ -367,6 +367,15 @@ namespace _01_Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Detail Title.
+        /// </summary>
+        public static string DetailTitle {
+            get {
+                return ResourceManager.GetString("DetailTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit Group.
         /// </summary>
         public static string EditGroup {
@@ -1047,6 +1056,15 @@ namespace _01_Framework.Resources {
         public static string RoleTitle {
             get {
                 return ResourceManager.GetString("RoleTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Row.
+        /// </summary>
+        public static string Row {
+            get {
+                return ResourceManager.GetString("Row", resourceCulture);
             }
         }
         

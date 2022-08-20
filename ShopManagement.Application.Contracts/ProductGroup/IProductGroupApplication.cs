@@ -1,4 +1,5 @@
-﻿using _01_Framework.Application;
+﻿using System.Net;
+using _01_Framework.Application;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ShopManagement.Application.Contracts.ProductGroup
@@ -15,5 +16,11 @@ namespace ShopManagement.Application.Contracts.ProductGroup
         OperationResult EditGroup(EditGroupCommand command);
         DeleteGroupCommand GetGroupForDelete(long groupId);
         OperationResult DeleteGroup(long groupId);
+
+        #region GroupDetail
+
+        List<GroupDetailViewModel> GetDetailsOfGroup(long groupId);
+
+        #endregion
     }
 }

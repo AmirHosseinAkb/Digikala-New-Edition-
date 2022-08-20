@@ -219,6 +219,9 @@
   <data name="Details" xml:space="preserve">
     <value>جزئیات</value>
   </data>
+  <data name="DetailTitle" xml:space="preserve">
+    <value>عنوان ویژگی</value>
+  </data>
   <data name="EditGroup" xml:space="preserve">
     <value>ویرایش گروه</value>
   </data>
@@ -446,6 +449,9 @@
   </data>
   <data name="RoleTitle" xml:space="preserve">
     <value>عنوان نقش</value>
+  </data>
+  <data name="Row" xml:space="preserve">
+    <value>ردیف</value>
   </data>
   <data name="SecondaryGroup" xml:space="preserve">
     <value>گروه فرعی دوم</value>

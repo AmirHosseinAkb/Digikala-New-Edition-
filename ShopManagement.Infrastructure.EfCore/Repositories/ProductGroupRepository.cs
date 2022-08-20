@@ -75,5 +75,10 @@ namespace ShopManagement.Infrastructure.EfCore.Repositories
             _context.ProductGroups.Remove(group);
             _context.SaveChanges();
         }
+
+        public List<GroupDetail> GetGroupDetails(long groupId)
+        {
+            return _context.GroupDetails.Where(d => d.GroupId == groupId).ToList();
+        }
     }
 }

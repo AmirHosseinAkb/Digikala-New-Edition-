@@ -17,5 +17,15 @@ namespace ShopManagement.Domain.ProductGroupAgg
         public ProductGroup ProductGroup { get;private set; }
         public List<ProductDetail> ProductDetails { get;private set; }
 
+        protected GroupDetail()
+        {
+            
+        }
+
+        public GroupDetail(long groupId, string detailTitle)
+        {
+            GroupId = groupId;
+            DetailTitle = detailTitle;
+        }
     }
 }

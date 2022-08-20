@@ -26,14 +26,21 @@
                     <div class="col-md-12">
                         <table id="datatable" class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="datatable_info">
                             <thead>
-                                <tr>
-                                </tr>
+                            <tr>
+                                <th>@DataDictionaries.Row</th>
+                                <th>@DataDictionaries.DetailTitle</th>
+                            </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
+                                @foreach (var detail in Model.GroupDetailVms)
+                                {
+                                    var number = 1;
+                                    <tr>
+                                        <td>@number</td>
+                                        <td>@detail.DetailTitle</td>
+                                    </tr>
+                                    number++;
+                                }
                             </tbody>
                         </table>
                     </div>
