@@ -84,6 +84,10 @@
                                                                         @primaryGroup.GroupTitle
                                                                         <a onclick="CreateGroup(@primaryGroup.GroupId)" class="text-black md md-add" title="@ButtonCaptions.AddSubGroup"></a>
                                                                         <a onclick="EditGroup(@primaryGroup.GroupId)" class="text-primary md md-edit" title="@ButtonCaptions.Edit"></a>
+                                                                        @if (!Model.ProductGroupVm.Item1.Any(g => g.ParentId == primaryGroup.GroupId))
+                                                                        {
+                                                                            <a onclick="CreateGroupDetails(@primaryGroup.GroupId)" class="text-primary md md-menu" title="@ButtonCaptions.AddGroupDetails"></a>
+                                                                        }
                                                                         <a onclick="GetGroupForDelete(@primaryGroup.GroupId)" class="text-danger md md-delete" title="@ButtonCaptions.Delete"></a>
                                                                     </li>
 
@@ -92,7 +96,11 @@
                                                                         <ul style="border: 1px dashed gray">
                                                                             @foreach (var secondaryGroup in Model.ProductGroupVm.Item1.Where(g => g.ParentId == primaryGroup.GroupId))
                                                                             {
-                                                                                <li>@secondaryGroup.GroupTitle <a onclick="GetGroupForDelete(@secondaryGroup.GroupId)" class="text-danger md md-delete pull-left"></a></li>
+                                                                                <li>
+                                                                                    @secondaryGroup.GroupTitle 
+                                                                                    <a onclick="GetGroupForDelete(@secondaryGroup.GroupId)" class="text-danger md md-delete pull-left"></a>
+                                                                                    <a onclick="CreateGroupDetails(@secondaryGroup.GroupId)" class="text-primary md md-menu pull-left" title="@ButtonCaptions.AddGroupDetails"></a>
+                                                                                </li>
                                                                             }
                                                                         </ul>
                                                                     }
@@ -100,19 +108,17 @@
                                                             </ul>
                                                         }
                                                     </td>
-
                                                     <td>
-                                                        <a onclick="CreateGroup(@group.GroupId)" class="btn btn-warning btn-block ">@ButtonCaptions.AddSubGroup</a>
+                                                        <a onclick="CreateGroup(@group.GroupId)" class="btn btn-primary btn-block ">@ButtonCaptions.AddSubGroup</a>
                                                         <a onclick="EditGroup(@group.GroupId)" class="btn btn-primary btn-block ">@ButtonCaptions.Edit</a>
-                                                        <a onclick="GetGroupForDelete(@group.GroupId)" class="btn btn-danger btn-block ">@ButtonCaptions.Delete</a>
                                                         @if (!Model.ProductGroupVm.Item1.Any(g => g.ParentId == group.GroupId))
                                                         {
-                                                            <a onclick="GetGroupForDelete(@group.GroupId)" class="btn btn-danger btn-block ">@ButtonCaptions.AddGroupDetails</a>
+                                                            <a onclick="CreateGroupDetails(@group.GroupId)" class="btn btn-primary btn-block ">@ButtonCaptions.AddGroupDetails</a>
                                                         }
+                                                        <a onclick="GetGroupForDelete(@group.GroupId)" class="btn btn-danger btn-block ">@ButtonCaptions.Delete</a>
                                                     </td>
                                                 </tr>
                                             }
-
                                         </tbody>
                                     </table>
                                 </div>

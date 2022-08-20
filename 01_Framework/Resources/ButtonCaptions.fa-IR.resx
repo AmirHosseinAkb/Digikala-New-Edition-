@@ -177,6 +177,9 @@
   <data name="ForgetPassword" xml:space="preserve">
     <value>فراموشی رمز عبور</value>
   </data>
+  <data name="GroupDetails" xml:space="preserve">
+    <value>ویژگی های گروه</value>
+  </data>
   <data name="JoinUs" xml:space="preserve">
     <value>پیوستن به خانواده ما</value>
   </data>
@@ -185,6 +188,9 @@
   </data>
   <data name="Logout" xml:space="preserve">
     <value>خروج</value>
+  </data>
+  <data name="NewDetail" xml:space="preserve">
+    <value>ویژگی جدید</value>
   </data>
   <data name="Pay" xml:space="preserve">
     <value>پرداخت</value>

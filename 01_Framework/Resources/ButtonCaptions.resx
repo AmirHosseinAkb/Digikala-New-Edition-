@@ -177,6 +177,9 @@
   <data name="ForgetPassword" xml:space="preserve">
     <value>Forget Password</value>
   </data>
+  <data name="GroupDetails" xml:space="preserve">
+    <value>Group Details</value>
+  </data>
   <data name="JoinUs" xml:space="preserve">
     <value>JoinUs</value>
   </data>
@@ -185,6 +188,9 @@
   </data>
   <data name="Logout" xml:space="preserve">
     <value>Logout</value>
+  </data>
+  <data name="NewDetail" xml:space="preserve">
+    <value>New Detail</value>
   </data>
   <data name="Pay" xml:space="preserve">
     <value>Pay</value>

@@ -213,6 +213,9 @@
   <data name="Description" xml:space="preserve">
     <value>توضیح</value>
   </data>
+  <data name="Detail" xml:space="preserve">
+    <value>ویژگی</value>
+  </data>
   <data name="Details" xml:space="preserve">
     <value>جزئیات</value>
   </data>
@@ -263,6 +266,9 @@
   </data>
   <data name="Group" xml:space="preserve">
     <value>گروه اصلی</value>
+  </data>
+  <data name="GroupDetails" xml:space="preserve">
+    <value>ویژگی های گروه</value>
   </data>
   <data name="Hello" xml:space="preserve">
     <value>سلام</value>

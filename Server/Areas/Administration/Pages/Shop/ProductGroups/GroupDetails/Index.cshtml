@@ -1,0 +1,55 @@
+﻿@page
+@model Server.Areas.Administration.Pages.Shop.ProductGroups.GroupDetails.IndexModel
+@{
+    Layout = null;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">@DataDictionaries.GroupDetails</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <form id="frmDetail" method="post">
+                        <div class="col-md-10">
+                            <input asp-for="command.DetailTitle" type="text" class="form-control" placeholder="@DataDictionaries.Detail" />
+                        </div>
+                        <div class="col-md-2">
+                            <input type="submit" class="btn btn-success" value="@ButtonCaptions.Add" />
+                        </div>
+                    </form>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-md-12">
+                        <table id="datatable" class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="datatable_info">
+                            <thead>
+                                <tr>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<link href="~/AdminContent/assets/tagsinput/jquery.tagsinput.css" rel="stylesheet">
+<script src="~/AdminContent/assets/js/jquery.app.js"></script>
+<script src="~/AdminContent/assets/tagsinput/jquery.tagsinput.min.js"></script>
+<script>
+    jQuery(document).ready(function() {
+        jQuery('#tags').tagsInput({width:'auto'});
+    });
+    $("#tags_tag").width(50);
+</script>

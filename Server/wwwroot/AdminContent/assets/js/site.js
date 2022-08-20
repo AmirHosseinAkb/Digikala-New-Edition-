@@ -94,6 +94,11 @@ function CreateImage(productId) {
 //        }
 //    });
 //}
+
+function CreateGroupDetails(groupId) {
+    $("#ModalContent").load('/Administration/Shop/ProductGroups/GroupDetails?groupId='+groupId);
+    $("#MainModal").modal('show');
+}
 $(document).on("submit", 'form[data-ajax="true"]',
     function (e) {
         var form = $(this);

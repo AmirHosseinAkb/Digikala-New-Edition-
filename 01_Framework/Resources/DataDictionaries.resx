@@ -213,6 +213,9 @@
   <data name="Description" xml:space="preserve">
     <value>Description</value>
   </data>
+  <data name="Detail" xml:space="preserve">
+    <value>Detail</value>
+  </data>
   <data name="Details" xml:space="preserve">
     <value>Details</value>
   </data>
@@ -263,6 +266,9 @@
   </data>
   <data name="Group" xml:space="preserve">
     <value>Group</value>
+  </data>
+  <data name="GroupDetails" xml:space="preserve">
+    <value>Group Details</value>
   </data>
   <data name="Hello" xml:space="preserve">
     <value>Hello</value>

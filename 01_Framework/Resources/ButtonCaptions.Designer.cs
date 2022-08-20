@@ -241,6 +241,15 @@ namespace _01_Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Group Details.
+        /// </summary>
+        public static string GroupDetails {
+            get {
+                return ResourceManager.GetString("GroupDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to JoinUs.
         /// </summary>
         public static string JoinUs {
@@ -264,6 +273,15 @@ namespace _01_Framework.Resources {
         public static string Logout {
             get {
                 return ResourceManager.GetString("Logout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Detail.
+        /// </summary>
+        public static string NewDetail {
+            get {
+                return ResourceManager.GetString("NewDetail", resourceCulture);
             }
         }
         
