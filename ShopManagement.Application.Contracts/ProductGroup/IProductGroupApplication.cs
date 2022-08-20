@@ -20,6 +20,7 @@ namespace ShopManagement.Application.Contracts.ProductGroup
         #region GroupDetail
 
         List<GroupDetailViewModel> GetDetailsOfGroup(long groupId);
+        OperationResult CreateGroupDetail(CreateGroupDetailCommand command);
 
         #endregion
     }

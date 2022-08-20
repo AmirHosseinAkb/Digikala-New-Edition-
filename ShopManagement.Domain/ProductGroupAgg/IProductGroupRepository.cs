@@ -11,5 +11,7 @@
         void SaveChanges();
         void Delete(ProductGroup group);
         List<GroupDetail> GetGroupDetails(long groupId);
+        void AddGroupDetail(GroupDetail detail);
+        bool IsExistGroupDetail(string detailTitle,long groupId);
     }
 }

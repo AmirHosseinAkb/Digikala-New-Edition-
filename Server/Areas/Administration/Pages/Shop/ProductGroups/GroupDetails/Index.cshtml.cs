@@ -18,12 +18,19 @@ namespace Server.Areas.Administration.Pages.Shop.ProductGroups.GroupDetails
         public CreateGroupDetailCommand command { get; set; }
         public void OnGet(long groupId)
         {
+            command = new CreateGroupDetailCommand()
+            {
+                GroupId = groupId
+            };
             GroupDetailVms = _productGroupApplication.GetDetailsOfGroup(groupId);
         }
 
         public IActionResult OnPostCreate()
         {
-            return null;
+            if (!ModelState.IsValid)
+                return BadRequest();
+            var result = _productGroupApplication.CreateGroupDetail(command);
+            return new JsonResult(result);
         }
     }
 }

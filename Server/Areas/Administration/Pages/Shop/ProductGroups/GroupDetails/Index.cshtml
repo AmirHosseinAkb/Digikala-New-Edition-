@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "{handler?}"
 @model Server.Areas.Administration.Pages.Shop.ProductGroups.GroupDetails.IndexModel
 @{
     Layout = null;
@@ -12,12 +12,15 @@
             </div>
             <div class="panel-body">
                 <div class="row">
-                    <form id="frmDetail" method="post">
+                    <form
+                        id="frmDetail" method="post">
+                        <input id="detailGroupId" type="hidden" asp-for="command.GroupId"/>
                         <div class="col-md-10">
-                            <input asp-for="command.DetailTitle" type="text" class="form-control" placeholder="@DataDictionaries.Detail" />
+                            <input asp-for="command.DetailTitle" type="text" class="form-control" placeholder="@DataDictionaries.Detail"/>
+                            <span asp-validation-for="command.DetailTitle" class="error"></span>
                         </div>
                         <div class="col-md-2">
-                            <input type="submit" class="btn btn-success" value="@ButtonCaptions.Add" />
+                            <input id="btnCreateDetail" type="submit" class="btn btn-success" value="@ButtonCaptions.Add"/>
                         </div>
                     </form>
                 </div>
@@ -32,15 +35,17 @@
                             </tr>
                             </thead>
                             <tbody>
-                                @foreach (var detail in Model.GroupDetailVms)
-                                {
-                                    var number = 1;
-                                    <tr>
-                                        <td>@number</td>
-                                        <td>@detail.DetailTitle</td>
-                                    </tr>
-                                    number++;
-                                }
+                            @{
+                                var number = 1;
+                            }
+                            @foreach (var detail in Model.GroupDetailVms)
+                            {
+                                <tr>
+                                    <td>@number</td>
+                                    <td>@detail.DetailTitle</td>
+                                </tr>
+                                number += 1;
+                            }
                             </tbody>
                         </table>
                     </div>
@@ -51,12 +56,5 @@
     </div>
 </div>
 
-<link href="~/AdminContent/assets/tagsinput/jquery.tagsinput.css" rel="stylesheet">
-<script src="~/AdminContent/assets/js/jquery.app.js"></script>
-<script src="~/AdminContent/assets/tagsinput/jquery.tagsinput.min.js"></script>
-<script>
-    jQuery(document).ready(function() {
-        jQuery('#tags').tagsInput({width:'auto'});
-    });
-    $("#tags_tag").width(50);
-</script>
+<script src="~/assets/js/library/jquery.validate.min.js"></script>
+<script src="~/assets/js/library/jquery.validate.unobtrusive.min.js"></script>

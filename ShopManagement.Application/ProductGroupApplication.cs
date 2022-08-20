@@ -169,5 +169,15 @@ namespace ShopManagement.Application
                     DetailTitle = d.DetailTitle
                 }).ToList();
         }
+
+        public OperationResult CreateGroupDetail(CreateGroupDetailCommand command)
+        {
+            var result = new OperationResult();
+            if (_productGroupRepository.IsExistGroupDetail(command.DetailTitle, command.GroupId))
+                return result.Failed(ApplicationMessages.DuplicatedGroupDetail);
+            var detail =new GroupDetail(command.GroupId, command.DetailTitle);
+            _productGroupRepository.AddGroupDetail(detail);
+            return result.Succeeded();
+        }
     }
 }

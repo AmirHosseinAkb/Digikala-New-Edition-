@@ -96,9 +96,36 @@ function CreateImage(productId) {
 //}
 
 function CreateGroupDetails(groupId) {
-    $("#ModalContent").load('/Administration/Shop/ProductGroups/GroupDetails?groupId='+groupId);
+    $("#ModalContent").load('/Administration/Shop/ProductGroups/GroupDetails?groupId=' + groupId);
     $("#MainModal").modal('show');
 }
+$(document).on("submit", 'form[id="frmDetail"]', function (e) {
+    e.preventDefault();
+    var isValidForm = $(this).valid();
+    var groupId = $("#detailGroupId").val();
+    if (isValidForm) {
+        var data = $("#frmDetail").serialize();
+        $.ajax({
+            type: "Post",
+            url: "/Administration/Shop/ProductGroups/GroupDetails/Create",
+            beforeSend: function (xhr) { xhr.setRequestHeader("XSRF-TOKEN", $('input:hidden[name="__RequestVerificationToken"]').val()); },
+            data: data,
+            dataType: "json",
+            success: function (data) {
+                if (data.isSucceeded) {
+                    CreateGroupDetails(groupId);
+                }
+                else {
+                    sweetAlert("پیغام", data.message, "error");
+                }
+            },
+            error: function (error) {
+                sweetAlert("پیغام", error.responseText, "error");
+            }
+        })
+    }
+})
+
 $(document).on("submit", 'form[data-ajax="true"]',
     function (e) {
         var form = $(this);

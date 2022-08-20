@@ -80,5 +80,16 @@ namespace ShopManagement.Infrastructure.EfCore.Repositories
         {
             return _context.GroupDetails.Where(d => d.GroupId == groupId).ToList();
         }
+
+        public void AddGroupDetail(GroupDetail detail)
+        {
+            _context.GroupDetails.Add(detail);
+            _context.SaveChanges();
+        }
+
+        public bool IsExistGroupDetail(string detailTitle, long groupId)
+        {
+            return _context.GroupDetails.Any(g => g.GroupId == groupId && g.DetailTitle == detailTitle);
+        }
     }
 }
