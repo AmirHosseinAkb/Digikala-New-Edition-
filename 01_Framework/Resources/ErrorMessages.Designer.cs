@@ -250,6 +250,15 @@ namespace _01_Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This input is Required.
+        /// </summary>
+        public static string RequiredInput {
+            get {
+                return ResourceManager.GetString("RequiredInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reset Password Failed.
         /// </summary>
         public static string ResetPasswordFailed {

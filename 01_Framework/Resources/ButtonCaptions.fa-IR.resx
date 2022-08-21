@@ -195,6 +195,9 @@
   <data name="Pay" xml:space="preserve">
     <value>پرداخت</value>
   </data>
+  <data name="ProductDetails" xml:space="preserve">
+    <value>مشخصات محصول</value>
+  </data>
   <data name="ProductImages" xml:space="preserve">
     <value>عکس های محصول</value>
   </data>

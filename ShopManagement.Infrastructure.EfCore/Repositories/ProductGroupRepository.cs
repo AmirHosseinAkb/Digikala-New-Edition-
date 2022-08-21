@@ -43,7 +43,7 @@ namespace ShopManagement.Infrastructure.EfCore.Repositories
             return _context.ProductGroups.Any(g => g.ParentId==null &&g.GroupTitle == title);
         }
 
-        public ProductGroup GetGroupById(long id)
+        public ProductGroup? GetGroupById(long id)
         {
             return _context.ProductGroups.Find(id);
         }
@@ -76,15 +76,21 @@ namespace ShopManagement.Infrastructure.EfCore.Repositories
             _context.SaveChanges();
         }
 
+        public List<ProductGroup> GetSubGroups(long groupId)
+        {
+            return _context.ProductGroups.Where(g => g.ParentId == groupId).ToList();
+        }
+
         public List<GroupDetail> GetGroupDetails(long groupId)
         {
             return _context.GroupDetails.Where(d => d.GroupId == groupId).ToList();
         }
 
-        public void AddGroupDetail(GroupDetail detail)
+        public long AddGroupDetail(GroupDetail detail)
         {
             _context.GroupDetails.Add(detail);
             _context.SaveChanges();
+            return detail.DetailId;
         }
 
         public bool IsExistGroupDetail(string detailTitle, long groupId)
@@ -101,5 +107,14 @@ namespace ShopManagement.Infrastructure.EfCore.Repositories
         {
             return _context.GroupDetails.Find(detailId);
         }
+
+        public List<GroupDetail> GetProductGroupDetails(long productId)
+        {
+            var product = _context.Products.Find(productId);
+            return _context.GroupDetails
+                .Where(d => d.GroupId == product.GroupId || d.GroupId == product.PrimaryGroupId || d.GroupId==product.SecondaryGroupId)
+                .ToList();
+        }
+
     }
 }

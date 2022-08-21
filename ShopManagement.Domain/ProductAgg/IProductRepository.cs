@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ShopManagement.Domain.ProductGroupAgg;
 
 namespace ShopManagement.Domain.ProductAgg
 {
@@ -15,5 +16,13 @@ namespace ShopManagement.Domain.ProductAgg
         Product GetProductWithGroups(long productId);
         void SaveChanges();
         Product GetProductByGroupId(long groupId);
+
+        #region ProductDetail
+
+        List<Product> GetProductsByGroupId(long groupId);
+        void AddProductDetails(GroupDetail detail);
+        void AddProductDetails(Product product);
+
+        #endregion
     }
 }

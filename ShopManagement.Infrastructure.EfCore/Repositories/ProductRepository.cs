@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ShopManagement.Domain.ProductAgg;
+using ShopManagement.Domain.ProductGroupAgg;
 
 namespace ShopManagement.Infrastructure.EfCore.Repositories
 {
@@ -63,6 +64,36 @@ namespace ShopManagement.Infrastructure.EfCore.Repositories
         public Product GetProductByGroupId(long groupId)
         {
             return _context.Products.SingleOrDefault(g => g.GroupId == groupId || g.PrimaryGroupId == groupId || g.SecondaryGroupId == groupId);
+        }
+
+        public List<Product> GetProductsByGroupId(long groupId)
+        {
+            return _context.Products.Where(g =>
+                g.GroupId == groupId || g.PrimaryGroupId == groupId || g.SecondaryGroupId == groupId).ToList();
+        }
+
+        public void AddProductDetails(GroupDetail detail)
+        {
+            var products = GetProductsByGroupId(detail.GroupId);
+            foreach (var product in products)
+            {
+                _context.ProductDetails.Add(new ProductDetail(product.ProductId,detail.DetailId,null));
+            }
+
+            _context.SaveChanges();
+        }
+
+        public void AddProductDetails(Product product)
+        {
+            var details = _context.GroupDetails.Where(g =>
+                g.GroupId == product.GroupId || g.GroupId == product.PrimaryGroupId ||
+                g.GroupId == product.SecondaryGroupId);
+            foreach (var detail in details)
+            {
+                _context.ProductDetails.Add(new ProductDetail(product.ProductId, detail.DetailId, null));
+            }
+
+            _context.SaveChanges();
         }
     }
 }

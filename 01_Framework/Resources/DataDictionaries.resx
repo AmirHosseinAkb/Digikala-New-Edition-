@@ -375,6 +375,9 @@
   <data name="PrimaryGroup" xml:space="preserve">
     <value>Primary Group</value>
   </data>
+  <data name="ProductDetails" xml:space="preserve">
+    <value>Product Details</value>
+  </data>
   <data name="ProductGroups" xml:space="preserve">
     <value>Product Groups</value>
   </data>

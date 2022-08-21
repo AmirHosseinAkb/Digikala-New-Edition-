@@ -1,6 +1,7 @@
 ﻿using _01_Framework.Application;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ShopManagement.Application.Contracts.ProductGroup;
+using ShopManagement.Domain.ProductAgg;
 using ShopManagement.Domain.ProductGroupAgg;
 
 namespace ShopManagement.Application
@@ -8,10 +9,12 @@ namespace ShopManagement.Application
     public class ProductGroupApplication:IProductGroupApplication
     {
         private readonly IProductGroupRepository _productGroupRepository;
+        private readonly IProductRepository _productRepository;
 
-        public ProductGroupApplication(IProductGroupRepository productGroupRepository)
+        public ProductGroupApplication(IProductGroupRepository productGroupRepository,IProductRepository productRepository)
         {
             _productGroupRepository = productGroupRepository;
+            _productRepository=productRepository;
         }
 
         public bool IsExistAnyGroup()
@@ -177,6 +180,7 @@ namespace ShopManagement.Application
                 return result.Failed(ApplicationMessages.DuplicatedGroupDetail);
             var detail =new GroupDetail(command.GroupId, command.DetailTitle);
             _productGroupRepository.AddGroupDetail(detail);
+            _productRepository.AddProductDetails(detail);
             return result.Succeeded();
         }
 

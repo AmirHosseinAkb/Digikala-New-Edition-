@@ -195,6 +195,9 @@
   <data name="Pay" xml:space="preserve">
     <value>Pay</value>
   </data>
+  <data name="ProductDetails" xml:space="preserve">
+    <value>Product Details</value>
+  </data>
   <data name="ProductImages" xml:space="preserve">
     <value>Product Images</value>
   </data>

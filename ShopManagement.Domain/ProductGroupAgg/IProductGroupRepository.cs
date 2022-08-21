@@ -9,13 +9,17 @@ namespace ShopManagement.Domain.ProductGroupAgg
         List<ProductGroup> GetProductGroupsForShow(string title = "");
         void Add(ProductGroup group);
         bool IsExistGroup(string title);
-        ProductGroup GetGroupById(long id);
+        ProductGroup? GetGroupById(long id);
         void SaveChanges();
         void Delete(ProductGroup group);
+        List<ProductGroup> GetSubGroups(long groupId);
+
+
         List<GroupDetail> GetGroupDetails(long groupId);
-        void AddGroupDetail(GroupDetail detail);
+        long AddGroupDetail(GroupDetail detail);
         bool IsExistGroupDetail(string detailTitle,long groupId);
         bool IsExistGroupDetail(long detailId,long groupId);
         GroupDetail GetGroupDetail(long detailId);
+        List<GroupDetail> GetProductGroupDetails(long productId);
     }
 }

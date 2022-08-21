@@ -23,7 +23,6 @@ namespace ShopManagement.Application.Contracts.ProductGroup
         OperationResult CreateGroupDetail(CreateGroupDetailCommand command);
         OperationResult EditGroupDetail(CreateGroupDetailCommand command);
         
-
         #endregion
     }
 }

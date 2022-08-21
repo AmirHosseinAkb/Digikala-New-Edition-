@@ -14,8 +14,15 @@ namespace ShopManagement.Domain.ProductAgg
         public long PD_Id { get;private set; }
         public long ProductId { get;private set; }
         public long DetailId { get;private set; }
-        public string DetailValue { get;private set; }
+        public string? DetailValue { get;private set; }
         public Product Product { get;private set; }
         public GroupDetail GroupDetail { get;private set; }
+
+        public ProductDetail(long productId, long detailId, string? detailValue)
+        {
+            ProductId = productId;
+            DetailId = detailId;
+            DetailValue = detailValue;
+        }
     }
 }

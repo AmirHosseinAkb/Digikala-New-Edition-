@@ -158,6 +158,11 @@ function GetDetailForEdit(detailId,groupId, title) {
     IsForEditDetail=true;
 }
 
+
+function GetProductForDetails(productId) {
+     $("#ModalContent").load('/Administration/Shop/Products/ProductDetails?productId=' + productId);
+    $("#MainModal").modal('show');
+}
 $(document).on("submit", 'form[data-ajax="true"]',
     function (e) {
         var form = $(this);

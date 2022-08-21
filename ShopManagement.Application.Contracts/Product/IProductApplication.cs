@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using _01_Framework.Application;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using ShopManagement.Application.Contracts.ProductGroup;
 
 namespace ShopManagement.Application.Contracts.Product
 {
@@ -17,5 +18,12 @@ namespace ShopManagement.Application.Contracts.Product
         DeleteProductCommand GetProductForDelete(long productId);
         OperationResult Delete(long productId);
         bool IsExistProductByGroup(long groupId);
+        bool CheckInputGroups(long groupId,long?primaryGroupId,long?secondaryGroupId);
+
+        #region ProductDetail
+
+        List<GroupDetailViewModel> GetProductGroupDetails(long productId);
+        OperationResult AddProductDetails(long productId,Dictionary<int,string> details);
+        #endregion
     }
 }

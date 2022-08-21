@@ -11,9 +11,9 @@
     var PrimaryGroups = new SelectList(primaryGroups, "Value", "Text");
 
     var secondaryGroups = new List<SelectListItem>();
-    if(primaryGroups.Count()!=0)
-        secondaryGroups= _productGroupApplication.GetGroups(int.Parse(primaryGroups.First().Value));
-    var SecondaryGroups=new SelectList(secondaryGroups,"Value","Text");
+    if (primaryGroups.Count() != 0)
+        secondaryGroups = _productGroupApplication.GetGroups(int.Parse(primaryGroups.First().Value));
+    var SecondaryGroups = new SelectList(secondaryGroups, "Value", "Text");
 }
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -118,16 +118,16 @@
         $("#createSecondaryGroup").empty();
         $.getJSON("/Administration/Shop/Products/GetSubGroups?id=" + $("#createGroup :selected").val(),
             function (data) {
-
                 $.each(data,
                     function () {
                         $("#createPrimaryGroup").append('<option value=' + this.value + '>' + this.text + '</option>');
 
                     });
             });
-    });
-    $("#createPrimaryGroup").change(function () {
-        $("#createSecondaryGroup").empty();
+        });
+
+        $("#createPrimaryGroup").change(function () {
+            $("#createSecondaryGroup").empty();
         $.getJSON("/Administration/Shop/Products/GetSubGroups?id=" + $("#createPrimaryGroup :selected").val(),
             function (data) {
 

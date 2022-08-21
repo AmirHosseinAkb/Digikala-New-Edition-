@@ -180,6 +180,9 @@
   <data name="PaymentFailed" xml:space="preserve">
     <value>The transaction failed</value>
   </data>
+  <data name="RequiredInput" xml:space="preserve">
+    <value>This input is Required</value>
+  </data>
   <data name="ResetPasswordFailed" xml:space="preserve">
     <value>Reset Password Failed</value>
   </data>

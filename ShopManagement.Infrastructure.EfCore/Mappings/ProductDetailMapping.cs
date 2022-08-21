@@ -18,7 +18,7 @@ namespace ShopManagement.Infrastructure.EfCore.Mappings
             builder.HasKey(d => d.PD_Id);
             builder.Property(d=>d.ProductId);
             builder.Property(d=>d.DetailId);
-            builder.Property(d=>d.DetailValue).HasMaxLength(500);
+            builder.Property(d=>d.DetailValue).IsRequired(false).HasMaxLength(500);
 
             builder.HasOne<Product>(d => d.Product).WithMany(p => p.ProductDetails)
                 .HasForeignKey(d => d.ProductId).OnDelete(DeleteBehavior.NoAction);

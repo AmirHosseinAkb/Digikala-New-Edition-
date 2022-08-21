@@ -6,24 +6,33 @@ using System.Threading.Tasks;
 using _01_Framework.Application;
 using Org.BouncyCastle.Asn1.Misc;
 using ShopManagement.Application.Contracts.Product;
+using ShopManagement.Application.Contracts.ProductGroup;
 using ShopManagement.Domain.ProductAgg;
+using ShopManagement.Domain.ProductGroupAgg;
 
 namespace ShopManagement.Application
 {
     public class ProductApplication : IProductApplication
     {
         private readonly IProductRepository _productRepository;
+        private readonly IProductGroupRepository _productGroupRepository;
 
-        public ProductApplication(IProductRepository productRepository)
+        public ProductApplication(IProductRepository productRepository, IProductGroupRepository productGroupRepository)
         {
             _productRepository = productRepository;
+            _productGroupRepository = productGroupRepository;
         }
 
         public OperationResult Create(CreateProductCommand command)
         {
-            var result=new OperationResult();
+            var result = new OperationResult();
             if (_productRepository.IsExistProduct(command.Title))
                 return result.Failed(ApplicationMessages.DuplicatedProduct);
+
+            bool isCorrect=CheckInputGroups(command.GroupId, command.PrimaryGroupId, command.SecondaryGroupId);
+            if (!isCorrect)
+                return result.Failed(ApplicationMessages.ProcessFailed);
+
             string produtImage = DefaultImages.DefaultProductImage;
 
             if (command.ProductImage != null)
@@ -43,6 +52,7 @@ namespace ShopManagement.Application
             var product = new Product(command.GroupId, command.PrimaryGroupId, command.SecondaryGroupId, command.Title,
                 command.Description, command.Price, command.OtherLangTitle, command.Tags, produtImage);
             _productRepository.AddProduct(product);
+            _productRepository.AddProductDetails(product);
             return result.Succeeded();
         }
 
@@ -73,6 +83,10 @@ namespace ShopManagement.Application
                     return result.Failed(ApplicationMessages.DuplicatedProduct);
             }
 
+            bool isCorrect=CheckInputGroups(command.GroupId, command.PrimaryGroupId, command.SecondaryGroupId);
+            if (!isCorrect)
+                return result.Failed(ApplicationMessages.ProcessFailed);
+
             var productImage = product.ImageName;
             if (command.ProductImage != null)
             {
@@ -96,13 +110,13 @@ namespace ShopManagement.Application
                     "Products",
                     "Images",
                     productImage);
-                using (var stream=new FileStream(imagePath,FileMode.Create))
+                using (var stream = new FileStream(imagePath, FileMode.Create))
                 {
                     command.ProductImage.CopyTo(stream);
                 }
             }
-            product.Edit(command.GroupId,command.PrimaryGroupId,command.SecondaryGroupId,command.Title
-                ,command.Description,command.Price,command.OtherLangTitle,command.Tags,productImage);
+            product.Edit(command.GroupId, command.PrimaryGroupId, command.SecondaryGroupId, command.Title
+                , command.Description, command.Price, command.OtherLangTitle, command.Tags, productImage);
             _productRepository.SaveChanges();
             return result.Succeeded();
         }
@@ -142,25 +156,90 @@ namespace ShopManagement.Application
             return false;
         }
 
-        public Tuple<List<ProductViewModel>,int,int,int> GetProducts(int pageId=1,string title="",long groupId=0,long primaryGroupId=0,long secondaryGroupId=0,int take=0)
+        public bool CheckInputGroups(long groupId, long? primaryGroupId, long? secondaryGroupId)
         {
-            var products=_productRepository.GetAll(title,groupId,primaryGroupId,secondaryGroupId).Select(p=>new ProductViewModel()
+            var group = _productGroupRepository.GetGroupById(groupId);
+
+            ProductGroup? primaryGroup = null;
+            if (primaryGroupId != null)
+            {
+                primaryGroup = _productGroupRepository.GetGroupById(primaryGroupId.Value);
+                if (primaryGroup == null)
+                    return false;
+            }
+
+            ProductGroup? secondaryGroup = null;
+            if (secondaryGroupId != null)
+            {
+                secondaryGroup = _productGroupRepository.GetGroupById(secondaryGroupId.Value);
+                if(secondaryGroup==null)
+                    return false;
+            }
+
+            if (_productGroupRepository.GetSubGroups(groupId).Any() && primaryGroup == null)
+                return false;
+
+            if (primaryGroup != null)
+            {
+                if (primaryGroup.ParentId != group.GroupId)
+                    return false;
+
+                if (_productGroupRepository.GetSubGroups(primaryGroupId.Value).Any() && secondaryGroup == null)
+                    return false;
+            }
+
+            if (secondaryGroup != null)
+            {
+                if (secondaryGroup.ParentId != primaryGroup.GroupId)
+                    return false;
+            }
+
+            if (primaryGroupId == null && secondaryGroupId != null)
+                return false;
+            return true;
+        }
+
+        public List<GroupDetailViewModel> GetProductGroupDetails(long productId)
+        {
+            return _productGroupRepository.GetProductGroupDetails(productId).Select(d => new GroupDetailViewModel()
+            {
+                DetailId = d.DetailId,
+                GroupId = d.GroupId,
+                DetailTitle = d.DetailTitle
+            }).ToList();
+        }
+
+        public OperationResult AddProductDetails(long productId, Dictionary<int, string> details)
+        {
+            var result = new OperationResult();
+            var groupDetailsCount = _productGroupRepository.GetProductGroupDetails(productId).Count();
+            if (details.Count != groupDetailsCount)
+                return result.Failed(ApplicationMessages.ProcessFailed);
+            //TODO:
+            return result.Succeeded();
+        }
+
+        public Tuple<List<ProductViewModel>, int, int, int> GetProducts(int pageId = 1, string title = "", long groupId = 0, long primaryGroupId = 0, long secondaryGroupId = 0, int take = 0)
+        {
+            var products = _productRepository.GetAll(title, groupId, primaryGroupId, secondaryGroupId).Select(p => new ProductViewModel()
             {
                 ProductId = p.ProductId,
                 Title = p.Title,
-                ImageName=p.ImageName,
-                CreationDate=p.CreationDate.ToShamsi(),
-                Price=p.Price
+                ImageName = p.ImageName,
+                CreationDate = p.CreationDate.ToShamsi(),
+                Price = p.Price
             }).ToList();
 
-            var pageCount=products.Count()/take;
+            var pageCount = products.Count() / take;
 
-            if(products.Count()%take!=0)
+            if (products.Count() % take != 0)
                 pageCount++;
 
-            var skip=(pageId-1)*take;
+            var skip = (pageId - 1) * take;
 
-            return Tuple.Create(products,pageId,pageCount,take);
+            return Tuple.Create(products, pageId, pageCount, take);
         }
+
+
     }
 }

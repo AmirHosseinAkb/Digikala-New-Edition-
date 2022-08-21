@@ -180,6 +180,9 @@
   <data name="PaymentFailed" xml:space="preserve">
     <value>تراکنش با شکست مواجه شد</value>
   </data>
+  <data name="RequiredInput" xml:space="preserve">
+    <value>این فیلد نمی تواند خالی باشد</value>
+  </data>
   <data name="ResetPasswordFailed" xml:space="preserve">
     <value>تغییر رمز عبور با شکست مواجه شد</value>
   </data>
