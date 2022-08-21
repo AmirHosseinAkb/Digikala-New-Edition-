@@ -208,6 +208,33 @@ namespace ShopManagement.Application
             return true;
         }
 
+        public List<ProductDetailViewModel> GetProductDetails(long productId)
+        {
+            return _productRepository.GetProductDetails(productId).Select(d => new ProductDetailViewModel()
+            {
+                DetailId = d.DetailId,
+                DetailTitle = d.GroupDetail.DetailTitle,
+                DetailValue = d.DetailValue
+            }).ToList();
+        }
+
+        public OperationResult ConfirmProductDetails(long productId, Dictionary<int, string> details)
+        {
+            var result = new OperationResult();
+            var detailsList=_productRepository.GetProductDetails(productId).Select(d => d.DetailId).ToList();
+
+            if (details.Count != detailsList.Count)
+                return result.Failed(ApplicationMessages.ProcessFailed);
+            foreach (var key in details.Keys)
+            {
+                if (!detailsList.Contains(key))
+                    return result.Failed(ApplicationMessages.ProcessFailed);
+            }
+
+            _productRepository.ConfirmProductDetails(productId, details);
+            return result.Succeeded();
+        }
+
 
         public Tuple<List<ProductViewModel>, int, int, int> GetProducts(int pageId = 1, string title = "", long groupId = 0, long primaryGroupId = 0, long secondaryGroupId = 0, int take = 0)
         {

@@ -14,15 +14,16 @@ namespace ShopManagement.Domain.ProductAgg
         void AddProduct(Product product);
         Product GetProductById(long productId);
         Product GetProductWithGroups(long productId);
+        List<Product> GetProductsByGroupId(long groupId);
         void SaveChanges();
         Product GetProductByGroupId(long groupId);
 
         #region ProductDetail
-
-        List<Product> GetProductsByGroupId(long groupId);
         void AddProductDetails(GroupDetail detail);
         void AddProductDetails(Product product);
         void EditProductDetails(Product product);
+        List<ProductDetail> GetProductDetails(long productId);
+        void ConfirmProductDetails(long productId, Dictionary<int, string> details);
 
         #endregion
     }

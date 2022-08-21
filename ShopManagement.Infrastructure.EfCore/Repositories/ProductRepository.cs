@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Reflection.Metadata.Ecma335;
+using Microsoft.EntityFrameworkCore;
 using ShopManagement.Domain.ProductAgg;
 using ShopManagement.Domain.ProductGroupAgg;
 
@@ -111,6 +112,22 @@ namespace ShopManagement.Infrastructure.EfCore.Repositories
                 }
             }
 
+            _context.SaveChanges();
+        }
+
+        public List<ProductDetail> GetProductDetails(long productId)
+        {
+            return _context.ProductDetails.Include(d=>d.GroupDetail).Where(d => d.ProductId == productId).ToList();
+        }
+
+        public void ConfirmProductDetails(long productId, Dictionary<int, string> details)
+        {
+            foreach (var (key,value) in details)
+            {
+                var productDetail =
+                    _context.ProductDetails.SingleOrDefault(d => d.DetailId == key && d.ProductId == productId);
+                productDetail.Edit(value);
+            }
             _context.SaveChanges();
         }
     }

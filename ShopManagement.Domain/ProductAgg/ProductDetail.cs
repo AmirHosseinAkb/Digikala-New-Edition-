@@ -24,5 +24,10 @@ namespace ShopManagement.Domain.ProductAgg
             DetailId = detailId;
             DetailValue = detailValue;
         }
+
+        public void Edit(string detailValue)
+        {
+            DetailValue = detailValue;
+        }
     }
 }

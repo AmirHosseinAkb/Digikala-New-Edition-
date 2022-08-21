@@ -14,16 +14,19 @@ namespace Server.Areas.Administration.Pages.Shop.Products.ProductDetails
             _productApplication = productApplication;
         }
 
+        public List<ProductDetailViewModel> ProductDetailVms { get; set; }
         public void OnGet(long productId)
         {
-
+            @ViewData["ProductId"] = productId;
+            ProductDetailVms = _productApplication.GetProductDetails(productId);
         }
 
         public IActionResult OnPost(long productId,Dictionary<int,string> details)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
-            return null;
+            var result = _productApplication.ConfirmProductDetails(productId, details);
+            return new JsonResult(result);
         }
     }
 }

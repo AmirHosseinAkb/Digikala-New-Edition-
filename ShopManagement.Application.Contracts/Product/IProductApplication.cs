@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using _01_Framework.Application;
@@ -21,6 +22,9 @@ namespace ShopManagement.Application.Contracts.Product
         bool CheckInputGroups(long groupId,long?primaryGroupId,long?secondaryGroupId);
 
         #region ProductDetail
+        List<ProductDetailViewModel> GetProductDetails(long productId);
+        OperationResult ConfirmProductDetails(long productId, Dictionary<int, string> details);
+
         #endregion
     }
 }
