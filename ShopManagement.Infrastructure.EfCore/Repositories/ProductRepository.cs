@@ -95,5 +95,23 @@ namespace ShopManagement.Infrastructure.EfCore.Repositories
 
             _context.SaveChanges();
         }
+
+        public void EditProductDetails(Product product)
+        {
+            _context.ProductDetails.Where(d=>d.ProductId==product.ProductId).ToList()
+                .ForEach(d=>_context.ProductDetails.Remove(d));
+            var details=_context.GroupDetails.Where(g =>
+                g.GroupId == product.GroupId || g.GroupId == product.PrimaryGroupId ||
+                g.GroupId == product.SecondaryGroupId);
+            if (details.Any())
+            {
+                foreach (var detail in details)
+                {
+                    _context.ProductDetails.Add(new ProductDetail(product.ProductId, detail.DetailId, null));
+                }
+            }
+
+            _context.SaveChanges();
+        }
     }
 }

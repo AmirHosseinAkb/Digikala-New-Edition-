@@ -22,6 +22,7 @@ namespace ShopManagement.Domain.ProductAgg
         List<Product> GetProductsByGroupId(long groupId);
         void AddProductDetails(GroupDetail detail);
         void AddProductDetails(Product product);
+        void EditProductDetails(Product product);
 
         #endregion
     }

@@ -29,7 +29,7 @@ namespace ShopManagement.Application
             if (_productRepository.IsExistProduct(command.Title))
                 return result.Failed(ApplicationMessages.DuplicatedProduct);
 
-            bool isCorrect=CheckInputGroups(command.GroupId, command.PrimaryGroupId, command.SecondaryGroupId);
+            bool isCorrect = CheckInputGroups(command.GroupId, command.PrimaryGroupId, command.SecondaryGroupId);
             if (!isCorrect)
                 return result.Failed(ApplicationMessages.ProcessFailed);
 
@@ -83,7 +83,7 @@ namespace ShopManagement.Application
                     return result.Failed(ApplicationMessages.DuplicatedProduct);
             }
 
-            bool isCorrect=CheckInputGroups(command.GroupId, command.PrimaryGroupId, command.SecondaryGroupId);
+            bool isCorrect = CheckInputGroups(command.GroupId, command.PrimaryGroupId, command.SecondaryGroupId);
             if (!isCorrect)
                 return result.Failed(ApplicationMessages.ProcessFailed);
 
@@ -115,8 +115,17 @@ namespace ShopManagement.Application
                     command.ProductImage.CopyTo(stream);
                 }
             }
+
+            bool isGroupChanged = command.GroupId != product.GroupId || command.PrimaryGroupId != product.PrimaryGroupId || command
+                .SecondaryGroupId != product.SecondaryGroupId;
+
             product.Edit(command.GroupId, command.PrimaryGroupId, command.SecondaryGroupId, command.Title
-                , command.Description, command.Price, command.OtherLangTitle, command.Tags, productImage);
+            , command.Description, command.Price, command.OtherLangTitle, command.Tags, productImage);
+
+
+            if (isGroupChanged)
+                _productRepository.EditProductDetails(product);
+
             _productRepository.SaveChanges();
             return result.Succeeded();
         }
@@ -172,7 +181,7 @@ namespace ShopManagement.Application
             if (secondaryGroupId != null)
             {
                 secondaryGroup = _productGroupRepository.GetGroupById(secondaryGroupId.Value);
-                if(secondaryGroup==null)
+                if (secondaryGroup == null)
                     return false;
             }
 
