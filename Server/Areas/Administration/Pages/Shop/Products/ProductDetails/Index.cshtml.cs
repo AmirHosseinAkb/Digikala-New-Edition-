@@ -14,11 +14,9 @@ namespace Server.Areas.Administration.Pages.Shop.Products.ProductDetails
             _productApplication = productApplication;
         }
 
-        public List<GroupDetailViewModel> GroupDetailVms { get; set; }
         public void OnGet(long productId)
         {
-            ViewData["ProductId"] = productId;
-            GroupDetailVms = _productApplication.GetProductGroupDetails(productId);
+
         }
 
         public IActionResult OnPost(long productId,Dictionary<int,string> details)

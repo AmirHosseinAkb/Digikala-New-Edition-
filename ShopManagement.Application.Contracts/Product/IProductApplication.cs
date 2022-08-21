@@ -21,9 +21,6 @@ namespace ShopManagement.Application.Contracts.Product
         bool CheckInputGroups(long groupId,long?primaryGroupId,long?secondaryGroupId);
 
         #region ProductDetail
-
-        List<GroupDetailViewModel> GetProductGroupDetails(long productId);
-        OperationResult AddProductDetails(long productId,Dictionary<int,string> details);
         #endregion
     }
 }

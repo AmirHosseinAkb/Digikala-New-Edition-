@@ -16,15 +16,7 @@
                 }
                 <form asp-page="./Index" method="post">
                     <input type="hidden" name="productId" value="@ViewData["ProductId"]" />
-                    @foreach (var groupDetail in Model.GroupDetailVms)
-                    {
-                        <div class="form-group">
-                            <label style="display: block">@groupDetail.DetailTitle</label>
-                            <input type="hidden" name="details[@number].Key" value="@groupDetail.DetailId"/>
-                            <input type="text" name="details[@number].Value"  class="form-control" required=""/>
-                        </div>
-                        number += 1;
-                    }
+                    
                     <hr/>
                     <button type="submit" class="btn btn-info waves-effect waves-light">@ButtonCaptions.Add</button>
                     <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">@ButtonCaptions.Cancel</button>

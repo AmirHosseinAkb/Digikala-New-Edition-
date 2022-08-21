@@ -17,9 +17,8 @@ namespace ShopManagement.Domain.ProductGroupAgg
 
         List<GroupDetail> GetGroupDetails(long groupId);
         long AddGroupDetail(GroupDetail detail);
-        bool IsExistGroupDetail(string detailTitle,long groupId);
-        bool IsExistGroupDetail(long detailId,long groupId);
+        bool IsExistGroupDetail(string detailTitle, long groupId);
+        bool IsExistGroupDetail(long detailId, long groupId);
         GroupDetail GetGroupDetail(long detailId);
-        List<GroupDetail> GetProductGroupDetails(long productId);
     }
 }

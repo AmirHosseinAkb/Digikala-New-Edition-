@@ -108,13 +108,5 @@ namespace ShopManagement.Infrastructure.EfCore.Repositories
             return _context.GroupDetails.Find(detailId);
         }
 
-        public List<GroupDetail> GetProductGroupDetails(long productId)
-        {
-            var product = _context.Products.Find(productId);
-            return _context.GroupDetails
-                .Where(d => d.GroupId == product.GroupId || d.GroupId == product.PrimaryGroupId || d.GroupId==product.SecondaryGroupId)
-                .ToList();
-        }
-
     }
 }
