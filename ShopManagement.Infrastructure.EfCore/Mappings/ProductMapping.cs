@@ -9,6 +9,7 @@ using ShopManagement.Domain.ProductAgg;
 using ShopManagement.Domain.ProductColorAgg;
 using ShopManagement.Domain.ProductGroupAgg;
 using ShopManagement.Domain.ProductImageAgg;
+using ShopManagement.Domain.ProductInventoryAgg;
 
 namespace ShopManagement.Infrastructure.EfCore.Mappings
 {
@@ -47,6 +48,12 @@ namespace ShopManagement.Infrastructure.EfCore.Mappings
 
             builder.HasMany<ProductDetail>(p => p.ProductDetails).WithOne(d => d.Product)
                 .HasForeignKey(d => d.ProductId);
+
+            builder.HasOne<ProductInventory>(p => p.ProductInventory).WithOne(i => i.Product)
+                .HasForeignKey<ProductInventory>(i => i.ProductId);
+
+            builder.HasMany(p => p.InventoryHistories).WithOne(h => h.Product)
+                .HasForeignKey(h => h.ProductId);
 
             builder.HasQueryFilter(p => !p.IsDeleted);
         }

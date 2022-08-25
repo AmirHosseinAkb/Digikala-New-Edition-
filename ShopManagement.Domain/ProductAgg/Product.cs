@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ShopManagement.Domain.ProductColorAgg;
 using ShopManagement.Domain.ProductGroupAgg;
 using ShopManagement.Domain.ProductImageAgg;
+using ShopManagement.Domain.ProductInventoryAgg;
 
 namespace ShopManagement.Domain.ProductAgg
 {
@@ -27,9 +28,11 @@ namespace ShopManagement.Domain.ProductAgg
         public ProductGroup ProductGroup { get;private set; }
         public ProductGroup PrimaryProductGroup { get;private set; }
         public ProductGroup SecondaryProductGroup { get;private set; }
+        public ProductInventory ProductInventory { get; private set; }
         public List<ProductImage> ProductImages { get;private set; }
         public List<ProductColor> ProductColors { get;private set; }
         public List<ProductDetail> ProductDetails { get; private set; }
+        public List<InventoryHistory> InventoryHistories { get; private set; }
 
         protected Product()
         {
