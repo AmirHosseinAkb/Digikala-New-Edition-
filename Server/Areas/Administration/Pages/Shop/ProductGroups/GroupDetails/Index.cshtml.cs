@@ -1,6 +1,6 @@
+using Digikala.Application.Contracts.ShopManagement.ProductGroup;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using ShopManagement.Application.Contracts.ProductGroup;
 
 namespace Server.Areas.Administration.Pages.Shop.ProductGroups.GroupDetails
 {

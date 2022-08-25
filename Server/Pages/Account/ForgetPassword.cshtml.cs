@@ -1,7 +1,6 @@
+using Digikala.Application.Contracts.UserManagement.User;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using UserManagement.Application.Contracts.User;
 
 namespace Server.Pages.Account
 {

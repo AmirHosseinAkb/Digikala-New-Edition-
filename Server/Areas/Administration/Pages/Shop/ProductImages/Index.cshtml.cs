@@ -1,6 +1,6 @@
+using Digikala.Application.Contracts.ShopManagement.ProductImage;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using ShopManagement.Application.Contracts.ProductImage;
 
 namespace Server.Areas.Administration.Pages.Shop.ProductImages
 {

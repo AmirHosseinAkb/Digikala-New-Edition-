@@ -1,9 +1,9 @@
+using Digikala.Application.Contracts.ShopManagement.Product;
+using Digikala.Application.Contracts.ShopManagement.ProductColor;
+using Digikala.Application.Contracts.ShopManagement.ProductGroup;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using ShopManagement.Application.Contracts.Product;
-using ShopManagement.Application.Contracts.ProductColor;
-using ShopManagement.Application.Contracts.ProductGroup;
 
 namespace Server.Areas.Administration.Pages.Shop.Products
 {

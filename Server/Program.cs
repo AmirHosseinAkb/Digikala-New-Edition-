@@ -3,11 +3,11 @@ using _01_Framework.Application;
 using _01_Framework.Infrastructure.ExtensionMethods;
 using _01_Framework.Application.Email;
 using _01_Framework.Application.ZarinPal;
+using Digikala.Infrastructure.Configuration.ShopManagement;
+using Digikala.Infrastructure.Configuration.UserManagement;
 using FoolProof.Core;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Server;
-using ShopManagement.Infrastructure.Configuration;
-using UserManagement.Infrastructure.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 

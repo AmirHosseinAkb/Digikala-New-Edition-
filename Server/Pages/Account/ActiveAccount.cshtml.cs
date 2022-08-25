@@ -1,6 +1,5 @@
-using Microsoft.AspNetCore.Mvc;
+using Digikala.Application.Contracts.UserManagement.User;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using UserManagement.Application.Contracts.User;
 
 namespace Server.Pages.Account
 {

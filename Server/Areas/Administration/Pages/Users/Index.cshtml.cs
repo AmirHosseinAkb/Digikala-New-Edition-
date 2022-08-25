@@ -1,9 +1,9 @@
 using _01_Framework.Infrastructure;
+using Digikala.Application.Contracts.UserManagement.Role;
+using Digikala.Application.Contracts.UserManagement.User;
+using Digikala.Application.Contracts.UserManagement.User.Administration;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using UserManagement.Application.Contracts.Role;
-using UserManagement.Application.Contracts.User;
-using UserManagement.Application.Contracts.User.Administration;
 
 namespace Server.Areas.Administration.Pages.Users
 {

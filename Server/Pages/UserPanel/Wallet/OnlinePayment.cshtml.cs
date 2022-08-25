@@ -1,6 +1,5 @@
-using Microsoft.AspNetCore.Mvc;
+using Digikala.Application.Contracts.UserManagement.Transaction;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using UserManagement.Application.Contracts.Transaction;
 
 namespace Server.Pages.UserPanel.Wallet
 {

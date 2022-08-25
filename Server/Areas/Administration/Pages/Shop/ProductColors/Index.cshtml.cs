@@ -1,6 +1,6 @@
+using Digikala.Application.Contracts.ShopManagement.ProductColor;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using ShopManagement.Application.Contracts.ProductColor;
 
 namespace Server.Areas.Administration.Pages.Shop.ProductColors
 {

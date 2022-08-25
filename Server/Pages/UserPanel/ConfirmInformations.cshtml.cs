@@ -1,9 +1,9 @@
+using Digikala.Application.Contracts.UserManagement.User;
+using Digikala.Application.Contracts.UserManagement.User.UserPanel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using UserManagement.Application.Contracts.User;
-using UserManagement.Application.Contracts.User.UserPanel;
 
 namespace Server.Pages.UserPanel
 {
